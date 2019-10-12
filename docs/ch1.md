@@ -1,4 +1,4 @@
-# 第 1 章 CSS 和 Documents CSS and Documents
+# 第 1 章 CSS 和 Documents
 
 Cascading Style Sheets (CSS) is a powerful tool that transforms the resentation of a document or a collection of documents, and it has spread to nearly every corner of the web and into many ostensibly non-web environments. For example, Gecko-based browsers use CSS to affect the presentation of the browser chrome itself, many RSS clients let you apply CSS to feeds and feed entries, and some instant message clients use CSS to format chat windows. Aspects of CSS can be found in the syntax used by JavaScript frameworks, and even in JavaScript itself. It’s everywhere!
 

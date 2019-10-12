@@ -83,7 +83,7 @@ h2 {
 样式表的结果在图 1-1 中展示：
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-1.png' style=""/>
+    <img src='./figures/ch2/fg2-1.png' style=""/>
 </div>
 <p align="center">图 2-1：简单文档的简单样式</p>
 
@@ -106,7 +106,7 @@ h2 {
 结果在图 1-2 中展示:
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-2.png' style=""/>
+    <img src='./figures/ch2/fg2-2.png' style=""/>
 </div>
 <p align="center">图 2-把样式从一个元素移到另一个上</p>
 
@@ -126,7 +126,7 @@ In an instance where you can use more than one keyword for a property’s value,
 属性值可以使用多个关键字的时候，关键字通常用空白分隔，有些情况下需要斜线（`/`）。很多属性可以接收多个关键字（如`font`属性），但不是全部属性都可以。如果想为段落字体设置中等大小的 Helvetica 字体，就像在图 1-3 中显示的：
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-3.png' style=""/>
+    <img src='./figures/ch2/fg2-3.png' style=""/>
 </div>
 <p align="center">图 2-3 属性值包含多个关键字的结果</p>
 
@@ -291,7 +291,7 @@ Any of these will yield the result shown in Figure 2-4. (These styles use groupe
 每个例子都会生成图 2-4 显示的结果。（这些样式使用的分组声明，将在接下来的“分组声明”中探讨。）
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-4.png' style=""/>
+    <img src='./figures/ch2/fg2-4.png' style=""/>
 </div>
 <p align="center">图 2-4 等效样式表的结果</p>
 
@@ -414,7 +414,7 @@ Here we’ve grouped the selectors, so the styles on the right side of the rule 
 因为分组了选择器，右侧的规则会应用在列出的所有标题上；分组声明表明所有列出的样式都会被应用在左侧的选择器上。规则显示的结果如图 2-5。
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-5.png' style=""/>
+    <img src='./figures/ch2/fg2-5.png' style=""/>
 </div>
 <p align="center">图 2-5 分组选择器和规则</p>
 
@@ -522,7 +522,7 @@ When combined with the example markup shown earlier, this simple rule has the ef
 _**通配选择器的符号是`*`，使用 ID、类、属性选择器、伪类选择器以及伪元素选择器等时，如果没有结合元素选择器，它们会隐式地包含通配选择器。**_
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-6.png' style=""/>
+    <img src='./figures/ch2/fg2-6.png' style=""/>
 </div>
 <p align="center">图 2-6：使用类选择器</p>
 
@@ -575,7 +575,7 @@ The results are shown in Figure 2-7.
 效果在图 2-7 中。
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-7.png' style=""/>
+    <img src='./figures/ch2/fg2-7.png' style=""/>
 </div>
 <p align="center">图 2-7：使用一般和特定选择器联合样式</p>
 
@@ -627,7 +627,7 @@ By chaining two class selectors together, you can select only those elements tha
 连接两个类选择器，可以选择那些只有同时具有两个类名的元素，无论类名的顺序如何。正如示例，HTML 代码中含有`class="urgent warning"`,但 CSS 选择器却写作`.warning.urgent`。这条规则依然可以把“When handling plutonium . . .”这段设置为银色背景，如图 1-8 所示，这是因为单词书写的顺序并不重要。（但这并不表示类名的顺序总是无关紧要的，我们将会在本书稍后涉及。）
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-8.png' style=""/>
+    <img src='./figures/ch2/fg2-8.png' style=""/>
 </div>
 <p align="center">图 2-8：使用多类名选择元素</p>
 
@@ -795,7 +795,7 @@ you get the result shown in Figure 2-9.
 将得到如图 2-9 的结果：
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-9.png' style=""/>
+    <img src='./figures/ch2/fg2-9.png' style=""/>
 </div>
 <p align="center">图 2-9：使用属性选择元素</p>
 
@@ -926,7 +926,7 @@ This would double the text size of the first link in the following markup, but n
 结果如图 2-10。
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-10.png' style=""/>
+    <img src='./figures/ch2/fg2-10.png' style=""/>
 </div>
 <p align="center">图 2-10：使用属性和值选择元素</p>
 
@@ -1091,7 +1091,7 @@ This rule’s selector will match the first two elements in the example markup a
 这个选择器将会匹配例子中的前两个元素并把它们设置为斜体。这和使用`span.barren {font-style: italic;}`是一样的效果。
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-11.png' style=""/>
+    <img src='./figures/ch2/fg2-11.png' style=""/>
 </div>
 <p align="center">图 2-11：使用部分属性值选择元素</p>
 
@@ -1128,7 +1128,7 @@ span[class*='cloud'] {
 ```
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-12.png' style=""/>
+    <img src='./figures/ch2/fg2-12.png' style=""/>
 </div>
 <p align="center">图 2-12：基于属性值内子串选择元素</p>
 
@@ -1210,7 +1210,7 @@ a[href^='mailto:'] {
 ```
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-13.png' style=""/>
+    <img src='./figures/ch2/fg2-13.png' style=""/>
 </div>
 <p align="center">图 2-13：基于属性开头的子串选择元素</p>
 
@@ -1247,7 +1247,7 @@ a[href$='.pdf'] {
 ```
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-14.png' style=""/>
+    <img src='./figures/ch2/fg2-14.png' style=""/>
 </div>
 <p align="center">图 2-14：基于属性结尾的子串选择元素</p>
 
@@ -1373,7 +1373,7 @@ Much of the power of CSS is based on the parent-child relationship of elements. 
 CSS 的能力很大程度基于于元素的**父-子关系**。HTML 文档（事实上绝大部分结构化文档）基于元素层级结构，构成文档的“树状”视图（见图 1-15）。在这种层级结构中，每个元素都处在整个文档结构中的某个适当位置上，每个元素都是其他元素的**父**或者**子**，常常既是父又是子。
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-15.png' style=""/>
+    <img src='./figures/ch2/fg2-15.png' style=""/>
 </div>
 <p align="center">图 2-15：文档树结构</p>
 
@@ -1410,7 +1410,7 @@ This rule will make gray any text in an em element that is the descendant of an 
 这条规则会把所有是`h1`元素后代的`em`元素中的文本设置为灰色。其他的`em`文本，例如在段落（`p`）或引用（`blackquote`）中的`em`元素，不会被这条规则选择。见图 1-16。
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-16.png' style=""/>
+    <img src='./figures/ch2/fg2-16.png' style=""/>
 </div>
 <p align="center">图 2-16：基于上下文选择元素</p>
 
@@ -1433,7 +1433,7 @@ In this case, as Figure 2-17 shows, any emphasized text that is part of an unord
 在这种情况下，任何`em`文本，如果这个`em`在一个`ul`中，同时`ul`在一个`ol`中，而`ol`又在另一个`ul`中，这个`em`会被设置为灰色,如 2-17 所示。这是一条非常具体的选择规则。
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-17.png' style=""/>
+    <img src='./figures/ch2/fg2-17.png' style=""/>
 </div>
 <p align="center">图 2-17：一个非常具体的后代选择器</p>
 
@@ -1465,7 +1465,7 @@ Figure 2-18 shows the result.
 图 2-18 显示了样式的结果。
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-18.png' style=""/>
+    <img src='./figures/ch2/fg2-18.png' style=""/>
 </div>
 <p align="center">图 2-18：使用后代选择器为同一类型的元素添加不同的样式</p>
 
@@ -1569,7 +1569,7 @@ When viewing the document as a tree structure, it’s easy to see that a child s
 观察文档的树状结构视图，子元素选择器把匹配限制在直接连接的元素上。图 1-19 显示了部分文档树。
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-19.png' style=""/>
+    <img src='./figures/ch2/fg2-19.png' style=""/>
 </div>
 <p align="center">图 2-19：一个文档树片段</p>
 
@@ -1607,7 +1607,7 @@ To visualize how this selector works, it is easiest to once again consider a fra
 看图 2-20 的文档树片段，更清晰地观察这个选择器是如何生效的：
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-20.png' style=""/>
+    <img src='./figures/ch2/fg2-20.png' style=""/>
 </div>
 <p align="center">图 2-20：另一个文档树片段</p>
 
@@ -1620,7 +1620,7 @@ Remember that you can select the second of two adjacent siblings only with a sin
 选择后面的两个相邻兄弟只需要一个组合器符号，如果写作`li + li {font-weight: bold;}`,只有每个列表中的第二项和第三项会被设置为粗体，样式不会对第一项生效。见图 2-21.
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-21.png' style=""/>
+    <img src='./figures/ch2/fg2-21.png' style=""/>
 </div>
 <p align="center">图 2-21：选择相邻兄弟元素</p>
 
@@ -1701,7 +1701,7 @@ As an example, to italicize any ol that follows an h2 and also shares a parent w
 ```
 
 <div style="margin: 0 auto; width: 50%;">
-    <img src='./figure2-22.png' style=""/>
+    <img src='./figures/ch2/fg2-22.png' style=""/>
 </div>
 <p align="center">图 2-22：选择跟随兄弟元素</p>
 

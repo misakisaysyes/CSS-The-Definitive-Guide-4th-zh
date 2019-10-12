@@ -229,7 +229,7 @@ When applied to the following markup, the content will be rendered as shown in F
 ```
 
 <div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/figure3-1.png'/>
+  <img src='./figures/ch3/fg3-1.png'/>
 </div>
 <p align="center">图 3-1：How different rules affect a document</p>
 
@@ -401,7 +401,7 @@ h1 {
 ```
 
 <div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/figure3-2.png'/>
+  <img src='./figures/ch3/fg3-2.png'/>
 </div>
 <p align="center">图 3-2：Important rules always win</p>
 
@@ -444,7 +444,7 @@ We expect that style applied to a `ul` will also be applied to its list items, a
 我们期望应用于“ul”的样式也将应用于它的列表项，以及那些列表项的任何内容。多亏了继承，这正是所发生的，如图 3-3 所示。
 
 <div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/figure3-3.png'/>
+  <img src='./figures/ch3/fg3-3.png'/>
 </div>
 <p align="center">图 3-3：Inheritance of styles</p>
 
@@ -453,7 +453,7 @@ It’s easier to see how inheritance works by turning to a tree diagram of a doc
 通过查看文档的树形图，很容易看出继承是如何工作的。图 3-4 显示了一个非常简单的文档的树形图，其中包含两个列表:一个是无序的，另一个是有序的。
 
 <div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/figure3-4.png'/>
+  <img src='./figures/ch3/fg3-4.png'/>
 </div>
 <p align="center">图 3-4：A simple tree diagram</p>
 
@@ -474,7 +474,7 @@ First, note that many properties are not inherited—generally in order to avoid
 首先，注意许多属性没有被继承——通常是为了避免不希望的结果。例如，属性“border”(用于设置元素的边框)不会继承。快速浏览一下图 3-5 就会发现为什么会这样。如果边界是继承的，文档就会变得更加混乱——除非作者付出额外的努力来关闭继承的边界。
 
 <div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/figure3-5.png'/>
+  <img src='./figures/ch3/fg3-5.png'/>
 </div>
 <p align="center">图 3-5：Why borders aren’t inherited</p>
 
@@ -503,7 +503,7 @@ h1#page-title {
 ```
 
 <div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/figure3-6.png'/>
+  <img src='./figures/ch3/fg3-6.png'/>
 </div>
 <p align="center">图 3-6：Zero specificity defeats no specificity</p>
 
@@ -555,7 +555,7 @@ By targeting a rule directly at the `a` elements within the toolbar, you’ll ge
 通过将规则直接指向工具栏中的“a”元素，您将得到如图 3-7 所示的结果。
 
 <div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/figure3-7.png'/>
+  <img src='./figures/ch3/fg3-7.png'/>
 </div>
 <p align="center">图 3-7：Directly assigning styles to the relevant elements</p>
 
@@ -736,7 +736,7 @@ Given the rules shown, the text of the paragraph will be silver, as illustrated 
 根据所示的规则，段落的文本将是银色的，如图 3-8 所示。为什么?因为“p#bright(0,1,0,1)”的特殊性覆盖了“p(0,0,0,1)”的特殊性，即使后者的规则在样式表中稍后出现。
 
 <div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/figure3-8.png'/>
+  <img src='./figures/ch3/fg3-8.png'/>
 </div>
 <p align="center">图 3-8：Higher specificity wins out over lower specificity</p>
 
