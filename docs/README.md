@@ -1,7 +1,7 @@
 # CSS 权威指南 4th 中文
 
 <div style="margin: 0 auto; width: 40%;">
-  <img src='./cover.png'/>
+  <img src='./figures/cover.png'/>
 </div>
 
 ## 序
