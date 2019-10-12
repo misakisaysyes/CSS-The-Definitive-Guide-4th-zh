@@ -2,7 +2,7 @@
 
 CSS 权威指南第四版 中文翻译
 
-<img src="./cover.png" width=40%>
+<img src="./docs/figures/cover.png" width=40%>
 
 ## 前言
 
