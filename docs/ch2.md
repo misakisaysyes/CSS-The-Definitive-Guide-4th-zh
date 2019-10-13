@@ -1,8 +1,8 @@
 # 第 2 章 选择器 Selectors
 
-One of the primary advantages of CSS is its ability to easily apply a set of styles to all elements of the same type. Unimpressed? Consider this: by editing a single line of CSS, you can change the colors of all your headings. Don’t like the blue you’re using? Change that one line of code, and they can all be purple, yellow, maroon, or any other color you desire. That lets you, the designer, focus on design, rather than grunt work. The next time you’re in a meeting and someone wants to see headings with a different shade of green, just edit your style and hit Reload. `Voilà!` The results are accomplished in seconds and there for everyone to see.
+One of the primary advantages of CSS is its ability to easily apply a set of styles to allelements of the same type. Unimpressed? Consider this: by editing a single line ofCSS, you can change the colors of all your headings. Don’t like the blue you’re using?Change that one line of code, and they can all be purple, yellow, maroon, or any other color you desire. That lets you, the designer, focus on design, rather than grunt work.The next time you’re in a meeting and someone wants to see headings with a differentshade of green, just edit your style and hit Reload. Voilà! The results are accomplished in seconds and there for everyone to see.
 
-CSS 的一个主要优势——尤其对设计者而言——是它能够轻松地把一组样式应用到同一类型的所有元素。印象不够深刻？想象这样的场景：通过编辑单行 CSS，你可以修改所有标题的颜色。不喜欢正在使用的蓝色？修改一行代码，把它们都变成紫色、黄色、栗色等等任何想要的颜色。这可以让你，设计师，专注于设计而不是繁琐的工作。下次会议中，有人想看绿色标题，你只需要编辑样式然而点击重新加载。瞧!几秒钟就完成了，每个人都可以看到。
+CSS的主要优点之一是能够轻松地将一组样式应用于相同类型的元素。 印象深刻？ 考虑一下：通过编辑一行CSS，您可以更改所有标题的颜色。 不喜欢您使用的蓝色吗？只需更改一行代码，它们都可以是紫色，黄色，栗色或您想要的任何其他颜色。 这样一来，设计师就可以专注于设计，而不必费力地工作。下次您开会时，有人想要看到带有不同绿色阴影的标题，只需编辑样式并单击“重新加载”即可。 瞧！ 结果在几秒钟内完成，每个人都可以看到
 
 CSS can’t solve all your problems—you can’t use it to change the colorspace of your PNGs, for example, at least not yet—but it can make some global changes much easier. So let’s begin with selectors and structure.
 
@@ -10,7 +10,7 @@ CSS can’t solve all your problems—you can’t use it to change the colorspac
 
 ## 2.1 基本样式规则 Basic Style Rules
 
-As stated, a central feature of CSS is its ability to apply certain rules to an entire set of element types in a document. For example, let’s say that you want to make the text of all `h2` elements appear gray. Using old-school HTML, you’d have to do this by inserting `<font color="gray">…</font>` tags inside all your `h2` elements. Using the `style` attribute, which is also bad practice, would require you to include `style="color: gray;"` in all your h2 elements, like this:
+As stated, a central feature of CSS is its ability to apply certain rules to an entire set of element types in a document. For example, let’s say that you want to make the text of all `h2` elements appear gray. Using old-school HTML, you’d have to do this by inserting `<font color="gray">…</font>` tags inside all your `h2` elements. Using the style attribute, which is also bad practice, would require you to include `style="color:gray;"` in all your `h2` elements, like this:
 
 如上所述，CSS 的核心特性是将某些样式应用于文档中的整个元素类型的能力。例如，如果你想把所有`h2`元素的文本显示为灰色，使用老套的 HTML，你必须在所有的`h2`元素中插入`<font color="gray">…</font>`标签；使用`style`属性也不好，这需要你在所有的`h2`元素上添加`style="color: gray;"`:
 
