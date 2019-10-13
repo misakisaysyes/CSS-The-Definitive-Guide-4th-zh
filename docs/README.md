@@ -10,6 +10,10 @@
 
 英文正式版已于 2017 年 10 月正式出版。
 
+<Tips tips="green">This element signifies a tip or suggestion.</Tips>
+<Tips tips="blue">This element signifies a general note.</Tips>
+<Tips tips="orange">This element indicates a warning or caution.</Tips>
+
 ## 目录
 
 - [第 1 章 CSS 和 Documents](ch1.md)
