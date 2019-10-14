@@ -1,0 +1,52 @@
+<template>
+  <div class="figure">
+    <div class="fg">
+      <div class="fgimg">
+        <img :src="imgSrc" />
+      </div>
+    </div>
+    <div class="fgtitle">
+      <p>
+        图 {{figure}}：<slot></slot>
+      </p>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ["figure"],
+  data() {
+    return {
+      imgSrc: ""
+    };
+  },
+  created() {
+    this.chooseTip();
+  },
+  methods: {
+    chooseTip() {
+      let tmp = this.figure.split("-");
+      this.imgSrc =
+        "./figures/ch" + tmp[0] + "/fg" + tmp[0] + "-" + tmp[1] + ".png";
+    }
+  }
+};
+</script>
+
+<style scoped>
+.fg {
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  margin: 0 auto;
+  width: 100%;
+}
+.fgimg {
+  padding: 4px 24px 0;
+}
+.fgtitle {
+  text-align: center;
+  font-weight: bold;
+}
+</style>

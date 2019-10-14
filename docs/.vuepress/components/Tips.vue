@@ -14,7 +14,7 @@ export default {
   props: ["tips"],
   data() {
     return {
-      imgSrc: "note.png"
+      imgSrc: ""
     };
   },
   created() {
@@ -24,11 +24,11 @@ export default {
     chooseTip() {
       console.log(this.tips);
       if (this.tips === "blue") {
-        this.imgSrc = "note.png";
+        this.imgSrc = "./note.png";
       } else if (this.tips === "green") {
-        this.imgSrc = "tip.png";
+        this.imgSrc = "./tip.png";
       } else {
-        this.imgSrc = "warn.png";
+        this.imgSrc = "./warn.png";
       }
     }
   }
