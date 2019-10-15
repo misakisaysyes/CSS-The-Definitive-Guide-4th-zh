@@ -362,7 +362,7 @@ In the third example, the foreground color is a solid, opaque red. The text and 
 
 This technique works for any background, including gradient and image backgrounds, topics which we’ll cover in a bit. Remember, however: if the background for some reason fails to be drawn behind the text, the transparent text meant to be “filled” with the background will instead be completely unreadable.
 
-<Tips tips="orange">As of late 2017, only Firefox supported `background-clip: text` in that exact form. However, pretty much every browser, `including` Firefox, supported the variant `-webkit-background-clip: text`.</Tips>
+<Tips tips="orange">As of late 2017, only Firefox supported <code>background-clip: text</code> in that exact form. However, pretty much every browser, <code>including</code> Firefox, supported the variant <code>-webkit-background-clip: text</code>.</Tips>
 
 ### 9.2.3 Background Images
 
@@ -502,7 +502,7 @@ OK, so we can put images in the background of an element. How about being able t
 
 That value syntax looks pretty horrific, but it isn’t; it’s just what happens when you try to formalize the fast-and-loose implementations of a new technology into a regular syntax and then layer even more features on top of that while trying to reuse parts of the old syntax. (So, OK, kind of horrific.) In practice, `background-position` is pretty simple.
 
-<Tips tips="blue">Throughout this section, we’ll be using the rule `backgroundrepeat: no-repeat` to prevent tiling of the background image. You’re not crazy: we haven’t talked about `background-repeat` yet! We will soon enough, but for now, just accept that the rule restricts the background to a single image, and don’t worry about it until we move on to discussing `background-repeat`.</Tips>
+<Tips tips="blue">Throughout this section, we’ll be using the rule <code>backgroundrepeat: no-repeat</code> to prevent tiling of the background image. You’re not crazy: we haven’t talked about <code>background-repeat</code> yet! We will soon enough, but for now, just accept that the rule restricts the background to a single image, and don’t worry about it until we move on to discussing <code>background-repeat</code>.</Tips>
 
 For example, we can center a background image in the `body` element, with the result depicted in Figure 9-18, which is the result of the following code:
 
@@ -898,7 +898,7 @@ Setting an image in the center of the `p` and then letting it fully repeat will 
 
 Note the differences along the edges of the element. When the background image repeats from the center, as in the first paragraph, the grid of yin-yang symbols is centered within the element, resulting in consistent clipping along the edges. In the second paragraph, the tiling begins at the top-left corner of the padding area, so the clipping is not consistent.
 
-<Tips tips="blue">In case you’re wondering, there are no single-direction values such as `repeat-left` or `repeat-up`.</Tips>
+<Tips tips="blue">In case you’re wondering, there are no single-direction values such as <code>repeat-left</code> or <code>repeat-up</code>.</Tips>
 
 #### Spacing and rounding
 
@@ -919,7 +919,7 @@ This is what `space` does: it determines how many repetitions it can fully fit a
 
 <Figures figure="9-38">Spaced-out tiling with different intervals</Figures>
 
-<Tips tips="blue">Keep in mind that any background color, or the “backdrop” of the element (that is, the combined background of the element’s ancestors) will show through the gaps in `space-separated` background images.</Tips>
+<Tips tips="blue">Keep in mind that any background color, or the “backdrop” of the element (that is, the combined background of the element’s ancestors) will show through the gaps in <code>space-separated</code> background images.</Tips>
 
 What happens if you have a really big image that won’t fit more than once along the given axis? Then it’s only drawn once, and placed as determined by the value of `background-position`. The flip side of that is that if more than one repetition of the image will fit along an axis, then the value of `background-position` is ignored along that axis. An example of this is shown in Figure 9-39, and created using the following code:
 
@@ -1602,36 +1602,19 @@ background-repeat: no-repeat;
 
 ## 9.3 Gradients
 
-There are two new image types defined by CSS that are described entirely in CSS: lin‐
-ear gradients and radial gradients. Of each type, there are two sub-types: repeating
-and non-repeating. Gradients are most often used in backgrounds, which is why
-they’re being covered here, though they can be used in any context where an image is
-permitted—list-style-image, for example.
+There are two new image types defined by CSS that are described entirely in CSS: linear gradients and radial gradients. Of each type, there are two sub-types: repeating and non-repeating. Gradients are most often used in backgrounds, which is why they’re being covered here, though they can be used in any context where an image is permitted—`list-style-image`, for example.
 
-A gradient is just a smooth visual transition from one color to another. For example,
-a gradient from white to black will start white, run through successively darker
-shades of gray, and eventually arrive at black. How gradual or abrupt a transition that
-is depends on how much space the gradient has to operate. If you run from white to
-black over 100 pixels, then each pixel along the gradient’s progression will be another
-1% darker gray. This is diagrammed in Figure 9-63.
+A gradient is just a smooth visual transition from one color to another. For example, a gradient from white to black will start white, run through successively darker shades of gray, and eventually arrive at black. How gradual or abrupt a transition that is depends on how much space the gradient has to operate. If you run from white to black over 100 pixels, then each pixel along the gradient’s progression will be another 1% darker gray. This is diagrammed in Figure 9-63.
 
 <Figures figure="9-63">The progression of a simple gradient</Figures>
 
-As we go through the process of exploring gradients, always keep this in mind: gradi‐
-ents are images. It doesn’t matter that you describe them by typing CSS—they are
-every bit as much images as SVGs, PNG, GIFs, and so on.
+As we go through the process of exploring gradients, always keep this in mind: `gradients are images`. It doesn’t matter that you describe them by typing CSS—they are every bit as much images as SVGs, PNG, GIFs, and so on.
 
-What’s interesting about gradients is that they have no intrinsic dimensions, which
-means that if the background-size property’s value auto is used, it is treated as if it
-were 100%. Thus, if you don’t define a background-size for a background gradient, it
-will be set to the default value of auto, which is the same as declaring 100% 100%. So,
-by default, background gradients fill in the entire background positioning area.
+What’s interesting about gradients is that they have no intrinsic dimensions, which means that if the `background-size` property’s value `auto` is used, it is treated as if it were `100%`. Thus, if you don’t define a `background-size` for a background gradient, it will be set to the default value of `auto`, which is the same as declaring 100% 100%. So, by default, background gradients fill in the entire background positioning area.
 
 ### 9.3.1 Linear Gradients
 
-Linear gradients are gradient fills that proceed along a linear vector, referred to as the
-gradient line. They can be anything but simple, however. Here are a few relatively sim‐
-ple gradients, with the results shown in Figure 9-64:
+Linear gradients are gradient fills that proceed along a linear vector, referred to as the `gradient line`. They can be anything but simple, however. Here are a few relatively simple gradients, with the results shown in Figure 9-64:
 
 ```css
 #ex01 {
@@ -1653,15 +1636,9 @@ ple gradients, with the results shown in Figure 9-64:
 
 <Figures figure="9-64">Simple linear gradients</Figures>
 
-The first of these is the most basic that a gradient can be: two colors. This causes a
-gradient from the first color at the top of the background positioning area to the sec‐
-ond color at the bottom of the background positioning area.
+The first of these is the most basic that a gradient can be: two colors. This causes a gradient from the first color at the top of the background positioning area to the second color at the bottom of the background positioning area.
 
-The gradient goes from top to bottom because the default direction for gradients is to
-bottom, which is the same as 180deg and its various equivalents (for example,
-0.5turn). If you’d like to go a different direction, then you can start the gradient value
-with a direction. That’s what was done for all the other gradients shown in
-Figure 9-64.
+The gradient goes from top to bottom because the default direction for gradients is `to bottom`, which is the same as `180deg` and its various equivalents (for example, `0.5turn`). If you’d like to go a different direction, then you can start the gradient value with a direction. That’s what was done for all the other gradients shown in Figure 9-64.
 
 So the basic syntax of a linear gradient is:
 
@@ -1672,24 +1649,13 @@ linear-gradient(
 )
 ```
 
-We’ll explore both color stops and color hints very soon. For now, the basic pattern to
-keep in mind is: an optional direction at the start, a list of color stops and/or color
-hints, and a color stop at the end.
+We’ll explore both color stops and color hints very soon. For now, the basic pattern to keep in mind is: an optional direction at the start, a list of color stops and/or color hints, and a color stop at the end.
 
-While you only use the to keyword if you’re describing a side or quadrant with key‐
-words like top and right, the direction you give always describes the direction in
-which the gradient line points. In other words, linear-gradient(0deg,red,green)
-will have red at the bottom and green at the top because the gradient line points
-toward zero degrees (the top of the element) and thus ends with green. Just remem‐
-ber to leave out the to if you’re using an angle value because something like to 45deg
-is invalid and will be ignored.
+While you only use the `to` keyword if you’re describing a side or quadrant with keywords like `top` and `right`, the direction you give `always` describes the direction in which the gradient line points. In other words, `linear-gradient(0deg,red,green)` will have red at the bottom and green at the top because the gradient line points toward zero degrees (the top of the element) and thus ends with green. Just remember to leave out the `to` if you’re using an angle value because something like to `45deg` is invalid and will be ignored.
 
 #### Gradient colors
 
-You’re able to use any color value you like, including alpha-channel values such as
-rgba() and keywords like transparent. Thus it’s entirely possible to fade out pieces
-of your gradient by blending to (or from) a color with zero opacity. Consider the fol‐
-lowing rules, which are depicted in Figure 9-65:
+You’re able to use any color value you like, including alpha-channel values such as `rgba()` and keywords like `transparent`. Thus it’s entirely possible to fade out pieces of your gradient by blending to (or from) a color with zero opacity. Consider the following rules, which are depicted in Figure 9-65:
 
 ```css
 #ex01 {
@@ -1702,12 +1668,9 @@ lowing rules, which are depicted in Figure 9-65:
 
 <Figures figure="9-65">Fading to white versus fading to transparent</Figures>
 
-As you can see, the first example fades from light gray to white, whereas the second
-example fades the same light gray from opaque to transparent, thus allowing the par‐
-ent element’s yellow background to show through.
+As you can see, the first example fades from light gray to white, whereas the second example fades the same light gray from opaque to transparent, thus allowing the parent element’s yellow background to show through.
 
-You’re certainly not restricted to two colors, either. You’re free to add as many colors
-as you can stand. Consider the following gradient:
+You’re certainly not restricted to two colors, either. You’re free to add as many colors as you can stand. Consider the following gradient:
 
 ```css
 #wdim {background-image: linear-gradient(90deg,
@@ -1716,16 +1679,11 @@ as you can stand. Consider the following gradient:
  );
 ```
 
-The gradient line points toward 90 degrees, which is the right side. There are 14 color
-stops in all, one for each of the comma-separated color names, and they are dis‐
-tributed evenly along the gradient line, with the first at the beginning of the line and
-the last at the end. Between the color stops, the colors are blended as smoothly as
-possible from one color to the other. This is shown in Figure 9-66.
+The gradient line points toward 90 degrees, which is the right side. There are 14 color stops in all, one for each of the comma-separated color names, and they are distributed evenly along the gradient line, with the first at the beginning of the line and the last at the end. Between the color stops, the colors are blended as smoothly as possible from one color to the other. This is shown in Figure 9-66.
 
 <Figures figure="9-66">The distribution of color stops along the gradient line</Figures>
 
-So, without any indication of where the color stops should be positioned, they’re
-evenly distributed. What happens if you give them positions?
+So, without any indication of where the color stops should be positioned, they’re evenly distributed. What happens if you give them positions?
 
 #### Positioning color stops
 
@@ -1735,13 +1693,9 @@ The full syntax of a `<color-stop>` is:
 <color> [ <length> | <percentage> ]?
 ```
 
-After every color value, you can (but don’t have to) supply a position value. This gives
-you the ability to distort the usual regular progression of color stops into something
-else.
+After every color value, you can (but don’t have to) supply a position value. This gives you the ability to distort the usual regular progression of color stops into something else.
 
-We’ll start with lengths, since they’re pretty simple. Let’s take a rainbow progression
-(only a single rainbow this time) and have each color of the rainbow occur every 25
-pixels, as shown in Figure 9-67:
+We’ll start with lengths, since they’re pretty simple. Let’s take a rainbow progression (only a single rainbow this time) and have each color of the rainbow occur every 25 pixels, as shown in Figure 9-67:
 
 ```css
 #spectrum {
@@ -1760,14 +1714,9 @@ pixels, as shown in Figure 9-67:
 
 <Figures figure="9-67">Placing color stops every 25 pixels</Figures>
 
-This worked out just fine, but notice what happened after 150 pixels—the violet just
-continued on to the end of the gradient line. That’s what happens if you set up the
-color stops so they don’t make it to the end of the gradient line: the last color is just
-carried onward.
+This worked out just fine, but notice what happened after 150 pixels—the violet just continued on to the end of the gradient line. That’s what happens if you set up the color stops so they don’t make it to the end of the gradient line: the last color is just carried onward.
 
-Conversely, if your color stops go beyond the end of the gradient line, then the gradi‐
-ent just stops at whatever point it manages to reach when it gets to the end of the
-gradient line. This is illustrated in Figure 9-68:
+Conversely, if your color stops go beyond the end of the gradient line, then the gradient just stops at whatever point it manages to reach when it gets to the end of the gradient line. This is illustrated in Figure 9-68:
 
 ```css
 #spectrum {
@@ -1786,22 +1735,11 @@ gradient line. This is illustrated in Figure 9-68:
 
 <Figures figure="9-68">Gradient clipping when colors stops go too far</Figures>
 
-Since the last color stop is at 1,200 pixels but the gradient line is shorter than that, the
-gradient just stops right around the color blue. That’s as far as the gradient gets
-before running out of room.
+Since the last color stop is at 1,200 pixels but the gradient line is shorter than that, the gradient just stops right around the color `blue`. That’s as far as the gradient gets before running out of room.
 
-Note that in the preceding two examples and figures, the first color (red) didn’t have a
-length value. If the first color has no position, it’s assumed to be the beginning of the
-gradient line. Similarly, if you leave a position off the last color stop, it’s assumed to be
-the end of the gradient line. (But note that this is not true for repeating gradients,
-which we’ll cover in the upcoming section “Repeating Gradients” on page 481.)
+Note that in the preceding two examples and figures, the first color (`red`) didn’t have a length value. If the first color has no position, it’s assumed to be the beginning of the gradient line. Similarly, if you leave a position off the last color stop, it’s assumed to be the end of the gradient line. (But note that this is not true for repeating gradients, which we’ll cover in the upcoming section “Repeating Gradients” on page 481.)
 
-You can use any length value you like, not just pixels. Ems, inches, you name it. You
-can even mix different units into the same gradient, although this is not generally rec‐
-ommended for reasons we’ll get to in a little bit. You can even have negative length
-values if you want; doing so will place a color stop before the beginning of the gradi‐
-ent line, and clipping will occur in the same manner as it happens at the end of the
-line, as shown in Figure 9-69:
+You can use any length value you like, not just pixels. Ems, inches, you name it. You can even mix different units into the same gradient, although this is not generally recommended for reasons we’ll get to in a little bit. You can even have negative length values if you want; doing so will place a color stop before the beginning of the gradient line, and clipping will occur in the same manner as it happens at the end of the line, as shown in Figure 9-69:
 
 ```css
 #spectrum {
@@ -1820,11 +1758,7 @@ line, as shown in Figure 9-69:
 
 <Figures figure="9-69">Gradient clipping when color stops have negative positions</Figures>
 
-As for percentages, they’re calculated with respect to the total length of the gradient
-line. A color stop at 50% will be at the midpoint of the gradient line. Let’s return to our
-rainbow example, and instead of having a color stop every 25 pixels, we’ll have one
-every 10% of the gradient line’s length. This would look like the following, which has
-the result shown in Figure 9-70:
+As for percentages, they’re calculated with respect to the total length of the gradient line. A color stop at `50%` will be at the midpoint of the gradient line. Let’s return to our rainbow example, and instead of having a color stop every 25 pixels, we’ll have one every 10% of the gradient line’s length. This would look like the following, which has the result shown in Figure 9-70:
 
 ```css
 #spectrum {
@@ -1834,14 +1768,9 @@ the result shown in Figure 9-70:
 
 <Figures figure="9-70">Placing color stops every 10 percent</Figures>
 
-As we saw previously, since the last color stop comes before the end of the gradient
-line, its color (violet) is carried through to the end of the gradient. These stops are a
-bit more spread out than the 25-pixel example we saw earlier, but otherwise things
-happen in more or less the same way.
+As we saw previously, since the last color stop comes before the end of the gradient line, its color (`violet`) is carried through to the end of the gradient. These stops are a bit more spread out than the 25-pixel example we saw earlier, but otherwise things happen in more or less the same way.
 
-In cases where some color stops have position values and others don’t, the stops
-without positions are evenly distributed between the ones that do. Consider the fol‐
-lowing:
+In cases where some color stops have position values and others don’t, the stops without positions are evenly distributed between the ones that do. Consider the following:
 
 ```css
 #spectrum {
@@ -1849,15 +1778,9 @@ lowing:
 }
 ```
 
-Because red and violet don’t have specified position values, they’re taken to be 0%
-and 100%, respectively. This means than orange, green, and blue will be evenly dis‐
-tributed between the explicitly defined positions to either side.
+Because `red` and `violet` don’t have specified position values, they’re taken to be `0%` and `100%`, respectively. This means than `orange`, `green`, and `blue` will be evenly distributed between the explicitly defined positions to either side.
 
-For orange, that means the point midway between red 0% and yellow 50%, which is
-25%. For green and blue, these need to be arranged between yellow 50% and indigo
-95%. That’s a 45% difference, which is divided in three, because there are three inter‐
-vals between the four values. That means 65% and 80%. In the end, we get the distor‐
-ted rainbow shown in Figure 9-71, exactly as if we’d declared the following:
+For `orange`, that means the point midway between `red 0%` and `yellow 50%`, which is 25%. For `green` and `blue`, these need to be arranged between `yellow 50%` and `indigo 95%`. That’s a 45% difference, which is divided in three, because there are three intevals between the four values. That means 65% and 80%. In the end, we get the distorted rainbow shown in Figure 9-71, exactly as if we’d declared the following:
 
 ```css
 #spectrum {
@@ -1876,13 +1799,9 @@ ted rainbow shown in Figure 9-71, exactly as if we’d declared the following:
 
 <Figures figure="9-71">Distributing color stops between explicitly placed stops</Figures>
 
-This is the same mechanism used to evenly distribute stops along the gradient line
-when none of them are given a position. If none of the color stops have been posi‐
-tioned, the first is assumed to be 0%, the last is assumed to be 100%, and the other
-color stops are evenly distributed between those two points.
+This is the same mechanism used to evenly distribute stops along the gradient line when none of them are given a position. If none of the color stops have been positioned, the first is assumed to be `0%`, the last is assumed to be `100%`, and the other color stops are evenly distributed between those two points.
 
-You might wonder what happens if you put two color stops at exactly the same point,
-like this:
+You might wonder what happens if you put two color stops at exactly the same point, like this:
 
 ```css
 #spectrum {
@@ -1890,19 +1809,13 @@ like this:
 }
 ```
 
-All that happens is that the two color stops are put on top of each other. The result is
-shown in Figure 9-72.
+All that happens is that the two color stops are put on top of each other. The result is shown in Figure 9-72.
 
 <Figures figure="9-72">The effect of coincident color stops</Figures>
 
-The gradient blended as usual all along the gradient line, but at the 50% point, it
-instantly blended from green to blue over zero length. So the gradient blended from
-yellow at the 33.3% point (two-thirds of the way from 0% to 50%) to green at the 50%
-point, then blended from green to blue over zero length, then blended from blue at
-50% over to indigo at 75% (midway between 50% and 100%).
+The gradient blended as usual all along the gradient line, but at the 50% point, it instantly blended from green to blue over zero length. So the gradient blended from yellow at the 33.3% point (two-thirds of the way from 0% to 50%) to green at the 50% point, then blended from green to blue over zero length, then blended from blue at 50% over to indigo at 75% (midway between 50% and 100%).
 
-This “hard-stop” effect can be useful if you want to create a striped effect, like that
-shown in Figure 9-73, which is the result of the following code:
+This “hard-stop” effect can be useful if you want to create a striped effect, like that shown in Figure 9-73, which is the result of the following code:
 
 ```css
 .stripes {
@@ -1922,8 +1835,7 @@ shown in Figure 9-73, which is the result of the following code:
 
 <Figures figure="9-73">Hard-stop stripes</Figures>
 
-OK, so that’s what happens if you put color stops right on top of each other, but what
-happens if you put one before another? Something like this, say:
+OK, so that’s what happens if you put color stops right on top of each other, but what happens if you put one `before` another? Something like this, say:
 
 ```css
 #spectrum {
@@ -1931,14 +1843,9 @@ happens if you put one before another? Something like this, say:
 }
 ```
 
-In that case, the offending color stop (blue in this case) is set to the largest specified
-value of a preceding color stop. Here, it would be set to 50%, since the stop before it
-had that position. Thus, the effect is the same as we saw earlier in this section, when
-the green and blue color stops were placed on top of each other.
+In that case, the offending color stop (`blue` in this case) is set to the largest specified value of a preceding color stop. Here, it would be set to `50%`, since the stop before it had that position. Thus, the effect is the same as we saw earlier in this section, when the green and blue color stops were placed on top of each other.
 
-The key point here is that the color stop is set to the largest specified position of
-the stop that precedes it. Thus, given the following, the indigo color stop would be
-set to 50%:
+The key point here is that the color stop is set to the largest `specified` position of the stop that precedes it. Thus, given the following, the `indigo` color stop would be set to `50%`:
 
 ```css
 #spectrum {
@@ -1946,23 +1853,15 @@ set to 50%:
 }
 ```
 
-In this case, the largest specified position before the indigo stop is the 50% specified at
-the yellow stop. Thus, the gradient fades from red to orange to yellow, then has a hard
-switch to indigo before fading from indigo to violet. The gradient’s fades from yellow
-to green to blue to indigo all take place over zero distance. See Figure 9-74 for the
-results.
+In this case, the largest specified position before the indigo stop is the `50%` specified at the yellow stop. Thus, the gradient fades from red to orange to yellow, then has a hard switch to indigo before fading from indigo to violet. The gradient’s fades from yellow to green to blue to indigo all take place over zero distance. See Figure 9-74 for the results.
 
 <Figures figure="9-74">Handling color stops that are out of place</Figures>
 
-This behavior is the reason why mixing units within a single gradient is generally dis‐
-couraged. If you mix rems and percentages, for example, you could end up with a sit‐
-uation where a color stop positioned with percentages might end up before an earlier
-color stop positioned with rems.
+This behavior is the reason why mixing units within a single gradient is generally discouraged. If you mix rems and percentages, for example, you could end up with a situation where a color stop positioned with percentages might end up before an earlier color stop positioned with rems.
 
 #### Setting color hints
 
-Thus far, we’ve worked with color stops, but you may remember that the syntax for
-linear gradients permits “color hints” after each color stop:
+Thus far, we’ve worked with color stops, but you may remember that the syntax for linear gradients permits “color hints” after each color stop:
 
 ```css
 linear-gradient(
@@ -1971,9 +1870,7 @@ linear-gradient(
 )
 ```
 
-A `<color-hint>` is a way of modifying the blend between the two color stops to either
-side. By default, the blend from one color stop to the next is linear. Thus, given the
-following, we get the result shown in Figure 9-75:
+A `<color-hint>` is a way of modifying the blend between the two color stops to either side. By default, the blend from one color stop to the next is linear. Thus, given the following, we get the result shown in Figure 9-75:
 
 ```css
 linear-gradient(
@@ -1983,14 +1880,9 @@ to right, #000 25%, rgb(90%,90%,90%) 75%
 
 <Figures figure="9-75">Linear blending from one color stop to the next</Figures>
 
-The blend from the 25% point to the 75% point is a constant linear progression from
-black (#000) to a light gray (rgb(90%,90%,90%)). Halfway between them, at the 50%
-mark, the shade of gray is exactly halfway between the colors defined by the color
-stops to either side. That calculates to rgb(45%,45%,45%).
+The blend from the 25% point to the 75% point is a constant linear progression from black (`#000`) to a light gray (`rgb(90%,90%,90%)`). Halfway between them, at the 50% mark, the shade of gray is exactly halfway between the colors defined by the color stops to either side. That calculates to `rgb(45%,45%,45%)`.
 
-With color hints, we can change the midpoint of the progression. Instead of reaching
-rgb(45%,45%,45%) at the halfway point, it can be set for any point in between the two
-stops. Thus, the following CSS leads to the result seen in Figure 9-76:
+With color hints, we can change the midpoint of the progression. Instead of reaching `rgb(45%,45%,45%)` at the halfway point, it can be set for any point in between the two stops. Thus, the following CSS leads to the result seen in Figure 9-76:
 
 ```css
 #ex01 {
@@ -2012,26 +1904,15 @@ stops. Thus, the following CSS leads to the result seen in Figure 9-76:
 
 <Figures figure="9-76">Black-to-gray with differing midpoint hints</Figures>
 
-In the first case (#ex01), the default linear progression is used, with the middle color
-(45% black) occurring at the midpoint between the two color stops.
+In the first case (`#ex01`), the default linear progression is used, with the middle color (45% black) occurring at the midpoint between the two color stops.
 
-In the second case (#ex02), the middle color happens at the 33% point of the gradient
-line. So the first color stop is at the 25% point on the line, the middle color happens at
-33%, and the second color stop happens at 75%.
+In the second case (`#ex02`), the middle color happens at the 33% point of the gradient line. So the first color stop is at the 25% point on the line, the middle color happens at 33%, and the second color stop happens at 75%.
 
-In the third example (#ex03), the midpoint is at the 67% point of the gradient line;
-thus, the color fades from black at 25% to the middle color at 67%, and then from that
-middle color at 67% to light gray at 75%.
+In the third example (`#ex03`), the midpoint is at the 67% point of the gradient line; thus, the color fades from black at 25% to the middle color at 67%, and then from that middle color at 67% to light gray at 75%.
 
-The fourth and fifth examples show what happens when you put a color hint’s dis‐
-tance right on top of one of the color stops: you get a “hard stop.”
+The fourth and fifth examples show what happens when you put a color hint’s distance right on top of one of the color stops: you get a “hard stop.”
 
-The interesting thing about color hinting is that the progression from color stop to
-color hint to color stop is not just a set of two linear progressions. Instead, there is
-some “curving” to the progression, in order to ease from one side of the color hint to
-the other. This is easiest to see by comparing what would seem to be, but actually are
-not, two gradients that do the same thing. As you can see in Figure 9-77, the result is
-rather different:
+The interesting thing about color hinting is that the progression from color stop to color hint to color stop is not just a set of two linear progressions. Instead, there is some “curving” to the progression, in order to ease from one side of the color hint to the other. This is easiest to see by comparing what would seem to be, but actually are not, two gradients that do the same thing. As you can see in Figure 9-77, the result is rather different:
 
 ```css
 #ex01 {
@@ -2049,21 +1930,13 @@ rather different:
 
 <Figures figure="9-77">Comparing two linear gradients to one hinted transition</Figures>
 
-Notice how the gray progression is different between the two examples. The first
-shows a linear progression from black to rgb(45%,45%,45%), and then another linear
-progression from there to rgb(90%,90%,90%). The second progresses from black to
-the light gray over the same distance, and the color-hint point is at the 67% mark, but
-the gradient is altered to attempt a smoother overall progression. The colors at 25%,
-67%, and 75% are the same in both examples, but all the other shades along the way
-are different between the two.
+Notice how the gray progression is different between the two examples. The first shows a linear progression from black to `rgb(45%,45%,45%)`, and then another linear progression from there to `rgb(90%,90%,90%)`. The second progresses from black to the light gray over the same distance, and the color-hint point is at the 67% mark, but the gradient is altered to attempt a smoother overall progression. The colors at 25%, 67%, and 75% are the same in both examples, but all the other shades along the way are different between the two.
 
-<Tips tips="orange">If you’re familiar with animations, you might think to put easing functions (such as ease-in) into a color hint, in order to exert more control over how the colors are blended. This isn’t possible as of late 2017, but the capability was under discussion.</Tips>
+<Tips tips="orange">If you’re familiar with animations, you might think to put easing functions (such as <code>ease-in</code>) into a color hint, in order to exert more control over how the colors are blended. This isn’t possible as of late 2017, but the capability was under discussion.</Tips>
 
 #### Gradient lines: the gory details
 
-Now that you have a grasp of the basics of placing color stops, it’s time to look closely
-at how gradient lines are actually constructed, and thus how they create the effects
-that they do.
+Now that you have a grasp of the basics of placing color stops, it’s time to look closely at how gradient lines are actually constructed, and thus how they create the effects that they do.
 
 First, let’s set up a simple gradient so we can then dissect how it works:
 
@@ -2073,36 +1946,17 @@ linear-gradient(
 )
 ```
 
-Now, how does this one-dimensional construct—a line at 55 degrees on the compass
-—create a two-dimensional gradient fill? First, the gradient line is placed and its start
-and ending points determined. This is diagrammed in Figure 9-78, with the final gra‐
-dient shown next to it.
+Now, how does this one-dimensional construct—a line at 55 degrees on the compass—create a two-dimensional gradient fill? First, the gradient line is placed and its start and ending points determined. This is diagrammed in Figure 9-78, with the final gradient shown next to it.
 
 <Figures figure="9-78">The placement and sizing of the gradient line</Figures>
 
-The first thing to make very clear is that the box seen here is not an element—it’s the
-linear-gradient image itself. (Remember, we’re creating images here.) The size and
-shape of that image can depend on a lot of things, whether it’s the size of the element’s
-background or the application of properties like background-size, which is a topic
-we’ll cover in a bit. For now, we’re just concentrating on the image itself.
+The first thing to make very clear is that the box seen here is not an element—it’s the linear-gradient image itself. (Remember, we’re creating images here.) The size and shape of that image can depend on a lot of things, whether it’s the size of the element’s background or the application of properties like `background-size`, which is a topic we’ll cover in a bit. For now, we’re just concentrating on the image itself.
 
-OK, so in Figure 9-78, you can see that the gradient line goes straight through the
-center of the image. The gradient line always goes through the center of the gradient
-image. In this case, we set it to a 55-degree angle, so it’s pointing at 55 degrees on the
-compass. What’s interesting are the start and ending points of the gradient line, which
-are actually outside the image.
+OK, so in Figure 9-78, you can see that the gradient line goes straight through the center of the image. The gradient line `always` goes through the center of the gradient image. In this case, we set it to a 55-degree angle, so it’s pointing at 55 degrees on the compass. What’s interesting are the start and ending points of the gradient line, which are actually outside the image.
 
-Let’s talk about the start point first. It’s the point on the gradient line where a line per‐
-pendicular to the gradient line intersects with the corner of the image furthest away
-from the gradient line’s direction (55deg). Conversely, the gradient line’s ending point
-is the point on the gradient line where a perpendicular line intersects the corner of
-the image nearest to the gradient line’s direction.
+Let’s talk about the start point first. It’s the point on the gradient line where a line perpendicular to the gradient line intersects with the corner of the image furthest away from the gradient line’s direction (`55deg`). Conversely, the gradient line’s ending point is the point on the gradient line where a perpendicular line intersects the corner of the image nearest to the gradient line’s direction.
 
-Bear in mind that the terms “start point” and “ending point” are a little bit misleading
-—the gradient line doesn’t actually stop at either point. The gradient line is, in fact,
-infinite. However, the start point is where the first color stop will be placed by default,
-as it corresponds to position value 0%. Similarly, the ending point corresponds to the
-position value 100%.
+Bear in mind that the terms “start point” and “ending point” are a little bit misleading—the gradient line doesn’t actually stop at either point. The gradient line is, in fact, infinite. However, the start point is where the first color stop will be placed by default, as it corresponds to position value `0%`. Similarly, the ending point corresponds to the position value `100%`.
 
 Therefore, given the gradient we defined before:
 
@@ -2112,32 +1966,19 @@ linear-gradient(
 )
 ```
 
-the color at the start point will be #4097FF, the color at the midpoint (which is also
-the center of the image) will be #FFBE00, and the color at the ending point will be
-#4097FF, with smooth blending in between. This is illustrated in Figure 9-79.
+the color at the start point will be `#4097FF`, the color at the midpoint (which is also the center of the image) will be `#FFBE00`, and the color at the ending point will be `#4097FF`, with smooth blending in between. This is illustrated in Figure 9-79.
 
 <Figures figure="9-79">The calculation of color along the gradient line</Figures>
 
-All right, fine so far. But, you may wonder, how do the bottom-left and top-right cor‐
-ners of the image get set to the same blue that’s calculated for the start and ending
-points, if those points are outside the image? Because the color at each point along the
-gradient line is extended out perpendicularly from the gradient line. This is partially
-shown in Figure 9-80 by extending perpendicular lines at the start and ending points,
-as well as every 5% of the gradient line between them.
+All right, fine so far. But, you may wonder, how do the bottom-left and top-right corners of the image get set to the same blue that’s calculated for the start and ending points, if those points are outside the image? Because the color at each point along the gradient line is extended out perpendicularly from the gradient line. This is partially shown in Figure 9-80 by extending perpendicular lines at the start and ending points, as well as every 5% of the gradient line between them.
 
 <Figures figure="9-80">The extension of selected colors along the gradient line</Figures>
 
-That should be enough to let you fill in the rest mentally, so let’s consider what hap‐
-pens to the gradient image in various other settings. We’ll use the same gradient defi‐
-nition as before, but this time apply it to wide, square, and tall images. These are
-shown in Figure 9-81. Note how the start-point and ending-point colors always make
-their way into the corners of the gradient image.
+That should be enough to let you fill in the rest mentally, so let’s consider what happens to the gradient image in various other settings. We’ll use the same gradient definition as before, but this time apply it to wide, square, and tall images. These are shown in Figure 9-81. Note how the start-point and ending-point colors always make their way into the corners of the gradient image.
 
 <Figures figure="9-81">How gradients are constructed for various images</Figures>
 
-Note how I very carefully said “the start-point and ending-point colors,” and did not
-say “the start and end colors.” That’s because, as we saw earlier, color stops can be
-placed before the start point and after the ending point, like so:
+Note how I very carefully said “the start-point and ending-point colors,” and did `not` say “the start and end colors.” That’s because, as we saw earlier, color stops can be placed before the start point and after the ending point, like so:
 
 ```css
 linear-gradient(
@@ -2145,22 +1986,13 @@ linear-gradient(
 )
 ```
 
-The placement of these color stops as well as the start point and ending point, the way
-the colors are calculated along the gradient line, and the final gradient are all shown
-in Figure 9-82.
+The placement of these color stops as well as the start point and ending point, the way the colors are calculated along the gradient line, and the final gradient are all shown in Figure 9-82.
 
 <Figures figure="9-82">A gradient with stops beyond the start and ending points</Figures>
 
-Once again, we see that the colors in the bottom-left and top-right corners match the
-start-point and ending-point colors. It’s just that in this case, since the first color stop
-came before the start point, the actual color at the start point is a blend of the first
-and second color stops. Likewise for the ending point, which is a blend of the second
-and third color stops.
+Once again, we see that the colors in the bottom-left and top-right corners match the start-point and ending-point colors. It’s just that in this case, since the first color stop came before the start point, the actual color at the start point is a blend of the first and second color stops. Likewise for the ending point, which is a blend of the second and third color stops.
 
-Now here’s where things get a little bit wacky. Remember how you can use directional
-keywords, like top and right, to indicate the direction of the gradient line? Suppose
-you wanted the gradient line to go toward the top right, so you create a gradient
-image like this:
+Now here’s where things get a little bit wacky. Remember how you can use directional keywords, like `top` and `right`, to indicate the direction of the gradient line? Suppose you wanted the gradient line to go toward the top right, so you create a gradient image like this:
 
 ```css
 linear-gradient(
@@ -2168,36 +2000,19 @@ linear-gradient(
 )
 ```
 
-This does not cause the gradient line to intersect with the top-right corner. Would
-that it did! Instead, what happens is a good deal stranger. First, let’s diagram it in
-Figure 9-83 so that we have something to refer to.
+This does `not` cause the gradient line to intersect with the top-right corner. Would that it did! Instead, what happens is a good deal stranger. First, let’s diagram it in Figure 9-83 so that we have something to refer to.
 
-Your eyes do not deceive you: the gradient line is way off from the top-right corner.
-On the other hand, it is headed into the top-right quadrant of the image. That’s what
-to top right really means: head into the top-right quadrant of the image, not into
-the top-right corner.
+Your eyes do not deceive you: the gradient line is way off from the top-right corner. On the other hand, it `is` headed into the top-right quadrant of the image. That’s what to top right really means: head into the top-right quadrant of the image, not into the top-right corner.
 
-As Figure 9-83 shows, the way to find out exactly what that means is to do the follow‐
-ing:
+As Figure 9-83 shows, the way to find out exactly what that means is to do the following:
 
-1. Shoot a line from the midpoint of the image into the corners adjacent to the cor‐
-   ner in the quadrant that’s been declared. Thus, for the top-right quadrant, the
-   adjacent corners are the top left and bottom right.
-2. Draw the gradient line perpendicular to that line, pointing into the declared
-   quadrant.
-3. Construct the gradient—that is, determine the start and ending points, place or
-   distribute the color stops, then calculate the entire gradient image, as per usual.
+1. Shoot a line from the midpoint of the image into the corners adjacent to the corner in the quadrant that’s been declared. Thus, for the top-right quadrant, the adjacent corners are the top left and bottom right.
+2. Draw the gradient line perpendicular to that line, pointing into the declared quadrant.
+3. Construct the gradient—that is, determine the start and ending points, place or distribute the color stops, then calculate the entire gradient image, as per usual.
 
 <Figures figure="9-83">A gradient headed toward the top right</Figures>
 
-This process has a few interesting side effects. First, it means that the color at the
-midpoint will always stretch from one quadrant-adjacent corner to the other. Second,
-it means that if the image’s shape changes—that is, if its ratio of height to width
-changes—then the gradient line will also change direction, meaning that the gradient
-will reorient. So watch out for that if you have flexible elements. Third, a perfectly
-square gradient image will have a gradient line that intersects with a corner. Examples
-of these three side effects are depicted in Figure 9-84, using the following gradient
-definition in all three cases:
+This process has a few interesting side effects. First, it means that the color at the midpoint will always stretch from one quadrant-adjacent corner to the other. Second, it means that if the image’s shape changes—that is, if its ratio of height to width changes—then the gradient line will also change direction, meaning that the gradient will reorient. So watch out for that if you have flexible elements. Third, a perfectly square gradient image will have a gradient line that intersects with a corner. Examples of these three side effects are depicted in Figure 9-84, using the following gradient definition in all three cases:
 
 ```css
 linear-gradient(
@@ -2208,17 +2023,11 @@ linear-gradient(
 
 <Figures figure="9-84">Examples of the side effects of a quadrant-directed gradient</Figures>
 
-Sadly, there is no way to say “point the gradient line into the corner of a nonsquare
-image” short of calculating the necessary degree heading yourself and declaring it
-explicitly, a process that will require JavaScript unless you know the image will always
-be an exact size in all cases, forever.
+Sadly, there is no way to say “point the gradient line into the corner of a nonsquare image” short of calculating the necessary degree heading yourself and declaring it explicitly, a process that will require JavaScript unless you know the image will always be an exact size in all cases, forever.
 
 ### 9.3.2 Radial Gradients
 
-Linear gradients are pretty awesome, but there are times when you really want a cir‐
-cular gradient. You can use such a gradient to create a spotlight effect, a circular
-shadow, a rounded glow, or any number of other effects. The syntax used is similar to
-that for linear gradients, but there are some interesting differences:
+Linear gradients are pretty awesome, but there are times when you really want a circular gradient. You can use such a gradient to create a spotlight effect, a circular shadow, a rounded glow, or any number of other effects. The syntax used is similar to that for linear gradients, but there are some interesting differences:
 
 ```css
 radial-gradient(
@@ -2227,13 +2036,9 @@ radial-gradient(
 )
 ```
 
-What this boils down to is you can optionally declare a shape and size, optionally
-declare where it center of the gradient is positioned, and then declare two or more
-color stops with optional color hints in between the stops. There are some interesting
-options in the shape and size bits, so let’s build up to those.
+What this boils down to is you can optionally declare a shape and size, optionally declare where it center of the gradient is positioned, and then declare two or more color stops with optional color hints in between the stops. There are some interesting options in the shape and size bits, so let’s build up to those.
 
-First, let’s look at a simple radial gradient—the simplest possible, in fact—presented
-in a variety of differently shaped elements (Figure 9-85):
+First, let’s look at a simple radial gradient—the simplest possible, in fact—presented in a variety of differently shaped elements (Figure 9-85):
 
 ```css
 .radial {
@@ -2243,34 +2048,21 @@ in a variety of differently shaped elements (Figure 9-85):
 
 <Figures figure="9-85">A simple radial gradient in multiple settings</Figures>
 
-In all of these cases, because no position was declared, the default of center was used.
-Because no shape was declared, the shape is an ellipse for all cases but the square ele‐
-ment; in that case, the shape is a circle. Finally, because no color-stop or color-hint
-positions were declared, the first is placed at the beginning of the gradient ray, and
-the last at the end, with a linear blend from one to the other.
+In all of these cases, because no position was declared, the default of `center` was used. Because no shape was declared, the shape is an ellipse for all cases but the square element; in that case, the shape is a circle. Finally, because no color-stop or color-hint positions were declared, the first is placed at the beginning of the gradient ray, and the last at the end, with a linear blend from one to the other.
 
-That’s right: the gradient ray, which is the radial equivalent to the gradient line in lin‐
-ear gradients. It extends outward from the center of the gradient directly to the right,
-and the rest of the gradient is constructed from it. (We’ll get to the details on that in
-just a bit.)
+That’s right: the gradient ray, which is the radial equivalent to the gradient line in linear gradients. It extends outward from the center of the gradient directly to the right, and the rest of the gradient is constructed from it. (We’ll get to the details on that in just a bit.)
 
 #### Shape and size
 
-First off, there are exactly two possible shape values (and thus two possible shapes)
-for a radial gradient: circle and ellipse. The shape of a gradient can be declared
-explicitly, or it can be implied by the way you size the gradient image.
+First off, there are exactly two possible shape values (and thus two possible shapes) for a radial gradient: `circle` and `ellipse`. The shape of a gradient can be declared explicitly, or it can be implied by the way you size the gradient image.
 
-So, on to sizing. As always, the simplest way to size a radial gradient is with either one
-non-negative length (if you’re sizing a circle) or two non-negative lengths (if it’s an
-ellipse). Say you have this radial gradient:
+So, on to sizing. As always, the simplest way to size a radial gradient is with either one non-negative length (if you’re sizing a circle) or two non-negative lengths (if it’s an ellipse). Say you have this radial gradient:
 
 ```css
 radial-gradient(50px, purple, gold)
 ```
 
-This creates a circular radial gradient that fades from purple at the center to gold at a
-distance of 50 pixels from the center. If we add another length, then the shape
-becomes an ellipse that’s as wide as the first length, and as tall as the second length:
+This creates a circular radial gradient that fades from purple at the center to gold at a distance of 50 pixels from the center. If we add another length, then the shape becomes an ellipse that’s as wide as the first length, and as tall as the second length:
 
 ```css
 radial-gradient(50px 100px, purple, gold)
@@ -2280,21 +2072,11 @@ These two gradients are illustrated in Figure 9-86.
 
 <Figures figure="9-86">Simple radial gradients</Figures>
 
-Notice how the shape of the gradients has nothing to do with the overall size and
-shape of the images in which they appear. If you make a gradient a circle, it will be a
-circle, even if it’s inside a rectangular gradient image. So too will an ellipse always be
-an ellipse, even when inside a square gradient image (where it will look like a circle,
-since an ellipse with the same height and width forms a circle).
+Notice how the shape of the gradients has nothing to do with the overall size and shape of the images in which they appear. If you make a gradient a circle, it will be a circle, even if it’s inside a rectangular gradient image. So too will an ellipse always be an ellipse, even when inside a square gradient image (where it will look like a circle, since an ellipse with the same height and width forms a circle).
 
-You can also use percentage values for the size, but only for ellipses. Circles cannot be
-given percentage sizes because there’s no way to indicate the axis to which that per‐
-centage refers. (Imagine an image 100 pixels tall by 500 wide. Should 10% mean 10
-pixels or 50 pixels?) If you try to provide percentage values for a circle, the entire dec‐
-laration will fail due to the invalid value.
+You can also use percentage values for the size, but `only` for ellipses. Circles cannot be given percentage sizes because there’s no way to indicate the axis to which that percentage refers. (Imagine an image 100 pixels tall by 500 wide. Should `10%` mean 10 pixels or 50 pixels?) If you try to provide percentage values for a circle, the entire declaration will fail due to the invalid value.
 
-If you do supply percentages to an ellipse, then as usual, the first refers to the hori‐
-zontal axis and the second to the vertical. The following gradient is shown in various
-settings in Figure 9-87:
+If you do supply percentages to an ellipse, then as usual, the first refers to the horizontal axis and the second to the vertical. The following gradient is shown in various settings in Figure 9-87:
 
 ```css
 radial-gradient(50% 25%, purple, gold)
@@ -2302,47 +2084,31 @@ radial-gradient(50% 25%, purple, gold)
 
 <Figures figure="9-87">Percentage-sized elliptical gradients</Figures>
 
-When it comes to ellipses, you’re also able to mix lengths and percentages, with the
-usual caveat to be careful. So if you’re feeling confident, you can absolutely make an
-elliptical radial gradient 10 pixels tall and half the element width, like so:
+When it comes to ellipses, you’re also able to mix lengths and percentages, with the usual caveat to be careful. So if you’re feeling confident, you can absolutely make an elliptical radial gradient 10 pixels tall and half the element width, like so:
 
 ```css
 radial-gradient(50% 10px, purple, gold)
 ```
 
-As it happens, lengths and percentages aren’t the only way to size radial gradients. In
-addition to those value types, there are also four keywords available for sizing radial
-gradients, the effects of which are summarized in Table 9-3.
+As it happens, lengths and percentages aren’t the only way to size radial gradients. In addition to those value types, there are also four keywords available for sizing radial gradients, the effects of which are summarized in Table 9-3.
 
 // T9-3
 
-In order to better visualize the results of each keyword, see Figure 9-88, which depicts
-each keyword applied as both a circle and an ellipse.
+In order to better visualize the results of each keyword, see Figure 9-88, which depicts each keyword applied as both a circle and an ellipse.
 
 <Figures figure="9-88">The effects of radial gradient sizing keywords</Figures>
 
-These keywords cannot be mixed with lengths or percentages in elliptical radial gra‐
-dients; thus, closest-side 25px is invalid and will be ignored.
+These keywords cannot be mixed with lengths or percentages in elliptical radial gradients; thus, closest-side 25px is invalid and will be ignored.
 
-Something you might have noticed in Figure 9-88 is that the gradients didn’t start at
-the center of the image. That’s because they were positioned elsewhere, which is the
-topic of the next section.
+Something you might have noticed in Figure 9-88 is that the gradients didn’t start at the center of the image. That’s because they were positioned elsewhere, which is the topic of the next section.
 
 #### Positioning radial gradients
 
-If you want to shift the center of a radial gradient away from the default of center,
-then you can do so using any position value that would be valid for backgroundposition. I’m not going to reproduce that rather complicated syntax here; flip back
-to the section on background-position (“Background Positioning” on page 404) if
-you need a refresher.
+If you want to shift the center of a radial gradient away from the default of `center`, then you can do so using any position value that would be valid for `background-position`. I’m not going to reproduce that rather complicated syntax here; flip back to the section on `background-position` (“Background Positioning” on page 404) if you need a refresher.
 
-When I say “any position value that would be valid,” that means any permitted com‐
-bination of lengths, percentages, keywords, and so on. It also means that if you leave
-off one of the two position values, it will be inferred just the same as for backgroundposition. So, just for one example, center is equivalent to center center. The one
-major difference between radial gradient positions and background positions is the
-default: for radial gradients, the default position is center, not 0% 0%.
+When I say “any position value that would be valid,” that means any permitted combination of lengths, percentages, keywords, and so on. It also means that if you leave off one of the two position values, it will be inferred just the same as for `background-position`. So, just for one example, `center` is equivalent to `center center`. The one major difference between radial gradient positions and background positions is the default: for radial gradients, the default position is `center`, not `0% 0%`.
 
-To give some idea of the possibilities, consider the following rules, illustrated in
-Figure 9-89:
+To give some idea of the possibilities, consider the following rules, illustrated in Figure 9-89:
 
 ```css
 radial-gradient(at bottom left, purple, gold);
@@ -2354,10 +2120,7 @@ radial-gradient(at 30px 66%, purple, gold);
 
 <Figures figure="9-89">Changing the center position of radial gradients</Figures>
 
-None of those positioned radial gradients were explicitly sized, so they all defaulted to
-farthest-corner. That’s a reasonable guess at the intended default behavior, but it’s
-not the only possibility. Let’s mix some sizes into the gradients we just saw and find
-out how that changes things (as depicted in Figure 9-90):
+None of those positioned radial gradients were explicitly sized, so they all defaulted to `farthest-corner`. That’s a reasonable guess at the intended default behavior, but it’s not the only possibility. Let’s mix some sizes into the gradients we just saw and find out how that changes things (as depicted in Figure 9-90):
 
 ```css
 radial-gradient(30px at bottom left, purple, gold);
@@ -2369,28 +2132,20 @@ radial-gradient(farthest-corner at 30px 66%, purple, gold);
 
 <Figures figure="9-90">Changing the center position of explicitly sized radial gradients</Figures>
 
-Nifty. Now, suppose we want something a little more complicated than a fade from
-one color to another. Next stop, color stops!
+Nifty. Now, suppose we want something a little more complicated than a fade from one color to another. Next stop, color stops!
 
 #### Radial color stops and the gradient ray
 
-Color stops for radial gradients have the same syntax, and work in a similar fashion,
-to linear gradients. Let’s return to the simplest possible radial gradient and follow it
-with a more explicit equivalent:
+Color stops for radial gradients have the same syntax, and work in a similar fashion, to linear gradients. Let’s return to the simplest possible radial gradient and follow it with a more explicit equivalent:
 
 ```css
 radial-gradient(purple, gold);
 radial-gradient(purple 0%, gold 100%);
 ```
 
-So the gradient ray extends out from the center point. At 0% (the start point, and also
-the center of the gradient), the ray will be purple. At 100% (the ending point), the ray
-will be gold. Between the two stops is a smooth blend from purple to gold; beyond
-the ending point, solid gold.
+So the gradient ray extends out from the center point. At 0% (the start point, and also the center of the gradient), the ray will be purple. At 100% (the ending point), the ray will be gold. Between the two stops is a smooth blend from purple to gold; beyond the ending point, solid gold.
 
-If we add a stop between purple and gold, but don’t give it a position, then it will be
-placed midway between them, and the blending will be altered accordingly, as shown
-in Figure 9-91:
+If we add a stop between purple and gold, but don’t give it a position, then it will be placed midway between them, and the blending will be altered accordingly, as shown in Figure 9-91:
 
 ```css
 radial-gradient(100px circle at center, purple 0%, green, gold 100%);
@@ -2398,45 +2153,21 @@ radial-gradient(100px circle at center, purple 0%, green, gold 100%);
 
 <Figures figure="9-91">Adding a color stop</Figures>
 
-We’d have gotten the same result if we’d added green 50% there, but you get the idea.
-The gradient ray’s color goes smoothly from purple to green to gold, and then is solid
-gold beyond that point on the ray.
+We’d have gotten the same result if we’d added green 50% there, but you get the idea. The gradient ray’s color goes smoothly from purple to green to gold, and then is solid gold beyond that point on the ray.
 
-This illustrates one difference between gradient lines (for linear gradients) and gradi‐
-ent rays: a linear gradient is derived by extending the color at each point along the
-gradient line off perpendicular to the gradient line. A similar behavior occurs with a
-radial gradient, except in that case, they aren’t lines that come off the gradient ray.
-Instead, they are ellipses that are scaled-up or scaled-down versions of the ellipse at
-the ending point. This is illustrated in Figure 9-92, where an ellipse shows its gradient
-ray and then the ellipses that are drawn at various points along that ray.
+This illustrates one difference between gradient lines (for linear gradients) and gradient rays: a linear gradient is derived by extending the color at each point along the gradient line off perpendicular to the gradient line. A similar behavior occurs with a radial gradient, except in that case, they aren’t lines that come off the gradient ray. Instead, they are ellipses that are scaled-up or scaled-down versions of the ellipse at the ending point. This is illustrated in Figure 9-92, where an ellipse shows its gradient ray and then the ellipses that are drawn at various points along that ray.
 
 <Figures figure="9-92">The gradient ray and some of the ellipses it spawns</Figures>
 
-That brings up an interesting question: how is the ending point (the 100% point, if
-you like) determined for each gradient ray? It’s the point where the gradient ray inter‐
-sects with the shape described by the size. In the case of a circle, that’s easy: the gradi‐
-ent ray’s ending point is however far from the center that the size value indicates. So
-for a 25px circle gradient, the ending point of the ray is 25 pixels from the center.
+That brings up an interesting question: how is the ending point (the `100%` point, if you like) determined for each gradient ray? It’s the point where the gradient ray intersects with the shape described by the size. In the case of a circle, that’s easy: the gradient ray’s ending point is however far from the center that the size value `indicates`. So for a 25px circle gradient, the ending point of the ray is 25 pixels from the center.
 
-For an ellipse, it’s essentially the same operation, except that the distance from the
-center is dependent on the horizontal axis of the ellipse. Given a radial gradient that’s
-a 40px 20px ellipse, the ending point will be 40 pixels from the center and directly
-to its right. Figure 9-93 shows this in some detail.
+For an ellipse, it’s essentially the same operation, except that the distance from the center is dependent on the horizontal axis of the ellipse. Given a radial gradient that’s a `40px 20px ellipse`, the ending point will be 40 pixels from the center and directly to its right. Figure 9-93 shows this in some detail.
 
 <Figures figure="9-93">Setting the gradient ray’s ending point</Figures>
 
-Another difference between linear gradient lines and radial gradient rays is that you
-can see beyond the ending point. If you recall, a linear gradient line is always drawn
-so that you can see the colors at the 0% and 100% points, but nothing beyond them;
-the gradient line can never be any smaller than the longest axis of the gradient image,
-and will frequently be longer than that. With a radial gradient, on the other hand, you
-can size the radial shape to be smaller than the total gradient image. In that case, the
-color at the last color stop is extended outward from the ending point. (We’ve already
-seen this in several previous figures.)
+Another difference between linear gradient lines and radial gradient rays is that you can see beyond the ending point. If you recall, a linear gradient line is always drawn so that you can see the colors at the 0% and 100% points, but nothing beyond them; the gradient line can never be any smaller than the longest axis of the gradient image, and will frequently be longer than that. With a radial gradient, on the other hand, you can size the radial shape to be smaller than the total gradient image. In that case, the color at the last color stop is extended outward from the ending point. (We’ve already seen this in several previous figures.)
 
-Conversely, if you set a color stop that’s beyond the ending point of a ray, you might
-get to see the color out to that stop. Consider the following gradient, illustrated in
-Figure 9-94:
+Conversely, if you set a color stop that’s beyond the ending point of a ray, you might get to see the color out to that stop. Consider the following gradient, illustrated in Figure 9-94:
 
 ```css
 radial-gradient(50px circle at center, purple, green, gold 80px)
@@ -2444,15 +2175,9 @@ radial-gradient(50px circle at center, purple, green, gold 80px)
 
 <Figures figure="9-94">Color stops beyond the ending point</Figures>
 
-The first color stop has no position, so it’s set to 0%, which is the center point. The last
-color stop is set to 80px, so it will be 80 pixels away from the center in all directions.
-The middle color stop, green, is placed midway between the two (40 pixels from the
-center). So we get a gradient that goes out to gold at 80 pixels and then continues gold
-beyond that point.
+The first color stop has no position, so it’s set to `0%`, which is the center point. The last color stop is set to `80px`, so it will be 80 pixels away from the center in all directions. The middle color stop, `green`, is placed midway between the two (40 pixels from the center). So we get a gradient that goes out to gold at 80 pixels and then continues gold beyond that point.
 
-This happens even though the circle was explicitly set to be 50 pixels large. It still is 50
-pixels in radius, it’s just that the positioning of the last color stop makes that fact
-vaguely irrelevant. Visually, we might as well have declared this:
+This happens even though the circle was explicitly set to be 50 pixels large. It still is 50 pixels in radius, it’s just that the positioning of the last color stop makes that fact vaguely irrelevant. Visually, we might as well have declared this:
 
 ```css
 radial-gradient(80px circle at center, purple, green, gold)
@@ -2464,18 +2189,14 @@ or, more simply, just this:
 radial-gradient(80px, purple, green, gold)
 ```
 
-The same behaviors apply if you use percentages for your color stops. These are
-equivalent to the previous examples, and to each other, visually speaking:
+The same behaviors apply if you use percentages for your color stops. These are equivalent to the previous examples, and to each other, visually speaking:
 
 ```css
 radial-gradient(50px, purple, green, gold 160%)
 radial-gradient(80px, purple, green, gold 100%)
 ```
 
-Now, what if you set a negative position for a color stop? It’s pretty much the same
-result as we saw with linear gradient lines: the negative color stop is used to figure out
-the color at the start point, but is otherwise unseen. Thus, the following gradient will
-have the result shown in Figure 9-95:
+Now, what if you set a negative position for a color stop? It’s pretty much the same result as we saw with linear gradient lines: the negative color stop is used to figure out the color at the start point, but is otherwise unseen. Thus, the following gradient will have the result shown in Figure 9-95:
 
 ```css
 radial-gradient(80px, purple -40px, green, gold)
@@ -2483,60 +2204,37 @@ radial-gradient(80px, purple -40px, green, gold)
 
 <Figures figure="9-95">Handling a negative color-stop position</Figures>
 
-Given these color-stop positions, the first color stop is at -40px, the last is at 80px
-(because, given its lack of an explicit position, it defaults to the ending point), and the
-middle is placed midway between them. The result is the same as if we’d explicitly
-said:
+Given these color-stop positions, the first color stop is at `-40px`, the last is at `80px` (because, given its lack of an explicit position, it defaults to the ending point), and the middle is placed midway between them. The result is the same as if we’d explicitly said:
 
 ```css
 radial-gradient(80px, purple -40px, green 20px, gold 80px)
 ```
 
-That’s why the color at the center of the gradient is a green-purple: it’s a blend of onethird purple, two-thirds green. From there, it blends the rest of the way to green, and
-then on to gold. The rest of the purple-green blend, the part that sits on the “negative
-space” of the gradient ray, is invisible.
+That’s why the color at the center of the gradient is a green-purple: it’s a blend of onethird urple, two-thirds green. From there, it blends the rest of the way to green, and then on to gold. The rest of the purple-green blend, the part that sits on the “negative space” of the gradient ray, is invisible.
 
 #### Degenerate cases
 
-Given that we can declare size and position for a radial gradient, the question arises:
-what if a circular gradient has zero radius, or an elliptical gradient has zero height or
-width? These conditions aren’t quite as hard to create as you might think: besides
-explicitly declaring that a radial gradient has zero size using 0px or 0%, you could also
-do something like this:
+Given that we can declare size and position for a radial gradient, the question arises: what if a circular gradient has zero radius, or an elliptical gradient has zero height or width? These conditions aren’t quite as hard to create as you might think: besides explicitly declaring that a radial gradient has zero size using `0px` or `0%`, you could also do something like this:
 
 ```css
 radial-gradient(closest-corner circle at top right, purple, gold)
 ```
 
-The gradient’s size is set to closest-corner, and the center has been moved into the
-top right corner, so the closest corner is zero pixels away from the center. Now
-what?
+The gradient’s size is set to `closest-corner`, and the center has been moved into the `top` right `corner`, so the closest corner is zero pixels away from the center. Now what?
 
-In this case, the specification very explicitly says that the gradient should be rendered
-as if it’s “a circle whose radius [is] an arbitrary very small number greater than zero.”
-So that might mean as if it had a radius of one-one-billionth of a pixel, or a picometer,
-or heck, the Planck length. (Kids, ask your science teacher.) The interesting thing is
-that it means the gradient is still a circle. It’s just a very, very, very small circle. Proba‐
-bly, it will be too small to actually render anything visible. If so, you’ll just get a solidcolor fill that corresponds to the color of the last color stop instead.
+In this case, the specification very explicitly says that the gradient should be rendered as if it’s “a circle whose radius [is] an arbitrary very small number greater than zero.”
 
-Ellipses with zero-length dimensions have fascinatingly different defined behaviors.
-Let’s assume the following:
+So that might mean as if it had a radius of one-one-billionth of a pixel, or a picometer, or heck, the Planck length. (Kids, ask your science teacher.) The interesting thing is that it means the gradient is still a circle. It’s just a very, very, very small circle. Probably, it will be too small to actually render anything visible. If so, you’ll just get a solidcolor fill that corresponds to the color of the last color stop instead.
+
+Ellipses with zero-length dimensions have fascinatingly different defined behaviors. Let’s assume the following:
 
 ```css
 radial-gradient(0px 50% at center, purple, gold)
 ```
 
-The specification states that any ellipse with a zero width is rendered as if it’s “an
-ellipse whose height [is] an arbitrary very large number and whose width [is] an arbi‐
-trary very small number greater than zero.” In other words, render it as though it’s a
-linear gradient mirrored around the vertical axis running through the center of the
-ellipse. The specification also says that in such a case, any color stops with percentage
-positions resolve to 0px. This will usually result in a solid color matching the color
-defined for the last color stop.
+The specification states that any ellipse with a zero width is rendered as if it’s “an ellipse whose height [is] an arbitrary very large number and whose width [is] an arbitrary very small number greater than zero.” In other words, render it as though it’s a linear gradient mirrored around the vertical axis running through the center of the ellipse. The specification also says that in such a case, any color stops with percentage positions resolve to `0px`. This will usually result in a solid color matching the color defined for the last color stop.
 
-On the other hand, if you use lengths to position the color stops, you can get a verti‐
-cally mirrored horizontal linear gradient for free. Consider the following gradient,
-illustrated in Figure 9-96:
+On the other hand, if you use lengths to position the color stops, you can get a vertically mirrored horizontal linear gradient for free. Consider the following gradient, illustrated in Figure 9-96:
 
 ```css
 radial-gradient(0px 50% at center, purple 0px, gold 100px)
@@ -2544,75 +2242,36 @@ radial-gradient(0px 50% at center, purple 0px, gold 100px)
 
 <Figures figure="9-96">The effects of a zero-width ellipse</Figures>
 
-How did this happen? First, remember that the specification says that the 0px hori‐
-zontal width is treated as if it’s a tiny non-zero number. For the sake of illustration,
-let’s suppose that’s one-one-thousandth of a pixel (0.001 px). That means the ellipse
-shape is a thousandth of a pixel wide by half the height of the image. Again for the
-sake of illustration, let’s suppose that’s a height of 100 pixels. That means the first
-ellipse shape is a thousandth of a pixel wide by 100 pixels tall, which is an aspect ratio
-of 0.001:100, or 1:100,000.
+How did this happen? First, remember that the specification says that the `0px horizontal` width is treated as if it’s a tiny non-zero number. For the sake of illustration, let’s suppose that’s one-one-thousandth of a pixel (0.001 px). That means the ellipse shape is a thousandth of a pixel wide by half the height of the image. Again for the sake of illustration, let’s suppose that’s a height of 100 pixels. That means the first ellipse shape is a thousandth of a pixel wide by 100 pixels tall, which is an aspect ratio of 0.001:100, or 1:100,000.
 
-OK, so every ellipse drawn along the gradient ray has a 1:100,000 aspect ratio. That
-means the ellipse at half a pixel along the gradient ray is 1 pixel wide and 100,000 pix‐
-els tall. At 1 pixel, it’s 2 pixels wide and 200,000 pixels tall. At 5 pixels, the ellipse is 10
-pixels by a million pixels. At 50 pixels along the gradient ray, the ellipse is 100 pixels
-wide and 10 million tall. And so on. This is diagrammed in Figure 9-97.
+OK, so every ellipse drawn along the gradient ray has a 1:100,000 aspect ratio. That means the ellipse at half a pixel along the gradient ray is 1 pixel wide and 100,000 pixels tall. At 1 pixel, it’s 2 pixels wide and 200,000 pixels tall. At 5 pixels, the ellipse is 10 pixels by a million pixels. At 50 pixels along the gradient ray, the ellipse is 100 pixels wide and 10 million tall. And so on. This is diagrammed in Figure 9-97.
 
 <Figures figure="9-97">Very, very tall ellipses</Figures>
 
-So you can see why the visual effect is of a mirrored linear gradient. These ellipses are
-effectively drawing vertical lines. Technically they aren’t, but in practical terms they
-are. The result is as if you have a vertically mirrored horizontal gradient, because each
-ellipse is centered on the center of the gradient, and both sides of it get drawn. While
-this may be a radial gradient, we can’t see its radial nature.
+So you can see why the visual effect is of a mirrored linear gradient. These ellipses are effectively drawing vertical lines. Technically they aren’t, but in practical terms they are. The result is as if you have a vertically mirrored horizontal gradient, because each ellipse is centered on the center of the gradient, and both sides of it get drawn. While this may be a radial gradient, we can’t see its radial nature.
 
-On the other hand, if the ellipse has width but not height, the results are quite differ‐
-ent. You’d think the result would be to have a vertical linear gradient mirrored around
-the horizontal axis, but not so! Instead, the result is a solid color equal to the last
-color stop. (Unless it’s a repeating gradient, a subject we’ll turn to shortly, in which
-case it should be a solid color equal to the average color of the gradient.) So, given
-either of the following, you’ll get a solid gold:
+On the other hand, if the ellipse has width but not height, the results are quite different. You’d think the result would be to have a vertical linear gradient mirrored around the horizontal axis, but not so! Instead, the result is a solid color equal to the last color stop. (Unless it’s a repeating gradient, a subject we’ll turn to shortly, in which case it should be a solid color equal to the average color of the gradient.) So, given either of the following, you’ll get a solid gold:
 
 ```css
 radial-gradient(50% 0px at center, purple, gold)
 radial-gradient(50% 0px at center, purple 0px, gold 100px)
 ```
 
-Why the difference? It goes back to how radial gradients are constructed from the
-gradient ray. Again, remember that, per the specification, a zero distance here is
-treated as a very small non-zero number. As before, we’ll assume that 0px is reas‐
-signed to 0.001px, and that the 50% evaluates to 100 pixels. That’s an aspect ratio of
-100:0.001, or 100,000:1.
+Why the difference? It goes back to how radial gradients are constructed from the gradient ray. Again, remember that, per the specification, a zero distance here is treated as a very small non-zero number. As before, we’ll assume that `0px` is reassigned to `0.001px`, and that the `50%` evaluates to 100 pixels. That’s an aspect ratio of 100:0.001, or 100,000:1.
 
-So, to get an ellipse that’s 1 pixel tall, the width of that ellipse must be 100,000 pixels.
-But our last color stop is only at 100 pixels! At that point, the ellipse that’s drawn is
-100 pixels wide and 1,000th of a pixel tall. All of the purple-to-gold transition that
-happens along the gradient ray has to happen in that thousandth of a pixel. Every‐
-thing after that is gold, as per the final color stop. Thus, we can only see the gold.
+So, to get an ellipse that’s 1 pixel tall, the width of that ellipse must be 100,000 pixels. But our last color stop is only at 100 pixels! At that point, the ellipse that’s drawn is 100 pixels wide and 1,000th of a pixel tall. All of the purple-to-gold transition that happens along the gradient ray has to happen in that thousandth of a pixel. Everything after that is gold, as per the final color stop. Thus, we can only see the gold.
 
-You might think that if you increased the position value of the last color stop to
-100000px, you’d see a thin sliver of purple-ish color running horizontally across the
-image. And you’d be right, if the browser treats 0px as 0.001px in these cases. If it
-assumes 0.00000001px instead, you’d have to increase the color stop’s position a lot
-further in order to see anything. And that’s assuming the browser was actually caulcu‐
-lating and drawing all those ellipses, instead of just hard-coding the special cases. The
-latter is a lot more likely, honestly. It’s what I’d do if I were in charge of a browser’s
-gradient-rendering code.
+You might think that if you increased the position value of the last color stop to `100000px`, you’d see a thin sliver of purple-ish color running horizontally across the image. And you’d be right, `if` the browser treats `0px` as `0.001px` in these cases. If it assumes 0.`00000001px` instead, you’d have to increase the color stop’s position a `lot` further in order to see anything. And that’s assuming the browser was actually caulculating and drawing all those ellipses, instead of just hard-coding the special cases. The latter is a lot more likely, honestly. It’s what I’d do if I were in charge of a browser’s gradient-rendering code.
 
-And what if an ellipse has zero width and zero height? In that case, the specification is
-written such that the zero-width behavior is used; thus, you’ll get the mirrored-lineargradient behavior.
+And what if an ellipse has zero width `and` zero height? In that case, the specification is written such that the zero-width behavior is used; thus, you’ll get the irrored-lineargradient behavior.
 
 <Tips tips="blue">As of late 2017, browser support for the defined behavior in these edge cases was unstable, at best. Some browsers used the last colorstop’s color in all cases, and others refused to draw a gradient at all in some cases.</Tips>
 
 ### 9.3.3 Manipulating Gradient Images
 
-As has been emphasized (possibly to excess), gradients are images. That means you
-can size, position, repeat, and otherwise affect them with the various background
-properties, just as you would any PNG or SVG.
+As has been emphasized (possibly to excess), gradients are images. That means you can size, position, repeat, and otherwise affect them with the various background properties, just as you would any PNG or SVG.
 
-One way this can be leveraged is to repeat simple gradients. (Repeating in more com‐
-plex ways is the subject of the next section.) For example, you could use a hard-stop
-radial gradient to give your background a dotted look, as shown in Figure 9-97:
+One way this can be leveraged is to repeat simple gradients. (Repeating in more complex ways is the subject of the next section.) For example, you could use a hard-stop radial gradient to give your background a dotted look, as shown in Figure 9-97:
 
 ```css
 body {
@@ -2623,26 +2282,17 @@ body {
 
 <Figures figure="9-98">Tiled radial gradient images</Figures>
 
-Yes, this is visually pretty much the same as tiling a PNG that has a mostlytransparent dark circle 10 pixels in diameter. There are three advantages to using a
-gradient in this case:
+Yes, this is visually pretty much the same as tiling a PNG that has a mostlytransparent dark circle 10 pixels in diameter. There are three advantages to using a gradient in this case:
 
 - The CSS is almost certainly smaller in bytes than the PNG would be.
-- Even more importantly, the PNG requires an extra hit on the server. This slows
-  down both page and server performance. A CSS gradient is part of the stylesheet
-  and so eliminates the extra server hit.
-- Changing the gradient is a lot simpler, so experimenting to find exactly the right
-  size, shape, and darkness is much easier.
+- Even more importantly, the PNG requires an extra hit on the server. This slows down both page and server performance. A CSS gradient is part of the stylesheet and so eliminates the extra server hit.
+- Changing the gradient is a lot simpler, so experimenting to find exactly the right size, shape, and darkness is much easier.
 
-Gradients can’t do everything a raster or vector image can, so it’s not as though you’ll
-be giving up external images completely now that gradients are a thing. You can still
-pull off some pretty impressive effects with gradients, though. Consider the back‐
-ground effect shown in Figure 9-99.
+Gradients can’t do everything a raster or vector image can, so it’s not as though you’ll be giving up external images completely now that gradients are a thing. You can still pull off some pretty impressive effects with gradients, though. Consider the background effect shown in Figure 9-99.
 
 <Figures figure="9-99">It’s time to start the music…</Figures>
 
-That curtain effect was accomplished with just two linear gradients repeated at differ‐
-ing intervals, plus a third to create a “glow” effect along the bottom of the back‐
-ground. Here’s the code that accomplished it:
+That curtain effect was accomplished with just two linear gradients repeated at differing intervals, plus a third to create a “glow” effect along the bottom of the background. Here’s the code that accomplished it:
 
 ```css
 background-image: linear-gradient(0deg, rgba(255, 128, 128, 0.25), transparent 75%), linear-gradient(
@@ -2666,29 +2316,17 @@ background-size: auto, 300px 100%, 109px 100%;
 background-repeat: repeat-x;
 ```
 
-The first (and therefore topmost) gradient is just a fade from a 75%-transparent light
-red up to full transparency at the 75% point of the gradient line. Then two “fold”
-images are created. Figure 9-100 shows each separately.
+The first (and therefore topmost) gradient is just a fade from a 75%-transparent light red up to full transparency at the 75% point of the gradient line. Then two “fold” images are created. Figure 9-100 shows each separately.
 
-With those images defined, they are repeated along the x-axis and given different
-sizes. The first, which is the “glow” effect, is given auto size in order to let it cover the
-entire element background. The second is given a width of 300px and a height of
-100%; thus, it will be as tall as the element background and 300 pixels wide. This
-means it will be tiled every 300 pixels along the x-axis. The same is true of the third
-image, except it tiles every 109 pixels. The end result looks like an irregular stage cur‐
-tain.
+With those images defined, they are repeated along the x-axis and given different sizes. The first, which is the “glow” effect, is given `auto` size in order to let it cover the entire element background. The second is given a width of `300px` and a height of `100%`; thus, it will be as tall as the element background and 300 pixels wide. This means it will be tiled every 300 pixels along the x-axis. The same is true of the third image, except it tiles every 109 pixels. The end result looks like an irregular stage curtain.
 
 <Figures figure="9-100">The two “fold” gradients</Figures>
 
-The beauty of this is that adjusting the tiling intervals is just a matter of editing the
-stylesheet. Changing the color-stop positions or the colors is less trivial, but not too
-difficult if you know what effect you’re after. And adding a third set of repeating folds
-is no more difficult than just adding another gradient to the stack.
+The beauty of this is that adjusting the tiling intervals is just a matter of editing the stylesheet. Changing the color-stop positions or the colors is less trivial, but not too difficult if you know what effect you’re after. And adding a third set of repeating folds is no more difficult than just adding another gradient to the stack.
 
 ### 9.3.4 Repeating Gradients
 
-Gradients are pretty awesome by themselves, but because they are images, they can be
-subject to strange behaviors when they are tiled. For example, if you declare:
+Gradients are pretty awesome by themselves, but because they are images, they can be subject to strange behaviors when they are tiled. For example, if you declare:
 
 ```css
 h1.exmpl {
@@ -2700,15 +2338,11 @@ then you could easily end up with a situation like that shown in Figure 9-101.
 
 <Figures figure="9-101">Tiling gradient images with background-repeat</Figures>
 
-As the figure shows, there is a discontinuity where the images repeat. You could try to
-nail down the exact sizes of the element and gradient image and then mess with the
-construction of the gradient image in order to try to make the sides line up, but it
-would be a lot better if there was just a way to say, “repeat this seamlessly forever.”
+As the figure shows, there is a discontinuity where the images repeat. You `could` try to nail down the exact sizes of the element and gradient image and then mess with the construction of the gradient image in order to try to make the sides line up, but it would be a lot better if there was just a way to say, “repeat this seamlessly forever.”
 
-Enter repeating gradients. For the previous example, all we need is to convert lineargradient to repeating-linear-gradient and drop the background-size value.
+Enter repeating gradients. For the previous example, all we need is to convert `linear-gradient` to `repeating-linear-gradient` and drop the `background-size` value.
 
-Everything else about the code stays the same. The effect is much different, however,
-as you can see in Figure 9-102:
+Everything else about the code stays the same. The effect is much different, however, as you can see in Figure 9-102:
 
 ```css
 h1.exmpl {
@@ -2718,8 +2352,7 @@ h1.exmpl {
 
 <Figures figure="9-102">A repeating gradient image with repeating-linear-gradient</Figures>
 
-An equivalent to the previous code block, using color hints instead of all color stops,
-is:
+An equivalent to the previous code block, using color hints instead of all color stops, is:
 
 ```css
 h1.exmpl {
@@ -2727,29 +2360,17 @@ h1.exmpl {
 }
 ```
 
-What happens with a repeating linear gradient is that the declared color stops and
-color hints are repeated on a loop along the gradient line, over and over, forever.
-Given the previous examples, that means switching between black and yellow every
-25 pixels forever.
+What happens with a repeating linear gradient is that the declared color stops and color hints are repeated on a loop along the gradient line, over and over, forever. Given the previous examples, that means switching between black and yellow every 25 pixels forever.
 
-Note that the last color stop has an explicit length (50px). This is important with
-repeating gradients, because the length value on the last color stop defines the overall
-length of the pattern.
+Note that the last color stop has an explicit length (`50px`). This is important with repeating gradients, because the length value on the last color stop defines the overall length of the pattern.
 
-Now, those examples work because there’s supposed to be a hard stop where the gra‐
-dient repeats. If you’re using smoother transitions, you need to be careful that the
-color value at the last color stop matches the color value at the first color stop. Con‐
-sider this:
+Now, those examples work because there’s supposed to be a hard stop where the gradient repeats. If you’re using smoother transitions, you need to be careful that the color value at the last color stop matches the color value at the first color stop. Consider this:
 
 ```css
 repeating-linear-gradient(-45deg, purple 0px, gold 50px)
 ```
 
-This will produce a smooth gradient from purple to gold at 50 pixels, and then a hard
-switch back to purple and another 50-pixel purple-to-gold blend. By adding one
-more color stop with the same color as the first color stop, the gradient can be
-smoothed out to avoid hard-stop lines. See Figure 9-103 for a comparison of the two
-approaches:
+This will produce a smooth gradient from purple to gold at 50 pixels, and then a hard switch back to purple and another 50-pixel purple-to-gold blend. By adding one more color stop with the same color as the first color stop, the gradient can be smoothed out to avoid hard-stop lines. See Figure 9-103 for a comparison of the two approaches:
 
 ```css
 repeating-linear-gradient(-45deg, purple 0px, gold 50px, purple 100px)
@@ -2757,13 +2378,7 @@ repeating-linear-gradient(-45deg, purple 0px, gold 50px, purple 100px)
 
 <Figures figure="9-103">Dealing with hard resets in repeating-gradient images</Figures>
 
-You may have noticed that none of the repeating gradients we’ve seen so far have a
-defined size. That means the images are defaulting in size to the full background posi‐
-tioning area of the element to which they’re applied, per the default behavior for
-images that have no intrinsic height and width. If you were to resize a repeatinggradient image using background-size, the repeating gradient would only be visible
-within the gradient image. If you then repeated it using background-repeat, you
-could very easily be back to the situation of having discontinuities in your back‐
-ground, as illustrated in Figure 9-104:
+You may have noticed that none of the repeating gradients we’ve seen so far have a defined size. That means the images are defaulting in size to the full background positioning area of the element to which they’re applied, per the default behavior for images that have no intrinsic height and width. If you were to resize a repeatinggradient image using `background-size`, the repeating gradient would only be visible within the gradient image. If you then repeated it using `background-repeat`, you could very easily be back to the situation of having discontinuities in your background, as illustrated in Figure 9-104:
 
 ```css
 h1.exmpl {
@@ -2773,15 +2388,9 @@ h1.exmpl {
 
 <Figures figure="9-104">Repeated tiling of repeating-gradient images</Figures>
 
-If you use percentages in your repeating linear gradients, they’ll be placed the same as
-if the gradient wasn’t of the repeating variety. Then again, this would mean that all of
-the gradients defined by those color stops would be seen and none of the repetitions
-would be visible, so percentages are kind of pointless with repeating linear gradients.
+If you use percentages in your repeating linear gradients, they’ll be placed the same as if the gradient wasn’t of the repeating variety. Then again, this would mean that all of the gradients defined by those color stops would be seen and none of the repetitions would be visible, so percentages are kind of pointless with repeating linear gradients.
 
-On the other hand, percentages can be very useful with repeating radial gradients,
-where the size of the circle or ellipse is defined, percentage positions along the gradi‐
-ent ray are defined, and you can see beyond the endpoint of the gradient ray. For
-example, assume:
+On the other hand, percentages can be very useful with repeating radial gradients, where the size of the circle or ellipse is defined, percentage positions along the gradient ray are defined, and you can see beyond the endpoint of the gradient ray. For example, assume:
 
 ```css
 .allhail {
@@ -2789,10 +2398,7 @@ example, assume:
 }
 ```
 
-Given this rule, there will be a color stop every 20 pixels, with the colors repeating in
-the declared pattern. Because the first and last color stops have the same color value,
-there is no hard color switch. The ripples just spread out forever, or at least until
-they’re beyond the edges of the gradient image. See Figure 9-105 for an example.
+Given this rule, there will be a color stop every 20 pixels, with the colors repeating in the declared pattern. Because the first and last color stops have the same color value, there is no hard color switch. The ripples just spread out forever, or at least until they’re beyond the edges of the gradient image. See Figure 9-105 for an example.
 
 <Figures figure="9-105">Repeating radial gradients</Figures>
 
@@ -2817,67 +2423,38 @@ Just imagine what that would look like with a repeating radial gradient of a rai
 
 There are a couple of things to keep in mind when creating repeating radial gradients:
 
-- If you don’t declare size dimensions for a radial, it will default to an ellipse that
-  has the same height-to-width ratio as the overall gradient image; and, if you don’t
-  declare a size for the image with background-size, the gradient image will
-  default to the height and width of the element background where it’s being
-  applied. (Or, in the case of being used as a list-style bullet, the size that the
-  browser gives it.)
-- The default radial size value is farthest-corner. This will put the endpoint of
-  the gradient ray far enough to the right that its ellipse intersects with the corner
-  of the gradient image that’s furthest from the center point of the radial gradient.
+- If you don’t declare size dimensions for a radial, it will default to an ellipse that has the same height-to-width ratio as the overall gradient image; `and`, if you don’t declare a size for the image with `background-size`, the gradient image will default to the height and width of the element background where it’s being applied. (Or, in the case of being used as a list-style bullet, the size that the browser gives it.)
+- The default radial size value is `farthest-corner`. This will put the endpoint of the gradient ray far enough to the right that its ellipse intersects with the corner of the gradient image that’s furthest from the center point of the radial gradient.
 
-These are reiterated here to remind you that if you stick to the defaults, there’s not
-really any point to having a repeating gradient, since you’ll only be able to see the first
-iteration of the repeat. It’s only when you restrict the initial size of the gradient that
-the repeats become visible.
+These are reiterated here to remind you that if you stick to the defaults, there’s not really any point to having a repeating gradient, since you’ll only be able to see the first iteration of the repeat. It’s only when you restrict the initial size of the gradient that the repeats become visible.
 
 <Tips tips="orange">Radial gradients, and in particular repeating radial gradients, created massive performance drains in older mobile devices. Crashes were not uncommon in these situations, and both page rendering time and battery performance could suffer greatly. Think very, very carefully about using radial gradients in mobile contexts, and be sure to rigorously test their performance and stability in any context, especially if you have users with older devices (and therefore older browsers).</Tips>
 
 #### Average gradient colors
 
-Another edge case is what happens if a repeating gradient’s first and last color stops
-somehow end up being in the same place. For example, suppose your fingers missed
-the “5” key and you accidentally declared the following:
+Another edge case is what happens if a repeating gradient’s first and last color stops somehow end up being in the same place. For example, suppose your fingers missed the “5” key and you accidentally declared the following:
 
 ```css
 repeating-radial-gradient(center, purple 0px, gold 0px)
 ```
 
-The first and last color stops are zero pixels apart, but the gradient is supposed to
-repeat ad infinitum along the gradient line. Now what?
+The first and last color stops are zero pixels apart, but the gradient is supposed to repeat ad infinitum along the gradient line. Now what?
 
-In such a case, the browser finds the average gradient color and fills it in throughout
-the entire gradient image. In our simple case in the preceding code, that will be a
-50/50 blend of purple and gold (which will be about #C06C40 or rgb(75%,42%,25%)).
-Thus, the resulting gradient image should be a solid orangey-brown, which doesn’t
-really look much like a gradient.
+In such a case, the browser finds the average gradient color and fills it in throughout the entire gradient image. In our simple case in the preceding code, that will be a 50/50 blend of purple and `gold` (which will be about `#C06C40` or `rgb(75%,42%,25%)`). Thus, the resulting gradient image should be a solid orangey-brown, which doesn’t really look much like a gradient.
 
-This condition can also be triggered in cases where the browser rounds the color-stop
-positions to zero, or cases where the distance between the first and last color stops is
-so small as compared to the output resolution that nothing useful can be rendered.
-This could happen if, for example, a repeating radial gradient used all percentages for
-the color-stop positions and was sized using closest-side, but was accidentally
-placed into a corner.
+This condition can also be triggered in cases where the browser rounds the color-stop positions to zero, or cases where the distance between the first and last color stops is so small as compared to the output resolution that nothing useful can be rendered. This could happen if, for example, a repeating radial gradient used all percentages for the color-stop positions and was sized using `closest-side`, but was accidentally placed into a corner.
 
 <Tips tips="orange">As of late 2017, no browsers really do this correctly. It is possible to trigger some of the correct behaviors under very limited conditions, but in most cases, browsers either just use the last color stop as a fill color, or else try really hard to draw sub-pixel repeating patterns.</Tips>
 
 ## 9.4 Box Shadows
 
-In an earlier chapter, we explored the property text-shadow, which adds a drop
-shadow to the text of a non-replaced element. There’s a version of this that creates a
-shadow for the box of an element, called box-shadow.
+In an earlier chapter, we explored the property `text-shadow`, which adds a drop shadow to the text of a non-replaced element. There’s a version of this that creates a shadow for the box of an element, called `box-shadow`.
 
 //
 
-It might seem a little out of place to talk about shadows in a chapter mostly con‐
-cerned with backgrounds and gradients, but there’s a reason it goes here, which we’ll
-see in a moment.
+It might seem a little out of place to talk about shadows in a chapter mostly concerned with backgrounds and gradients, but there’s a reason it goes here, which we’ll see in a moment.
 
-Let’s consider a simple box drop shadow: one that’s 10 pixels down and 10 pixels to
-the right of an element box, with no spread or blur, and a half-opaque black. Behind
-it we’ll put a repeating background on the body element. All of this is illustrated in
-Figure 9-106.
+Let’s consider a simple box drop shadow: one that’s 10 pixels down and 10 pixels to the right of an element box, with no spread or blur, and a half-opaque black. Behind it we’ll put a repeating background on the `body` element. All of this is illustrated in Figure 9-106.
 
 ```css
 #box {
@@ -2889,15 +2466,9 @@ Figure 9-106.
 
 <Figures figure="9-106">A simple box shadow</Figures>
 
-We can see that the body’s background is visible through the half-opaque (or halftransparent, if you prefer) drop shadow. Because no blur or spread distances were
-defined, the drop shadow exactly mimics the outer shape of the element box itself. At
-least, it appears to do so.
+We can see that the `body`’s background is visible through the half-opaque (or halftransparent, if you prefer) drop shadow. Because no blur or spread distances were defined, the drop shadow exactly mimics the outer shape of the element box itself. At least, it appears to do so.
 
-The reason it only appears to mimc the shape of the box is that the shadow is only
-visible outside the outer border edge of the element. We couldn’t really see that in the
-previous figure, because the element had an opaque background. You might have just
-assumed that the shadow extended all the way under the element, but it doesn’t. Con‐
-sider the following, illustrated in Figure 9-107.
+The reason it only appears to mimc the shape of the box is that the shadow is only visible outside the outer border edge of the element. We couldn’t really see that in the previous figure, because the element had an opaque background. You might have just assumed that the shadow extended all the way under the element, but it doesn’t. Consider the following, illustrated in Figure 9-107.
 
 ```css
 #box {
@@ -2909,23 +2480,11 @@ sider the following, illustrated in Figure 9-107.
 
 <Figures figure="9-107">Box shadows are incomplete</Figures>
 
-So it looks as though the element’s content (and padding and border) area “knocks
-out” part of the shadow. In truth, it’s just that the shadow was never drawn there, due
-to the way box shadows are defined in the specification. This does mean, as
-Figure 9-107 demonstrates, that any background “behind” the box with a drop
-shadow can be visible through the element itself. This (perhaps bizarre-seeming)
-interaction with the backgrounds and borders is why box-shadow is covered here,
-instead of at an earlier point in the text.
+So it looks as though the element’s content (and padding and border) area “knocks out” part of the shadow. In truth, it’s just that the shadow was never drawn there, due to the way box shadows are defined in the specification. This does mean, as Figure 9-107 demonstrates, that any background “behind” the box with a drop shadow can be visible through the element itself. This (perhaps bizarre-seeming) interaction with the backgrounds and borders is why `box-shadow` is covered here, instead of at an earlier point in the text.
 
-So far, we’ve seen box shadows defined with two length values. The first defines a hor‐
-izontal offset, and the second a vertical offset. Positive numbers move the shadow
-down and to right right, and negative numbers move the shadow up and to the left.
+So far, we’ve seen box shadows defined with two length values. The first defines a horizontal offset, and the second a vertical offset. Positive numbers move the shadow down and to right right, and negative numbers move the shadow up and to the left.
 
-If a third length is given, it defines a blur distance, which determines how much space
-is given to blurring. A fourth length defines a spread distance, which change the size
-of the shadow. Positive length values make the shadow expand before blurring hap‐
-pens; negative values cause the shadow to shrink. The following have the results
-shown in Figure 9-108.
+If a third length is given, it defines a blur distance, which determines how much space is given to blurring. A fourth length defines a spread distance, which change the size of the shadow. Positive length values make the shadow expand before blurring happens; negative values cause the shadow to shrink. The following have the results shown in Figure 9-108.
 
 ```css
 .box:nth-of-type(1) {
@@ -2953,15 +2512,9 @@ shown in Figure 9-108.
 
 <Figures figure="9-108">Various blurred and spread shadows</Figures>
 
-You may have noticed that some of the boxes in Figure 9-108 have rounded corners
-(via border-radius), and that their shadows were curved to match. This is the
-defined behavior, fortunately.
+You may have noticed that some of the boxes in Figure 9-108 have rounded corners (via `border-radius`), and that their shadows were curved to match. This is the defined behavior, fortunately.
 
-There’s one aspect of box-shadow we have yet to cover, which is the inset keyword. If
-inset is added to the value of box-shadow, then the shadow is rendered inside the
-box, as if the box were a punched-out hole in the canvas rather than floating above it
-(visually speaking). Let’s take the previous set of examples and redo them with inset
-shadows. This will have the result shown in Figure 9-109.
+There’s one aspect of `box-shadow` we have yet to cover, which is the `inset` keyword. If `inset` is added to the value of `box-shadow`, then the shadow is rendered inside the box, as if the box were a punched-out hole in the canvas rather than floating above it (visually speaking). Let’s take the previous set of examples and redo them with inset shadows. This will have the result shown in Figure 9-109.
 
 ```css
 .box:nth-of-type(1) {
@@ -2989,12 +2542,9 @@ shadows. This will have the result shown in Figure 9-109.
 
 <Figures figure="9-109">Various inset shadows</Figures>
 
-Note that the inset keyword can appear before the rest of the value, or after, but not
-in the middle of the lengths and colors. A value like 0 0 0.1em inset gray would be
-ignored as invalid, because of the placement of the inset keyword.
+Note that the `inset` keyword can appear before the rest of the value, or after, but `not` in the middle of the lengths and colors. A value like 0 0 0.1em inset gray would be ignored as invalid, because of the placement of the `inset` keyword.
 
-The last thing to note is that you can apply to an element a list of as many commaseparated box shadows as you like, just as with text shadows. Some could be inset,
-and some outset. The following rules are just two of the infinite possibilities.
+The last thing to note is that you can apply to an element a list of as many commaseparated box shadows as you like, just as with text shadows. Some could be inset, and some outset. The following rules are just two of the infinite possibilities.
 
 ```css
 #shadowbox {
@@ -3007,7 +2557,7 @@ and some outset. The following rules are just two of the infinite possibilities.
 }
 ```
 
-<Tips tips="green">The filter property is another way to create element drop shadows, although it is much closer in behavior to text-shadow than box-shadow, albeit applying to the entire element box and text. See Chapter 19 for details.</Tips>
+<Tips tips="green">The <code>filter</code> property is another way to create element drop shadows, although it is much closer in behavior to <code>text-shadow</code> than <code>box-shadow</code>, albeit applying to the entire element box and text. See Chapter 19 for details.</Tips>
 
 ## 9.5 Summary
 
