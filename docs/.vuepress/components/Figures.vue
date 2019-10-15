@@ -36,6 +36,7 @@ export default {
 
 <style scoped>
 .fg {
+  border-radius: 6px;
   border-width: 2px;
   border-style: solid;
   border-color: black;
