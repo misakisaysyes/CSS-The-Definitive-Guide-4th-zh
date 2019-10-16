@@ -28,7 +28,7 @@ export default {
     chooseTip() {
       let tmp = this.figure.split("-");
       this.imgSrc =
-        "./figures/ch" + tmp[0] + "/fg" + tmp[0] + "-" + tmp[1] + ".png";
+        "./figures/ch" + tmp[0] + "/fg" + this.figure + ".png";
     }
   }
 };

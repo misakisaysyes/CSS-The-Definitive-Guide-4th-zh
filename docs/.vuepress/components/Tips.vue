@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     chooseTip() {
-      console.log(this.tips);
       if (this.tips === "blue") {
         this.imgSrc = "./note.png";
       } else if (this.tips === "green") {
