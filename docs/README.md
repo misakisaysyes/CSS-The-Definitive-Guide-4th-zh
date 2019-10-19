@@ -14,6 +14,10 @@
 <Tips tips="blue">This element signifies a general note.</Tips>
 <Tips tips="orange">This element indicates a warning or caution.</Tips>
 
+
+<Card chapter="chapter2" property="card">
+</Card>
+
 ## 目录
 
 - [第 1 章 CSS 和 Documents](ch1.md)
