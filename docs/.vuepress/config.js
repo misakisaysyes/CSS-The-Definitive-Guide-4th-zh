@@ -1,5 +1,6 @@
 // .vuepress/config.js
 module.exports = {
+  base: '/gitee-page/',
   themeConfig: {
     // 最大深度
     sidebarDepth: 4,

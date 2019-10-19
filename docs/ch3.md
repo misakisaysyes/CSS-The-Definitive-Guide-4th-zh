@@ -228,10 +228,12 @@ When applied to the following markup, the content will be rendered as shown in F
 </p>
 ```
 
-<div style="margin: 0 auto; width: 70%;">
+<!-- <div style="margin: 0 auto; width: 70%;">
   <img src='./figures/ch3/fg3-1.png'/>
 </div>
-<p align="center">图 3-1：How different rules affect a document</p>
+<p align="center">图 3-1：How different rules affect a document</p> -->
+
+<Figures figure="3-1">How different rules affect a document</Figures>
 
 In every case, the user agent determines which rules match a given element, calculates all of the associated declarations and their specificities, determines which rules win out, and then applies the winners to the element to get the styled result. These machinations must be performed on every element, selector, and declaration. Fortunately, the user agent does it all automatically. This behavior is an important component of the cascade, which we will discuss later in this chapter.
 
@@ -400,10 +402,7 @@ h1 {
 <h1 class="title">NightWing</h1>
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch3/fg3-2.png'/>
-</div>
-<p align="center">图 3-2：Important rules always win</p>
+<Figures figure="3-2">Important rules always win</Figures>
 
 Important declarations and their handling are discussed in more detail in “The Cascade” on page 106.
 
@@ -443,19 +442,13 @@ We expect that style applied to a `ul` will also be applied to its list items, a
 
 我们期望应用于“ul”的样式也将应用于它的列表项，以及那些列表项的任何内容。多亏了继承，这正是所发生的，如图 3-3 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch3/fg3-3.png'/>
-</div>
-<p align="center">图 3-3：Inheritance of styles</p>
+<Figures figure="3-3">Inheritance of styles</Figures>
 
 It’s easier to see how inheritance works by turning to a tree diagram of a document. Figure 3-4 shows the tree diagram for a very simple document containing two lists: one unordered and the other ordered.
 
 通过查看文档的树形图，很容易看出继承是如何工作的。图 3-4 显示了一个非常简单的文档的树形图，其中包含两个列表:一个是无序的，另一个是有序的。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch3/fg3-4.png'/>
-</div>
-<p align="center">图 3-4：A simple tree diagram</p>
+<Figures figure="3-4">A simple tree diagram</Figures>
 
 When the declaration `color: gray;` is applied to the `ul` element, that element takes on that declaration. The value is then propagated down the tree to the descendant elements and continues on until there are no more descendants to inherit the value. Values are `never` propagated upward; that is, an element never passes values up to its ancestors.
 
@@ -473,10 +466,7 @@ First, note that many properties are not inherited—generally in order to avoid
 
 首先，注意许多属性没有被继承——通常是为了避免不希望的结果。例如，属性“border”(用于设置元素的边框)不会继承。快速浏览一下图 3-5 就会发现为什么会这样。如果边界是继承的，文档就会变得更加混乱——除非作者付出额外的努力来关闭继承的边界。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch3/fg3-5.png'/>
-</div>
-<p align="center">图 3-5：Why borders aren’t inherited</p>
+<Figures figure="3-5">Why borders aren’t inherited</Figures>
 
 As it happens, most of the box-model properties—including margins, padding, backgrounds, and borders—are not inherited for the same reason. After all, you likely wouldn’t want all of the links in a paragraph to inherit a 30-pixel left margin from their parent element!
 
@@ -502,10 +492,7 @@ h1#page-title {
 </p>
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch3/fg3-6.png'/>
-</div>
-<p align="center">图 3-6：Zero specificity defeats no specificity</p>
+<Figures figure="3-6">Zero specificity defeats no specificity</Figures>
 
 Since the universal selector applies to all elements and has zero specificity, its color declaration’s value of `gray` wins out over the inherited value of `black`, which has no specificity at all. Therefore, the `em` element is rendered gray instead of black.
 
@@ -554,10 +541,7 @@ By targeting a rule directly at the `a` elements within the toolbar, you’ll ge
 
 通过将规则直接指向工具栏中的“a”元素，您将得到如图 3-7 所示的结果。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch3/fg3-7.png'/>
-</div>
-<p align="center">图 3-7：Directly assigning styles to the relevant elements</p>
+<Figures figure="3-7">Directly assigning styles to the relevant elements</Figures>
 
 Another way to get the same result is to use the value `inherit`, covered in the previous chapter. We can alter the previous example like so:
 
@@ -735,10 +719,7 @@ Given the rules shown, the text of the paragraph will be silver, as illustrated 
 
 根据所示的规则，段落的文本将是银色的，如图 3-8 所示。为什么?因为“p#bright(0,1,0,1)”的特殊性覆盖了“p(0,0,0,1)”的特殊性，即使后者的规则在样式表中稍后出现。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch3/fg3-8.png'/>
-</div>
-<p align="center">图 3-8：Higher specificity wins out over lower specificity</p>
+<Figures figure="3-8">Higher specificity wins out over lower specificity</Figures>
 
 ### 3.3.3 Sorting by Order
 

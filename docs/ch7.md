@@ -14,10 +14,7 @@ Each of the margins, borders, and the padding can be set using various side-spec
 
 每个边距、边框和内边距都可以使用各种特定于边的属性进行设置，如左边框或边框-底部，以及内边距等简写属性。大纲(如果有的话)没有特定于边的属性。内容的背景(例如，颜色或平铺图像)默认应用于填充内。页边距总是透明的，允许任何父元素的背景都是可见的。填充不能有负长度，但是空白可以。稍后我们将探讨负边距的影响。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-1.png'/>
-</div>
-<p align="center">图 7-1：The content area and its surroundings</p>
+<Figures figure="7-1">The content area and its surroundings</Figures>
 
 Borders are generated using defined styles, such as `solid` or `inset`, and their colors are set using the `border-color` property. If no color is set, then the border takes on the foreground color of the element’s content. For example, if the text of a paragraph is white, then any borders around that paragraph will be white, `unless` the author explicitly declares a different border color. If a border style has gaps of some type, then the element’s background is visible through those gaps by default. Finally, the width of a border can never be negative.
 
@@ -153,10 +150,7 @@ This will make every a element within the navigation `nav` a block-level element
 
 这将使导航导航中的每个元素成为块级元素。如果我们再添加一些样式，就会得到如图 7-2 所示的结果。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-2.png'/>
-</div>
-<p align="center">图 7-2：Changing the display role from inline to block</p>
+<Figures figure="7-2">Changing the display role from inline to block</Figures>
 
 Changing display roles can be useful in cases where you want non-CSS browsers to get the navigation links as inline elements but to lay out the same links as block-level elements. With the links as blocks, you can style them as you would `div` or `p` elements, with the advantage that the entire element box becomes part of the link. Thus, if a user’s mouse pointer hovers anywhere in the element box, she can then click the link.
 
@@ -194,10 +188,7 @@ Given this markup, say we want to make the names into a series of inline names w
 }
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-3.png'/>
-</div>
-<p align="center">图 7-3：Changing the display role from list-item to inline</p>
+<Figures figure="7-3">Changing the display role from list-item to inline</Figures>
 
 There are plenty of other ways to use display to your advantage in design. Be creative and see what you can invent!
 
@@ -231,10 +222,7 @@ By default, the `width` of a block box is defined to be the distance from the le
 
 默认情况下，块框的宽度定义为从左内边到右内边的距离，高度定义为从内顶到内底的距离。这两个属性都可以应用于生成块框的元素。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-4.png'/>
-</div>
-<p align="center">图 7-4：The complete box model</p>
+<Figures figure="7-4">The complete box model</Figures>
 
 It’s also the case that we can alter how these properties are treated using the property `box-sizing`.
 
@@ -246,10 +234,7 @@ This property is how you change what the `width` and `height` values actually do
 
 此属性用于更改宽度和高度值的实际作用。如果您声明 `width: 400px`，而没有声明 `box-sizing` 值，那么元素的内容框将是 400 像素宽;任何内边距、边框等都将被添加到其中。另一方面，如果您声明 `box-sizing: border-box`，则元素框将从左外边框边缘到右外边框边缘的距离为 400 像素;任何边框或填充将被放置在该距离内，从而缩小内容区域的宽度。如图 7-5 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-5.png'/>
-</div>
-<p align="center">图 7-5：The effects of box-sizing</p>
+<Figures figure="7-5">The effects of box-sizing</Figures>
 
 We’re talking about the `box-sizing` property here because, as stated, it applies to “all elements that accept `width` or `height` values.” That’s most often elements generating block boxes, though it also applies to replaced inline elements like images, as well as inline-block boxes.
 
@@ -281,19 +266,13 @@ The visible element box is now 220 pixels wide, since we’ve added 10 pixels of
 
 可视元素框现在是 220 像素宽，因为我们已经在内容的左右两边添加了 10 个像素的填充。页边距现在将向两边增加 20 个像素，使整个元素框的宽度增加到 260 个像素。如图 7-6 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-6.png'/>
-</div>
-<p align="center">图 7-6：Additive padding and margin</p>
+<Figures figure="7-6">Additive padding and margin</Figures>
 
 If we change the styles to use the border box for box-sizing, then the results would be different. In that case, the visible box would be 200 pixels wide with a content width of 180 pixels, and a total of 40 pixels of margin to the sides, giving an overall box width of 240 pixels, as illustrated in Figure 7-7.
 
 如果我们更改样式以使用边框框进行 box-sizing，那么结果将会不同。在这种情况下，可视框的宽度为 200 像素，内容宽度为 180 像素，边缘距为 40 像素，总体框宽为 240 像素，如图 7-7 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-7.png'/>
-</div>
-<p align="center">图 7-7：Subtracted padding</p>
+<Figures figure="7-7">Subtracted padding</Figures>
 
 In either case, there is a rule that says that the sum of the horizontal components of a block box in the normal flow always equals the width of the containing block. Let’s consider two paragraphs within a `div` whose margins have been set to be `1em`, and whose `box-sizing` value is the default. The content width (the value of `width`) of each paragraph, plus its left and right padding, borders, and margins, always adds up to the width of the `div`’s content area.
 
@@ -303,10 +282,7 @@ Let’s say the width of the `div` is `30em`. That makes the sum total of the co
 
 假设 div 的宽度是 30em。这使得每个段落的内容宽度、填充、边框和边距的总和为 30 em。在图 7-8 中，段落周围的“空白”空间实际上是它们的边距。如果“div”有任何内边距，就会有更多的空白，但这里不是这样。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-8.png'/>
-</div>
-<p align="center">图 7-8：Element boxes are as wide as the width of their containing block</p>
+<Figures figure="7-8">Element boxes are as wide as the width of their containing block</Figures>
 
 ### 7.2.4 Horizontal Properties
 
@@ -322,15 +298,9 @@ Of these seven properties, only three may be set to `auto`: the width of the ele
 
 在这七个属性中，只有三个可以设置为“auto”:元素内容的宽度和左右边距。其余的属性必须设置为特定的值或默认宽度为 0。图 7-10 显示了框中的哪些部分可以接受 auto 值，哪些不能。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-9.png'/>
-</div>
-<p align="center">图 7-9：The seven properties of horizontal formatting</p>
+<Figures figure="7-9">The seven properties of horizontal formatting</Figures>
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-10.png'/>
-</div>
-<p align="center">图 7-10：Horizontal properties that can be set to auto</p>
+<Figures figure="7-10">Horizontal properties that can be set to auto</Figures>
 
 `width` must either be set to `auto` or a nonnegative value of some type. When you do use `auto` in horizontal formatting, different effects can occur.
 
@@ -372,10 +342,7 @@ p {
 } /* right margin forced to be 300px */
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-11.png'/>
-</div>
-<p align="center">图 7-11：Overriding the margin-right setting</p>
+<Figures figure="7-11">Overriding the margin-right setting</Figures>
 
 If both margins are set explicitly, and `width` is set to `auto`, then `width` will be whatever value is needed to reach the required total (which is the content width of the parent element). The results of the following markup are shown in Figure 7-12:
 
@@ -400,10 +367,7 @@ p {
 } /* same as before */
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-12.png'/>
-</div>
-<p align="center">图 7-12：Automatic width</p>
+<Figures figure="7-12">Automatic width</Figures>
 
 You might be wondering what happens if `box-sizing` is set to, say, `padding-box`. The discussion here tends to assume that the default of `content-box` is used, but all the same principles described here apply, which is why this section only talked about `width` and the side margins without introducing any padding or borders. The handling of `width: auto` in this section and the following sections is the same regardless of the value of box-sizing. The details of what gets placed where inside the `box-sizing`-defined box may vary, but the treatment of `auto` values does not, because `box-sizing` determines what `width` refers to, not how it behaves in relation to the margins.
 
@@ -427,10 +391,7 @@ p {
 /* each margin is 100 pixels wide, because (500-300)/2 = 100 */
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-13.png'/>
-</div>
-<p align="center">图 7-13：Setting an explicit width</p>
+<Figures figure="7-13">Setting an explicit width</Figures>
 
 Setting both margins to equal lengths is the correct way to center elements within block boxes in the normal flow. (There are other methods to be found with flexible box and grid layout, but they’re beyond the scope of this text.)
 
@@ -455,10 +416,7 @@ The `width` is then set to the value necessary to make the element fill its cont
 
 然后将“宽度”设置为使元素填充其包含块所需的值;在前面的示例中，它将是 400 像素，如图 7-14 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-14.png'/>
-</div>
-<p align="center">图 7-14：What happens when both the width and right margin are auto</p>
+<Figures figure="7-14">What happens when both the width and right margin are auto</Figures>
 
 Finally, what happens when all three properties are set to `auto`? The answer: both margins are set to zero, and the `width` is made as wide as possible. This result is the same as the default situation, when no values are explicitly declared for margins or the width. In such a case, the margins default to zero and the `width` defaults to `auto`.
 
@@ -480,10 +438,7 @@ p {
 }
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-15.png'/>
-</div>
-<p align="center">图 7-15：Offset is implicit in the parent’s margins and padding</p>
+<Figures figure="7-15">Offset is implicit in the parent’s margins and padding</Figures>
 
 ### 7.2.7 Negative Margins
 
@@ -507,10 +462,7 @@ p.wide {
 }
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-16.png'/>
-</div>
-<p align="center">图 7-16：Wider children through negative margins</p>
+<Figures figure="7-16">Wider children through negative margins</Figures>
 
 Yes indeed, the child element is wider than its parent! This is mathematically correct:
 
@@ -597,10 +549,7 @@ p.wide {
 }
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-17.png'/>
-</div>
-<p align="center">图 7-17：Setting a negative left margin</p>
+<Figures figure="7-17">Setting a negative left margin</Figures>
 
 With a negative left margin, not only does the paragraph spill beyond the borders of the `div`, but it also spills beyond the edge of the browser window itself!
 
@@ -702,10 +651,7 @@ Note that the height of the elements also increases. When a replaced element’s
 
 注意，元素的高度也会增加。当被替换的元素的“宽度”从其固有宽度更改时，将缩放“高度”的值以匹配它，除非将“高度”设置为其自身的显式值。反过来也是正确的:如果' height '被设置，但是' width '被保留为' auto '，那么宽度将根据高度的变化比例调整。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-18.png'/>
-</div>
-<p align="center">图 7-18：Changing replaced element widths</p>
+<Figures figure="7-18">Changing replaced element widths</Figures>
 
 Now that you’re thinking about height, let’s move on to the vertical formatting of normal-flow block box.
 
@@ -745,10 +691,7 @@ Just as with `width`, `height` defines the content area’s height by default, a
 
 与“width”一样，“height”默认定义内容区域的高度，而不是可视元素框的高度。元素框的顶部或底部的任何内边距、边框或边距都将“添加”到高度值中，除非“box-sizing”的值与“content-box”不同。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-19.png'/>
-</div>
-<p align="center">图 7-19：Heights that don’t match the element’s content height</p>
+<Figures figure="7-19">Heights that don’t match the element’s content height</Figures>
 
 ### 7.2.11 Vertical Properties
 
@@ -772,10 +715,7 @@ The handling of `auto` top and bottom margins is different for positioned elemen
 
 对“自动”顶部和底部边缘的处理不同于定位元素，以及灵活的盒子元素。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-20.png'/>
-</div>
-<p align="center">图 7-20：The seven properties of vertical formatting</p>
+<Figures figure="7-20">The seven properties of vertical formatting</Figures>
 
 `height` must be set to `auto` or to a nonnegative value of some type; it can never be less than zero.
 
@@ -797,10 +737,7 @@ Since setting the top and bottom margins to `auto` will give them zero height, t
 
 由于将顶部和底部的边距设置为“auto”将使它们的高度为 0，因此在这种特殊情况下，将元素垂直居中的唯一方法是将它们都设置为“25%”，即使这样，方框也将居中，而不是其中的内容。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-21.png'/>
-</div>
-<p align="center">图 7-21：Vertical properties that can be set to auto</p>
+<Figures figure="7-21">Vertical properties that can be set to auto</Figures>
 
 However, in cases where the height of the containing block is `not` explicitly declared, percentage heights are reset to `auto`. If we changed the previous example so that the `height` of the `div` is `auto`, the paragraph will now be exactly as tall as the `div` itself:
 
@@ -816,10 +753,7 @@ These two possibilities are illustrated in Figure 7-22. (The spaces between the 
 
 这两种可能性如图 7-22 所示。(段落边框和“div”边框之间的空间是段落的顶部和底部空白。)
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-22.png'/>
-</div>
-<p align="center">图 7-22：Percentage heights in different circumstances</p>
+<Figures figure="7-22">Percentage heights in different circumstances</Figures>
 
 Before we move on, take a closer look at the first example in Figure 7-22, the half-astall paragraph. It may be half as tall, but it isn’t vertically centered. That’s because the containing `div` is 6 em tall, which means the half-as-tall paragraph is 3 em tall. It has top and bottom margins of 1 em, so its overall box height is 5 em. That means there is actually 2 em of space between the bottom of the paragraph’s visible box and the `div`’s bottom border, not 1 em. It might seem a bit odd at first glance, but it makes sense once you work through the details.
 
@@ -858,10 +792,7 @@ If we changed the borders in the previous example to padding, the effect on the 
 
 如果我们将前一个示例中的边框改为 padding，那么对“div”高度的影响将是相同的:它仍然将段落的边距括在其中。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-23.png'/>
-</div>
-<p align="center">图 7-23：Auto heights with block-level children</p>
+<Figures figure="7-23">Auto heights with block-level children</Figures>
 
 ### 7.2.14 Collapsing Vertical Margins
 
@@ -896,10 +827,7 @@ Imagine that each element, such as a paragraph, is a small piece of paper with t
 
 假设每个元素(比如一个段落)都是一张写有元素内容的小纸片。每张纸的周围都有一定数量的透明塑料，代表着纸的边缘。第一张纸(假设一张 h1)放在画布上。第二段(一段)放在它的下面，然后向上滑动，直到其中一个塑料的边缘接触到另一个纸的边缘。如果第一张纸的下沿有半英寸的塑料，第二张纸的上沿有三分之一英寸的塑料，那么当它们一起滑动时，第一张纸的塑料就会碰到第二张纸的上沿。现在，这两件作品被放在画布上，与作品相连的塑料也被重叠起来。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-24.png'/>
-</div>
-<p align="center">图 7-24：Collapsed versus uncollapsed margins</p>
+<Figures figure="7-24">Collapsed versus uncollapsed margins</Figures>
 
 Collapsing also occurs where multiple margins meet, such as at the end of a list.Adding to the earlier example, let’s assume the following rules apply:
 
@@ -922,10 +850,7 @@ The last item in the list has a bottom margin of 20 pixels, the bottom margin of
 
 列表中的最后一项的底部空白为 20 像素，“ul”的底部空白为 15 像素，“h1”的后续顶部空白为 28 像素。因此，一旦边缘折叠起来，“li”的末端和“h1”的开始之间的距离就是 28 像素，如图 7-25 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-25.png'/>
-</div>
-<p align="center">图 7-25：Collapsing in detail</p>
+<Figures figure="7-25">Collapsing in detail</Figures>
 
 Now, recall the examples from the previous section, where the introduction of a border or padding on a containing block would cause the margins of its child elements to be contained within it. We can see this behavior in operation by adding a border to the `ul` element in the previous example:
 
@@ -949,10 +874,7 @@ With this change, the bottom margin of the `li` element is now placed inside its
 
 通过这个更改，' li '元素的底部空白现在被放置在其父元素(' ul ')中。因此，唯一发生的边缘崩溃是在“ul”和“h1”之间，如图 7-26 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-26.png'/>
-</div>
-<p align="center">图 7-26：Collapsing (or not) with borders added to the mix</p>
+<Figures figure="7-26">Collapsing (or not) with borders added to the mix</Figures>
 
 ### 7.2.15 Negative Margins and Collapsing
 
@@ -960,10 +882,7 @@ Negative margins do have an impact on vertical formatting, and they affect how m
 
 负页边距确实会对垂直格式产生影响，并影响页边距的折叠方式。如果设置了负的垂直边距，那么浏览器应该取两个边距的绝对最大值。然后从正保证金中减去负保证金的绝对值。换句话说，负的和正的相加，得到的值就是元素之间的距离。图 7-27 提供了两个具体的例子。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-27.png'/>
-</div>
-<p align="center">图 7-27：Examples of negative vertical margins</p>
+<Figures figure="7-27">Examples of negative vertical margins</Figures>
 
 Notice the “pulling” effect of negative top and bottom margins. This is really no different from the way that negative horizontal margins cause an element to push outside of its parent. Consider:
 
@@ -995,10 +914,7 @@ As we see in Figure 7-28, the paragraph has been pulled upward by its negative t
 
 正如我们在图 7-28 中所看到的，该段已被其负上边距向上拉。请注意，标记中段落后面的“div”的内容也向上拉了 50 个像素。事实上，段落后面的每一个正常流内容都被向上拉了 50 个像素。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-28.png'/>
-</div>
-<p align="center">图 7-28：The effects of a negative top margin</p>
+<Figures figure="7-28">The effects of a negative top margin</Figures>
 
 Now compare the following markup to the situation shown in Figure 7-29:
 
@@ -1025,10 +941,7 @@ p.neg {
 </p>
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-29.png'/>
-</div>
-<p align="center">图 7-29：The effects of a negative bottom margin</p>
+<Figures figure="7-29">The effects of a negative bottom margin</Figures>
 
 What’s really happening in Figure 7-29 is that the elements following the `div` are placed according to the location of the bottom of the `div`. As you can see, the end of the `div` is actually above the visual bottom of its child paragraph. The next element after the `div` is the appropriate distance from the bottom of the `div`. This is expected, given the rules we saw.
 
@@ -1058,10 +971,7 @@ When elements overlap each other due to negative margins, it’s hard to tell wh
 
 当元素由于负边距而相互重叠时，很难判断哪些元素在顶部。您可能还注意到，本节中的示例都没有使用背景颜色。如果它们这样做了，下面元素的背景颜色可能会覆盖它们的内容。这是预期的行为，因为浏览器通常按从开始到结束的顺序呈现元素，所以文档中稍后出现的正常流元素可能会覆盖前面的元素，假设两者最终会重叠。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-30.png'/>
-</div>
-<p align="center">图 7-30：Collapsing margins and negative margins, in detail</p>
+<Figures figure="7-30">Collapsing margins and negative margins, in detail</Figures>
 
 ### 7.2.16 List Items
 
@@ -1069,10 +979,7 @@ List items have a few special rules of their own. They are typically preceded by
 
 列表项有自己的一些特殊规则。它们的前面通常有一个标记，比如一个小点或一个数字。此标记实际上并不属于列表项的内容区域，因此类似图 7-31 所示的效果很常见。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-31.png'/>
-</div>
-<p align="center">图 7-31：The content of list items</p>
+<Figures figure="7-31">The content of list items</Figures>
 
 CSS1 said very little about the placement and effects of these markers with regard to the layout of a document. CSS2 introduced properties specifically designed to address this issue, such as `marker-offset`. However, a lack of implementations and changes in thinking caused this to be dropped from CSS2.1, and work is being done to reintroduce the idea (if not the specific syntax) to CSS. Accordingly, the placement of markers is largely beyond the control of authors, at least as of this writing.
 
@@ -1082,10 +989,7 @@ The marker attached to a list item element can be either outside the content of 
 
 附加到列表项元素的标记可以位于列表项的内容之外，也可以作为内容开头的内联标记，具体取决于属性 `list-style-position` 的值。如果将标记放在内部，那么列表项将与它的邻居交互，就像块级别的元素一样，如图 7-32 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-32.png'/>
-</div>
-<p align="center">图 7-32：Markers inside and outside the list</p>
+<Figures figure="7-32">Markers inside and outside the list</Figures>
 
 If the marker stays outside the content, then it is placed some distance from the left content edge of the content (in left-to-right languages). No matter how the list’s styles are altered, the marker stays the same distance from the content edge. Occasionally, the markers may be pushed outside of the list element itself, as we can see in Figure 7-32.
 
@@ -1125,10 +1029,7 @@ span {
 }
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-33.png'/>
-</div>
-<p align="center">图 7-33：A single-line inline element</p>
+<Figures figure="7-33">A single-line inline element</Figures>
 
 Figure 7-33 shows the simplest case of an inline element contained by a block-level element. It’s no different in its way than a paragraph with two words in it. The only differences are that, in Figure 7-34, we have a few dozen words, and most paragraphs don’t contain an explicit inline element such as `span`.
 
@@ -1138,10 +1039,7 @@ In order to get from this simplified state to something more familiar, all we ha
 
 为了从这种简化的状态过渡到更熟悉的状态，我们所要做的就是确定元素应该有多宽，然后将行分割开来，使结果块与元素的内容宽度相匹配。因此，我们得到如图 7-34 所示的状态。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-34.png'/>
-</div>
-<p align="center">图 7-34：A multiple-line inline element</p>
+<Figures figure="7-34">A multiple-line inline element</Figures>
 
 Nothing has really changed. All we did was take the single line and break it into pieces, and then stack those pieces on top of each other.
 
@@ -1167,10 +1065,7 @@ That pretty well covers how lines are generated in the simplest cases. As you’
 
 这很好地涵盖了如何在最简单的情况下生成行。但是，您将看到，内联格式模型远非简单。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-35.png'/>
-</div>
-<p align="center">图 7-35：Showing lines in different alignments</p>
+<Figures figure="7-35">Showing lines in different alignments</Figures>
 
 ### 7.3.2 Basic Terms and Concepts
 
@@ -1311,19 +1206,13 @@ First, for an inline nonreplaced element or piece of anonymous text, the value o
 
 首先，对于内联的不可替换元素或匿名文本，“font-size”的值决定内容区域的高度。如果一个内联元素的“字体大小”为“15px”，那么内容区域的高度为 15 像素，因为元素中的所有 em 框都是 15 像素高，如图 7-36 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-36.png'/>
-</div>
-<p align="center">图 7-36：Em boxes determine content area height</p>
+<Figures figure="7-36">Em boxes determine content area height</Figures>
 
 The next thing to consider is the value of `line-height` for the element, and the difference between it and the value of `font-size`. If an inline nonreplaced element has a `font-size` of `15px` and a `line-height` of `21px`, then the difference is six pixels. The user agent splits the six pixels in half and applies half to the top and half to the bottom of the content area, which yields the inline box. This process is illustrated in Figure 7-37.
 
 接下来要考虑的是元素的' line-height '的值，以及它与' font-size '的值之间的差异。如果一个内联的不可替换元素的“font-size”为“15px”，“line-height”为“21px”，那么差值为 6 个像素。用户代理将 6 个像素分成两半，一半应用于内容区域的顶部，一半应用于内容区域的底部，从而生成内联框。这个过程如图 7-37 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-37.png'/>
-</div>
-<p align="center">图 7-37：Content area plus leading equals inline box</p>
+<Figures figure="7-37">Content area plus leading equals inline box</Figures>
 
 Let’s assume that the following is true:
 
@@ -1353,15 +1242,9 @@ Since inline boxes determine the height of the overall line box, their placement
 
 由于内联框决定了整个行框的高度，因此它们之间的位置关系非常重要。行框定义为从行内最高行内框顶部到最低行内框底部的距离，每个行框的顶部与前一行的行框底部相顶。图 7-38 所示的结果给出了图 7-39 所示的段落。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-38.png'/>
-</div>
-<p align="center">图 7-38：Inline boxes within a line</p>
+<Figures figure="7-38">Inline boxes within a line</Figures>
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-39.png'/>
-</div>
-<p align="center">图 7-39：Line boxes within a paragraph</p>
+<Figures figure="7-39">Line boxes within a paragraph</Figures>
 
 As we can see in Figure 7-39, the middle line is taller than the other two, but it still isn’t big enough to contain all of the text within it. The anonymous text’s inline box determines the bottom of the line box, while the top of the strong element’s inline box sets the top of the line box. Because that inline box’s top is inside the element’s content area, the contents of the element spill outside the line box and actually overlap other line boxes. The result is that the lines of text look irregular.
 
@@ -1389,10 +1272,7 @@ That small change raises the `strong` element four pixels, which pushes up both 
 
 这个小的改变提高了“强”元素的 4 个像素，从而推高了它的内容区域和内联框。因为“strong”元素的内联框顶部已经是行中最高的了，这种垂直对齐的变化也会将行框顶部向上推 4 个像素，如图 7-40 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-40.png'/>
-</div>
-<p align="center">图 7-40：Vertical alignment affects line box height</p>
+<Figures figure="7-40">Vertical alignment affects line box height</Figures>
 
 Let’s consider another situation. Here, we have another inline element in the same line as the strong text, and its alignment is other than the baseline:
 
@@ -1411,10 +1291,7 @@ Now we have the same result as in our earlier example, where the middle line box
 
 现在我们得到了与前面示例相同的结果，其中中间的行框比其他行框高。但是，请注意图 7-41 中的“高”文本是如何对齐的。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-41.png'/>
-</div>
-<p align="center">图 7-41：Aligning an inline element to the line box</p>
+<Figures figure="7-41">Aligning an inline element to the line box</Figures>
 
 In this case, the top of the “tall” text’s inline box is aligned with the top of the line box. Since the “tall” text has equal values for `font-size` and `line-height`, the content height and inline box are the same. However, consider this:
 
@@ -1446,10 +1323,7 @@ On the other hand, we could set the “tall” text to have a `line-height` that
 </p>
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-42.png'/>
-</div>
-<p align="center">图 7-42：Text protruding from the line box (again)</p>
+<Figures figure="7-42">Text protruding from the line box (again)</Figures>
 
 Since we’ve given the “tall” text a `line-height` of `18px`, the difference between `line-height` and `font-size` is six pixels. The half-leading of three pixels is added to the content area and results in an inline box that is 18 pixels tall. The top of this inline box aligns with the top of the line box. Similarly, the `vertical-align` value `bottom` will align the bottom of an inline element’s inline box with the bottom of the line box.
 
@@ -1539,10 +1413,7 @@ By setting a `line-height` for the `big` element, we increase the overall height
 
 通过为“大”元素设置“行高”，我们增加了行框的整体高度，提供足够的空间来显示大元素，而不重叠任何其他文本，也不改变段落中所有行的“行高”。我们使用' 1em '的值，以便' big '元素的' line-height '将被设置为与' big '的 font-size 相同的大小。请记住，' line-height '是根据元素本身的' font-size '设置的，而不是根据父元素设置的。结果如图 7-43 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-43.png'/>
-</div>
-<p align="center">图 7-43：Assigning the line-height property to inline elements</p>
+<Figures figure="7-43">Assigning the line-height property to inline elements</Figures>
 
 Make sure you really understand the previous sections, because things will get trickier when we try to add borders. Let’s say we want to put five-pixel borders around any hyperlink:
 
@@ -1597,10 +1468,7 @@ Given these rules, the height of the inline box of a `big` element within a para
 
 根据这些规则，一个“大”元素在一个段落中的内联框的高度将是 31.5 像素(14×1.5×1.5)，这也将是行框的高度。为了保持基线间距一致，我们必须使“p”元素的“行高”等于或大于 32px。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-44.png'/>
-</div>
-<p align="center">图 7-44：Increasing line-height to leave room for inline borders</p>
+<Figures figure="7-44">Increasing line-height to leave room for inline borders</Figures>
 
 #### Baselines and line heights
 
@@ -1668,10 +1536,7 @@ big {
 }
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-45.png'/>
-</div>
-<p align="center">图 7-45：Using a scaling factor for line-height</p>
+<Figures figure="7-45">Using a scaling factor for line-height</Figures>
 
 Another solution—possibly the simplest of all—is to set the styles such that lines are no taller than absolutely necessary to hold their content. This is where we might use a `line-height` of `1.0`. This value will multiply itself by every `font-size` to get the same value as the `font-size` of every element. Thus, for every element, the inline box will be the same as the content area, which will mean the absolute minimum size necessary is used to contain the content area of each element.
 
@@ -1705,15 +1570,9 @@ Note that this padding does not alter the actual shape of the content height, an
 
 注意，这个填充不会改变内容高度的实际形状，因此它不会影响这个元素的内联框的高度。类似地，向内联元素添加边框不会影响行框的生成和布局方式，如图 7-47 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-46.png'/>
-</div>
-<p align="center">图 7-46：Inline borders and line-box layout</p>
+<Figures figure="7-46">Inline borders and line-box layout</Figures>
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-47.png'/>
-</div>
-<p align="center">图 7-47：Padding and borders do not alter line-height</p>
+<Figures figure="7-47">Padding and borders do not alter line-height</Figures>
 
 As for margins, they do not, practically speaking, apply to the top and bottom of an inline nonreplaced element, as they don’t affect the height of the line box. The ends of the element are another story.
 
@@ -1727,10 +1586,7 @@ Think of an inline element as a strip of paper with some plastic surrounding it.
 
 可以把内联元素想象成一条纸，纸的周围有一些塑料。在多行上显示内联元素就像将条带分割成更小的条带。然而，没有额外的塑料添加到每个小条。唯一的塑料是一开始就在纸带上的，所以它只出现在纸带的原始末端的开始和末端(内联元素)。至少，这是默认的行为，但是我们很快就会看到，还有另一种选择。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-48.png'/>
-</div>
-<p align="center">图 7-48：Padding and margins on the ends of an inline element</p>
+<Figures figure="7-48">Padding and margins on the ends of an inline element</Figures>
 
 So, what happens when an inline element has a background and enough padding to cause the lines’ backgrounds to overlap? Take the following situation as an example:
 
@@ -1756,10 +1612,7 @@ CSS 2.1 explicitly states that the line boxes are drawn in document order: “Th
 
 CSS 2.1 明确规定了线条框是按文档顺序绘制的:“这将导致后续行上的边框被绘制到前一行的边框和文本上。同样的原理也适用于背景，如图 7-49 所示。另一方面，CSS2 允许用户代理“裁剪”边界和填充区域(即，用户代理可以对边界和填充区域进行“裁剪”)。，而不是渲染它们)。因此，结果可能在很大程度上取决于用户代理遵循的规范。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-49.png'/>
-</div>
-<p align="center">图 7-49：Overlapping inline backgrounds</p>
+<Figures figure="7-49">Overlapping inline backgrounds</Figures>
 
 ### 7.3.10 Changing Breaking Behavior
 
@@ -1777,10 +1630,7 @@ Many of the differences are pretty apparent, but a few are perhaps more subtle. 
 
 许多差异是非常明显的，但有一些可能更微妙。这些效果包括对每个元素片段的填充，包括换行的末端。类似地，边界被单独地画在每个片段周围，而不是被分割。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-50.png'/>
-</div>
-<p align="center">图 7-50：Sliced and cloned inline fragments</p>
+<Figures figure="7-50">Sliced and cloned inline fragments</Figures>
 
 More subtly, notice how the `background-image` positioning changes between the two. In the sliced version, background images are sliced along with everything else, meaning that only one of the fragments contains the origin image. In the cloned version, however, each background acts as its own copy, so each has its own origin image. This means, for example, that even if we have a nonrepeated background image, it will appear once in each fragment instead of only in one fragment.
 
@@ -1845,10 +1695,7 @@ img {
 <p>the image in this sentence <img src="test.gif" alt="test image" /> will be raised 9 pixels.</p>
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-51.png'/>
-</div>
-<p align="center">图 7-51：Replaced elements can increase the height of the line box but not the value of line-height</p>
+<Figures figure="7-51">Replaced elements can increase the height of the line box but not the value of line-height</Figures>
 
 The inherited value of `line-height` causes the image to be raised nine pixels instead of some other number. Without a value for `line-height`, it wouldn’t be possible to perform percentage-value vertical alignments. The height of the image itself has no relevance when it comes to vertical alignment; the value of `line-height` is all that matters.
 
@@ -1889,10 +1736,7 @@ Note that the first line box is made tall enough to contain the image, whereas t
 
 注意，第一行框的高度足以包含图像，而第二行框的高度足以包含图像、填充和边框。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-52.png'/>
-</div>
-<p align="center">图 7-52：Adding padding, borders, and margins to an inline replaced element increases its inline box</p>
+<Figures figure="7-52">Adding padding, borders, and margins to an inline replaced element increases its inline box</Figures>
 
 Margins are also contained within the line box, but they have their own wrinkles. Setting a positive margin is no mystery; it will make the inline box of the replaced element taller. Setting negative margins, meanwhile, has a similar effect: it decreases the size of the replaced element’s inline box. This is illustrated in Figure 7-53, where we can see that a negative top margin is pulling down the line above the image:
 
@@ -1908,10 +1752,7 @@ Negative margins operate the same way on block-level elements, of course. In thi
 
 当然，负边距对块级元素的操作方式是相同的。在本例中，负边距使被替换的元素的内联框比普通的小。负边距是导致内联替换元素渗入其他行中的唯一方法，这就是为什么替换内联元素生成的框通常被认为是内联块的原因。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-53.png'/>
-</div>
-<p align="center">图 7-53：The effect of negative margins on inline replaced elements</p>
+<Figures figure="7-53">The effect of negative margins on inline replaced elements</Figures>
 
 ### 7.3.14 Replaced Elements and the Baseline
 
@@ -1919,10 +1760,7 @@ You may have noticed by now that, by default, inline replaced elements sit on th
 
 您可能已经注意到，默认情况下，内联替换的元素位于基线上。如果向替换的元素添加底部填充、空白或边框，则内容区域将向上移动(假设为“box-sizing: content-box”)。被替换的元素没有自己的基线，所以下一个最好的方法是将它们的内联框底部与基线对齐。因此，它实际上是与基线对齐的底部外边缘边缘，如图 7-54 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-54.png'/>
-</div>
-<p align="center">图 7-54：Inline replaced elements sit on the baseline</p>
+<Figures figure="7-54">Inline replaced elements sit on the baseline</Figures>
 
 This baseline alignment leads to an unexpected (and unwelcome) consequence: an image placed in a table cell all by itself should make the table cell tall enough to contain the line box containing the image. The resizing occurs even if there is no actual text, not even whitespace, in the table cell with the image. Therefore, the common sliced-image and spacer-GIF designs of years past can fall apart quite dramatically in modern browsers. (I know that you don’t create such things, but this is still a handy context in which to explain this behavior.) Consider the simplest case:
 
@@ -1981,10 +1819,7 @@ p img {
 }
 ```
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-55.png'/>
-</div>
-<p align="center">图 7-55：Pulling inline replaced elements down with a negative bottom margin</p>
+<Figures figure="7-55">Pulling inline replaced elements down with a negative bottom margin</Figures>
 
 This can easily cause a replaced element to bleed into following lines of text, as Figure 7-55 shows.
 
@@ -2074,10 +1909,7 @@ The result of this stylesheet is depicted in Figure 7-56.
 
 此样式表的结果如图 7-56 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-56.png'/>
-</div>
-<p align="center">图 7-56：The behavior of an inline-block element</p>
+<Figures figure="7-56">The behavior of an inline-block element</Figures>
 
 Notice that in the second `div`, the inline paragraph is formatted as normal inline content, which means `width` and `text-align` get ignored (since they do not apply to inline elements). For the third `div`, however, the inline-block paragraph honors both properties, since it is formatted as a block-level element. That paragraph’s margins also force its line of text to be much taller, since it affects line height as though it were a replaced element.
 
@@ -2098,10 +1930,7 @@ will create a tall box that’s just wide enough to enclose the content, as show
 
 将创建一个高框，其宽度刚好可以容纳内容，如图 7-57 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-57.png'/>
-</div>
-<p align="center">图 7-57：Autosizing of an inline-block element</p>
+<Figures figure="7-57">Autosizing of an inline-block element</Figures>
 
 Inline-block elements can be useful if, for example, we have a set of five hyperlinks that we want to be equal width within a toolbar. To make them all 20% the width of their parent element, but still leave them inline, declare:
 
@@ -2193,10 +2022,7 @@ If we then apply `display: contents` to the `ul` element, the user agent will re
 
 如果我们将“display: contents”应用到“ul”元素，那么用户代理将呈现`<ul>` and `</ul>`行已从文档源中删除。常规结果与“contents”结果的差异如图 7-58 所示。
 
-<div style="margin: 0 auto; width: 70%;">
-  <img src='./figures/ch7/fg7-58.png'/>
-</div>
-<p align="center">图 7-58：A regular unordered list, and one with display: contents</p>
+<Figures figure="7-58">A regular unordered list, and one with display: contents</Figures>
 
 The list items are still list items, and act like them, but visually, the `ul` is gone, as if had never been. The means not only does its border go away, but also the top and bottom margins that usually separate the list from surrounding content. This is why the second list in Figure 7-58 appears higher up than the first.
 
