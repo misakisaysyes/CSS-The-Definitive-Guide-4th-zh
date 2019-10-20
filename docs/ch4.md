@@ -2,33 +2,33 @@
 
 ## 4.1 Keywords, Strings, and Other Text Values
 
-### Keywords
+### 4.1.1 Keywords
 
-### Strings
+### 4.1.2 Strings
 
-### URLs
+### 4.1.3 URLs
 
-### Images
+### 4.1.4 Images
 
-### Identifiers
+### 4.1.5 Identifiers
 
 ## 4.2 Numbers and Percentages
 
-### Integers
+### 4.2.1 Integers
 
-### Numbers
+### 4.2.2 Numbers
 
-### Percentages
+### 4.2.3 Percentages
 
-### Fractions
+### 4.2.4 Fractions
 
 ## 4.3 Distances
 
-### Absolute Length Units
+### 4.3.1 Absolute Length Units
 
-### Resolution Units
+### 4.3.2 Resolution Units
 
-### Relative Length Units
+### 4.3.3 Relative Length Units
 
 ## 4.4 Calculation values
 
@@ -36,13 +36,13 @@
 
 ## 4.6 Color
 
-### Named Colors
+### 4.6.1 Named Colors
 
-### Colors by RGB and RGBa
+### 4.6.2 Colors by RGB and RGBa
 
-### Colors by HSL and HSLa
+### 4.6.3 Colors by HSL and HSLa
 
-### Color Keywords
+### 4.6.4 Color Keywords
 
 ## 4.7 Angles
 
