@@ -181,7 +181,6 @@ This allows the author to have conforming user agents load the defined `.otf` fi
 
 <Tips tips="blue">The examples in this section refer to SwitzeraADF, a font face collection available from the Arkandis Digital Foundry.</Tips>
 
-
 The intent of `@font-face` is to allow `lazy loading` of font faces. This means that only those faces needed to render a document will actually be loaded, with the rest being left alone. In fact, a browser that downloads all declared font faces without considering whether they’re actually needed is considered to be buggy.
 
 ### 5.2.1 Required Descriptors
@@ -197,7 +196,6 @@ There are two required descriptors: `font-family` and `src`.
 The point of `src` is pretty straightforward: it lets you define one or more sources for the font face you’re defining, using a comma-separated list if there are in fact multiple sources. You can point to a font face at any URI, but there is a restriction: font faces can only be loaded from the same origin as the stylesheet. Thus, you can’t point your `src` at someone else’s site and download their font; you’ll need to host a local copy on your own server, or use a font-hosting service that provides both the stylesheet(s) and the font file(s).
 
 <Tips tips="blue">There is an exception to the same-origin restriction, which is that servers can permit cross-site loading using the HTTP header <code>Access-Control-Allow-Origin</code>.</Tips>
-
 
 You may well be wondering how it is that we’re defining `font-family` here when it was already defined in a previous section. The difference is that this `font-family` is the `font-family` descriptor, and the previously-defined `font-family` was the `font-family` `property`. If that seems confusing, stick with me a moment and all should become clear.
 
@@ -930,7 +928,6 @@ As you can see in Figure 5-14, the emphasized text in the `h1` element is slight
 
 <Tips tips="blue">User agents are not required to increase or decrease font size beyond the limits of the absolute-size keywords.</Tips>
 
-
 ### 5.4.3 Percentages and Sizes
 
 In a way, percentage values are very similar to the relative-size keywords. A percentage value is always computed in terms of whatever size is inherited from an element’s parent. Percentages, unlike the size keywords previously discussed, permit much finer control over the computed font size. Consider the following example, illustrated in Figure 5-15:
@@ -1209,7 +1206,6 @@ Declaring `font-size-adjust: none`; will suppress any adjustment of font sizes. 
 
 <Tips tips="orange">As of late 2017, the only user agent line to support <code>font-size-adjust</code> was the Gecko (Firefox) family.</Tips>
 
-
 ## 5.5 Font Style
 
 `font-style` is very simple: it’s used to select between `normal` text, `italic` text, and oblique text. That’s it! The only complication is in recognizing the difference between `italic` and `oblique` text and in understanding why browsers don’t always give you a choice.
@@ -1360,9 +1356,7 @@ footer {
 
 <Figures figure="5-29">Stretching font characters</Figures>
 
-
 <Tips tips="orange">As of late 2017, Safari for both macOS and iOS did not support <code>font-stretch</code>, nor did Opera Mini.</Tips>
-
 
 ### 5.6.1 The font-stretch Descriptor
 
@@ -1418,7 +1412,6 @@ The value `none` is pretty simple: it tells the user agent to ignore any kerning
 
 <Tips tips="blue">Note that if the property <code>letter-spacing</code> is applied to kerned text, the kerning is done and <code>then</code> the letters’ spacing is adjusted according to the value of <code>letter-spacing</code>, not the other way around.</Tips>
 
-
 ## 5.7 Font Variants
 
 Beyond font weights, font styles, and so forth, there are font variants. These are embedded within a font face and can cover things like various styles of historical ligatures, small-caps presentation, ways of presenting fractions, the spacing of numbers, whether zeroes get slashes through them, and much more. CSS lets authors invoke these variants, when they exist, through `font-variant`.
@@ -1468,8 +1461,7 @@ The second is also easy while also being complex: not every font supports every 
 
 The main thing to keep in mind is that even if a variant works in a given browser for one font, it may not for another; and just because a font has a given variant, that doesn’t mean that all browsers will let you invoke it. So it’s complicated, and there aren’t many detailed guides to help out.
 
-<Tips tips="orange">The various <code>font-variant-*</code> properties are not covered in detail here because as of late 2017, they were not well supported in browsers. For more details, see http://w3.org/TR/css3-fonts/.</Tips>
-
+<Tips tips="orange">The various <code>font-variant-\*</code> properties are not covered in detail here because as of late 2017, they were not well supported in browsers. For more details, see http://w3.org/TR/css3-fonts/.</Tips>
 
 #### The font-variant descriptor
 
@@ -1556,7 +1548,6 @@ Additionally, other features may be enabled by default in specific situations, s
 
 <Tips tips="blue">A complete list of standard OpenType feature names can be found at microsoft.com/typography/otspec/featurelist.htm.</Tips>
 
-
 ### 5.8.1 The font-feature-settings Descriptor
 
 The `font-feature-settings` descriptor lets you decide which of an OpenType font face’s settings can or cannot be used, specified as a space-separated list.
@@ -1595,7 +1586,6 @@ Similarly, a font family that lacks an italic face an have one synthesized by si
 In supporting user agents, declaring font-synthesis: none blocks the user agent from doing any such synthesis for the affected elements. You can block it for the whole document with `html (font-synthesis: none;}`, for example. The downside is that any attempts to bold or italicize text using a font that doesn’t offer the appropriate faces will stay unbolded or unitalicized. The upside is that you don’t have to worry about a user agent trying to synthesize those variants and doing a poor job of it.
 
 <Tips tips="orange">As of late 2017, only Firefox supported <code>font-synthesis</code>.</Tips>
-
 
 <Figures figure="5-32">Synthesized versus designed italics</Figures>
 

@@ -13,7 +13,6 @@ affect the position of text in relation to the rest of the line, superscript it,
 and change the capitalization. You can even simulate, to a limited degree, the use of a
 typewriter’s Tab key.
 
-
 ## 6.1 Indentation and Inline Alignment
 
 Let’s start with a discussion of how you can affect the inline positioning of text within
@@ -47,7 +46,6 @@ tal” and “vertical,” is still underway. While the rest of the chapter will
 terms “block direction” and “inline direction,” please forgive any lapses into “vertical”
 and “horizontal.”
 
-
 ### 6.1.1 Indenting Text
 
 Most books we read in Western languages format paragraphs of text with the first line
@@ -61,9 +59,13 @@ indent text: text-indent.
 Using text-indent, the first line of any element can be indented by a given length,
 even if that length is negative. A common use for this property is to indent the first
 line of a paragraph:
+
 ```css
-p {text-indent: 3em;}
+p {
+  text-indent: 3em;
+}
 ```
+
 This rule will cause the first line of any paragraph to be indented three ems, as shown
 in Figure 6-1.
 
@@ -75,16 +77,16 @@ ments or on replaced elements such as images. However, if you have an image with
 the first line of a block-level element, it will be shifted over with the rest of the text in
 the line.
 
-
 <Tips tips="blue">If you want to “indent” the first line of an inline element, you can create the effect with left padding or margin.</Tips>
-
 
 You can also set negative values for text-indent, a technique that leads to a number
 of interesting effects. The most common use is a hanging indent, where the first line
 hangs out to one side of the rest of the element:
 
 ```css
-p {text-indent: −4em;}
+p {
+  text-indent: −4em;
+}
 ```
 
 Be careful when setting a negative value for text-indent; the first few words may be
@@ -93,30 +95,39 @@ problems, I recommend you use a margin or some padding to accommodate the neg‐
 ative indentation:
 
 ```css
-p {text-indent: −4em; padding-left: 4em;}
+p {
+  text-indent: −4em;
+  padding-left: 4em;
+}
 ```
 
 Negative indents can, however, be used to your advantage. Consider the following
 example, demonstrated in Figure 6-2, which adds a floated image to the mix:
 
 ```css
-p.hang {text-indent: −25px;}
+p.hang {
+  text-indent: −25px;
+}
 ```
+
 ```html
-<img src="star.gif" style="width: 60px; height: 60px;
-float: left;" alt="An image of a five-pointed star."/>
-<p class="hang"> This paragraph has a negatively indented first
-line, which overlaps the floated image that precedes the text. Subsequent
-lines do not overlap the image, since they are not indented in any way.</p>
+<img
+  src="star.gif"
+  style="width: 60px; height: 60px;
+float: left;"
+  alt="An image of a five-pointed star."
+/>
+<p class="hang">
+  This paragraph has a negatively indented first line, which overlaps the floated image that precedes the text.
+  Subsequent lines do not overlap the image, since they are not indented in any way.
+</p>
 ```
 
 <Figures figure="6-2">A floated image and negative text indenting</Figures>
 
-
 A variety of interesting designs can be achieved using this simple technique.
 
 <Tips tips="blue">This specific effect, of trying to make text wrap along the edge of a loated image, is more robustly managed with CSS Float Shapes. See Chapter 10 for details.</Tips>
-
 
 Any unit of length, including percentage values, may be used with text-indent. In
 the following case, the percentage refers to the width of the parent element of the ele‐
@@ -125,14 +136,20 @@ of an affected element will be indented by 10 percent of its parent element’s 
 shown in Figure 6-3:
 
 ```css
-div {width: 400px;}
-p {text-indent: 10%;}
+div {
+  width: 400px;
+}
+p {
+  text-indent: 10%;
+}
 ```
+
 ```html
 <div>
-<p>This paragraph is contained inside a DIV, which is 400px wide, so the
-first line of the paragraph is indented 40px (400 * 10% = 40). This is
-because percentages are computed with respect to the width of the element.</p>
+  <p>
+    This paragraph is contained inside a DIV, which is 400px wide, so the first line of the paragraph is indented 40px
+    (400 * 10% = 40). This is because percentages are computed with respect to the width of the element.
+  </p>
 </div>
 ```
 
@@ -142,26 +159,32 @@ Note that this indentation only applies to the first line of an element, even if
 insert line breaks. The interesting part about text-indent is that because it’s inher‐
 ited, it can have unexpected effects. For example, consider the following markup,
 which is illustrated in Figure 6-4:
+
 ```css
-div#outer {width: 500px;}
-div#inner {text-indent: 10%;}
-p {width: 200px;}
+div#outer {
+  width: 500px;
+}
+div#inner {
+  text-indent: 10%;
+}
+p {
+  width: 200px;
+}
 ```
+
 ```html
 <div id="outer">
-<div id="inner">
-This first line of the DIV is indented by 50 pixels.
-<p>
-This paragraph is 200px wide, and the first line of the paragraph
-is indented 50px. This is because computed values for 'text-indent'
-are inherited, instead of the declared values.
-</p>
-</div>
+  <div id="inner">
+    This first line of the DIV is indented by 50 pixels.
+    <p>
+      This paragraph is 200px wide, and the first line of the paragraph is indented 50px. This is because computed
+      values for 'text-indent' are inherited, instead of the declared values.
+    </p>
+  </div>
 </div>
 ```
 
 <Figures figure="6-4">Inherited text indenting</Figures>
-
 
 ### 6.1.2 Text Alignment
 
@@ -194,7 +217,6 @@ but also centered whole elements, such as tables. text-align does not control th
 alignment of elements, only their inline content. Figures 6-5 and 6-6 illustrate this
 clearly in various writing directions.
 
-
 #### Start and end alignment
 
 CSS3 (which is to say, the CSS Text Module Level 3 specification) added a number of
@@ -211,7 +233,6 @@ the default behavior the same in the vast majority of existing cases.
 In a like manner, end aligns text with the end edge of each line box—the right edge in
 LTR languages, the left edge in RTL languages, and so forth. The effects of these val‐
 ues are shown in Figure 6-7.
-
 
 <Figures figure="6-7">Start and end alignment</Figures>
 
@@ -239,7 +260,6 @@ choices.
 
 <Tips tips="blue">There is a property meant to provide authors more say over how full justification is accomplished: text-justify. As of late 2017, it was barely supported in any browser, with plans to add it to Firefox and some buggy experimental work in Chrome.</Tips>
 
-
 #### Parent matching
 
 There’s one more value to be covered, which is match-parent. This isn’t supported by
@@ -254,8 +274,6 @@ apply start or end to the element with no changes.
 
 <Tips tips="orange">The value start end, while technically part of the text-align syntax in late 2017, is not covered because it remains unimplemented and is at risk of being dropped from the specification.</Tips>
 
-
-
 ### 6.1.3 Aligning the Last Line
 
 There may be times when you want to align the text in the very last line of an element
@@ -267,7 +285,6 @@ center alignment. For those situations, there is text-align-last.
 
 As with text-align, the quickest way to understand how these values work is to
 examine Figure 6-9.
-
 
 <Figures figure="6-9">Differently aligned last lines</Figures>
 
@@ -286,8 +303,12 @@ There’s an interesting wrinkle in text-align-last: if the first line of text i
 ment is also the last line of text in the element, then the value of text-align-last
 takes precedence over the value of text-align. Thus, the following styles will result
 in a centered paragraph, not a start-aligned paragraph:
+
 ```css
-p {text-align: start; text-align-last: center;}
+p {
+  text-align: start;
+  text-align-last: center;
+}
 ```
 
 ```html
@@ -296,8 +317,6 @@ p {text-align: start; text-align-last: center;}
 
 <Tips tips="orange">As of late 2017, support for text-align-last was missing in Safari and Opera Mini, and Internet Explorer and Edge only supported left, right, and center.</Tips>
 
-
-
 ## 6.2 Inline Alignment
 
 Now that we’ve covered alignment along the inline direction, let’s move on to the ver‐
@@ -305,8 +324,6 @@ tical alignment of inline elements along the block direction—things like super
 ing and “vertical alignment,” as it’s called. (Vertical with respect to the line of text, if
 the text is laid out horizontally.) Since the construction of lines is a very complex
 topic that merits its own small book, I’ll just stick to a quick overview here.
-
-
 
 ### 6.2.1 The Height of Lines
 
@@ -358,7 +375,6 @@ then considered in the construction of the line box. A line box is exactly as ta
 needed to enclose the top of the tallest inline box and the bottom of the lowest inline
 box. Figure 6-10 shows a diagram of this process.
 
-
 <Figures figure="6-10">Line box diagram</Figures>
 
 #### Assigning values to line-height
@@ -378,20 +394,31 @@ em, ex, and percentage values are calculated with respect to the font-size of th
 ment. The results of the following CSS and HTML are shown in Figure 6-11:
 
 ```css
-body {line-height: 18px; font-size: 16px;}
-p.cl1 {line-height: 1.5em;}
-p.cl2 {font-size: 10px; line-height: 150%;}
-p.cl3 {line-height: 0.33in;}
+body {
+  line-height: 18px;
+  font-size: 16px;
+}
+p.cl1 {
+  line-height: 1.5em;
+}
+p.cl2 {
+  font-size: 10px;
+  line-height: 150%;
+}
+p.cl3 {
+  line-height: 0.33in;
+}
 ```
+
 ```html
-<p>This paragraph inherits a 'line-height' of 14px from the body, as well as
-a 'font-size' of 13px.</p>
-<p class="cl1">This paragraph has a 'line-height' of 27px(18 * 1.5), so
-it will have slightly more line-height than usual.</p>
-<p class="cl2">This paragraph has a 'line-height' of 15px (10 * 150%), so
-it will have slightly more line-height than usual.</p>
-<p class="cl3">This paragraph has a 'line-height' of 0.33in, so it will have
-slightly more line-height than usual.</p>
+<p>This paragraph inherits a 'line-height' of 14px from the body, as well as a 'font-size' of 13px.</p>
+<p class="cl1">
+  This paragraph has a 'line-height' of 27px(18 * 1.5), so it will have slightly more line-height than usual.
+</p>
+<p class="cl2">
+  This paragraph has a 'line-height' of 15px (10 * 150%), so it will have slightly more line-height than usual.
+</p>
+<p class="cl3">This paragraph has a 'line-height' of 0.33in, so it will have slightly more line-height than usual.</p>
 ```
 
 <Figures figure="6-11">Simple calculations with the line-height property</Figures>
@@ -404,21 +431,27 @@ from the parent, not the child. The results of the following markup are shown in
 Figure 6-12. It probably wasn’t what the author had in mind:
 
 ```css
-body {font-size: 10px;}
-div {line-height: 1em;} /* computes to '10px' */
-p {font-size: 18px;}
+body {
+  font-size: 10px;
+}
+div {
+  line-height: 1em;
+} /* computes to '10px' */
+p {
+  font-size: 18px;
+}
 ```
+
 ```html
 <div>
-<p>This paragraph's 'font-size' is 18px, but the inherited 'line-height'
-value is only 10px. This may cause the lines of text to overlap each
-other by a small amount.</p>
+  <p>
+    This paragraph's 'font-size' is 18px, but the inherited 'line-height' value is only 10px. This may cause the lines
+    of text to overlap each other by a small amount.
+  </p>
 </div>
 ```
 
-
 <Figures figure="6-12">Small line-height, large font-size, slight problem</Figures>
-
 
 Why are the lines so close together? Because the computed line-height value of
 10px was inherited by the paragraph from its parent div. One solution to the small
@@ -427,23 +460,37 @@ every element, but that’s not very practical. A better alternative is to speci
 which actually sets a scaling factor:
 
 ```css
-body {font-size: 10px;}
-div {line-height: 1;}
-p {font-size: 18px;}
+body {
+  font-size: 10px;
+}
+div {
+  line-height: 1;
+}
+p {
+  font-size: 18px;
+}
 ```
+
 When you specify a number, you cause the scaling factor to be an inherited value
 instead of a computed value. The number will be applied to the element and all of its
 child elements so that each element has a line-height calculated with respect to its
 own font-size (see Figure 6-13):
+
 ```css
-div {line-height: 1.5;}
-p {font-size: 18px;}
+div {
+  line-height: 1.5;
+}
+p {
+  font-size: 18px;
+}
 ```
+
 ```html
 <div>
-<p>This paragraph's 'font-size' is 18px, and since the 'line-height'
-set for the parent div is 1.5, the 'line-height' for this paragraph
-is 27px (18 * 1.5).</p>
+  <p>
+    This paragraph's 'font-size' is 18px, and since the 'line-height' set for the parent div is 1.5, the 'line-height'
+    for this paragraph is 27px (18 * 1.5).
+  </p>
 </div>
 ```
 
@@ -455,7 +502,9 @@ of an inline element’s content area to create an inline box. Assume that the d
 font-size of a paragraph is 12pt and consider the following:
 
 ```css
-p {line-height: 16pt;}
+p {
+  line-height: 16pt;
+}
 ```
 
 Since the “inherent” line height of 12-point text is 12 points, the preceding rule will
@@ -482,7 +531,6 @@ inputs. vertical-align is not an inherited property.
 
 <Tips tips="blue">Because of the property name vertical-align, this section will se the terms “vertical” and “horizontal” to refer to the block and inline directions of the text.</Tips>
 
-
 //
 
 vertical-align accepts any one of eight keywords, a percentage value, or a length
@@ -491,7 +539,6 @@ value), sub, super, bottom, text-bottom, middle, top, and text-top. We’ll exam
 how each keyword works in relation to inline elements.
 
 <Tips tips="orange">Remember: vertical-align does not affect the alignment of content within a block-level element. You can, however, use it to affect the vertical alignment of elements within table cells.</Tips>
-
 
 #### Baseline alignment
 
@@ -504,11 +551,16 @@ input, or another replaced element—then the bottom of the element is aligned w
 the baseline of its parent, as Figure 6-14 shows:
 
 ```css
-img {vertical-align: baseline;}
+img {
+  vertical-align: baseline;
+}
 ```
+
 ```html
-<p>The image found in this paragraph <img src="dot.gif" alt="A dot" /> has its
-bottom edge aligned with the baseline of the text in the paragraph.</p>
+<p>
+  The image found in this paragraph <img src="dot.gif" alt="A dot" /> has its bottom edge aligned with the baseline of
+  the text in the paragraph.
+</p>
 ```
 
 <Figures figure="6-14">Baseline alignment of an image</Figures>
@@ -540,32 +592,37 @@ the sub- or superscripted element should be, by default, the same size as text i
 parent element, as illustrated by Figure 6-15:
 
 ```css
-span.raise {vertical-align: super;}
-span.lower {vertical-align: sub;}
-```
-```html
-<p>This paragraph contains <span class="raise">superscripted</span>
-and <span class="lower">subscripted</span> text.</P>
+span.raise {
+  vertical-align: super;
+}
+span.lower {
+  vertical-align: sub;
+}
 ```
 
+```html
+<p>This paragraph contains <span class="raise">superscripted</span> and <span class="lower">subscripted</span> text.</p>
+```
 
 <Figures figure="6-15">Superscript and subscript alignment</Figures>
 
 <Tips tips="blue">If you wish to make super- or subscripted text smaller than the text of its parent element, you can do so using the property font-size.</Tips>
-
 
 #### Bottom feeding
 
 ```css
 vertical-align: bottom aligns the bottom of the element’s inline box with the bot‐
 tom of the line box. For example, the following markup results in Figure 6-16:
-.feeder {vertical-align: bottom;}
+.feeder {
+  vertical-align: bottom;
+}
 ```
+
 ```html
-<p>This paragraph, as you can see quite clearly, contains
-a <img src="tall.gif" alt="tall" class="feeder" /> image and
-a <img src="short.gif" alt="short" class="feeder" /> image,
-and then some text that is not tall.</p>
+<p>
+  This paragraph, as you can see quite clearly, contains a <img src="tall.gif" alt="tall" class="feeder" /> image and a
+  <img src="short.gif" alt="short" class="feeder" /> image, and then some text that is not tall.
+</p>
 ```
 
 <Figures figure="6-16">Bottom alignment</Figures>
@@ -580,11 +637,16 @@ box is then aligned with the bottom of the default text box. Thus, given the fol
 markup, you get a result like the one shown in Figure 6-17:
 
 ```css
-img.tbot {vertical-align: text-bottom;}
+img.tbot {
+  vertical-align: text-bottom;
+}
 ```
+
 ```html
-<p>Here: a <img src="tall.gif" style="vertical-align: middle;" alt="tall" />
-image, and then a <img src="short.gif" class="tbot" alt="short" /> image.</p>
+<p>
+  Here: a <img src="tall.gif" style="vertical-align: middle;" alt="tall" /> image, and then a
+  <img src="short.gif" class="tbot" alt="short" /> image.
+</p>
 ```
 
 <Figures figure="6-17">Text-bottom alignment</Figures>
@@ -596,20 +658,26 @@ vertical-align: text-top is the reverse of text-bottom. Figure 6-18 shows how
 the following markup would be rendered:
 
 ```css
-.up {vertical-align: top;}
-.textup {vertical-align: text-top;}
-```
-```html
-<p>Here: a <img src="tall.gif" alt="tall image"> tall image, and then
-<span class="up">some text</span> that's been vertically aligned.</p>
-<p>Here: a <img src="tall.gif" class="textup" alt="tall"> image that's been
-vertically aligned, and then a <img src="short.gif" class="textup" alt="short" />
-image that's similarly aligned.</p>
+.up {
+  vertical-align: top;
+}
+.textup {
+  vertical-align: text-top;
+}
 ```
 
+```html
+<p>
+  Here: a <img src="tall.gif" alt="tall image" /> tall image, and then <span class="up">some text</span> that's been
+  vertically aligned.
+</p>
+<p>
+  Here: a <img src="tall.gif" class="textup" alt="tall" /> image that's been vertically aligned, and then a
+  <img src="short.gif" class="textup" alt="short" /> image that's similarly aligned.
+</p>
+```
 
 <Figures figure="6-18">Aligning with the top and text-top of a line</Figures>
-
 
 The exact position of this alignment will depend on which elements are in the line,
 how tall they are, and the size of the parent element’s font.
@@ -621,7 +689,6 @@ not have the exact effect you might assume given its name. middle aligns the mid
 of an inline element’s box with a point that is 0.5ex above the baseline of the parent
 element, where 1ex is defined relative to the font-size for the parent element.
 Figure 6-19 shows this in more detail.
-
 
 <Figures figure="6-19">Precise detail of middle alignment</Figures>
 
@@ -640,25 +707,29 @@ appear to be placed in adjacent lines, as shown in Figure 6-20, so take care whe
 using percentage values:
 
 ```css
-sub {vertical-align: −100%;}
-sup {vertical-align: 100%;}
+sub {
+  vertical-align: −100%;
+}
+sup {
+  vertical-align: 100%;
+}
 ```
+
 ```html
-<p>We can either <sup>soar to new heights</sup> or, instead,
-<sub>sink into despair...</sub></p>
+<p>We can either <sup>soar to new heights</sup> or, instead, <sub>sink into despair...</sub></p>
 ```
 
 <Figures figure="6-20">Percentages and fun effects</Figures>
-
 
 Let’s consider percentage values in more detail. Assume the following:
 
 ```html
 <div style="font-size: 14px; line-height: 18px;">
-I felt that, if nothing else, I deserved a
-<span style="vertical-align: 50%;">raise</span> for my efforts.
+  I felt that, if nothing else, I deserved a
+  <span style="vertical-align: 50%;">raise</span> for my efforts.
 </div>
 ```
+
 The 50%-aligned span element has its baseline raised nine pixels, which is half of the
 element’s inherited line-height value of 18px, not the seven pixels that would be half
 the font-size.
@@ -674,7 +745,6 @@ It’s important to realize that vertically aligned text does not become part of
 line, nor does it overlap text in other lines. Consider Figure 6-21, in which some ver‐
 tically aligned text appears in the middle of a paragraph.
 
-
 <Figures figure="6-21">Vertical alignments can cause lines to get taller</Figures>
 
 As you can see, any vertically aligned element can affect the height of the line. Recall
@@ -688,9 +758,6 @@ Now that we’ve dealt with vertical alignment of inline elements, let’s retur
 inline direction for a look at manipulating word and letter spacing. As usual, these
 properties have some nonintuitive issues.
 
-
-
-
 ### 6.3.1 Word Spacing
 
 The word-spacing property accepts a positive or negative length. This length is added
@@ -701,26 +768,32 @@ zero (0).
 
 If you supply a positive length value, then the space between words will increase. Set‐
 ting a negative value for word-spacing brings words closer together:
+
 ```css
-p.spread {word-spacing: 0.5em;}
-p.tight {word-spacing: −0.5em;}
-p.base {word-spacing: normal;}
-p.norm {word-spacing: 0;}
+p.spread {
+  word-spacing: 0.5em;
+}
+p.tight {
+  word-spacing: −0.5em;
+}
+p.base {
+  word-spacing: normal;
+}
+p.norm {
+  word-spacing: 0;
+}
 ```
+
 ```html
-<p class="spread">The spaces between words in this paragraph will be increased
- by 0.5em.</p>
-<p class="tight">The spaces between words in this paragraph will be decreased
- by 0.5em.</p>
+<p class="spread">The spaces between words in this paragraph will be increased by 0.5em.</p>
+<p class="tight">The spaces between words in this paragraph will be decreased by 0.5em.</p>
 <p class="base">The spaces between words in this paragraph will be normal.</p>
 <p class="norm">The spaces between words in this paragraph will be normal.</p>
 ```
 
-
 Manipulating these settings has the effect shown in Figure 6-22.
 
 <Figures figure="6-22">Changing the space between words</Figures>
-
 
 So far, I haven’t actually given you a precise definition of “word.” In the simplest CSS
 terms, a “word” is any string of non-whitespace characters that is surrounded by
@@ -731,7 +804,6 @@ what is a valid word in a given language and what isn’t. This definition, such
 means word-spacing is unlikely to work in any languages that employ pictographs,
 or non-Roman writing styles. The property allows you to create very unreadable
 documents, as Figure 6-23 makes clear. Use word-spacing with care.
-
 
 <Figures figure="6-23">Really wide word spacing</Figures>
 
@@ -748,10 +820,17 @@ any length. The default keyword is normal (making it the same as letter-spacing:
 that amount. Figure 6-24 shows the results of the following markup:
 
 ```css
-p {letter-spacing: 0;} /* identical to 'normal' */
-p.spacious {letter-spacing: 0.25em;}
-p.tight {letter-spacing: −0.25em;}
+p {
+  letter-spacing: 0;
+} /* identical to 'normal' */
+p.spacious {
+  letter-spacing: 0.25em;
+}
+p.tight {
+  letter-spacing: −0.25em;
+}
 ```
+
 ```html
 <p>The letters in this paragraph are spaced as normal.</p>
 <p class="spacious">The letters in this paragraph are spread out a bit.</p>
@@ -764,19 +843,18 @@ Using letter-spacing to increase emphasis is a time-honored technique. You might
 write the following declaration and get an effect like the one shown in Figure 6-25:
 
 ```css
-strong {letter-spacing: 0.2em;}
+strong {
+  letter-spacing: 0.2em;
+}
 ```
+
 ```html
-<p>This paragraph contains <strong>strongly emphasized text</strong>
-which is spread out for extra emphasis.</p>
+<p>This paragraph contains <strong>strongly emphasized text</strong> which is spread out for extra emphasis.</p>
 ```
 
 <Figures figure="6-25">Using letter-spacing to increase emphasis</Figures>
 
-
 <Tips tips="orange">If a page uses fonts with features like ligatures, and those features are enabled, then altering letter or word spacing can effectively disable them. Browsers will not recalculate ligatures or other joins when letter spacing is altered, for example.</Tips>
-
-
 
 ### 6.3.3 Spacing and Alignment
 
@@ -794,14 +872,20 @@ computed value (as is the case with line-height). As a result, you may run into
 problems such as those shown in Figure 6-26:
 
 ```css
-p {letter-spacing: 0.25em; font-size: 20px;}
-small {font-size: 50%;}
+p {
+  letter-spacing: 0.25em;
+  font-size: 20px;
+}
+small {
+  font-size: 50%;
+}
 ```
 
 ```html
-<p>This spacious paragraph features <small>tiny text that is just
-as spacious</small>, even though the author probably wanted the
-spacing to be in proportion to the size of the text.</p>
+<p>
+  This spacious paragraph features <small>tiny text that is just as spacious</small>, even though the author probably
+  wanted the spacing to be in proportion to the size of the text.
+</p>
 ```
 
 <Figures figure="6-1"></Figures>
@@ -809,10 +893,17 @@ Figure 6-26. Inherited letter spacing
 
 The only way to achieve letter spacing that’s in proportion to the size of the text is to
 set it explicitly, as follows:
+
 ```css
-p {letter-spacing: 0.25em;}
-small {font-size: 50%; letter-spacing: 0.25em;}
+p {
+  letter-spacing: 0.25em;
+}
+small {
+  font-size: 50%;
+  letter-spacing: 0.25em;
+}
 ```
+
 ## 6.4 Text Transformation
 
 With the alignment properties covered, let’s look at ways to manipulate the capitaliza‐
@@ -826,25 +917,31 @@ into all upper- or lowercase characters. Finally, capitalize capitalizes only th
 letter of each word. Figure 6-27 illustrates each of these settings in a variety of ways:
 
 ```css
-h1 {text-transform: capitalize;}
-strong {text-transform: uppercase;}
-p.cummings {text-transform: lowercase;}
-p.raw {text-transform: none;}
+h1 {
+  text-transform: capitalize;
+}
+strong {
+  text-transform: uppercase;
+}
+p.cummings {
+  text-transform: lowercase;
+}
+p.raw {
+  text-transform: none;
+}
 ```
 
 ```html
 <h1>The heading-one at the beginninG</h1>
-<p> By default, text is displayed in the capitalization it has in the source
-document, but <strong>it is possible to change this</strong> using
-the property 'text-transform'.
+<p>
+  By default, text is displayed in the capitalization it has in the source document, but
+  <strong>it is possible to change this</strong> using the property 'text-transform'.
 </p>
 <p class="cummings">
-For example, one could Create TEXT such as might have been Written by
-the late Poet e.e.cummings.
+  For example, one could Create TEXT such as might have been Written by the late Poet e.e.cummings.
 </p>
 <p class="raw">
-If you feel the need to Explicitly Declare the transformation of text
-to be 'none', that can be done as well.
+  If you feel the need to Explicitly Declare the transformation of text to be 'none', that can be done as well.
 </p>
 ```
 
@@ -865,15 +962,16 @@ decide to capitalize all your h1 elements. Instead of individually changing the 
 of all your h1 elements, you can just use text-transform to make the change for you:
 
 ```css
-h1 {text-transform: uppercase;}
+h1 {
+  text-transform: uppercase;
+}
 ```
+
 ```html
 <h1>This is an H1 element</h1>
-The advantages of using text-transform are twofold. First, you only need to write a
-single rule to make this change, rather than changing the h1 itself. Second, if you
-decide later to switch from all capitals back to initial capitals, the change is even eas‐
-ier, as Figure 6-28 shows:
-h1 {text-transform: capitalize;}
+The advantages of using text-transform are twofold. First, you only need to write a single rule to make this change,
+rather than changing the h1 itself. Second, if you decide later to switch from all capitals back to initial capitals,
+the change is even eas‐ ier, as Figure 6-28 shows: h1 {text-transform: capitalize;}
 <h1>This is an H1 element</h1>
 ```
 
@@ -882,7 +980,6 @@ h1 {text-transform: capitalize;}
 Remember that capitalize is a simple letter substitution at the beginning of each
 “word.” It does not mean that common headline-capitalization conventions, such as
 leaving articles (“a,” “an,” “the”) all lowercase, will be enforced.
-
 
 ## 6.5 Text Decoration
 
@@ -900,49 +997,69 @@ much-maligned blink tag supported by Netscape. Figure 6-29 shows examples of
 each of these values:
 
 ```css
-p.emph {text-decoration: underline;}
-p.topper {text-decoration: overline;}
-p.old {text-decoration: line-through;}
-p.annoy {text-decoration: blink;}
-p.plain {text-decoration: none;}
+p.emph {
+  text-decoration: underline;
+}
+p.topper {
+  text-decoration: overline;
+}
+p.old {
+  text-decoration: line-through;
+}
+p.annoy {
+  text-decoration: blink;
+}
+p.plain {
+  text-decoration: none;
+}
 ```
 
 <Figures figure="6-29">Various kinds of text decoration</Figures>
 
-
 <Tips tips="blue">It’s impossible to show the effect of blink in print, but it’s easy enough to imagine (perhaps all too easy). Incidentally, user agents are not required to actually blink blink text; and as of this writing, all known user agents were dropping or had dropped support for the blinking effect. (Internet Explorer never had it.)</Tips>
-
 
 The value none turns off any decoration that might otherwise have been applied to an
 element. Usually, undecorated text is the default appearance, but not always. For
 example, links are usually underlined by default. If you want to suppress the under‐
 lining of hyperlinks, you can use the following CSS rule to do so:
+
 ```css
-a {text-decoration: none;}
+a {
+  text-decoration: none;
+}
 ```
+
 If you explicitly turn off link underlining with this sort of rule, the only visual differ‐
 ence between the anchors and normal text will be their color (at least by default,
 though there’s no ironclad guarantee that there will be a difference in their colors).
 
-
 <Tips tips="blue">Bear in mind that many users are annoyed when they realize you’ve turned off link underlining. It’s a matter of opinion, so let your own tastes be your guide, but remember: if your link colors aren’t sufficiently different from normal text, users may have a hard time find‐ing hyperlinks in your documents, particularly users with one form or another of color blindness.</Tips>
-
 
 You can also combine decorations in a single rule. If you want all hyperlinks to be
 both underlined and overlined, the rule is:
+
 ```css
-a:link, a:visited {text-decoration: underline overline;}
+a:link,
+a:visited {
+  text-decoration: underline overline;
+}
 ```
+
 Be careful, though: if you have two different decorations matched to the same ele‐
 ment, the value of the rule that wins out will completely replace the value of the loser.
 Consider:
+
 ```css
-h2.stricken {text-decoration: line-through;}
-h2 {text-decoration: underline overline;}
+h2.stricken {
+  text-decoration: line-through;
+}
+h2 {
+  text-decoration: underline overline;
+}
 ```
+
 Given these rules, any h2 element with a class of stricken will have only a linethrough decoration. The underline and overline decorations are lost, since shorthand
 values replace one another instead of accumulating.
-
 
 ### 6.5.1 Weird Decorations
 
@@ -951,16 +1068,23 @@ text-decoration is not inherited. No inheritance implies that any decoration lin
 drawn with the text—under, over, or through it—will be the same color as the parent
 element. This is true even if the descendant elements are a different color, as depicted
 in Figure 6-30:
+
 ```css
-p {text-decoration: underline; color: black;}
-strong {color: gray;}
+p {
+  text-decoration: underline;
+  color: black;
+}
+strong {
+  color: gray;
+}
 ```
+
 ```html
-<p>This paragraph, which is black and has a black underline, also contains
-<strong>strongly emphasized text</strong> which has the black underline
-beneath
- it as well.</p>
- ```
+<p>
+  This paragraph, which is black and has a black underline, also contains
+  <strong>strongly emphasized text</strong> which has the black underline beneath it as well.
+</p>
+```
 
 <Figures figure="6-30">Color consistency in underlines</Figures>
 
@@ -972,15 +1096,22 @@ the paragraph’s underline, which is effectively “spanning” the strong elem
 can see it more clearly if you alter the styles for the boldface element, like this:
 
 ```css
-p {text-decoration: underline; color: black;}
-strong {color: gray; text-decoration: none;}
+p {
+  text-decoration: underline;
+  color: black;
+}
+strong {
+  color: gray;
+  text-decoration: none;
+}
 ```
-```html
-<p>This paragraph, which is black and has a black underline, also contains
-<strong>strongly emphasized text</strong> which has the black underline beneath
- it as well.</p>
- ```
 
+```html
+<p>
+  This paragraph, which is black and has a black underline, also contains
+  <strong>strongly emphasized text</strong> which has the black underline beneath it as well.
+</p>
+```
 
 The result is identical to the one shown in Figure 6-30, since all you’ve done is to
 explicitly declare what was already the case. In other words, there is no way to turn
@@ -990,14 +1121,19 @@ When text-decoration is combined with vertical-align, even stranger things can
 happen. Figure 6-31 shows one of these oddities. Since the sup element has no deco‐
 ration of its own, but it is elevated within an overlined element, the overline cuts
 through the middle of the sup element:
+
 ```css
-p {text-decoration: overline; font-size: 12pt;}
-sup {vertical-align: 50%; font-size: 12pt;}
+p {
+  text-decoration: overline;
+  font-size: 12pt;
+}
+sup {
+  vertical-align: 50%;
+  font-size: 12pt;
+}
 ```
 
-
 <Figures figure="6-31">Correct, although strange, decorative behavior</Figures>
-
 
 By now you may be vowing never to use text decorations because of all the problems
 they could create. In fact, I’ve given you the simplest possible outcomes since we’ve
@@ -1005,19 +1141,27 @@ explored only the way things should work according to the specification. In real
 some web browsers do turn off underlining in child elements, even though they aren’t
 supposed to. The reason browsers violate the specification is author expectations.
 Consider this markup:
+
 ```css
-p {text-decoration: underline; color: black;}
-strong {color: silver; text-decoration: none;}
+p {
+  text-decoration: underline;
+  color: black;
+}
+strong {
+  color: silver;
+  text-decoration: none;
+}
 ```
+
 ```html
-<p>This paragraph, which is black and has a black underline, also contains
-<strong>boldfaced text</strong> which does not have black underline
-beneath it.</p>
+<p>
+  This paragraph, which is black and has a black underline, also contains <strong>boldfaced text</strong> which does not
+  have black underline beneath it.
+</p>
 ```
+
 Figure 6-32 shows the display in a web browser that has switched off the underlining
 for the strong element.
-
-
 
 <Figures figure="6-32">How some browsers really behave</Figures>
 
@@ -1035,15 +1179,24 @@ match the decoration color with an element, you must explicitly declare its deco
 tion, as follows:
 
 ```css
-p {text-decoration: underline; color: black;}
-strong {color: silver; text-decoration: underline;}
+p {
+  text-decoration: underline;
+  color: black;
+}
+strong {
+  color: silver;
+  text-decoration: underline;
+}
 ```
+
 ```html
-<p>This paragraph, which is black and has a black underline, also contains
-<strong>strongly emphasized text</strong> which has the black underline
-beneath it as well, but whose gray underline overlays the black underline
-of its parent.</p>
+<p>
+  This paragraph, which is black and has a black underline, also contains
+  <strong>strongly emphasized text</strong> which has the black underline beneath it as well, but whose gray underline
+  overlays the black underline of its parent.
+</p>
 ```
+
 In Figure 6-33, the strong element is set to be gray and to have an underline. The
 gray underline visually “overwrites” the parent’s black underline, so the decoration’s
 color matches the color of the strong element.
@@ -1067,14 +1220,12 @@ itly defined, and the text rendering often depends on the operating system on wh
 the user agent is running, so the exact results may vary. Figure 6-34 shows text opti‐
 mized for speed, and then optimized for legibility.
 
-
 <Figures figure="6-34">Different optimizations</Figures>
 
 As you can see in Figure 6-34, the differences between the two optimizations are
 objectively rather small, but they can have a noticeable impact on readability.
 
 <Tips tips="blue">Some user agents will always optimize for legibility, even when optimizing for speed. This is likely an effect of rendering speeds having gotten so fast in the past few years.</Tips>
-
 
 The value geometricPrecision, on the other hand, directs the user agent to draw the
 text as precisely as possible, such that it could be scaled up or down with no loss of
@@ -1096,7 +1247,6 @@ cision.
 That’s it: user agents get to do what they think is appropriate, leaning towards legibil‐
 ity.
 
-
 ## 6.7 Text Shadows
 
 Sometimes, you just really need your text to cast a shadow. That’s where text-shadow
@@ -1115,16 +1265,18 @@ The first two length values determine the offset distance of the shadow from the
 the first is the horizontal offset and the second is the vertical offset. To define a solid,
 un-blurred green shadow offset five pixels to the right and half an em down from the
 text, as shown in Figure 6-35, you would write:
+
 ```css
 text-shadow: green 5px 0.5em;
 ```
+
 Negative lengths cause the shadow to be offset to the left and upward from the origi‐
 nal text. The following, also shown in Figure 6-35, places a light blue shadow five pix‐
 els to the left and half an em above the text:
-```css
-text-shadow: rgb(128,128,255) −5px −0.5em;
-```
 
+```css
+text-shadow: rgb(128, 128, 255) −5px −0.5em;
+```
 
 <Figures figure="6-35">Simple shadows</Figures>
 
@@ -1135,19 +1287,24 @@ ow’s outline and the edge of the blurring. The exact blurring method is not de
 so different user agents might employ different effects. As an example, the following
 styles are rendered as shown in Figure 6-36:
 
-
 ```css
-p.cl1 {color: black; text-shadow: gray 2px 2px 4px;}
-p.cl2 {color: white; text-shadow: 0 0 4px black;}
-p.cl3 {color: black; text-shadow: 1em 0.5em 5px red, −0.5em −1em hsla(100,75%,
- 25%,0.33);}
- ```
-
+p.cl1 {
+  color: black;
+  text-shadow: gray 2px 2px 4px;
+}
+p.cl2 {
+  color: white;
+  text-shadow: 0 0 4px black;
+}
+p.cl3 {
+  color: black;
+  text-shadow: 1em 0.5em 5px red, −0.5em −1em hsla(100, 75%, 25%, 0.33);
+}
+```
 
 <Figures figure="6-36">Dropping shadows all over</Figures>
 
 <Tips tips="blue">Note that large numbers of text shadows, or text shadows with very large blur values, can create performance slowdowns, particularly in low-power and CPU-constrained situations such as mobile devices. Authors are advised to test thoroughly before deploying public designs that use text shadows.</Tips>
-
 
 ## 6.8 Handling Whitespace
 
@@ -1162,13 +1319,19 @@ words and lines of text. To a certain extent, default XHTML handling already doe
 this: it collapses any whitespace down to a single space. So given the following
 markup, the rendering in a web browser would show only one space between each
 word and ignore the line-feed in the elements:
+
 ```html
 <p>This paragraph has many spaces in it.</p>
 ```
+
 You can explicitly set this default behavior with the following declaration:
+
 ```css
-p {white-space: normal;}
+p {
+  white-space: normal;
+}
 ```
+
 This rule tells the browser to do as browsers have always done: discard extra white‐
 space. Given this value, line-feed characters (carriage returns) are converted into
 spaces, and any sequence of more than one space in a row is converted to a single
@@ -1177,13 +1340,16 @@ space.
 Should you set white-space to pre, however, the whitespace in an affected element is
 treated as though the elements were XHTML pre elements; whitespace is not ignored,
 as shown in Figure 6-37:
+
 ```css
-p {white-space: pre;}
+p {
+  white-space: pre;
+}
 ```
+
 ```html
 <p>This paragraph has many spaces in it.</p>
 ```
-
 
 <Figures figure="6-37">Honoring the spaces in markup</Figures>
 
@@ -1196,31 +1362,36 @@ except wherever you use a br element. Using nowrap in CSS is much like setting a
 table cell not to wrap in HTML 4 with `<td nowrap>`, except the white-space value
 can be applied to any element. The effects of the following markup are shown in
 Figure 6-38:
+
 ```html
-<p style="white-space: nowrap;">This paragraph is not allowed to wrap,
-which means that the only way to end a line is to insert a line-break
-element. If no such element is inserted, then the line will go forever,
-forcing the user to scroll horizontally to read whatever can't be
-initially displayed <br/>in the browser window.</p>
+<p style="white-space: nowrap;">
+  This paragraph is not allowed to wrap, which means that the only way to end a line is to insert a line-break element.
+  If no such element is inserted, then the line will go forever, forcing the user to scroll horizontally to read
+  whatever can't be initially displayed <br />in the browser window.
+</p>
 ```
-
-
 
 <Figures figure="6-38">Suppressing line wrapping with the white-space property</Figures>
 
-
 You can actually use white-space to replace the nowrap attribute on table cells:
+
 ```css
-td {white-space: nowrap;}
+td {
+  white-space: nowrap;
+}
 ```
+
 ```html
-<table><tr>
-<td>The contents of this cell are not wrapped.</td>
-<td>Neither are the contents of this cell.</td>
-<td>Nor this one, or any after it, or any other cell in this table.</td>
-<td>CSS prevents any wrapping from happening.</td>
-</tr></table>
+<table>
+  <tr>
+    <td>The contents of this cell are not wrapped.</td>
+    <td>Neither are the contents of this cell.</td>
+    <td>Nor this one, or any after it, or any other cell in this table.</td>
+    <td>CSS prevents any wrapping from happening.</td>
+  </tr>
+</table>
 ```
+
 CSS 2.1 introduced the values pre-wrap and pre-line, which were absent in earlier
 versions of CSS. The effect of these values is to allow authors to better control white‐
 space handling.
@@ -1231,16 +1402,15 @@ source and those that are generated are also honored. pre-line is the opposite o
 pre-wrap and causes whitespace sequences to collapse as in normal text but honors
 new lines. For example, consider the following markup, which is illustrated in
 Figure 6-39:
+
 ```html
 <p style="white-space: pre-wrap;">
-This paragraph has a great many s p a c e s within its textual
- content, but their preservation will not prevent line
- wrapping or line breaking.
+  This paragraph has a great many s p a c e s within its textual content, but their preservation will not prevent line
+  wrapping or line breaking.
 </p>
 <p style="white-space: pre-line;">
-This paragraph has a great many s p a c e s within its textual
-content, but their collapse will not prevent line
-wrapping or line breaking.
+  This paragraph has a great many s p a c e s within its textual content, but their collapse will not prevent line
+  wrapping or line breaking.
 </p>
 ```
 
@@ -1275,8 +1445,6 @@ source.
 
 <Tips tips="blue">Currently, tab-size is supported in WebKit and Gecko (as –moztab-size). In both cases, only integer values are supported, not length values.</Tips>
 
-
-
 ## 6.9 Wrapping and Hyphenation
 
 Hyphens can be very useful in situations where there are long words and short line
@@ -1301,21 +1469,30 @@ ate to hyphenate a word, both of which are highly language-dependent. User agent
 are supposed to prefer manually inserted hyphen breaks to automatically determined
 breaks, but there are no guarantees. An illustration of hyphenation, or the suppres‐
 sion thereof, in the following example is shown in Figure 6-41:
+
 ```css
-.cl01 {hyphens: auto;}
-.cl02 {hyphens: manual;}
-.cl03 {hyphens: none;}
+.cl01 {
+  hyphens: auto;
+}
+.cl02 {
+  hyphens: manual;
+}
+.cl03 {
+  hyphens: none;
+}
 ```
 
 ```html
-<p class="cl01">Supercalifragilisticexpialidocious antidisestablishmentarian
- ism.</p>
-<p class="cl02">Supercalifragilisticexpialidocious antidisestablishmentarian
- ism.</p>
-<p class="cl02">Super&#xad;cali&#xad;fragi&#xad;listic&#xad;expi&#xad;ali&#xad;
-docious anti&#xad;dis&#xad;establish&#xad;ment&#xad;arian&#xad;ism.</p>
-<p class="cl03">Super&#xad;cali&#xad;fragi&#xad;listic&#xad;expi&#xad;ali&#xad;
-docious anti&#xad;dis&#xad;establish&#xad;ment&#xad;arian&#xad;ism.</p>
+<p class="cl01">Supercalifragilisticexpialidocious antidisestablishmentarian ism.</p>
+<p class="cl02">Supercalifragilisticexpialidocious antidisestablishmentarian ism.</p>
+<p class="cl02">
+  Super&#xad;cali&#xad;fragi&#xad;listic&#xad;expi&#xad;ali&#xad; docious
+  anti&#xad;dis&#xad;establish&#xad;ment&#xad;arian&#xad;ism.
+</p>
+<p class="cl03">
+  Super&#xad;cali&#xad;fragi&#xad;listic&#xad;expi&#xad;ali&#xad; docious
+  anti&#xad;dis&#xad;establish&#xad;ment&#xad;arian&#xad;ism.
+</p>
 ```
 
 <Figures figure="6-41">Hyphenation results</Figures>
@@ -1325,18 +1502,36 @@ does not define precise (or even vague) rules regarding how user agents should c
 out hyphenation, there is every chance that hyphenation will be different from one
 browser to the next.
 
-
 Furthermore, if you do choose to hyphenate, be careful about the elements to which
 you apply the hyphenation. hyphens is an inherited property, so declaring body
 {hyphens: auto;} will apply hyphenation to everything in your document—includ‐
 ing textareas, code samples, block quotes, and so on. Blocking automatic hyphenation
 at the level of those elements is probably a good idea, using rules something like this:
-```css
-body {hyphens: auto;}
-code, var, kbd, samp, tt, dir, listing, plaintext, xmp, abbr, acronym,
-blockquote, q, textarea, input, option {hyphens: manual;}
 
+```css
+body {
+  hyphens: auto;
+}
+code,
+var,
+kbd,
+samp,
+tt,
+dir,
+listing,
+plaintext,
+xmp,
+abbr,
+acronym,
+blockquote,
+q,
+textarea,
+input,
+option {
+  hyphens: manual;
+}
 ```
+
 It’s probably obvious why suppressing hyphenation in code samples and code blocks
 is desirable, especially in languages that use hyphens in things like property and value
 names. (Ahem.) Similar logic holds for keyboard input text—you definitely don’t
@@ -1347,8 +1542,6 @@ into a textarea get auto-hyphenated as you type it.)
 
 <Tips tips="orange">As of late 2017, hyphens was supported by all major desktop browsers except Chrome/Blink, and required vendor prefixes in Safari and Edge. As noted, such support is always languagedependent.</Tips>
 
-
-
 Hyphens can be suppressed by the effects of other properties, such as word-break,
 which affects how soft wrapping of text is calculated in various languages.
 
@@ -1358,7 +1551,6 @@ When a run of text is too long to fit into a single line, it is soft wrapped. Th
 contrast to hard wraps, which are things like line-feed characters and `<br>` elements.
 Where the text is soft wrapped is determined by the user agent (or the OS it uses), but
 word-break lets authors influence its decision-making.
-
 
 The default value of normal means that text should be wrapped like it always has
 been. In practical terms, this means that text is broken between words, though the
@@ -1381,8 +1573,6 @@ bols with no whitespace will not be soft wrapped, even if this means the text li
 exceed the length of its element. (This behavior is similar to white-space: pre.)
 Figure 6-42 shows a few examples of word-break values, and Table 6-2 summarizes
 the effects of each value.
-
-
 
 <Figures figure="6-42">Altering word-breaking behavior</Figures>
 
@@ -1428,7 +1618,6 @@ strict
 This value imposes the “most stringent” rules for wrapping text. Again, this is not
 precisely defined.
 
-
 ### 6.9.1 Wrapping Text
 
 After all that information about hyphenation and soft wrapping, what happens when
@@ -1441,11 +1630,9 @@ effect, then wrapping happens as normal; which is to say, between words or as di
 ted by the language. If break-word is in effect, then wrapping can happen in the mid‐
 dle of words. Figure 6-43 illustrates the difference.
 
-
 <Figures figure="6-43">Overflow wrapping</Figures>
 
 <Tips tips="blue">Note that overflow-wrap can only operate if the value of whitespace allows line wrapping. If it does not (e.g., with the value pre), then overflow-wrap has no effect.</Tips>
-
 
 Where overflow-wrap gets complicated is in its history and implementation. Once
 upon a time there was a property called word-wrap that did exactly what overflowwrap does. The two are so identical that the specification specifically states that user
@@ -1454,9 +1641,14 @@ as if it were a shorthand of overflow-wrap.”
 
 Sadly, browsers didn’t always do this, and word-wrap was better supported. For this
 reason, it’s common to use both for backward compatibility:
+
 ```css
-pre {word-wrap: break-word; overflow-wrap: break-word;}
+pre {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
 ```
+
 As of late 2017, overflow-wrap enjoys very widespread supports, so it’s pretty safe to
 use.
 
@@ -1466,7 +1658,6 @@ content actually overflows; thus, when there is an opportunity to use whitespace
 the source to wrap lines, overflow-wrap will take it. By contrast, word-break:
 break-all will cause wrapping when content reaches the wrapping edge, regardless
 of any whitespace that comes earlier in the line.
-
 
 ## 6.10 Writing Modes
 
@@ -1479,7 +1670,6 @@ right, such as Chinese and Japanese, whereas others are right to left, like Mong
 
 ### 6.10.1 Setting Writing Modes
 
-
 The property used for specifying one of the three available writing mode is, of all
 things, writing-mode.
 
@@ -1489,8 +1679,6 @@ The default value, horizontal-tb, means “a horizontal inline direction, and a 
 which may differ in the direction of their horizontal writing. The other two values
 offer a vertical inline direction, and either a right-to-left or left-to-right block direc‐
 tion. All three are illustrated in Figure 6-44.
-
-
 
 <Figures figure="6-44">Writing modes</Figures>
 
@@ -1507,11 +1695,16 @@ flow. Using vertical-lr and rotating it creates a bottom-to-top, right-to-left f
 Both are illustrated in Figure 6-45:
 
 ```css
-.flip {transform: rotate(180deg);}
-#one {writing-mode: vertical-rl;}
-#two {writing-mode: vertical-lr;}
+.flip {
+  transform: rotate(180deg);
+}
+#one {
+  writing-mode: vertical-rl;
+}
+#two {
+  writing-mode: vertical-lr;
+}
 ```
-
 
 <Figures figure="6-45">Flipping vertical writing modes</Figures>
 
@@ -1523,7 +1716,6 @@ vertical-align. In vertical writing modes, the block direction is horizontal, wh
 means vertical alignment of inline elements actually causes them to move horizon‐
 tally. This is illustrated in Figure 6-46.
 
-
 <Figures figure="6-46">Writing modes and “vertical” alignment</Figures>
 
 All the super- and subscript elements cause horizontal shifts, both of themselves and
@@ -1532,13 +1724,11 @@ is vertical-align. As described earlier, the vertical displacement is with respe
 the line box, where the box’s baseline is defined as horizontal—even when it’s being
 drawn vertically.
 
-
 Confused? It’s OK. Writing modes are likely to confuse you, because it’s such a differ‐
 ent way of thinking and because old assumptions in the CSS specification clash with
 the new capabilities. If there had been vertical writing modes from the outset,
 vertical-align would likely have a different name—inline-align or something
 like that. (Maybe one day that will happen.)
-
 
 One last note: if you’re already used to CSS Transforms, you might be tempted to
 think of these vertical writing modes as equivalent to rotating the text 90 degrees.
@@ -1549,14 +1739,19 @@ other words. This is illustrated by the following styles, whose results are depi
 Figure 6-47:
 
 ```css
-.boxed {border-top: 3px solid red;
- border-left: 3px dashed tan;}
-#one {writing-mode: vertical-rl;}
-#two {writing-mode: vertical-lr;}
+.boxed {
+  border-top: 3px solid red;
+  border-left: 3px dashed tan;
+}
+#one {
+  writing-mode: vertical-rl;
+}
+#two {
+  writing-mode: vertical-lr;
+}
 ```
 
 <Figures figure="6-47">Writing modes and the “cardinal” directions of CSS</Figures>
-
 
 In both cases, the top border is solid red, and the left border is dashed tan. The cardi‐
 nal points don’t rotate with the text—because the text isn’t rotated. It’s being flowed in
@@ -1573,10 +1768,17 @@ Thus, you can set up a bunch of paragraphs to flow vertically, and if you leave 
 margins alone, what would normally be top and bottom margins will become left and
 right margins. You can see this effect in Figure 6-48, which illustrated the result of the
 following styles:
+
 ```css
-p { margin-top: 1em;}
-#one {writing-mode: vertical-rl;}
-#two {writing-mode: vertical-lr;}
+p {
+  margin-top: 1em;
+}
+#one {
+  writing-mode: vertical-rl;
+}
+#two {
+  writing-mode: vertical-lr;
+}
 ```
 
 <Figures figure="6-48">The placement of UA default margins</Figures>
@@ -1591,8 +1793,6 @@ erty in CSS, at least not yet). If you explicitly set top, bottom, or side margi
 properties like margin-top, then they will be applied to the element box just as bor‐
 ders were: top margin on top, right margin to the right, and so on.
 
-
-
 ### 6.10.2 Changing Text Orientation
 
 Once you’ve settled on a writing mode, you may decide you want to change the orien‐
@@ -1605,15 +1805,23 @@ cases, text-orientation is the answer.
 
 The effect of text-orientation is to affect how characters are oriented. What that
 means is best illustrated by the following styles, rendered in Figure 6-49:
+
 ```css
-.verts {writing-mode: vertical-lr;}
-#one {text-orientation: mixed;}
-#two {text-orientation: upright;}
-#thr {text-orientation: sideways;}
+.verts {
+  writing-mode: vertical-lr;
+}
+#one {
+  text-orientation: mixed;
+}
+#two {
+  text-orientation: upright;
+}
+#thr {
+  text-orientation: sideways;
+}
 ```
 
 <Figures figure="6-49">Text orientation</Figures>
-
 
 Across the top of Figure 6-49 is a basically unstyled paragraph of mixed Japanese and
 English text. Below that, three copies of that paragraph, using the writing mode
@@ -1623,7 +1831,6 @@ horizontal-script characters (the English) sideways, and the vertical-script cha
 English characters. In the third, all characters are sideways, including the Japanese
 characters.
 
-
 ### 6.10.3 Declaring Direction
 
 Harking back to the days of CSS2, there are a pair of properties that can be used to
@@ -1631,7 +1838,6 @@ affect the direction of text by changing the inline baseline direction: directio
 unicode-bidi.
 
 <Tips tips="orange">The CSS specification explicitly warns against using direction and unicode-bidi in CSS when applied to HTML documents. To quote: “Because HTML <code>[user agents]</code> can turn off CSS styling, we recommend…the HTML dir attribute and <code>< bdo></code> element to ensure correct bidirectional layout in the absence of a style sheet.” The properties are covered here because they may appear in legacy stylesheets.</Tips>
-
 
 //
 
@@ -1646,8 +1852,12 @@ text, the value will be changed to rtl. Thus, a browser might carry an internal 
 stating something like the following:
 
 ```css
-*:lang(ar), *:lang(he) {direction: rtl;}
+*:lang(ar),
+*:lang(he) {
+  direction: rtl;
+}
 ```
+
 The real rule would be longer and encompass all right-to-left languages, not just Ara‐
 bic and Hebrew, but it illustrates the point.
 
@@ -1684,7 +1894,6 @@ direction property; the implicit part of the bidirectional algorithm is ignored.
 This corresponds to adding an LRO (U+202D; for direction: ltr) or RLO (U
 +202E; for direction: rtl) at the start of the element and a PDF (U+202C) at
 the end of the element.
-
 
 ## 6.11 Summary
 

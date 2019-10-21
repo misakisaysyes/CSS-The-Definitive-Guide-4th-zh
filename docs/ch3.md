@@ -47,9 +47,7 @@ The answer is found in the `specificity` of each selector. For every rule, the u
 
 > 答案就在每个选择器的“特异性”中。对于每个规则，用户代理评估选择器的特异性，并将其附加到规则中的每个声明。当一个元素有两个或多个相互冲突的属性声明时，具有最高特异性的属性声明将胜出。
 
-
 <Tips tips="blue">This isn’t the whole story in terms of conflict resolution. All style conflict resolution (including specificity) is handled by the cascade, which has its own section later in this chapter (“The Cascade” on page 106).</Tips>
-
 
 > 这并不是解决冲突的全部。所有风格冲突的解决(包括特性)都由 cascade 来处理，它在本章后面有自己的一节(“cascade”在 106 页)。
 
@@ -64,9 +62,9 @@ A selector’s specificity is determined by the components of the selector itsel
 
 ---
 
-- 对于选择器中给定的每个 ID 属性值，添加' 0,1,0,0 '。 
+- 对于选择器中给定的每个 ID 属性值，添加' 0,1,0,0 '。
 - 对于选择器中给出的每个类属性值、属性选择或伪类，添加' 0,0,1,0 '。
-- 对于选择器中给出的每个元素和伪元素，添加' 0,0,0,1 '。关于伪元素是否具有特异性，CSS2 自相矛盾，但 CSS2.1 明确表示它们具有特异性，这就是伪元素的归属。 
+- 对于选择器中给出的每个元素和伪元素，添加' 0,0,0,1 '。关于伪元素是否具有特异性，CSS2 自相矛盾，但 CSS2.1 明确表示它们具有特异性，这就是伪元素的归属。
 - 组合子和通用选择器对特异性没有任何贡献。
 
 For example, the following rules’ selectors result in the indicated specificities:
@@ -374,7 +372,6 @@ If `!important` were placed anywhere else in the `font` declaration, the entire 
 
 <Tips tips="blue">I realize that to those of you who come from a programming background, the syntax of this token instinctively translates to “not important.” For whatever reason, the bang (<code>!</code>) was chosen as the delimiter for important tokens, and it does <code>not</code> mean “not” in CSS, no matter how many other languages give it that very meaning. This association is unfortunate, but we’re stuck with it.</Tips>
 
-
 > 我意识到，对于那些有编程背景的人来说，这个标记的语法本能地解释为“不重要”。不管出于什么原因，bang(' ! ')被选为重要标记的分隔符，而它在 CSS 中并不是' not '的意思，不管有多少其他语言赋予它这种含义。这种联系是不幸的，但我们却深陷其中。
 
 Declarations that are marked `!important` do not have a special specificity value, but are instead considered separately from non-important declarations. In effect, all `!important` declarations are grouped together, and specificity conflicts are resolved relatively within that group. Similarly, all non-important declarations are considered together, with any conflicts within the non-important group are resolved using specificity. Thus, in any case where an important and a non-important declaration conflict, the important declaration `always` wins.
@@ -406,7 +403,6 @@ h1 {
 <Figures figure="3-2">Important rules always win</Figures>
 
 <Tips tips="blue">Important declarations and their handling are discussed in more detail in “The Cascade” on page 106.</Tips>
-
 
 > 重要的声明及其处理将在 106 页的“级联”中详细讨论。
 
@@ -457,7 +453,6 @@ When the declaration `color: gray;` is applied to the `ul` element, that element
 > 当将声明“color: gray;”应用于“ul”元素时，该元素接受该声明。然后，该值向下传播到树的后代元素，并继续下去，直到没有更多的后代继承该值。值“从不”向上传播;也就是说，元素从不将值传递给它的祖先。
 
 <Tips tips="blue">There is an exception to the upward propagation rule in HTML: background styles applied to the <code>body</code> element can be passed to the <code>html</code> element, which is the document’s root element and therefore defines its canvas. This only happens if the <code>body</code> element has a defined background and the html element does not.</Tips>
-
 
 > HTML 中的向上传播规则有一个例外:应用于“body”元素的背景样式可以传递给“HTML”元素，后者是文档的根元素，因此定义了它的画布。只有当“body”元素有一个定义好的背景，而 html 元素没有时，才会发生这种情况。
 
@@ -606,7 +601,6 @@ To be perfectly clear about how this all works, let’s consider some examples t
 > 为了更清楚地了解这一切是如何工作的，让我们考虑一些示例，这些示例演示了 5 个级联规则中的最后 4 个。
 
 <Tips tips="blue">Some later CSS modules add more origins to the basic list of three; for example, the animation and transition origins. These are not covered here, but are addressed in the chapters on those topics.</Tips>
-
 
 > 一些后来的 CSS 模块添加了更多的起源到基本列表三个;例如，动画和过渡的起源。这里不涉及这些内容，但是在关于这些主题的章节中会提到。
 
