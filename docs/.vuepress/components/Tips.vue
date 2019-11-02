@@ -26,7 +26,7 @@ export default {
         this.imgSrc = "./note.png";
       } else if (this.tips === "green") {
         this.imgSrc = "./tip.png";
-      } else {
+      } else if (this.tips === "orange") {
         this.imgSrc = "./warn.png";
       }
     }
