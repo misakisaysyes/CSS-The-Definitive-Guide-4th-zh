@@ -711,7 +711,9 @@ Interestingly, if either `margin-top` or `margin-bottom` is set to `auto` for a 
 
 有趣的是，如果“页边距顶部”或“页边距底部”被设置为“自动”，它们都会自动计算为“0”。不幸的是，“0”的值会妨碍正常流盒在其包含块中的垂直居中。这也意味着如果你将一个元素的顶部和底部的边距设置为“auto”，它们将被有效地重置为“0”并从元素框中移除。
 
-The handling of `auto` top and bottom margins is different for positioned elements, as well as flexible-box elements.
+
+<Tips tips="blue">The handling of <code>auto</code> top and bottom margins is different for positioned elements, as well as flexible-box elements.</Tips>
+
 
 对“自动”顶部和底部边缘的处理不同于定位元素，以及灵活的盒子元素。
 
@@ -1250,7 +1252,8 @@ As we can see in Figure 7-39, the middle line is taller than the other two, but 
 
 正如我们在图 7-39 中看到的，中间的一行比其他两行要高，但是仍然不够大，不能容纳其中的所有文本。匿名文本的内联框确定行框的底部，而强元素的内联框的顶部设置行框的顶部。由于行内框的顶部位于元素的内容区域内，因此元素的内容溢出到行框之外，并与其他行框重叠。结果是文本的线条看起来不规则。
 
-In just a bit, we’ll explore ways to cope with this behavior and methods for achieving consistent baseline spacing.
+<Tips tips="blue">In just a bit, we’ll explore ways to cope with this behavior and methods for achieving consistent baseline spacing.</Tips>
+
 
 稍后，我们将探讨处理这种行为的方法，以及实现一致基线间距的方法。
 
@@ -1805,7 +1808,8 @@ Another possible fix would be to make the `font-size` and `line-height` of the e
 
 另一种可能的解决方案是将包围的表格单元格的“font-size”和“line-height”设置为“1px”，这将使行框仅与其中的一个像素图像一样高。
 
-As of this writing, many browsers can ignore this CSS inline formatting model in this context. See the article `“Images, Tables, and Mysterious Gaps”` for more information.
+<Tips tips="blue">As of this writing, many browsers can ignore this CSS inline formatting model in this context. See the article <code>“Images, Tables, and Mysterious Gaps”</code> for more information.</Tips>
+
 
 在撰写本文时，许多浏览器可以在这个上下文中忽略这个 CSS 内联格式模型。有关更多信息，请参见文章“图像、表格和神秘的空白”。
 
@@ -1943,7 +1947,8 @@ nav a {
 }
 ```
 
-Flexible-box layout is another way to achieve this effect, and is probably better suited to it in most if not all cases.
+<Tips tips="blue">Flexible-box layout is another way to achieve this effect, and is probably better suited to it in most if not all cases.</Tips>
+
 
 灵活的盒子布局是实现这种效果的另一种方式，并且在大多数情况下(如果不是所有情况的话)可能更适合它。
 
@@ -1987,7 +1992,8 @@ The old `display` values you may be familiar with are still available. Table 7-1
 
 //
 
-As of late 2017, `flow` and `flow-root` were supported by Firefox and Chrome, but no other browsers.
+<Tips tips="orange">As of late 2017, <code>flow</code> and <code>flow-root</code> were supported by Firefox and Chrome, but no other browsers.</Tips>
+
 
 截至 2017 年底，Firefox 和 Chrome 支持“flow”和“flow-root”，但其他浏览器不支持。
 
@@ -2028,7 +2034,8 @@ The list items are still list items, and act like them, but visually, the `ul` i
 
 列表项仍然是列表项，它们的行为与列表项类似，但是在视觉上，“ul”已经消失，就好像从来没有消失过一样。这不仅意味着它的边框消失了，而且通常将列表与周围内容分隔开的顶部和底部空白也消失了。这就是为什么图 7-58 中的第二个列表比第一个列表高。
 
-As of late 2017, only Firefox browsers supported `display: contents`. At the time, implementation work was being done for the Chrome/Blink line of browsers.
+<Tips tips="orange">As of late 2017, only Firefox browsers supported <code>display: contents</code>. At the time, implementation work was being done for the Chrome/Blink line of browsers.</Tips>
+
 
 截至 2017 年底，只有火狐浏览器支持“显示:内容”。当时，Chrome/Blink 系列浏览器的实现工作正在进行。
 

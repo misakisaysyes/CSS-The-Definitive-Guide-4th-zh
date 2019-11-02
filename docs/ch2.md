@@ -624,7 +624,7 @@ Now let’s say you want all elements with a class of warning to be boldfaced, t
 
 By chaining two class selectors together, you can select only those elements that have both class names, in any order. As you can see, the HTML source contains class="urgent warning" but the CSS selector is written .warning.urgent. Regardless, the rule will still cause the “When handling plutonium . . . ” paragraph to have a silver background, as illustrated in Figure 2-8. This happens because the order the words are written in doesn’t matter. (This is not to say the order of classes is always irrelevant, but we’ll get to that later in the book.)
 
-连接两个类选择器，可以选择那些只有同时具有两个类名的元素，无论类名的顺序如何。正如示例，HTML 代码中含有`class="urgent warning"`,但 CSS 选择器却写作`.warning.urgent`。这条规则依然可以把“When handling plutonium . . .”这段设置为银色背景，如图 1-8 所示，这是因为单词书写的顺序并不重要。（但这并不表示类名的顺序总是无关紧要的，我们将会在本书稍后涉及。）
+连接两个类选择器，可以仅选择那些同时具有两个类名的元素，无论类名的顺序如何。正如示例，HTML 代码中含有`class="urgent warning"`,但 CSS 选择器却写作`.warning.urgent`。这条规则依然可以把“When handling plutonium . . .”这段设置为银色背景，如图 2-8 所示，这是因为单词书写的顺序并不重要。（但这并不表示类名的顺序总是无关紧要的，我们将会在本书稍后涉及。）
 
 <div style="margin: 0 auto; width: 50%;">
     <img src='./figures/ch2/fg2-8.png' style=""/>
@@ -633,7 +633,7 @@ By chaining two class selectors together, you can select only those elements tha
 
 If a multiple class selector contains a name that is not in the space-separated list, then the match will fail. Consider the following rule:
 
-如果多类选择器里面包含一个不存在于空格分隔列表的类名，匹配将会失败。例如这个规则：
+如果多类选择器里面包含一个无空格分隔的类名，匹配将会失效。例如这个规则：
 
 ```css
 p.warning.help {
@@ -643,7 +643,7 @@ p.warning.help {
 
 As you would expect, the selector will match only those `p` elements with a `class` containing the words `warning` and `help`. Therefore, it will not match a `p` element with just the words `warning` and `urgent` in its `class` attribute. It would, however, match the following:
 
-你可能期望这个选择器会匹配所有`class`中含有单词`warning`或`help`的`p`元素，然而实际上它不会匹配`class`属性中只有`warning`和`urgent`的`p`元素。它会匹配这样的元素：
+你可能期望这个选择器会匹配所有`class`中仅含有单词`warning`或`help`的`p`元素，然而实际上它不会匹配`class`属性中只有`warning`和`urgent`的`p`元素。它还会匹配这样的元素：
 
 ```html
 <p class="urgent warning help">Help me!</p>
@@ -653,7 +653,7 @@ As you would expect, the selector will match only those `p` elements with a `cla
 
 In some ways, ID selectors are similar to class selectors, but there are a few crucial differences. First, ID selectors are preceded by an octothorpe (#)—also known as a pound sign (in the US), hash sign, hash mark, or tic-tac-toe board—instead of a period. Thus, you might see a rule like this one:
 
-从某些方面说，ID 选择器和类选择器类似，但它们有一些重要区别。首先，ID 选择器使用井号（`#`）开头，一条规则可能是这样的：
+从某些方面说，ID 选择器和类选择器类似，但它们有一些重要区别。首先，ID 选择器使用井号（`#`）开头，因此，一条规则可能是这样的：
 
 ```css
 *#first-para {
@@ -667,7 +667,7 @@ This rule produces boldfaced text in any element whose `id` attribute has a valu
 
 The second difference is that instead of referencing values of the class attribute, ID selectors refer, unsurprisingly, to values found in id attributes. Here’s an example of an ID selector in action:
 
-第二个区别是 ID 选择器（理所当然地）查找`id`属性而不是`class`属性的值。这是一个 ID 选择器生效的例子：
+第二个区别是 ID 选择器（理所当然地）匹配`id`属性而不是`class`属性的值。这是一个 ID 选择器生效的例子：
 
 ```css
 *#lead-para {
@@ -682,7 +682,7 @@ The second difference is that instead of referencing values of the class attribu
 
 Note that the value lead-para could have been assigned to any element within the document. In this particular case, it is applied to the first paragraph, but we could have applied it just as easily to the second or third paragraph. Or an unordered list. Or anything.
 
-注意值`lead-para`可以关联给文档中的任意元素。在这个例子中，它只赋给了第一个段落，但是你可以同样赋给第二个、第三个段落。
+注意值`lead-para`可以关联给文档中的任意元素。在这个例子中，它只赋给了第一个段落，但是你可以同样赋给第二个、第三个段落。或者赋给一个无须列表，甚至是任何元素。
 
 As with class selectors, it is possible to omit the universal selector from an ID selector. In the previous example, we could also have written:
 
@@ -711,7 +711,7 @@ Another similarity between classes and IDs is that IDs can be selected independe
 
 This rule would match any of the following elements (which, as noted before, should not appear together in the same document because they all have the same ID value):
 
-这条规则会匹配下面的每一个元素（正如上面强调的，因为它们有相同的 ID 值，所以任意两个*不应该*同时出现在一个文档中）：
+这条规则会匹配下面的每一个元素（正如上面强调的，因为它们有相同的 ID 值，所以它们不应该同时出现在一个文档中）：
 
 ```html
 <h1 id="mostImportant">This is important!</h1>
@@ -721,11 +721,11 @@ This rule would match any of the following elements (which, as noted before, sho
 </ul>
 ```
 
-### 2.3.4 决定使用 Class 还是 ID Deciding Between Class and ID
+### 2.3.4 使用 Class 还是 ID Deciding Between Class and ID
 
 You may assign classes to any number of elements, as demonstrated earlier; the class name warning was applied to both a p and a span element, and it could have been applied to many more elements. IDs, on the other hand, should be used once, and only once, within an HTML document. Therefore, if you have an element with an id value of lead-para, no other element in that document should have an id value of lead-para.
 
-类可以分配给任意多的元素，类名`warning`可以分配给一个`p`元素或者一个`span`元素，或者更多其他元素。另一方面，ID 在一个 HTML 文档中使用且仅使用一次。因此如果有了一个`id`值为`lead-para`的元素，该文档中的其他元素都不能有`lead-para`的`id`值。
+类可以分配给任意多的元素，类名`warning`可以分配给一个`p`元素或者一个`span`元素，或者更多其他元素。然而，ID 在一个 HTML 文档中使用且仅使用一次。因此如果有了一个`id`值为`lead-para`的元素，该文档中的其他元素都不能有`lead-para`的`id`值。
 
 In the real world, browsers don’t always check for the uniqueness of IDs in HTML. That means that if you sprinkle an HTML document with several elements, all of which have the same value for their ID attributes, you’ll probably get the same styles applied to each. This is incorrect behavior, but it happens anyway. Having more than one of the same ID value in a document also makes
 DOM scripting more difficult, since functions like `getElementById()` depend on there being one, and only one, element with a given ID value.
@@ -760,13 +760,13 @@ Because of the change in case for the letter i, the selector will not match the 
 
 On a purely syntactical level, the dot-class notation (e.g., `.warning`) is not guaranteed to work for XML documents. As of this writing, the dot-class notation works in HTML, SVG, and MathML, and it may well be permitted in future languages, but it’s up to each language’s specification to decide that. The hash-ID notation (e.g., `#lead`) will work in any document language that has an attribute that enforces uniqueness within a document. Uniqueness can be enforced with an attribute called id, or indeed anything else, as long as the attribute’s contents are defined to be unique within the document.
 
-从纯语法层次来说，点-类标记（例如：`.warning`）不能保证在 XML 文档中生效。在撰写本文时，点-类标记在 HTML、SVG 和 MathML 中有效，它可能在未来被更多语言支持，但这要取决于语言本身的规范。哈希-ID 标记（例如：#lead）在所有强制属性唯一性的语言中都有效。唯一性可以强制使用名为`id`的属性，或者任何其他属性，只要在文档中属性内容被定义为唯一的即可。
+从纯语法层次来说，点-类标记（例如：`.warning`）不能保证在 XML 文档中生效。在撰写本文时，点-类标记在 HTML、SVG 和 MathML 中有效，它可能在未来被更多语言支持，但这要取决于语言本身的规范。井号-ID 标记（例如：#lead）在所有强制属性唯一性的语言中都有效。唯一性可以强制使用名为`id`的属性，或者任何其他属性，只要在文档中属性内容被定义为唯一的即可。
 
 ## 2.4 属性选择器 Attribute Selectors
 
 When it comes to both class and ID selectors, what you’re really doing is selecting values of attributes. The syntax used in the previous two sections is particular to HTML, XHTML, SVG, and MathML documents (as of this writing). In other markup languages, these class and ID selectors may not be available (as, indeed, those attributes may not be present). To address this situation, CSS2 introduced `attribute selectors`, which can be used to select elements based on their attributes and the values of those attributes. There are four general types of attribute selectors: simple attribute selectors, exact attribute value selectors, partial-match attribute value selectors, and leading-value attribute selectors.
 
-当你使用类和 ID 选择器时，实际上是在选择属性的值。类选择器和 ID 选择器专用于 HTML、XHTML、SVG 和 MathML 文档（到撰写本文时），但在其它的标记语言中，这两个选择器可能是不可用的（属性可能不存在）。因此，CSS2 引入了**属性选择器**，使用元素的任意属性和值来选择元素。属性选择器有四种基本类型：简单属性选择器、准确属性值选择器、部分匹配属性选择器和头值属性选择器。
+当你使用类和 ID 选择器时，实际上是在选中属性的值。类选择器和 ID 选择器专用于 HTML、XHTML、SVG 和 MathML 文档（到撰写本文时），但在其它的标记语言中，这两个选择器可能是不可用的（属性可能不存在）。因此，CSS2 引入了**属性选择器**，使用元素的任意属性和值来选中元素。属性选择器有四种基本类型：简单属性选择器、准确属性值选择器、部分匹配属性选择器和头值属性选择器。
 
 ### 2.4.1 简单属性选择器 Simple Attribute Selectors
 
@@ -821,7 +821,7 @@ This would cause the text of the second and third elements in the following mark
 
 In HTML documents, you can use this feature in a number of creative ways. For example, you could style all images that have an alt attribute, thus highlighting those images that are correctly formed:
 
-在 HTML 中可以用一些创新的方式使用这个特性。例如可以为所有包含`alt`属性的图片设置样式，因此突出形式规范的图片：
+在 HTML 中可以用一些创新的方式使用这个特性。例如可以为所有包含`alt`属性的图片设置样式，因此突出格式规范的图片：
 
 ```css
 img[alt] {
@@ -885,7 +885,7 @@ This will boldface the text of any a element that has an href attribute with exa
 
 Any attribute and value combination can be specified for any element. However, if that exact combination does not appear in the document, then the selector won’t match anything. Again, XML languages can benefit from this approach to styling. Let’s return to our PlanetML example. Suppose you want to select only those planet elements that have a value of `1` for the attribute `moons`:
 
-任何属性和值的联合都可以定义在任何元素上，然而，如果这个联合没有（准确地）出现在文档中，选择器不会匹配任何东西。XML 语言再次得益于这种方式来设置属性。回到 PlantML 的例子，如果想选择那些`moons`属性值为`1`的`planet`元素：
+任何属性和值的组合都可以定义在任何元素上，然而，如果这个组合没有（准确地）出现在文档中，选择器不会匹配任何东西。XML 语言再次得益于这种方式来设置属性。回到 PlantML 的例子，如果想选择那些`moons`属性值为`1`的`planet`元素：
 
 ```css
 planet[moons='1'] {
@@ -905,7 +905,7 @@ This would boldface the text of the second element in the following markup fragm
 
 As with attribute selection, you can chain together multiple attribute-value selectors to select a single document. For example, to double the size of the text of any HTML hyperlink that has both an href with a value of http://www.w3.org/ and a title attribute with a value of W3C Home, you would write:
 
-与属性选择一样，使用多个元素-值选择器也可以选择单个文档。例如，将`href`属性值为`http://www.w3.org/`且`title`属性值为`W3C Home`的 HTML 超链接文本设置为两倍尺寸：
+与属性选择一样，使用多个元素-值选择器也可以选中单个元素。例如，将`href`属性值为`http://www.w3.org/`且`title`属性值为`W3C Home`的 HTML 超链接文本设置为两倍尺寸：
 
 ```css
 a[href="http://www.w3.org/"][title="W3C Home"] {
@@ -932,7 +932,7 @@ This would double the text size of the first link in the following markup, but n
 
 Again, this format requires an exact match for the attribute’s value. Matching becomes an issue when the selector form encounters values that can in turn contain a space-separated list of values (e.g., the HTML attribute class). For example, consider the following markup fragment:
 
-这种方式需要属性值的**精确**匹配。属性值为多个空白分隔的值列表时，匹配可能会因多个值的顺序不同而产生问题（如 HTML 的属性 `class`）。例如下面的代码片段：
+再次提醒，这种方式需要属性值的**精准**匹配。属性值为多个空白分隔的值列表时，匹配可能会因多个值的顺序不同而产生问题（如 HTML 的属性 `class`）。例如下面的代码片段：
 
 ```html
 <planet type="barren rocky">Mercury</planet>
@@ -1016,7 +1016,7 @@ This rule will select any element whose lang attribute is equal to en or begins 
 
 In general, the form [att|="val"] can be used for any attribute and its values. Let’s say you have a series of figures in an HTML document, each of which has a filename like figure-1.gif and figure-3.jpg. You can match all of these images using the following selector:
 
-一般来说，`[att|="val"]`的格式可以用于任何属性和属性值。如果 HTML 文档中有一系列图片，文件名都像**“figure-1.gif”**和**“figure-3.jpg”**这样，可以使用这样的选择器匹配所有这样的图片：
+一般来说，`[att|="val"]`的格式可以用于任何属性和属性值。如果 HTML 文档中有一系列图片，文件名都像**figure-1.gif**和**figure-3.jpg**这样，可以使用这样的选择器匹配所有这样的图片：
 
 ```css
 img[src|='figure'] {
@@ -1040,13 +1040,13 @@ Or, if you’re creating a CSS framework or pattern library, instead of creating
 
 The most common use for this type of attribute selector is to match language values, as demonstrated in an upcoming section, “The :lang Pseudo-Class” on page 88.
 
-这个属性选择器最常用的场景是用来匹配语言值，我们将在"`:lang`伪类"章节看到。
+这个属性选择器最常用的场景是用来匹配语言值，我们将在88页"`:lang`伪类"章节看到。
 
 #### 匹配空白分隔的列表中的一个单词
 
 For any attribute that accepts a space-separated list of words, it is possible to select elements based on the presence of any one of those words. The classic example in HTML is the class attribute, which can accept one or more words as its value. Consider our usual example text:
 
-任何使用空白分隔单词列表的属性，都可以基于这些单词中的任意一个选择元素。HTML 中最经典的例子是`class`属性，该属性可以使用一或多个单词作为值。看这个常用例子：
+任何使用空白分隔单词列表的属性，都可以基于这些单词中的任意一个对元素进行选择。HTML 中最经典的例子是`class`属性，该属性可以使用一或多个单词作为值。看这个常用例子：
 
 ```html
 <p class="urgent warning">When handling plutonium, care must be taken to avoid the formation of a critical mass.</p>
@@ -1068,7 +1068,7 @@ Note the presence of the tilde (~) in the selector. It is the key to selection b
 
 This selector construct is equivalent to the dot-class notation discussed in “Deciding Between Class and ID” on page 44. Thus, p.warning and p[class~="warning"] are equivalent when applied to HTML documents. Here’s an example that is an HTML version of the “PlanetML” markup seen earlier:
 
-这个选择器跟“决定使用 Class 还是 ID”中的点-类选择器是等同的。也就是说，用于 HTML 文档时，`p.warning`和`p[class~="warning"]`是相等同的。这是前面提到过的“PlanetML”标记例子的一个 HTML 版本：
+这个选择器跟“使用 Class 还是 ID”中的点-类选择器是等同的。也就是说，用于 HTML 文档时，`p.warning`和`p[class~="warning"]`是相等同的。这是前面提到过的“PlanetML”标记例子的一个 HTML 版本：
 
 ```html
 <span class="barren rocky">Mercury</span>
@@ -1134,7 +1134,7 @@ span[class*='cloud'] {
 
 As you can imagine, there are many useful applications for this particular capability. For example, suppose you wanted to specially style any links to the O’Reilly website. Instead of classing them all and writing styles based on that class, you could instead write the following rule:
 
-这种用法有许多有用的场景，例如为所有到 O'Reilly Media 网页的链接添加特殊样式。避免给它们设置类名并基于类添加样式，可以简单地使用下面的规则：
+可以想象到，这种用法有许多有用的场景，例如为所有到 O'Reilly Media 网页的链接添加特殊样式。避免给它们设置类名并基于类添加样式，可以简单地使用下面的规则：
 
 ```css
 a[href*='oreilly.com'] {
@@ -1154,7 +1154,7 @@ img[src*='space'] {
 
 Similarly, the following rule draws attention to input elements that have a title tells the user what to, and any other input whose title contains the substring “format” in its title:
 
-类似地，下面的规则关注有标题的`input`元素，标题中包含子串`format`：
+类似地，下面的规则选中有标题的`input`元素，其中标题包含子串`format`：
 
 ```css
 input[title*='format'] {
@@ -1182,7 +1182,7 @@ A common use for the general substring attribute selector is to match a section 
 
 The matches are exact: if you include whitespace in your selector, then whitespace must also be present in an attribute’s value. The attribute names and values must be case-sensitive only if the underlying document language requires case sensitivity. Class names, titles, URLs, and ID values are all case-sensitive, but HTML attribute keyterm values, such as input types, are not:
 
-这种匹配方式是精确匹配——如果选择器中包含空白，属性值中必须包含空白才能匹配。只有当依赖的文档语言要求区分大小写时，属性名和值才必须区分大小写。类名、标题和 ID 值都是大小写敏感的，但 HTML 的属性关键字值，比如`input`元素的类型，不区分大小写：
+这种匹配方式是精确匹配的——如果选择器中包含空白，属性值中必须包含空白才能匹配。只有当依赖的文档语言要求区分大小写时，属性名和值才必须区分大小写。类名、标题和 ID 值都是大小写敏感的，但 HTML 的属性关键字值，比如`input`元素的类型，不区分大小写：
 
 ```css
 input[type='CHeckBoX'] {
@@ -1253,7 +1253,7 @@ a[href$='.pdf'] {
 
 Similarly, you could (for whatever reason) select images based on their image format:
 
-类似地，可以（无论因何）基于格式选择图片：
+类似地，可以（无论原因）基于格式选择图片：
 
 ```css
 img[src$='.gif'] {
@@ -1269,7 +1269,7 @@ img[src$='.png'] {
 
 To continue the calendar example from the previous section, it would be possible to select all of the events occurring within a given year using a selector like `[title $="2015"]`.
 
-上一节中日程的例子，可以基于给定的年份选择所有事件，使用一个类似这样的选择器`[title$="2015"]`（`title`属性以年份结尾）。
+上一节中日程的例子，可以基于给定的年份选择所有对象，使用一个类似这样的选择器`[title$="2015"]`。
 
 You may have noticed that I’ve quoted all the attribute values in the attribute selectors. Quoting is required if the value includes any special characters, begins with a dash or digit, or is otherwise invalid as an identifier and needs to be quoted as a string. To be safe, I recommend always quoting attribute values in attribute selectors, even though it is only required to makes strings out of invalid identifiers.
 
@@ -1295,7 +1295,7 @@ Adding that humble little i means the selector will match any a element whose hr
 
 This case-insensitivity option is available for all attribute selectors we’ve covered. Note, however, that this only applies to the values in the attribute selectors. It does not enforce case insensitivity on the attribute names themselves. Thus, in a case-sensitive language, `planet[type*="rock" i]` will match all of the following.
 
-忽略大小写选项适用于前面涉及的所有属性选择器，但要注意它只用于属性选择器的**值**，而不能用于属性名本身。因此，在大小写敏感的语言中，`planet[type*="rock" i]`可以匹配下面所有的元素：
+忽略大小写选项适用于前面涉及的所有属性选择器，但要注意它只用于属性选择器的**值**，而不能用于属性名本身。因此，在大小写敏感的语言中，`planet[type*="rock" i]`还是可以匹配下面所有的元素：
 
 ```html
 <planet type="barren rocky">Mercury</planet>
@@ -1313,7 +1313,7 @@ It will not match the following element, because the attribute TYPE isn’t matc
 
 Again, that’s in langauges that enforce case sensitivity in the element and attribute syntax. XHTML was one such. In languages that are case-insensitive, like HTML5, this isn’t an issue.
 
-再次说明，是否在元素和属性语法中强制区分大小写是由语言决定的，XHTML 是这样的语言。在大小写不敏感的语言中没有这样的问题，例如 HTML5。
+再次说明，是否在元素和属性语法中强制区分大小写是由语言决定的，XHTML 就是大小写敏感的语言。而在大小写不敏感的语言中没有这样的问题，例如 HTML5。
 
 As of late 2017, Opera Mini, the Android browser, and Edge did not support this capability.
 
@@ -1329,7 +1329,7 @@ CSS is powerful because it uses the structure of documents to determine appropri
 
 To understand the relationship between selectors and documents, we need to once again examine how documents are structured. Consider this very simple HTML document:
 
-为了理解选择器和文档之间的关系，我们要再次回顾文档结构是如何组织的，看下面这个非常简单的 HTML 文档：
+为了理解选择器和文档之间的关系，我们要再次回顾文档结构是如何形成的，看下面这个非常简单的 HTML 文档：
 
 ```html
 <html>
@@ -1370,7 +1370,7 @@ To understand the relationship between selectors and documents, we need to once 
 
 Much of the power of CSS is based on the parent-child relationship of elements. HTML documents (actually, most structured documents of any kind) are based on a hierarchy of elements, which is visible in the “tree” view of the document (see Figure 2-15). In this hierarchy, each element fits somewhere into the overall structure of the document. Every element in the document is either the parent or the child of another element, and it’s often both.
 
-CSS 的能力很大程度基于于元素的**父-子关系**。HTML 文档（事实上绝大部分结构化文档）基于元素层级结构，构成文档的“树状”视图（见图 1-15）。在这种层级结构中，每个元素都处在整个文档结构中的某个适当位置上，每个元素都是其他元素的**父**或者**子**，常常既是父又是子。
+CSS 的能力很大程度基于于元素的**父-子关系**。HTML 文档（事实上绝大部分结构化文档）基于元素层级结构，构成文档的“树状”视图（见图 2-15）。在这种层级结构中，每个元素都处在整个文档结构中的某个适当位置上，每个元素都是其他元素的**父**或者**子**，常常既是父又是子。
 
 <div style="margin: 0 auto; width: 50%;">
     <img src='./figures/ch2/fg2-15.png' style=""/>
@@ -1383,11 +1383,11 @@ An element is said to be the parent of another element if it appears directly ab
 
 The terms “parent” and “child” are specific applications of the terms ancestor and descendant. There is a difference between them: in the tree view, if an element is exactly one level above or below another, then they have a parent-child relationship. If the path from one element to another is traced through two or more levels, the elements have an ancestor-descendant relationship, but not a parent-child relationship. (A child is also a descendant, and a parent is also an ancestor.) In Figure 2-15, the first ul element is parent to two li elements, but the first ul is also the ancestor of every element descended from its li element, all the way down to the most deeply nested li elements.
 
-“父”和“子”是**祖先**和**后代**的特例。它们的区别是：在树状视图中，如果一个元素在另一个元素上面一级，那么它们是父-子关系。如果一个元素到另一个元素的路径有两级或者更多，那么它们是祖先-后代关系，但不是父-子关系。（当然，子也是后代，同时父也是祖先。）在图 1-15 中，第一个`ul`元素是两个`li`元素的父元素，同时也是它的`li`元素所有后代元素的祖先元素，直到嵌套路径最深的`li`元素。
+“父”和“子”是**祖先**和**后代**的特例。它们的区别是：在树状视图中，如果一个元素在另一个元素上面一级，那么它们是父-子关系。如果一个元素到另一个元素的路径有两级或者更多，那么它们是祖先-后代关系，但不是父-子关系。（当然，子也是后代，同时父也是祖先。）在图 2-15 中，第一个`ul`元素是两个`li`元素的父元素，同时也是它的`li`元素所有后代元素的祖先元素，直到嵌套路径最深的`li`元素。
 
 Also, in Figure 2-15, there is an anchor that is a child of strong, but also a descendant of p, body, and html elements. The body element is an ancestor of everything that the browser will display by default, and the html element is ancestor to the entire document. For this reason, in an HTML or XHTML document, the html element is also called the root element.
 
-同时，在图 2-15 中，存在一个锚点元素既是`strong`元素的子元素，又是`p`、`body`和`html`元素的后代元素。`body`元素是浏览器默认显示的所有元素的祖先元素，`html`是整个文档中所有其他元素的祖先元素。因此在 HTML 或 XHTML 文档中，`html`元素也被叫做**根元素**。
+同时，在图 2-15 中，存在着一个锚点元素既是`strong`元素的子元素，又是`p`、`body`和`html`元素的后代元素。`body`元素是浏览器默认显示的所有元素的祖先元素，`html`是整个文档中所有其他元素的祖先元素。因此在 HTML 或 XHTML 文档中，`html`元素也被叫做**根元素**。
 
 ### 2.5.2 后代选择器 Descendant Selectors
 
@@ -1407,7 +1407,7 @@ h1 em {
 
 This rule will make gray any text in an em element that is the descendant of an h1 element. Other em text, such as that found in a paragraph or a block quote, will not be selected by this rule. Figure 2-16 makes this clear.
 
-这条规则会把所有是`h1`元素后代的`em`元素中的文本设置为灰色。其他的`em`文本，例如在段落（`p`）或引用（`blackquote`）中的`em`元素，不会被这条规则选择。见图 1-16。
+这条规则会把所有是`h1`元素后代的`em`元素中的文本设置为灰色。其他的`em`文本，例如在段落（`p`）或引用（`blackquote`）中的`em`元素，不会被这条规则选择。见图 2-16。
 
 <div style="margin: 0 auto; width: 50%;">
     <img src='./figures/ch2/fg2-16.png' style=""/>
@@ -1416,7 +1416,7 @@ This rule will make gray any text in an em element that is the descendant of an 
 
 In a descendant selector, the selector side of a rule is composed of two or more spaceseparated selectors. The space between the selectors is an example of a combinator. Each space combinator can be translated as “found within,” “which is part of,” or “that is a descendant of,” but only if you read the selector right to left. Thus, h1 em can be translated as, “Any em element that is a descendant of an h1 element.” (To read the selector left to right, you might phrase it something like, “Any h1 that contains an em will have the following styles applied to the em.”)
 
-在后代选择器中，选择器由两个或更多空白分隔的选择器组成。选择器之间的空格是一个**组合器**的例子。每个空格组合器都可以被译作“在……中”、“是……的一部分”或“是……的后代”，前提是选择器从右向左读。因此，`h1 em`可以被译作“把样式作用于任何`em`元素，如果它是`h1`元素的后代”。（如果选择器从左向右读，则是：“选择任何`h1`，如果它包含一个`em`元素，规则将会作用于它包含的`em`”）。
+在后代选择器中，选择器由两个或更多空白分隔的选择器组成。选择器之间的空格是一个**组合器**的标记。每个空格组合器都可以被译作“在……中”、“是……的一部分”或“是……的后代”，前提是选择器从右向左读。因此，`h1 em`可以被译作“把样式作用于任何`em`元素，如果它是`h1`元素的后代”。（如果选择器从左向右读，则是：“选择任何`h1`，如果它包含一个`em`元素，规则将会作用于它包含的`em`”）。
 
 You aren’t limited to two selectors. For example:
 
@@ -1541,7 +1541,7 @@ Because the two rules have equal weight and the “red” rule is written last, 
 
 In some cases, you don’t want to select an arbitrarily descended element. Rather, you want to narrow your range to select an element that is a child of another element. You might, for example, want to select a strong element only if it is a child (as opposed to any level of descendant) of an h1 element. To do this, you use the child combinator, which is the greater-than symbol (>):
 
-有时，我们并不想选择全部的后代元素，而是把选择范围控制在元素的子级，例如选择一个是`h1`元素的子元素（而不是任意后代元素）的`strong`元素，这种情况下，可以使用子元素组合器，它是一个大于号（`>`）:
+有时，我们并不想选择全部的后代元素，而是把选择范围控制在元素的子集，例如选择一个是`h1`元素的子元素（而不是任意后代元素）的`strong`元素，这种情况下，可以使用子元素组合器，它是一个大于号（`>`）:
 
 ```css
 h1 > strong {
@@ -1566,7 +1566,7 @@ Read right to left, the selector h1 > strong translates as, “Selects any stron
 
 When viewing the document as a tree structure, it’s easy to see that a child selector restricts its matches to elements that are directly connected in the tree. Figure 2-19 shows part of a document tree.
 
-观察文档的树状结构视图，子元素选择器把匹配限制在直接连接的元素上。图 1-19 显示了部分文档树。
+观察文档的树状结构视图，子元素选择器把匹配限制在直接连接的元素上。图 2-19 显示了部分文档树。
 
 <div style="margin: 0 auto; width: 50%;">
     <img src='./figures/ch2/fg2-19.png' style=""/>
@@ -1585,7 +1585,7 @@ You can also combine descendant and child combinations in the same selector. Thu
 
 Let’s say you want to style the paragraph immediately after a heading, or give a special margin to a list that immediately follows a paragraph. To select an element that immediately follows another element with the same parent, you use the adjacentsibling combinator, represented as a plus symbol (+). As with the child combinator, the symbol can be surrounded by whitespace, or not, at the author’s discretion.
 
-假如想要为一个紧跟着标题的段落设置样式，或者给一个紧跟着段落的列表添加一个边距，可以使用**相邻兄弟组合器**来选择在同一个父级元素下紧跟着另一个元素的元素，组合器使用加号（`+`）。就像子级选择器一样，这个符号也可以在两边添加或省略空格。
+假如想要为一个紧跟着标题的段落设置样式，或者给一个紧跟着段落的列表添加一个边距，可以使用**相邻兄弟组合器**来选择在同一个父级元素下紧跟着另一个元素的元素，组合器使用加号（`+`）。就像子元素选择器一样，这个符号也可以在两边添加或省略空格。
 
 To remove the top margin from a paragraph immediately following an `h1` element,
 write:
@@ -1678,7 +1678,7 @@ Selectors Level 3 引入了一个新的兄弟组合器叫做**一般兄弟选择
 
 As an example, to italicize any ol that follows an h2 and also shares a parent with the h2, you’d write h2 ~ol {font-style: italic;}. The two elements do not have to be adjacent siblings, although they can be adjacent and still match this rule. The result of applying this rule to the following markup is shown in Figure 2-22:
 
-如下例，为同一个父元素下跟随在一个`h2`元素后面的任何`ol`元素设置斜体，可以写作`h2 ~ ol {font-style: italic;}`。两个`ol`元素不必都是紧邻兄弟，尽管是紧邻兄弟的话也会被这条规则匹配。效果见图 2-22.
+如下例，为同一个父元素下跟随在一个`h2`元素后面的任何`ol`元素设置斜体，可以写作`h2 ~ ol {font-style: italic;}`。两个`ol`元素不必都是紧邻兄弟，尽管紧邻兄弟也会被这条规则匹配。效果见图 2-22.
 
 ```html
 <div>
@@ -1753,7 +1753,7 @@ Be careful not to combine mutually exclusive pseudo-classes. For example, a link
 
 ### 2.6.2 结构性伪类 Structural Pseudo-Classes
 
-大部分伪类都是结构性的，既它们是与文档的标记结构相关的。大部分伪类由标签内的结构决定，例如某个伪类选择器选择（某个文档片段中的）第三个段落（`p`）。其他一些选择器允许你处理特定类型的元素。所有的伪类都以一个冒号（`:`）开头，没有例外，而且它们可以出现在选择器的任何位置。
+大部分伪类都是结构性的，即它们是与文档的标记结构相关的。大部分伪类由标签内的结构决定，例如某个伪类选择器选择（某个文档片段中的）第三个段落（`p`）。其他一些选择器允许你处理特定类型的元素。所有的伪类都以一个冒号（`:`）开头，没有例外，而且它们可以出现在选择器的任何位置。
 
 在开始之前，关于伪类有一点需要明确：伪类永远只指向他们关联的元素，而不是其他元素。这点似乎非常明显而没有必要特意强调，之所以要明确它，是因为在实际使用中，有一些结构型伪类常常被错误地当成后代元素的描述符。
 
@@ -1778,9 +1778,10 @@ body {
 }
 ```
 
-![图1-23：设置根元素样式](figure1-23.png)
-
-_图 1-23：设置根元素样式_
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-23.png' style=""/>
+</div>
+<p align="center">图 2-23：设置根元素样式</p>
 
 当然，在 HTML 文档中，可以直接选择`html`元素，不需要使用`:root`伪类。这两个选择器在特度方面有差异，我们将在第 3 章讨论。
 
