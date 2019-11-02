@@ -1,18 +1,18 @@
 # 第 2 章 选择器 Selectors
 
-One of the primary advantages of CSS is its ability to easily apply a set of styles to allelements of the same type. Unimpressed? Consider this: by editing a single line ofCSS, you can change the colors of all your headings. Don’t like the blue you’re using?Change that one line of code, and they can all be purple, yellow, maroon, or any other color you desire. That lets you, the designer, focus on design, rather than grunt work.The next time you’re in a meeting and someone wants to see headings with a differentshade of green, just edit your style and hit Reload. Voilà! The results are accomplished in seconds and there for everyone to see.
+One of the primary advantages of CSS is its ability to easily apply a set of styles to all elements of the same type. Unimpressed? Consider this: by editing a single line of CSS, you can change the colors of all your headings. Don’t like the blue you’re using? Change that one line of code, and they can all be purple, yellow, maroon, or any other color you desire. That lets you, the designer, focus on design, rather than grunt work. The next time you’re in a meeting and someone wants to see headings with a different shade of green, just edit your style and hit Reload. Voilà! The results are accomplished in seconds and there for everyone to see.
 
-CSS的主要优点之一是能够轻松地将一组样式应用于相同类型的元素。 印象深刻？ 考虑一下：通过编辑一行CSS，您可以更改所有标题的颜色。 不喜欢您使用的蓝色吗？只需更改一行代码，它们都可以是紫色，黄色，栗色或您想要的任何其他颜色。 这样一来，设计师就可以专注于设计，而不必费力地工作。下次您开会时，有人想要看到带有不同绿色阴影的标题，只需编辑样式并单击“重新加载”即可。 瞧！ 结果在几秒钟内完成，每个人都可以看到
+CSS的主要优点之一是能够轻松地将一组样式应用于相同类型的元素。 想象不出来？ 考虑一下：通过编辑单单一行CSS，您就可以更改所有标题的颜色。 不喜欢您使用的蓝色吗？只需更改一行代码，它们就可以变成紫色，黄色，栗色或您想要的任何其他颜色。 这样一来，设计师就可以专注于设计，而不是那些琐屑的工作。下次您开会时，有人想要看到带有不同绿色阴影的标题，只需编辑样式并单击“重新加载”即可。 瞧！ 结果在几秒钟内出现，而且每个人都可以看到。
 
 CSS can’t solve all your problems—you can’t use it to change the colorspace of your PNGs, for example, at least not yet—but it can make some global changes much easier. So let’s begin with selectors and structure.
 
-当然，CSS 不能解决所有问题——比如，它不能用来改变 PNG 图片的颜色空间，至少现在还不能——但它确实让全局修改变得容易多了。我们先从选择器和结构开始。
+当然，CSS 不能解决所有问题——比如，它不能用来改变 PNG 图片的色域，至少现在还不能——但它确实让全局修改变得容易多了。接下来我们先从选择器和结构开始。
 
 ## 2.1 基本样式规则 Basic Style Rules
 
-As stated, a central feature of CSS is its ability to apply certain rules to an entire set of element types in a document. For example, let’s say that you want to make the text of all `h2` elements appear gray. Using old-school HTML, you’d have to do this by inserting `<font color="gray">…</font>` tags inside all your `h2` elements. Using the style attribute, which is also bad practice, would require you to include `style="color:gray;"` in all your `h2` elements, like this:
+As stated, a central feature of CSS is its ability to apply certain rules to an entire set of element types in a document. For example, let’s say that you want to make the text of all `h2` elements appear gray. Using old-school `HTML`, you’d have to do this by inserting `<font color="gray">…</font>` tags inside all your `h2` elements. Using the `style` attribute, which is also bad practice, would require you to include `style="color: gray;"` in all your `h2` elements, like this:
 
-如上所述，CSS 的核心特性是将某些样式应用于文档中的整个元素类型的能力。例如，如果你想把所有`h2`元素的文本显示为灰色，使用老套的 HTML，你必须在所有的`h2`元素中插入`<font color="gray">…</font>`标签；使用`style`属性也不好，这需要你在所有的`h2`元素上添加`style="color: gray;"`:
+如上所述，CSS 的核心特性是将某些样式应用于文档中所有的同种类型元素。例如，如果你想把所有`h2`元素的文本显示为灰色，使用老套的 HTML，你必须在所有的`h2`元素中插入`<font color="gray">…</font>`标签；使用`style`属性也不好，这需要你在所有的`h2`元素上添加`style="color: gray;"`:
 
 ```html
 <h2><font color="gray">This is h2 text</font></h2>
@@ -25,7 +25,7 @@ This will be a tedious process if your document contains a lot of `h2` elements.
 
 CSS allows you to create rules that are simple to change, edit, and apply to all the text elements you define (the next section will explain how these rules work). For example, you can write this rule once to make all your `h2` elements gray:
 
-CSS 让你可以创建易于编辑的规则，并把它们应用于所有你定义的文本元素（下一部分将解释规则如何生效）。例如，简单地写一次下面的规则，把所有的`h2`元素都变成灰色：
+CSS 让你可以创建易于编辑的规则，并把它们应用于所有你定义的文本元素（下一部分将解释规则如何生效）。例如，你可以仅写一次下面的规则，就把所有的`h2`元素都变成灰色：
 
 ```css
 h2 {
@@ -35,7 +35,7 @@ h2 {
 
 If you want to change all `h2` text to another color—say, silver—just alter the value:
 
-如果你想把所有`h2`的文本变成另一种颜色——比如银色——只要简单地选择（属性）值：
+如果你想把所有`h2`的文本变成另一种颜色——比如银色——只需要简单地更改里面的值：
 
 ```css
 h2 {
@@ -66,7 +66,7 @@ myElement {
 
 In other words, the elements of the document serve as the most basic selectors. In XML, a selector could be anything, since XML allows for the creation of new markup languages that can have just about anything as an element name. If you’re styling an HTML document, on the other hand, the selector will generally be one of the many HTML elements such as `p`, `h3`, `em`, `a`, or even `html` itself. For example:
 
-换句话说，文档的元素被用作最基本的选择器。在 XML 中，选择器可以是任何东西，因为 XML 允许创建新的标记语言，任何东西都可以作为元素名称。另一方面，如果为 HTML 文档添加样式，选择器一般是许多 HTML 元素之一，如`p`，`h3`，`em`，`a`,甚至`html`元素本身。例如：
+换句话说，文档的元素是最基本的选择器。在 XML 中，选择器可以是任何东西，因为 XML 允许创建新的标记语言，任何东西都可以作为元素名称。而另一方面，如果在 HTML 文档中添加样式，选择器一般为 HTML 元素之一，如`p`，`h3`，`em`，`a`,甚至`html`元素本身。例如：
 
 ```css
 html {
@@ -114,7 +114,7 @@ h2 {
 
 The declaration block contains one or more declarations. A declaration is always formatted as a property followed by a colon and then a value followed by a semicolon. The colon and semicolon can be followed by zero or more spaces. In nearly all cases, a `value` is either a single keyword or a space-separated list of one or more keywords that are permitted for that property. If you use an incorrect property or value in a declaration, the whole rule will be ignored. Thus, the following two declarations would fail:
 
-声明块包含一或多条声明。一条声明的格式总是一个**属性**后面跟着一个冒号，然后一个**值**后面跟着一个分号。冒号和分号后面可以有零或多个空白。几乎所有的值都是单个关键字或者空白分隔的当前属性允许的多个关键字列表。如果在一条声明中使用了错误的属性或值，整条规则都会被忽略。因此，下面这两条声明是无效的：
+声明块包含一或多条声明。一条声明的格式总是一个**属性**后面跟着一个冒号，然后一个**值**后面跟着一个分号。冒号和分号后面可以有零或多个空白。几乎所有的值都是单个关键字或者空白分隔的当前属性允许的多个关键字组成的串。如果在一条声明中使用了错误的属性或值，整条规则都会被忽略。因此，下面这两条声明是无效的：
 
 ```css
 brain-size: 2cm; /* unknown property 'brain-size' */
@@ -123,7 +123,7 @@ color: ultraviolet; /* unknown value 'ultraviolet' */
 
 In an instance where you can use more than one keyword for a property’s value, the keywords are usually separated by spaces, with some cases requiring slashes (/) or commas. Not every property can accept multiple keywords, but many, such as the `font` property, can. Let’s say you want to define medium-sized Helvetica for paragraph text, as illustrated in Figure 2-3.
 
-属性值可以使用多个关键字的时候，关键字通常用空白分隔，有些情况下需要斜线（`/`）。很多属性可以接收多个关键字（如`font`属性），但不是全部属性都可以。如果想为段落字体设置中等大小的 Helvetica 字体，就像在图 1-3 中显示的：
+属性值可以使用多个关键字的时候，关键字通常用空白分隔，有些情况下需要斜线（`/`）或者逗号。很多属性都允许接收多个关键字（如`font`属性），但不是全部属性都可以。如果想为段落字体设置中等大小的 Helvetica 字体，就像在图 1-3 中显示的：
 
 <div style="margin: 0 auto; width: 50%;">
     <img src='./figures/ch2/fg2-3.png' style=""/>
@@ -142,11 +142,11 @@ p {
 
 Note the space between medium and Helvetica, each of which is a keyword (the first is the font’s size and the second is the actual font name). The space allows the user agent to distinguish between the two keywords and apply them correctly. The semicolon indicates that the declaration has been concluded.
 
-注意两个关键字`medium`和`Helvetica`之间的空白（第一个是字体大小，第二个是字体名称）。空白使用户代理可以分辨出两个关键字并正确地使用它们。分号指明当前声明已经结束。
+注意两个关键字`medium`和`Helvetica`之间的空白，这两个都是关键字（第一个是字体大小，第二个是字体名称）。空白可以让开发者分辨出两个关键字并正确地使用它们。分号指明当前声明已经结束。
 
 These space-separated words are referred to as keywords because, taken together, they form the value of the property in question. For instance, consider the following fictional rule:
 
-这些空白分隔的词被称为**关键字**，因为它们在一起组成了属性的值。例如下面这个虚拟的规则：
+这些空白分隔的词被称为**关键字**，因为它们在一起组成了整个属性的值。例如下面这个虚构的规则：
 
 ```css
 rainbow: red orange yellow green blue indigo violet;
@@ -162,7 +162,7 @@ rainbow: infrared red orange yellow green blue indigo violet ultraviolet;
 
 Now we have a new value for `rainbow` composed of nine keywords instead of seven. Although the two values look mostly the same, they are as unique and different as zero and one. This may seem an abstract point, but it’s critical to understanding some of the subtler effects of specificity and the cascade (covered in later in this book).
 
-现在我们有了一个由 9 个而不是 7 个关键字组成的新值。虽然这两个值看起来很像，但他们就像 0 和 1 一样是不同而且唯一的。这里好像有点抽象，但它对理解一些特性和层叠（在本书后面部分讨论）的微妙影响是至关重要的。
+现在我们有了一个由 9 个而不是 7 个关键字组成的新值。虽然这两个值看起来很像，但他们就像 0 和 1 一样是不同而且唯一的。这里好像有点抽象，但它对理解一些特性和层叠（在本书后面部分讨论）的细节影响是至关重要的。
 
 As we’ve seen, CSS keywords are usually separated by spaces. In CSS2.1 there was one exception: in the CSS property `font`, there is exactly one place where a forward slash (/) could be used to separate two specific keywords. Here’s an example:
 
@@ -180,7 +180,7 @@ The slash separates the keywords that set the element’s font size and line hei
 
 The slash has since worked its way into a number of other properties’ values. These include, but may not always be limited to the following:
 
-斜线已经可以使用在其他一些属性值中，包括可能不限于下面的属性：
+斜线已经可以使用在其他一些属性值中，包括但不限于下面的属性：
 
 - `background`
 - `border-image`
@@ -194,7 +194,7 @@ The slash has since worked its way into a number of other properties’ values. 
 
 There are also some keywords that are separated by commas. When declaring multiple values, such as multiple background images, transition properties, and shadows, the declarations are separated with commas. Additionally, parameters in functions, such as linear gradients and transforms, are comma separated, as the following example shows:
 
-还有些关键字使用逗号分隔。声明多个值时，例如多背景图片、变换属性和阴影，声明使用逗号分隔。另外函数参数，如`linear gradiennts`和`transform`等，也使用逗号分隔，示例：
+还有些关键字使用逗号分隔。声明多个值时，例如多背景图片、过渡和阴影，声明时使用逗号分隔。另外函数参数，如`linear gradiennts`和`transform`等，也使用逗号分隔，示例：
 
 ```css
 .box {
@@ -209,15 +209,15 @@ a:hover {
 
 Those are the basics of simple declarations, but they can get much more complex. The next section begins to show you just how powerful CSS can be.
 
-这些是基础的简单声明，但它们也可以变得非常复杂。下一部分我们将要展示 CSS 有多么强大。
+这些是基础的简单声明，但它们也可以变得非常复杂。下一节我们将要展示 CSS 有多么强大。
 
-## 2.2 分组 Grouping
+## 2.2 组合 Grouping
 
 So far, we’ve seen fairly simple techniques for applying a single style to a single selector. But what if you want the same style to apply to multiple elements? If that’s the case, you’ll want to use more than one selector or apply more than one style to an element or group of elements.
 
 如我们所见，把一个简单样式应用在一个简单选择器上是非常简单的，但是如果你想把相同的样式引用在多个元素上应该怎么做呢？这种场景下，你会想要把多个选择器或多个样式应用在一个或一组元素上。
 
-### 2.2.1 Grouping Selectors
+### 2.2.1 组合选择器 Grouping Selectors
 
 Let’s say you want both `h2` elements and paragraphs to have gray text. The easiest way to accomplish this is to use the following declaration:
 
@@ -232,11 +232,11 @@ p {
 
 By placing the `h2` and `p` selectors on the left side of the rule and separating them with a comma, you’ve defined a rule where the style on the right (color: gray;) applies to the elements referenced by both selectors. The comma tells the browser that there are two different selectors involved in the rule. Leaving out the comma would give the rule a completely different meaning, which we’ll explore in “Descendant Selectors” on page 56.
 
-把`h2`和`p`选择器放置在规则左边并用逗号分隔，这种方式定义了一条把右边样式（`color: gray;`）应用于两个选择器的规则。逗号告诉浏览器规则里面是两个不同的选择器，如果去掉逗号，会使语句变成另外一条含义完全不同的规则。（参见后面的章节“后代选择器”。）
+把`h2`和`p`选择器放置在规则左边并用逗号分隔，右边已经定义好的规则（`color: gray;`）就会应用于这两个选择器。逗号告诉浏览器规则里面是两个不同的选择器，如果去掉逗号，会使语句变成另外一条含义完全不同的规则。（参见后面的章节“后代选择器”。）
 
 There are really no limits to how many selectors you can group together. For example, if you want to display a large number of elements in gray, you might use something like the following rule:
 
-分组的选择器数目没有限制，例如，如果你想把一大堆元素都设置成灰色，你可以用这样的规则：
+组合的选择器数目没有限制，例如，如果你想把一大堆元素都设置成灰色，你可以用这样的规则：
 
 ```
 body,table,th,td,h1,h2,h3,h4,p,pre,strong,em,b,i {color: gray;}
@@ -244,7 +244,7 @@ body,table,th,td,h1,h2,h3,h4,p,pre,strong,em,b,i {color: gray;}
 
 Grouping allows an author to drastically compact certain types of style assignments, which makes for a shorter stylesheet. The following alternatives produce exactly the same result, but it’s pretty obvious which one is easier to type:
 
-分组允许开发者可以大幅压缩样式分配，从而使样式表更精简。下面两种写法的结果是一样的，哪一种更容易输入是很明显的：
+组合允许开发者大幅压缩样式分配，从而使样式表更精简。下面两种写法的结果是一样的，哪一种更容易输入是显而易见的：
 
 ```css
 h1 {color: purple;}
@@ -260,7 +260,7 @@ h1,h2,h3,h4,h5,h6 {color: purple;}
 
 Grouping allows for some interesting choices. For example, all of the groups of rules in the following example are equivalent—each merely shows a different way of grouping both selectors and declarations:
 
-分组允许做出一些有趣的选择，例如下面例子中的写法都是等效的，每个例子展示了一种分组选择器和声明的不同方式：
+组合允许做出一些有趣的行为，例如下面例子中的写法都是等效的，每个例子都展示了一种组合选择器和基本声明混合使用的不同方式：
 
 ```css
 /* group 1 */
@@ -288,18 +288,18 @@ b {color: gray; background: white;}
 
 Any of these will yield the result shown in Figure 2-4. (These styles use grouped declarations, which are explained in “Grouping Declarations” on page 35.)
 
-每个例子都会生成图 2-4 显示的结果。（这些样式使用的分组声明，将在接下来的“分组声明”中探讨。）
+每个例子都会生成图 2-4 显示的结果。（这些样式使用的组合声明，将在接下来的“组合声明”中探讨。）
 
 <div style="margin: 0 auto; width: 50%;">
     <img src='./figures/ch2/fg2-4.png' style=""/>
 </div>
 <p align="center">图 2-4 等效样式表的结果</p>
 
-#### 通配选择器 The universal selector
+#### 通配符选择器 The universal selector
 
 CSS2 introduced a new simple selector called the universal selector, displayed as an asterisk (\*). This selector matches any element at all, much like a wildcard. For example, to make every single element in a document red, you would write:
 
-CSS2 引入了一个新的简单选择器叫做**通配选择器**，使用星号（`*`）标注。这个选择器就像一张百搭牌，可以匹配所有元素。例如，要把文档中的每个元素（文本）都设置成红色，可以这样写：
+CSS2 引入了一个新的简单选择器叫做**通配符选择器**，使用星号（`*`）标注。这个选择器就像一张百搭牌，可以匹配所有元素。例如，要把文档中的每个元素（文本）都设置成红色，可以这样写：
 
 ```css
 * {
@@ -309,13 +309,13 @@ CSS2 引入了一个新的简单选择器叫做**通配选择器**，使用星�
 
 This declaration is equivalent to a grouped selector that lists every single element contained within the document. The universal selector lets you assign the `color` value `red` to every element in the document in one efficient stroke. Beware, however: although the universal selector is convenient, with a specificity on 0-0-0; and because it targets everything within its declaration scope, it can have unintended consequences, which are discussed later in this book.
 
-此声明等效于一个列出文档中所有元素的分组选择器。通配选择器允许你以一种有效的方式为文档中每个元素的`color`属性设置一个值`red`。但是，要注意，虽然通配选择器很方便，它的特度是 0-0-0，但因为会匹配所有元素，它可能带来意外的后果，我们将在本书后面的部分讨论。
+此声明等效于一个列出文档中所有元素的组合选择器。通配选择器允许你以一种高效的方式为文档中每个元素的`color`属性设置一个值`red`。但是，要注意，虽然通配选择器很方便，它的特殊性是 0-0-0，而且因为会匹配所有声明域中的元素，它可能会带来意外的后果，这些我们将在本书后面的部分讨论。
 
-### 2.2.2 分组声明 Grouping Declarations
+### 2.2.2 组合声明 Grouping Declarations
 
 Since you can group selectors together into a single rule, it follows that you can also group declarations. Assuming that you want all `h1` elements to appear in purple, 18-pixel-high Helvetica text on an aqua background (and you don’t mind blinding your readers), you could write your styles like this:
 
-规则中分组选择器，也可以分组声明。假如你想把所有的`h1`元素设置为紫色、18 像素高的 Helvetica 字体显示在水色背景上（你不介意闪瞎用户），你可以把样式写成这样：
+你不仅仅可以对选择器进行组合，还可以对声明进行组合。假如你想把所有的`h1`元素设置为紫色、18 像素高的 Helvetica 字体显示在水色背景上（你不介意闪瞎用户），你可以把样式写成这样：
 
 ```css
 h1 {
@@ -331,7 +331,7 @@ h1 {
 
 But this method is inefficient—imagine creating such a list for an element that will carry 10 or 15 styles! Instead, you can group your declarations together:
 
-但这种方式是低效的——想象一下为每个元素创建一个 10 或 15 个样式的列表！你可以把声明组合在一起来替代前面的写法：
+但这种方式是低效的——想象一下为每个元素创建一个10 或 15 个样式的表！你可以把声明组合在一起来替代前面的写法：
 
 ```css
 h1 {
@@ -347,7 +347,7 @@ This will have exactly the same effect as the three-line stylesheet just shown.
 
 Note that using semicolons at the end of each declaration is crucial when you’re grouping them. Browsers ignore whitespace in stylesheets, so the user agent must rely on correct syntax to parse the stylesheet. You can fearlessly format styles like the following:
 
-要注意分组来写的时候每条声明后面的分号至关重要。浏览器会忽略样式表中的空白，因此用户代理要依赖正确的语法来解析样式表。你可以这样格式化样式表：
+要注意写组合声明时每条声明后面的分号都至关重要。浏览器会忽略样式表中的空白，因此用户代理要依赖正确的语法来解析样式表。你可以放心地按这种格式写样式表：
 
 ```css
 h1 {
@@ -359,7 +359,7 @@ h1 {
 
 You can also minimize your CSS, removing all non-required spaces.
 
-也可以通过移除不必要的空白压缩 CSS：
+也可以通过移除不必要的空白来压缩 CSS：
 
 ```
 h1{font:18px Helvetica;color: purple;background: aqua;}
@@ -367,7 +367,7 @@ h1{font:18px Helvetica;color: purple;background: aqua;}
 
 Ignoring whitespace, the last three are treated equally by the server, but the second one is most human readable, and the recommended method of marking up your CSS during development. (You might choose to minimize your CSS for networkperformance reasons, but this is usually handled by a server-side script, caching network, or other service.)
 
-上例的后三种写法对服务器来说是等效的，但第二种更易于人类阅读，也是 CSS 开发环境中的推荐写法。（也许压缩 CSS 是出于提高网络性能的原因，但通常这应该由服务器端脚本、网络缓存以及其他服务等来完成。）
+忽略掉空白后，上例的后三种写法对服务器来说是等效的，但第二种更易于人类阅读，也是 CSS 开发环境中的推荐写法。（也许出于提高网络性能的原因你会选择压缩CSS，但通常这应该通过服务器端脚本、网络缓存或其他方式来实现。）
 
 If the semicolon is omitted on the second statement, the user agent will interpret the stylesheet as follows:
 
@@ -382,21 +382,21 @@ h1 {
 
 Because background: is not a valid value for color, and because color can be given only one keyword, a user agent will ignore the color declaration (including the back ground: aqua part) entirely. You might think the browser would at least render h1s as purple text without an aqua background, but not so. Instead, they will be the default color (which is usually black) with a transparent background (which is also a default). The declaration font: 18px Helvetica will still take effect since it was correctly terminated with a semicolon.
 
-因为`background:`并不是`color`属性的合法值，而且`color`属性只能有一个关键字，因此用户代理会完全忽略`color`声明（包括`background: aqua`的部分）。你可能认为浏览器至少会把`h1`设置成紫色字体但没有水色背景，但是如果浏览器本身的实现是正确的话，你会连紫色的`h1`也看不到，它们会被设置成默认颜色（通常是黑色）和透明背景（默认）。声明`font: 18px Helvetica`将会依然生效，因为它是以一个分号正确结束的。
+因为`background:`并不是`color`属性的合法值，而且`color`属性只能有一个关键字，因此用户代理会完全忽略`color`声明（包括`background: aqua`的部分）。你可能认为浏览器至少会把`h1`设置成紫色字体但没有水色背景，然而并不是，它们会被设置成默认颜色（通常是黑色）和透明背景（默认）。声明`font: 18px Helvetica`将会依然生效，因为它是以一个分号正确结束的。
 
 Although it is not technically necessary to follow the last declaration of a rule with a semicolon in CSS, it is generally good practice to do so. First, it will keep you in the habit of terminating your declarations with semicolons, the lack of which is one of the most common causes of rendering errors. Second, if you decide to add another declaration to a rule, you won’t have to worry about forgetting to insert an extra semicolon. Third, if you ever use a preprocessor like Sass, trailing semicolons are often required for all declarations. Avoid all these problems—always follow a declaration with a semicolon, wherever the rule appears.
 
-_**虽然从技术上来讲，最后一条声明后面的分号并不是必需的，但通常为它加上分号是一个好的实践。首先，丢失分号是渲染错误的最常见的原因之一，遵循这个实践可以使你保持使用分号结束声明的良好习惯；其次，当你为样式规则追加一条声明的时候，不必担心前面的声明后面是否忘了插入分号；第三，如果你曾使用过像 Sass 这样的预处理器，通常尾部的分号对所有声明都是必需的。在每条声明后都跟随一个分号来避免上面的问题。**_
+_**虽然从技术上来讲，最后一条声明后面的分号并不是必需的，但通常为它加上分号是一个好的原则。首先，丢失分号是渲染错误的最常见的原因之一，遵循这个原则可以使你保持使用分号结束声明的良好习惯；其次，当你为样式规则追加一条声明的时候，不必担心前面的声明后面是否忘了插入分号；第三，如果你曾使用过像 Sass 这样的预处理器，通常尾部的分号对所有声明都是必需的。在每条声明后都跟随一个分号就可以避免上面的问题。**_
 
 As with selector grouping, declaration grouping is a convenient way to keep your stylesheets short, expressive, and easy to maintain.
 
-分组声明和分组选择器一起使用，可以方便地保持样式表简洁、富有表现力和易于维护。
+组合声明和组合选择器一起使用，可以方便地使样式表简洁、易读和易于维护。
 
-### 2.2.3 分组的一切 Grouping Everything
+### 2.2.3 组合所有 Grouping Everything
 
 You now know that you can group selectors and you can group declarations. By combining both kinds of grouping in single rules, you can define very complex styles using only a few statements. Now, what if you want to assign some complex styles to all the headings in a document, and you want the same styles to be applied to all of them? Here’s how to do it:
 
-选择器和声明都可以分组，在单条样式中使用这两种分组，可以使用很少的声明式定义非常复杂的样式。如果你要把一些复杂样式应用在文档的所有标题上，而且为他们应用相同的样式，应该怎么做呢？下面是做法：
+我们知道，选择器和声明都可以分组，在单条样式中使用这两种分组，可以使用很少的声明定义非常复杂的样式。如果你要把一些复杂样式应用在文档的所有标题上，而且为他们应用相同的样式，应该怎么做呢？下面是做法：
 
 ```css
 h1,h2,h3,h4,h5,h6 {
@@ -411,7 +411,7 @@ h1,h2,h3,h4,h5,h6 {
 
 Here we’ve grouped the selectors, so the styles on the right side of the rule will be applied to all the headings listed; grouping the declarations means that all of the listed styles will be applied to the selectors on the left side of the rule. The result of this rule is shown in Figure 2-5.
 
-因为分组了选择器，右侧的规则会应用在列出的所有标题上；分组声明表明所有列出的样式都会被应用在左侧的选择器上。规则显示的结果如图 2-5。
+这里我们组合了选择器，所以右侧的规则会应用在列出的所有标题上；组合声明表明所有列出的样式都会被应用在左侧的选择器上。规则显示的结果如图 2-5。
 
 <div style="margin: 0 auto; width: 50%;">
     <img src='./figures/ch2/fg2-5.png' style=""/>
@@ -437,17 +437,17 @@ h3 {background: white;}
 
 and continue for many lines. You can write out your styles the long way, but I wouldn’t recommend it—editing them would be as tedious as using style attributes everywhere!
 
-等等还有许多行。你也**可以**像这样写出长长的样式，但我建议你不要这样做——编辑它们就像到处使用`style`属性一样无聊。
+等等还有许多行。你也可以像这样写出长长的样式，但我建议你不要这样做——编辑它们就像到处使用`style`属性一样无聊。
 
 It’s possible to add even more expression to selectors and to apply styles in a way that cuts across elements in favor of types of information. To get something so powerful, you’ll have to do a little work in return, but it’s well worth it.
 
-可以在选择器中加入更多的表达式，并以跨元素的方式应用样式。当然，要得到这么强大的东西需要付出一些工作，但这是值得的。
+你可以向选择器附加更多的表达式并以语义化的方式应用到元素上。为了获得这种能力，你必须在接下来花费更多的功夫，不过这一切都是值得的。
 
 ### 旧浏览器中的新元素 New Elements in Old Browsers
 
 With updates to HTML, such as the HTML5 specification, new elements have come into being. Some browsers predate these newer elements, and so don’t recognize them. Versions of Internet Explorer prior to IE9, for example, did not support selecting elements they did not understand. The solution was to create the element in the DOM, thereby informing the browser that said element exists.
 
-作为 HTML 的升级，HTML5 规范引入了新的元素。比新元素更早的浏览器不能识别它们。例如，IE9 以前的浏览器无法选择它们不支持的元素。解决办法是在 DOM 中创建元素，以此告知浏览器元素的存在。
+作为 HTML 的升级版，HTML5 规范引入了新的元素。比新元素更早的浏览器不能识别它们。例如，IE9 以前的浏览器无法选中它们不支持的元素。解决办法是在 DOM 中创建元素，以此告知浏览器元素的存在。
 
 For example, IE8 does not recognize the `<main>` element. The following JavaScript line informs IE8 of `main’s` existence:
 
@@ -459,21 +459,21 @@ document.createElement('main')
 
 By running that line of code, older versions of Internet Explorer will recognize the existence of the element, allowing it to be selected and styled.
 
-执行这行代码，旧版本的 IE 浏览器可以识别到这些元素，并允许选择它们以及为它们添加样式。
+执行这行代码，旧版本的 IE 浏览器可以识别到这些元素，并允许选中它们以及为它们添加样式。
 
 ## 2.3 类和 ID 选择器 Class and ID Selectors
 
 So far, we’ve been grouping selectors and declarations together in a variety of ways, but the selectors we’ve been using are very simple ones that refer only to document elements. Element selectors are fine up to a point, but there are times when you need something a little more specialized.
 
-我们已经以各种方式组合使用了选择器和声明，但我们使用的选择器都非常简单。这些选择器只能用文档元素本身来选择，它们很好用，但有时你需要更专门的选择器。
+到目前为止，我们已经以各种方式组合使用了选择器和声明，但我们使用的选择器都非常简单。这些选择器只能用文档元素本身来选择，它们很好用，但有时你需要更专门的选择器。
 
 In addition to raw document elements, there are `class selectors` and `ID selectors`, which let you assign styles in a way that is independent of document elements. These selectors can be used on their own or in conjunction with element selectors. However, they work only if you’ve marked up your document appropriately, so using them generally involves a little forethought and planning.
 
-除了原始的文档元素，还有**类选择器**和 **ID 选择器**，它们允许以独立于文档元素的方式分配样式。这些选择器可以单独使用，也可以与元素选择器结合使用。但是，它们只有在文档被正确标记的时候才能生效，因此使用它们通常需要做一些预想和规划。
+除了原生文档元素，还有**类选择器**和 **ID 选择器**，它们允许以独立于文档元素的方式分配样式。这些选择器可以单独使用，也可以与元素选择器结合使用。但是，它们只有在文档被正确标记的时候才能生效，因此使用它们通常需要做一些构思。
 
 For example, say you’re drafting a document that discusses ways of handling plutonium. The document contains various warnings about safely dealing with such a dangerous substance. You want each warning to appear in boldface text so that it will stand out. However, you don’t know which elements these warnings will be. Some warnings could be entire paragraphs, while others could be a single item within a lengthy list or a small section of text. So, you can’t define a rule using element selectors of any kind. Suppose you tried this route:
 
-例如，假设你正在起草一份讨论处理钚的方法的文件。 该文件包含关于安全处理这种危险物质的各种警告。 您希望每个警告都以粗体文本显示以便更突出，但你不知道这些警告将是哪些元素。 一些警告可能是整个段落，而其他警告可能是冗长列表中的单个项目或一小段文本。 因此，你不能使用任何种类的元素选择器定义规则。 假设你尝试这样写：
+例如，假设你正在起草一份讨论处理钚的方法的文件。 该文件包含关于安全处理这种危险物质的各种警告。 您希望每个警告都以粗体文本显示以便更突出，但你不知道这些警告将是哪些元素。 一些警告可能是整个段落，而其他警告可能是冗长列表中的一小条或一小段文本。 因此，你不能使用任何元素选择器定义规则。 假设你尝试这样写：
 
 ```css
 p {
@@ -484,13 +484,13 @@ p {
 
 `All` paragraphs would be red and bold, not just those that contain warnings. You need a way to select only the text that contains warnings, or more precisely, a way to select only those elements that are warnings. How do you do it? You apply styles to parts of the document that have been marked in a certain way, independent of the elements involved, by using class selectors.
 
-**所有的**段落都会被加粗，而不仅仅是包含警告的那些。你需要一种方法来选择仅包含警告的文本，或者更准确地说，只选择那些警告元素。怎么做呢？使用类选择器，把样式应用于文档中那些被用特定方式标记出来的部分，而无论是什么元素。
+**所有的**段落都会被加粗，而不仅仅是包含警告的那些。你需要一种方法来选择仅包含警告的文本，或者更准确地说，只选择那些警告元素。怎么做呢？使用类选择器，把样式应用于文档中那些被用特定方式标记出来的部分，而不是那些什么元素。
 
 ### 2.3.1 类选择器 Class Selectors
 
 The most common way to apply styles without worrying about the elements involved is to use class selectors. Before you can use them, however, you need to modify your actual document markup so that the class selectors will work. Enter the class attribute:
 
-忽略元素类型应用样式的最常用方式，是使用类选择器。但是在使用它们之前需要设置文档标记，以便选择器能够生效。添加`class`属性：
+忽略元素类型去应用样式的最常用方式，是使用类选择器。但是在使用它们之前需要添加`class`属性设置文档标记，以便选择器能够生效：
 
 ```html
 <p class="warning">When handling plutonium, care must be taken to avoid the formation of a critical mass.</p>
@@ -507,7 +507,7 @@ To associate the styles of a class selector with an element, you must assign a `
 
 All you need now is a way to apply styles to these classed elements. In HTML documents, you can use a compact notation where the name of a `class` is preceded by a period (.) and can be joined with an element selector:
 
-现在只需要一种方式把样式应用在这些元素上。在 HTML 文档中，可同`class`名称紧跟一个句点（.），并且可以与元素选择器一起使用：
+现在只需要一种方式把样式应用在这些元素上。在 HTML 文档中，在`class`名称前写上一个句点（.）即可，句点前面还可以再加上元素名称，这样就可以跟元素选择器混合使用：
 
 ```css
 .warning {
@@ -517,7 +517,7 @@ All you need now is a way to apply styles to these classed elements. In HTML doc
 
 When combined with the example markup shown earlier, this simple rule has the effect shown in Figure 2-6. That is, the declaration font-weight: bold will be applied to every element (thanks to the presence of the implicit universal selector) that carries a class attribute with a value of warning.
 
-与前面所示的示例标记集合使用，这个简单规则的效果如图 2-6 所示。亦即，声明`font-weight: bold`会应用在每个（得益于隐含的通配选择器）`class`属性值为`warning`的元素上。
+当使用前面所示的示例，这个简单规则的效果如图 2-6 所示。亦即，声明`font-weight: bold`会应用在每个（得益于隐含的通配选择器）`class`属性值为`warning`的元素上。
 
 _**通配选择器的符号是`*`，使用 ID、类、属性选择器、伪类选择器以及伪元素选择器等时，如果没有结合元素选择器，它们会隐式地包含通配选择器。**_
 
@@ -542,7 +542,7 @@ The selector now matches any p elements that have a class attribute containing t
 
 If you did want to assign different styles to the `span` element, you could use the selector `span.warning`:
 
-如果想为`span`元素分配不同的样式，可以使用选择符`span.warning`：
+如果想为`span`元素分配不同的样式，可以使用选择器`span.warning`：
 
 ```css
 p.warning {
@@ -559,7 +559,7 @@ In this case, the warning paragraph is boldfaced, while the warning `span` is it
 
 Another option is to use a combination of a general class selector and an elementspecific class selector to make the styles even more useful, as in the following markup:
 
-另一种做法是使用一个一般的类选择器和一个特定元素的类选择器，来让样式更加有用，例如这样：
+另一种做法是使用一个通用的类选择器和一个特定元素的类选择器，来让样式更加实用，例如这样：
 
 ```css
 .warning {
@@ -1026,7 +1026,7 @@ img[src|='figure'] {
 
 Or, if you’re creating a CSS framework or pattern library, instead of creating redundant classes like "btn btn-small btn-arrow btn-active", you can declare "btnsmall-arrow-active", and target the class of elements with:
 
-如果你正在创建一个 CSS 框架或模式库，不必创建许多繁琐的类：`"btn btn-small btn-arrow btn-active"`，你可以声明`"btn-small-arrow-active"`，然后这样匹配元素的类：
+如果你正在创���一个 CSS 框架或模式库，不必创建许多繁琐的类：`"btn btn-small btn-arrow btn-active"`，你可以声明`"btn-small-arrow-active"`，然后这样匹配元素的类：
 
 ```css
 *[class|='btn'] {
