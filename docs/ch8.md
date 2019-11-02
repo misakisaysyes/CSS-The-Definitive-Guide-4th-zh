@@ -12,7 +12,7 @@ As you may be aware, all document elements generate a rectangular box called the
 
 By default, a visually rendered document is composed of a number of rectangular boxes that are distributed so that they don’t overlap. Also, within certain constraints, these boxes take up as little space as possible while still maintaining a sufficient separation to make clear which content belongs to which element.
 
-> 默认情况下，可视化呈现的文档是由一些矩形框组成的，这些矩形框分布在不同的地方，这样它们就不会重叠。此外，在某些约束条件下，这些框占用尽可能少的空间，同时仍然保持足够的分离，以便明确哪些内容属于哪些元素。
+> 默认情况下，可视化呈现的文档是由一些矩形框组成的，这些矩形框分布在不同的地方，这样它们就不会重叠。此外，在某些约束条件下，这些框占用尽可能少的空间，同时仍然保持分离，以便明确哪些内容属于哪些元素。
 
 Boxes can overlap if they have been manually positioned, and visual overlap can occur if negative margins are used on normal-flow elements.
 
