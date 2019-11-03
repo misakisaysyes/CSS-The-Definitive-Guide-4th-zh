@@ -12,7 +12,7 @@ In CSS, you can set both the foreground and background colors of any element. In
 
 The easiest way to set the foreground color of an element is with the property color.
 
-//
+<Cards cards="color" />
 
 This property accepts as a value any valid color type, such as `#FFCC00` or `rgba(100%,80%,0%,0.5)`.
 
@@ -186,7 +186,7 @@ CSS lets you apply a solid color to the background of an element, as well as app
 
 To declare a color for the background of an element, you use the property `background-color`, which accepts any valid color value.
 
-//
+<Cards cards="background-color" />
 
 If you want the color to extend out a little bit from the text in the element, add some padding to the mix, as illustrated in Figure 9-7, which is the result of the following code:
 
@@ -290,7 +290,7 @@ Remember that form inputs, nearly all of which are replaced elements, are treate
 
 In the previous section, we saw how backgrounds fill out the entire background area of an element. Historically, that extended all the way to the outer edge of the border so that any border with transparent parts (like dashed or dotted borders) would have the background color fill into those transparent parts. Now there’s a CSS property called `background-clip` that lets you affect how far out an element’s background will go.
 
-//
+<Cards cards="background-clip" />
 
 The default value is the historical value: the `background painting area` (which is what `background-clip` defines) extends out to the outer edge of the border. The background will `always` be drawn behind the visible parts of the border, if any.
 
@@ -378,7 +378,7 @@ This caused a user agent to load the file `bg23.gif` and then “tile” it in t
 
 In order to get an image into the background in the first place, use the property `background-image`.
 
-//
+<Cards cards="background-image" />
 
 The default value of `none` means about what you’d expect: no image is placed in the background. If you want a background image, you must give this property at least one other value, like this:
 
@@ -407,7 +407,8 @@ a.grid {
 ```html
 <p class="starry">
   It's the end of autumn, which means the stars will be brighter than ever!
-  <a href="join.html" class="grid">Join us</a> for a fabulous evening of planets, stars, nebulae, and more...
+  <a href="join.html" class="grid">Join us</a> for a fabulous evening of
+  planets, stars, nebulae, and more...
 </p>
 ```
 
@@ -426,13 +427,13 @@ a[href] {
   padding-left: 1em;
   background-repeat: no-repeat;
 }
-a[href$='.pdf'] {
+a[href$=".pdf"] {
   background-image: url(/i/pdf-icon.png);
 }
-a[href$='.doc'] {
+a[href$=".doc"] {
   background-image: url(/i/msword-icon.png);
 }
-a[href^='mailto:'] {
+a[href^="mailto:"] {
   background-image: url(/i/email-icon.png);
 }
 ```
@@ -488,7 +489,8 @@ a.grid {
 ```html
 <p class="starry">
   It's the end of autumn, which means the stars will be brighter than ever!
-  <a href="join.html" class="grid">Join us</a> for a fabulous evening of planets, stars, nebulae, and more...
+  <a href="join.html" class="grid">Join us</a> for a fabulous evening of
+  planets, stars, nebulae, and more...
 </p>
 ```
 
@@ -498,7 +500,7 @@ This will fill in a flat-black background if the “starry” image can’t be r
 
 OK, so we can put images in the background of an element. How about being able to decide exactly how the image is placed? No problem! `background-position` is here to help.
 
-//
+<Cards cards="background-position" />
 
 That value syntax looks pretty horrific, but it isn’t; it’s just what happens when you try to formalize the fast-and-loose implementations of a new technology into a regular syntax and then layer even more features on top of that while trying to reuse parts of the old syntax. (So, OK, kind of horrific.) In practice, `background-position` is pretty simple.
 
@@ -714,7 +716,7 @@ As it happens, you can only define the edges of an element as offset bases, not 
 
 OK, so now we can add an image to the background, and we can even change where the origin image is placed. But what if we don’t want to have its placement calculated with respect to the outer padding edge of the element, which is the default? We can affect that using the property `background-origin`.
 
-//
+<Cards cards="background-origin" />
 
 This property probably looks very similar to `background-clip`, and with good reason, but its effect is pretty distinct. With `background-origin`, you can determine the edge that’s used to determine placement of the origin image. This is also known as defining the background positioning area. (`background-clip`, you may recall, defined the background painting area.)
 
@@ -794,7 +796,7 @@ In the old days, if you wanted some kind of “sidebar” background effect, you
 
 Wouldn’t it be much more efficient to create a sidebar image that’s 10 pixels tall and 100 pixels wide, with no wasted blank space, and then repeat it only in the vertical direction? This would certainly make your design job a little easier, and your users’ download times a lot faster. Enter `background-repeat`.
 
-//
+<Cards cards="background-repeat" />
 
 The value syntax for `background-repeat` looks a bit complicated at first glance, but it’s really fairly straightforward. In fact, at its base, it’s just four values: `repeat`, `no-repeat`, `space`, and `round`. The other two, `repeat-x` and `repeat-y`, are considered to be shorthand for combinations of the others. Table 9-2 shows how they break down.
 
@@ -985,7 +987,7 @@ So, now you can place the origin image for the background anywhere in the backgr
 
 Furthermore, even if you assume that the origin image is initially visible, it always scrolls with the document—it’ll vanish every time a user scrolls beyond the location of the image. Never fear: there is a way to prevent this scrolling.
 
-//
+<Cards cards="background-attachment" />
 
 Using the property `background-attachment`, you can declare the origin image to be fixed with respect to the viewing area and therefore immune to the effects of scrolling:
 
@@ -1075,7 +1077,7 @@ It is also the case that in paged media, such as printouts, every page generates
 
 Right, so up to this point, we’ve taken images of varying sizes and dropped them into element backgrounds to be repeated (or not), positioned, clipped, and attached. In every case, we just took the image at whatever intrinsic size it was (with the automated exception of `round` repeating). Ready to actually change the size of the origin image and all the tiled images that spawn from it?
 
-//
+<Cards cards="background-size" />
 
 Let’s start by explicitly resizing a background image. We’ll drop in an image that’s 200 × 200 pixels and then resize it to be twice as big, as shown in Figure 9-48, which is the result of the following code:
 
@@ -1271,7 +1273,7 @@ Yes, you can see background color around the edges of some of those, and others 
 
 As is often the case with thematic areas of CSS, the background properties can all be brought together in a single shorthand property: `background`. Whether you might want to do that is another question entirely.
 
-//
+<Cards cards="background" />
 
 The syntax here can get a little confusing. Let’s start simple and work our way up from there.
 
@@ -1289,13 +1291,16 @@ body {
   background-size: 50% 50%;
 }
 body {
-  background: white url(yinyang.png) repeat-y top left/50% 50% fixed padding-box border-box;
+  background: white url(yinyang.png) repeat-y top left/50% 50% fixed padding-box
+    border-box;
 }
 body {
-  background: fixed url(yinyang.png) padding-box border-box white repeat-y top left/50% 50%;
+  background: fixed url(yinyang.png) padding-box border-box white repeat-y top
+    left/50% 50%;
 }
 body {
-  background: url(yinyang.png) top left/50% 50% padding-box white repeat-y fixed border-box;
+  background: url(yinyang.png) top left/50% 50% padding-box white repeat-y fixed
+    border-box;
 }
 ```
 
@@ -1307,10 +1312,12 @@ The last restriction is that if you supply values for both `background-origin` a
 
 ```css
 body {
-  background: url(yinyang.png) top left/50% 50% padding-box border-box white repeat-y fixed;
+  background: url(yinyang.png) top left/50% 50% padding-box border-box white
+    repeat-y fixed;
 }
 body {
-  background: url(yinyang.png) top left/50% 50% padding-box white repeat-y fixed border-box;
+  background: url(yinyang.png) top left/50% 50% padding-box white repeat-y fixed
+    border-box;
 }
 ```
 
@@ -1413,7 +1420,8 @@ Even the shorthand `background` can be comma-separated. The following example is
 
 ```css
 section {
-  background: url(bg01.png) right top no-repeat, url(bg02.gif) center left no-repeat, url(bg03.jpg) 50% 100% repeat-x;
+  background: url(bg01.png) right top no-repeat, url(bg02.gif) center left
+      no-repeat, url(bg03.jpg) 50% 100% repeat-x;
 }
 ```
 
@@ -1423,11 +1431,12 @@ The only real restriction on multiple backgrounds is that `background-color` doe
 
 ```css
 section {
-  background: url(bg01.png) right top no-repeat, url(bg02.gif) center left no-repeat,
-    url(bg03.jpg) 50% 100% repeat-x green;
+  background: url(bg01.png) right top no-repeat, url(bg02.gif) center left
+      no-repeat, url(bg03.jpg) 50% 100% repeat-x green;
 }
 section {
-  background: url(bg01.png) right top no-repeat, url(bg02.gif) center left no-repeat, url(bg03.jpg) 50% 100% repeat-x;
+  background: url(bg01.png) right top no-repeat, url(bg02.gif) center left
+      no-repeat, url(bg03.jpg) 50% 100% repeat-x;
   background-color: green;
 }
 ```
@@ -1563,7 +1572,8 @@ The easy way to avoid these sorts of situations is just to use `background`, lik
 
 ```css
 body {
-  background: url(bg01.png) top left border-box no-repeat, url(bg02.gif) bottom center padding-box no-repeat,
+  background: url(bg01.png) top left border-box no-repeat, url(bg02.gif) bottom
+      center padding-box no-repeat,
     url(bg04.svg) bottom center padding-box no-repeat gray;
 }
 ```
@@ -1572,8 +1582,8 @@ That way, when you add or subtract background layers, the values you meant to ap
 
 ```css
 body {
-  background: url(bg01.png) top left no-repeat, url(bg02.gif) bottom center no-repeat,
-    url(bg04.svg) bottom center no-repeat gray;
+  background: url(bg01.png) top left no-repeat, url(bg02.gif) bottom center
+      no-repeat, url(bg04.svg) bottom center no-repeat gray;
   background-origin: padding-box;
 }
 ```
@@ -1593,7 +1603,8 @@ element. In order to get images in all four corners, as shown in Figure 9-62, yo
 have to list the same image four times:
 
 ```css
-background-image: url(i/box-red.gif), url(i/box-red.gif), url(i/box-red.gif), url(i/box-red.gif);
+background-image: url(i/box-red.gif), url(i/box-red.gif), url(i/box-red.gif),
+  url(i/box-red.gif);
 background-position: top left, top right, bottom right, bottom left;
 background-repeat: no-repeat;
 ```
@@ -1659,10 +1670,18 @@ You’re able to use any color value you like, including alpha-channel values su
 
 ```css
 #ex01 {
-  background-image: linear-gradient(to right, rgb(200, 200, 200), rgb(255, 255, 255));
+  background-image: linear-gradient(
+    to right,
+    rgb(200, 200, 200),
+    rgb(255, 255, 255)
+  );
 }
 #ex02 {
-  background-image: linear-gradient(to right, rgba(200, 200, 200, 1), rgba(200, 200, 200, 0));
+  background-image: linear-gradient(
+    to right,
+    rgba(200, 200, 200, 1),
+    rgba(200, 200, 200, 0)
+  );
 }
 ```
 
@@ -1762,7 +1781,16 @@ As for percentages, they’re calculated with respect to the total length of the
 
 ```css
 #spectrum {
-  background-image: linear-gradient(90deg, red, orange 10%, yellow 20%, green 30%, blue 40%, indigo 50%, violet 60%);
+  background-image: linear-gradient(
+    90deg,
+    red,
+    orange 10%,
+    yellow 20%,
+    green 30%,
+    blue 40%,
+    indigo 50%,
+    violet 60%
+  );
 }
 ```
 
@@ -1774,7 +1802,16 @@ In cases where some color stops have position values and others don’t, the sto
 
 ```css
 #spectrum {
-  background-image: linear-gradient(90deg, red, orange, yellow 50%, green, blue, indigo 95%, violet);
+  background-image: linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow 50%,
+    green,
+    blue,
+    indigo 95%,
+    violet
+  );
 }
 ```
 
@@ -1805,7 +1842,16 @@ You might wonder what happens if you put two color stops at exactly the same poi
 
 ```css
 #spectrum {
-  background-image: linear-gradient(90deg, red 0%, orange, yellow, green 50%, blue 50%, indigo, violet);
+  background-image: linear-gradient(
+    90deg,
+    red 0%,
+    orange,
+    yellow,
+    green 50%,
+    blue 50%,
+    indigo,
+    violet
+  );
 }
 ```
 
@@ -1839,7 +1885,16 @@ OK, so that’s what happens if you put color stops right on top of each other, 
 
 ```css
 #spectrum {
-  background-image: linear-gradient(90deg, red 0%, orange, yellow, green 50%, blue 40%, indigo, violet);
+  background-image: linear-gradient(
+    90deg,
+    red 0%,
+    orange,
+    yellow,
+    green 50%,
+    blue 40%,
+    indigo,
+    violet
+  );
 }
 ```
 
@@ -1849,7 +1904,16 @@ The key point here is that the color stop is set to the largest `specified` posi
 
 ```css
 #spectrum {
-  background-image: linear-gradient(90deg, red 0%, orange, yellow 50%, green, blue, indigo 33%, violet);
+  background-image: linear-gradient(
+    90deg,
+    red 0%,
+    orange,
+    yellow 50%,
+    green,
+    blue,
+    indigo 33%,
+    violet
+  );
 }
 ```
 
@@ -1924,7 +1988,12 @@ The interesting thing about color hinting is that the progression from color sto
   );
 }
 #ex02 {
-  background: linear-gradient(to right, #000 25%, 67%, /* this is a color hint */ rgb(90%, 90%, 90%) 75%);
+  background: linear-gradient(
+    to right,
+    #000 25%,
+    67%,
+    /* this is a color hint */ rgb(90%, 90%, 90%) 75%
+  );
 }
 ```
 
@@ -2275,8 +2344,12 @@ One way this can be leveraged is to repeat simple gradients. (Repeating in more 
 
 ```css
 body {
-  background: tan center/25px 25px repeat radial-gradient(circle at center, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 10px, transparent
-        10px, transparent);
+  background: tan center/25px 25px repeat radial-gradient(circle at center, rgba(0, 0, 0, 0.1), rgba(
+          0,
+          0,
+          0,
+          0.1
+        ) 10px, transparent 10px, transparent);
 }
 ```
 
@@ -2295,7 +2368,11 @@ Gradients can’t do everything a raster or vector image can, so it’s not as t
 That curtain effect was accomplished with just two linear gradients repeated at differing intervals, plus a third to create a “glow” effect along the bottom of the background. Here’s the code that accomplished it:
 
 ```css
-background-image: linear-gradient(0deg, rgba(255, 128, 128, 0.25), transparent 75%), linear-gradient(
+background-image: linear-gradient(
+    0deg,
+    rgba(255, 128, 128, 0.25),
+    transparent 75%
+  ), linear-gradient(
     89deg,
     transparent,
     transparent 30%,
@@ -2310,8 +2387,8 @@ background-image: linear-gradient(0deg, rgba(255, 128, 128, 0.25), transparent 7
     #510a0e 75%,
     rgba(255, 128, 128, 0) 80%,
     transparent
-  ), linear-gradient(92deg, #510a0e, #510a0e 20%, #61100f 25%, #b93f3a 40%, #4b0408 50%, #6a0f18 70%, #651015 80%, #510a0e
-      90%, #510a0e);
+  ), linear-gradient(92deg, #510a0e, #510a0e 20%, #61100f 25%, #b93f3a 40%, #4b0408
+      50%, #6a0f18 70%, #651015 80%, #510a0e 90%, #510a0e);
 background-size: auto, 300px 100%, 109px 100%;
 background-repeat: repeat-x;
 ```
@@ -2330,7 +2407,13 @@ Gradients are pretty awesome by themselves, but because they are images, they ca
 
 ```css
 h1.exmpl {
-  background: linear-gradient(-45deg, black 0, black 25px, yellow 25px, yellow 50px) top left/40px 40px repeat;
+  background: linear-gradient(
+      -45deg,
+      black 0,
+      black 25px,
+      yellow 25px,
+      yellow 50px
+    ) top left/40px 40px repeat;
 }
 ```
 
@@ -2346,7 +2429,13 @@ Everything else about the code stays the same. The effect is much different, how
 
 ```css
 h1.exmpl {
-  background: repeating-linear-gradient(-45deg, black 0, black 25px, yellow 25px, yellow 50px) top left;
+  background: repeating-linear-gradient(
+      -45deg,
+      black 0,
+      black 25px,
+      yellow 25px,
+      yellow 50px
+    ) top left;
 }
 ```
 
@@ -2356,7 +2445,13 @@ An equivalent to the previous code block, using color hints instead of all color
 
 ```css
 h1.exmpl {
-  background: repeating-linear-gradient(-45deg, black 0, black 25px, 25px, yellow 50px) top left;
+  background: repeating-linear-gradient(
+      -45deg,
+      black 0,
+      black 25px,
+      25px,
+      yellow 50px
+    ) top left;
 }
 ```
 
@@ -2382,7 +2477,12 @@ You may have noticed that none of the repeating gradients we’ve seen so far ha
 
 ```css
 h1.exmpl {
-  background: repeating-linear-gradient(-45deg, purple 0px, gold 50px, purple 100px) top left/50px 50px repeat;
+  background: repeating-linear-gradient(
+      -45deg,
+      purple 0px,
+      gold 50px,
+      purple 100px
+    ) top left/50px 50px repeat;
 }
 ```
 
@@ -2394,7 +2494,15 @@ On the other hand, percentages can be very useful with repeating radial gradient
 
 ```css
 .allhail {
-  background: repeating-radial-gradient(100px 50px, purple, gold 20%, green 40%, purple 60%, yellow 80%, purple);
+  background: repeating-radial-gradient(
+    100px 50px,
+    purple,
+    gold 20%,
+    green 40%,
+    purple 60%,
+    yellow 80%,
+    purple
+  );
 }
 ```
 
@@ -2450,7 +2558,7 @@ This condition can also be triggered in cases where the browser rounds the color
 
 In an earlier chapter, we explored the property `text-shadow`, which adds a drop shadow to the text of a non-replaced element. There’s a version of this that creates a shadow for the box of an element, called `box-shadow`.
 
-//
+<Cards cards="box-shadow" />
 
 It might seem a little out of place to talk about shadows in a chapter mostly concerned with backgrounds and gradients, but there’s a reason it goes here, which we’ll see in a moment.
 
@@ -2552,8 +2660,8 @@ The last thing to note is that you can apply to an element a list of as many com
   box-shadow: inset 1ch 1ch 0.25ch rgba(0, 0, 0, 0.25), 1.5ch 1.5ch 0.4ch rgba(0, 0, 0, 0.33);
 }
 #wacky {
-  box-shadow: inset 10px 2vh 0.77em 1ch red, 1cm 1in 0 -1px cyan inset, 2ch 3ch 0.5ch hsla(117, 100%, 50%, 0.343), -2ch -3ch
-      0.5ch hsla(297, 100%, 50%, 0.23);
+  box-shadow: inset 10px 2vh 0.77em 1ch red, 1cm 1in 0 -1px cyan inset,
+    2ch 3ch 0.5ch hsla(117, 100%, 50%, 0.343), -2ch -3ch 0.5ch hsla(297, 100%, 50%, 0.23);
 }
 ```
 

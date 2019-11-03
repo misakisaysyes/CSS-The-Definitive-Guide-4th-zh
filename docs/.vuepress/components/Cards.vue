@@ -45,7 +45,9 @@ export default {
             this.card = resp.data;
           }
         })
-        .catch(e => {});
+        .catch(e => {
+          this.card = { title: "cannot load json" };
+        });
     }
   }
 };
