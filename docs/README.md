@@ -14,9 +14,18 @@
 <Tips tips="blue">This element signifies a general note.</Tips>
 <Tips tips="orange">This element indicates a warning or caution.</Tips>
 
+<Card chapter='chapter2' property="card"/>
 
-<Card chapter="chapter2" property="card">
-</Card>
+<Cards cards="display" />
+
+Table 1-1. Some common vendor prefixes
+| Prefix | Vendor |
+| -------- | -------------------------------------------------- |
+| -epub- | International Digital Publishing Forum ePub format |
+| -moz- | Mozilla-based browsers (e.g., Firefox) |
+| -ms- | Microsoft Internet Explorer |
+| -o- | Opera-based browsers |
+| -webkit- | WebKit-based browsers (e.g., Safari and Chrome) |
 
 ## 目录
 

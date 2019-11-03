@@ -38,7 +38,7 @@ In theory, every font family will fall into one of these generic families. In pr
 
 You can call on any available font family by using the property `font-family`.
 
-//
+<Cards cards="font-family" />
 
 If you want a document to use a sans-serif font, but you do not particularly care which one, then the appropriate declaration would be:
 
@@ -106,7 +106,7 @@ h2 {
   font-family: Charcoal, sans-serif;
 }
 p {
-  font-family: 'Times New Roman', serif;
+  font-family: "Times New Roman", serif;
 }
 address {
   font-family: Chicago, sans-serif;
@@ -117,7 +117,8 @@ If you’re familiar with fonts, you might have a number of similar fonts in min
 
 ```css
 p {
-  font-family: Times, 'Times New Roman', 'New Century Schoolbook', Georgia, 'New York', serif;
+  font-family: Times, "Times New Roman", "New Century Schoolbook", Georgia,
+    "New York", serif;
 }
 ```
 
@@ -129,7 +130,7 @@ You may have noticed the presence of single quotes in the previous example, whic
 
 ```css
 h2 {
-  font-family: Wedgie, 'Karrank%', Klingon, fantasy;
+  font-family: Wedgie, "Karrank%", Klingon, fantasy;
 }
 ```
 
@@ -139,7 +140,7 @@ Note that the quoting of a font name containing a symbol is not actually require
 
 ```css
 h2 {
-  font-family: Author, 'cursive', cursive;
+  font-family: Author, "cursive", cursive;
 }
 ```
 
@@ -172,8 +173,8 @@ Suppose you want to use a very specific font in your stylesheets, one that is no
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
-  src: url('SwitzeraADF-Regular.otf');
+  font-family: "SwitzeraADF";
+  src: url("SwitzeraADF-Regular.otf");
 }
 ```
 
@@ -189,9 +190,9 @@ All the parameters that define the font you’re referencing are contained withi
 
 There are two required descriptors: `font-family` and `src`.
 
-//
+<Cards cards="font-family2" />
 
-//
+<Cards cards="src" />
 
 The point of `src` is pretty straightforward: it lets you define one or more sources for the font face you’re defining, using a comma-separated list if there are in fact multiple sources. You can point to a font face at any URI, but there is a restriction: font faces can only be loaded from the same origin as the stylesheet. Thus, you can’t point your `src` at someone else’s site and download their font; you’ll need to host a local copy on your own server, or use a font-hosting service that provides both the stylesheet(s) and the font file(s).
 
@@ -203,8 +204,8 @@ In effect, @font-face lets you create low-level definitions that underpin the fo
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF'; /* descriptor */
-  src: url('SwitzeraADF-Regular.otf');
+  font-family: "SwitzeraADF"; /* descriptor */
+  src: url("SwitzeraADF-Regular.otf");
 }
 h1 {
   font-family: SwitzeraADF, Helvetica, sans-serif;
@@ -219,8 +220,8 @@ In a similar manner, the comma-separated `src` descriptor value provides fallbac
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
-  src: url('SwitzeraADF-Regular.otf'), url('/fonts/SwitzeraADF-Regular.otf');
+  font-family: "SwitzeraADF";
+  src: url("SwitzeraADF-Regular.otf"), url("/fonts/SwitzeraADF-Regular.otf");
 }
 ```
 
@@ -230,8 +231,8 @@ If you want to be sure the user agent understands what kind of font you’re tel
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
-  src: url('SwitzeraADF-Regular.otf') format('opentype');
+  font-family: "SwitzeraADF";
+  src: url("SwitzeraADF-Regular.otf") format("opentype");
 }
 ```
 
@@ -239,8 +240,9 @@ The advantage of supplying a `format()` description is that user agents can skip
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
-  src: url('SwitzeraADF-Regular.otf') format('opentype'), url('SwitzeraADF-Regular.true') format('truetype');
+  font-family: "SwitzeraADF";
+  src: url("SwitzeraADF-Regular.otf") format("opentype"), url("SwitzeraADF-Regular.true")
+      format("truetype");
 }
 ```
 
@@ -260,9 +262,10 @@ In addition to the combination of `url()` and `format()`, you can also supply a 
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
-  src: local('Switzera-Regular'), local('SwitzeraADF-Regular '), url('SwitzeraADF-Regular.otf') format('opentype'), url('SwitzeraADF-Regular.true')
-      format('truetype');
+  font-family: "SwitzeraADF";
+  src: local("Switzera-Regular"), local("SwitzeraADF-Regular "),
+    url("SwitzeraADF-Regular.otf") format("opentype"), url("SwitzeraADF-Regular.true")
+      format("truetype");
 }
 ```
 
@@ -272,8 +275,8 @@ Note that this capability allows an author to create custom names for locally in
 
 ```css
 @font-face {
-  font-family: 'H';
-  src: local('Helvetica'), local('Helvetica Neue');
+  font-family: "H";
+  src: local("Helvetica"), local("Helvetica Neue");
 }
 h1,
 h2,
@@ -290,18 +293,19 @@ The tricky part with `@font-face` is that different browsers of different eras s
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
-  src: url('SwitzeraADF-Regular.eot');
-  src: url('SwitzeraADF-Regular.eot?#iefix') format('embedded-opentype'), url('SwitzeraADF-Regular.woff') format('woff'),
-    url('SwitzeraADF-Regular.ttf') format('truetype'), url('SwitzeraADF-Regular.svg#switzera_adf_regular') format('svg');
+  font-family: "SwitzeraADF";
+  src: url("SwitzeraADF-Regular.eot");
+  src: url("SwitzeraADF-Regular.eot?#iefix") format("embedded-opentype"), url("SwitzeraADF-Regular.woff")
+      format("woff"), url("SwitzeraADF-Regular.ttf") format("truetype"), url("SwitzeraADF-Regular.svg#switzera_adf_regular")
+      format("svg");
 }
 ```
 
 Let’s break it down piece by piece. The first bit, assigning the `font-family` name, is straightforward enough. After that, we see:
 
 ```css
-src: url('SwitzeraADF-Regular.eot');
-src: url('SwitzeraADF-Regular.eot?#iefix') format('embedded-opentype');
+src: url("SwitzeraADF-Regular.eot");
+src: url("SwitzeraADF-Regular.eot?#iefix") format("embedded-opentype");
 ```
 
 This supplies an EOT (Embedded OpenType) to browsers that understand only EOTs —IE6 through IE9. The first line is for IE9 when it’s in “Compatibility Mode,” and the second line hands the same file to IE6-IE8. The `?#iefix` bit in that line exploits a parsing bug in those browsers to step around another parsing bug that causes them to 404 any `@font-face` with multiple formats listed. IE9 fixed its bugs without expanding its font formats, so the first line is what lets it join the party:
@@ -348,7 +352,7 @@ Because these font descriptors are optional, they may not be listed in a `@font-
 
 There is one font descriptor, `unicode-range`, which (unlike the others in Table 5-2) has no corresponding CSS property. This descriptor allows authors to define the range of characters to which a custom font can be applied. This can be useful when using a symbol font, or to ensure that a font face is only applied to characters that are in a specific language.
 
-//
+<Cards cards="unicode-range" />
 
 By default, the value of this property covers the entirety of Unicode, meaning that if a font can supply the glyph for a character, it will. Most of the time, this is exactly what you want. For all the other times, you’ll want to use a specific font face for a specific kind of content. To pick two examples from the CSS Fonts Module Level 3:
 
@@ -408,25 +412,25 @@ This is actually implicit in the fact that any undeclared descriptor is assigned
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
-  src: url('SwitzeraADF-Regular.otf') format('opentype');
+  src: url("SwitzeraADF-Regular.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
-  src: url('SwitzeraADF-Bold.otf') format('opentype');
+  src: url("SwitzeraADF-Bold.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: normal;
   font-style: italic;
   font-stretch: normal;
-  src: url('SwitzeraADF-Italic.otf') format('opentype');
+  src: url("SwitzeraADF-Italic.otf") format("opentype");
 }
 ```
 
@@ -434,18 +438,18 @@ Here, we’ve made the implicit explicit: any time a descriptor isn’t being al
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
-  src: url('SwitzeraADF-Regular.otf') format('opentype');
+  font-family: "SwitzeraADF";
+  src: url("SwitzeraADF-Regular.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: bold;
-  src: url('SwitzeraADF-Bold.otf') format('opentype');
+  src: url("SwitzeraADF-Bold.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-style: italic;
-  src: url('SwitzeraADF-Italic.otf') format('opentype');
+  src: url("SwitzeraADF-Italic.otf") format("opentype");
 }
 ```
 
@@ -453,11 +457,11 @@ In all three rules, there is no font-stretching beyond the normal amount, and th
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: bold;
   font-style: italic;
   font-stretch: normal;
-  src: url('SwitzeraADF-BoldItalic.otf') format('opentype');
+  src: url("SwitzeraADF-BoldItalic.otf") format("opentype");
 }
 ```
 
@@ -465,11 +469,11 @@ And then what about bold, italic, condensed text?
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: bold;
   font-style: italic;
   font-stretch: condensed;
-  src: url('SwitzeraADF-BoldCondItalic.otf') format('opentype');
+  src: url("SwitzeraADF-BoldCondItalic.otf") format("opentype");
 }
 ```
 
@@ -477,11 +481,11 @@ How about normal-weight, italic, condensed text?
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: normal;
   font-style: italic;
   font-stretch: condensed;
-  src: url('SwitzeraADF-CondItalic.otf') format('opentype');
+  src: url("SwitzeraADF-CondItalic.otf") format("opentype");
 }
 ```
 
@@ -489,43 +493,43 @@ We could keep this up for quite a while, but let’s stop there. If we take all 
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
-  src: url('SwitzeraADF-Regular.otf') format('opentype');
+  font-family: "SwitzeraADF";
+  src: url("SwitzeraADF-Regular.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: bold;
-  src: url('SwitzeraADF-Bold.otf') format('opentype');
+  src: url("SwitzeraADF-Bold.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-style: italic;
-  src: url('SwitzeraADF-Italic.otf') format('opentype');
+  src: url("SwitzeraADF-Italic.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: bold;
   font-style: italic;
-  src: url('SwitzeraADF-BoldItalic.otf') format('opentype');
+  src: url("SwitzeraADF-BoldItalic.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: bold;
   font-stretch: condensed;
-  src: url('SwitzeraADF-BoldCond.otf') format('opentype');
+  src: url("SwitzeraADF-BoldCond.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-style: italic;
   font-stretch: condensed;
-  src: url('SwitzeraADF-CondItalic.otf') format('opentype');
+  src: url("SwitzeraADF-CondItalic.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: bold;
   font-style: italic;
   font-stretch: condensed;
-  src: url('SwitzeraADF-BoldCondItalic.otf') format('opentype');
+  src: url("SwitzeraADF-BoldCondItalic.otf") format("opentype");
 }
 ```
 
@@ -537,7 +541,7 @@ As you can see, there are a lot of possible combinations just for those three de
 
 Now that we’ve covered `@font-face` and its descriptors, let’s get back to properties. We’re all used to normal and bold text, at the very least, which are sort of the two most basic font weights available. CSS gives you a lot more control over font weights with the property `font-weight`.
 
-//
+<Cards cards="font-weight" />
 
 Generally speaking, the heavier a font weight becomes, the darker and “more bold” a font appears. There are a great many ways to label a heavy font face. For example, the font family known as SwitzeraADF has a number of variants, such as SwitzeraADF Bold, SwitzeraADF Extra Bold, SwitzeraADF Light, and SwitzeraADF Regular. All of these use the same basic font shapes, but each has a different weight.
 
@@ -545,18 +549,18 @@ So let’s say that you want to use SwitzeraADF for a document, but you’d like
 
 ```css
 h1 {
-  font-family: 'SwitzeraADF Extra Bold, sans-serif;}
-h2 {font-family: ' SwitzeraADF Bold, sans-serif;
+  font-family: "SwitzeraADF Extra Bold, sans-serif;}
+h2 {font-family: " SwitzeraADF Bold, sans-serif;
 }
 h3 {
-  font-family: 'SwitzeraADF Bold', sans-serif;
+  font-family: "SwitzeraADF Bold", sans-serif;
 }
 h4,
 p {
   font-family: SwitzeraADF Regular, sans-serif;
 }
 small {
-  font-family: 'SwitzeraADF Light', sans-serif;
+  font-family: "SwitzeraADF Light", sans-serif;
 }
 ```
 
@@ -679,7 +683,8 @@ strong b {
 <p>
   This paragraph contains elements of increasing weight: there is a
   <span
-    >span element that contains a <strong>strongly emphasized element and a <b>bold element</b></strong></span
+    >span element that contains a
+    <strong>strongly emphasized element and a <b>bold element</b></strong></span
   >.
 </p>
 ```
@@ -779,34 +784,34 @@ With the `font-weight` descriptor, authors can assign faces of varying weights t
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: normal;
-  src: url('f/SwitzeraADF-Regular.otf') format('opentype');
+  src: url("f/SwitzeraADF-Regular.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: bold;
-  src: url('f/SwitzeraADF-Bold.otf') format('opentype');
+  src: url("f/SwitzeraADF-Bold.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: 300;
-  src: url('f/SwitzeraADF-Light.otf') format('opentype');
+  src: url("f/SwitzeraADF-Light.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: 500;
-  src: url('f/SwitzeraADF-DemiBold.otf') format('opentype');
+  src: url("f/SwitzeraADF-DemiBold.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: 700;
-  src: url('f/SwitzeraADF-Bold.otf') format('opentype');
+  src: url("f/SwitzeraADF-Bold.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: 900;
-  src: url('f/SwitzeraADF-ExtraBold.otf') format('opentype');
+  src: url("f/SwitzeraADF-ExtraBold.otf") format("opentype");
 }
 ```
 
@@ -829,7 +834,7 @@ In any given situation, the user agent picks which face to use depending on the 
 
 The methods for determining font size are both very familiar and very different.
 
-//
+<Cards cards="font-size" />
 
 In a fashion very similar to the `font-weight` keywords `bolder` and `lighter`, the property `font-size` has relative-size keywords called `larger` and `smaller`. Much like what we saw with relative font weights, these keywords cause the computed value of `font-size` to move up and down a scale of size values, which you’ll need to understand before you can explore `larger` and `smaller`. First, though, we need to examine how fonts are sized in the first place.
 
@@ -895,7 +900,10 @@ em {
   This paragraph element contains
   <strong
     >a strong-emphasis element which itself contains
-    <em>an emphasis element that also contains <strong>a strong element.</strong></em></strong
+    <em
+      >an emphasis element that also contains
+      <strong>a strong element.</strong></em
+    ></strong
   >
 </p>
 <p>
@@ -954,11 +962,16 @@ small,
 ```html
 <body>
   <p>
-    This paragraph contains both <em>emphasis</em> and <strong>strong emphasis</strong>, both of which are larger than
-    their parent element. The <small>small text</small>, on the other hand, is smaller by a quarter.
+    This paragraph contains both <em>emphasis</em> and
+    <strong>strong emphasis</strong>, both of which are larger than their parent
+    element. The <small>small text</small>, on the other hand, is smaller by a
+    quarter.
   </p>
   <p class="fnote">This is a 'footnote' and is smaller than regular text.</p>
-  <p>12px <em> 14.4px </em> 12px <strong> 16.2px </strong> 12px <small> 9px </small> 12px</p>
+  <p>
+    12px <em> 14.4px </em> 12px <strong> 16.2px </strong> 12px
+    <small> 9px </small> 12px
+  </p>
   <p class="fnote">10.5px</p>
 </body>
 ```
@@ -1000,7 +1013,8 @@ strong {
 
 ```html
 <p>
-  This paragraph contains both<em>emphasis and <strong>strong emphasis</strong></em
+  This paragraph contains both<em
+    >emphasis and <strong>strong emphasis</strong></em
   >, both of which are larger than the paragraph text.
 </p>
 <p>
@@ -1140,7 +1154,7 @@ Using pixel measurements for `font-size` is certainly one way to get “consiste
 
 Two of the main factors that influence a font’s legibility are its size and its x-height. The number that results from dividing the x-height by the `font-size` is referred to as the aspect value. Fonts with higher aspect values tend to be legible as the font’s size is reduced; conversely, fonts with low aspect values become illegible more quickly. CSS provides a way to deal with shifts in aspect values between font families with the property `font-size-adjust`.
 
-//
+<Cards cards="font-size-adjust" />
 
 The goal of this property is to preserve legibility when the font used is not the author’s first choice. Because of the differences in font appearance, while one font may be legible at a certain size, another font at the same size is difficult or impossible to read.
 
@@ -1210,7 +1224,7 @@ Declaring `font-size-adjust: none`; will suppress any adjustment of font sizes. 
 
 `font-style` is very simple: it’s used to select between `normal` text, `italic` text, and oblique text. That’s it! The only complication is in recognizing the difference between `italic` and `oblique` text and in understanding why browsers don’t always give you a choice.
 
-//
+<Cards cards="font-style" />
 
 The default value of `font-style` is, as you can see, `normal`. This refers to upright text, which is probably best described as text that is not italic or otherwise slanted. The vast majority of text in this book is upright, for instance. That leaves only an explanation of the difference between `italic` and `oblique` text. For that, it’s easiest to refer to Figure 5-24, which illustrates the differences very clearly.
 
@@ -1278,19 +1292,19 @@ As a descriptor, `font-style` lets an author link specific faces to specific fon
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   fontstyle|187font-style: normal;
-  src: url('SwitzeraADF-Regular.otf') format('opentype');
+  src: url("SwitzeraADF-Regular.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-style: italic;
-  src: url('SwitzeraADF-Italic.otf') format('opentype');
+  src: url("SwitzeraADF-Italic.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-style: oblique;
-  src: url('SwitzeraADF-Italic.otf') format('opentype');
+  src: url("SwitzeraADF-Italic.otf") format("opentype");
 }
 ```
 
@@ -1320,7 +1334,7 @@ Ideally, if there were a SwitzeraADF face with an oblique typeface, the author c
 
 In some font families, there are a number of variant faces that have wider or narrower letterforms. These often take names like “Condensed,” “Wide,” “Ultra Expanded,” and so on. The utility of such variants is that a designer can use a single font family while also having skinny and fat variants. CSS provides a property that allows an author to select among such variants, when they exist, without having to explicitly define them in `font-family` declarations. It does this via the somewhat misleadingly named `font-stretch`.
 
-//
+<Cards cards="font-stretch" />
 
 You might expect from the property name that this will stretch or squeeze a font like saltwater taffy, but that’s actually not the case at all. As the value names imply, this property instead behaves very much like the absolute-size keywords (e.g., `xx-large`) for the `font-size` property, with a range of absolute values that (in theory) let the author alter a font’s width. For example, an author might decide to stress the text in a strongly emphasized element by changing the font characters to a wider face than their parent element’s font characters.
 
@@ -1364,19 +1378,19 @@ Much as with the `font-weight` descriptor, the font-stretch descriptor allows au
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-stretch: normal;
-  src: url('SwitzeraADF-Regular.otf') format('opentype');
+  src: url("SwitzeraADF-Regular.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-stretch: condensed;
-  src: url('SwitzeraADF-Cond.otf') format('opentype');
+  src: url("SwitzeraADF-Cond.otf") format("opentype");
 }
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-stretch: expanded;
-  src: url('SwitzeraADF-Ext.otf') format('opentype');
+  src: url("SwitzeraADF-Ext.otf") format("opentype");
 }
 ```
 
@@ -1406,7 +1420,7 @@ As before, the `font-stretch` descriptor can take all of the values of the `font
 
 Some fonts contain data regarding how characters should be spaced relative to each other, known as `kerning`. This spacing can vary depending on how characters are combined; for example, the character pair `oc` may have a different spacing than the pair `ox`. Similarly, `AB` and `AW` may have different separation distances, to the point that in some fonts, the top-right tip of the `W` is actually placed to the left of the bottom-right tip of the `A`. This kerning data can be explicitly called for or suppressed using the property `font-kerning`.
 
-//
+<Cards cards="font-kerning" />
 
 The value `none` is pretty simple: it tells the user agent to ignore any kerning information in the font. `normal` tells the user agent to kern the text normally; that is, according to the kerning data contained in the font. `auto` tells the user agent to do whatever it thinks best, possibly depending on the type of font in use. The OpenType specification, for example, recommends (but does not require) that kerning be applied whenever the font supports it. If a font does not contain kerning data, `font-kerning` will have no effect.
 
@@ -1416,7 +1430,7 @@ The value `none` is pretty simple: it tells the user agent to ignore any kerning
 
 Beyond font weights, font styles, and so forth, there are font variants. These are embedded within a font face and can cover things like various styles of historical ligatures, small-caps presentation, ways of presenting fractions, the spacing of numbers, whether zeroes get slashes through them, and much more. CSS lets authors invoke these variants, when they exist, through `font-variant`.
 
-//
+<Cards cards="font-variant" />
 
 That’s quite a Values (Level 3) entry, isn’t it? Especially when the only values in CSS1 and CSS2 were the default of `normal`, which describes ordinary text, and small-caps, which calls for the use of `small-caps` text. Let’s concentrate just on those for a moment.
 
@@ -1477,9 +1491,9 @@ Note that this descriptor is very different than the other descriptors we’ve s
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: normal;
-  src: url('SwitzeraADF-Regular.otf') format('opentype');
+  src: url("SwitzeraADF-Regular.otf") format("opentype");
   font-variant: stacked-fractions titling-caps slashed-zero;
 }
 p {
@@ -1492,12 +1506,12 @@ p {
 
 In a manner similar to `font-variant`, the `font-feature-settings` descriptor allows authors to exercise low-level control over which OpenType font features are available for use (so don’t go using this descriptor on `.woff` files).
 
-//
+<Cards cards="font-feature-settings" />
 
 You can list one or more comma-separated OpenType features, as defined by the OpenType specification. For example, enabling common ligatures, small caps, and slashed zeroes would look something like this:
 
 ```css
-font-feature-settings: 'liga' on, 'smcp' on, 'zero' on;
+font-feature-settings: "liga" on, "smcp" on, "zero" on;
 ```
 
 The exact format of a `<feature-tag-value>` value is:
@@ -1510,15 +1524,15 @@ The exact format of a `<feature-tag-value>` value is:
 For many features, the only permitted integer values are `0` and `1`, which are equivalent to `off` and `on` (and vice versa). There are some features that allow a range of numbers, however, in which case values greater than 1 both enable the feature and define the feature’s selection index. If a feature is listed but no number is provided, `1` (on) is assumed. Thus, the following descriptors are all equivalent:
 
 ```css
-font-feature-settings: 'liga'; /* 1 is assumed */
-font-feature-settings: 'liga' 1; /* 1 is declared */
-font-feature-settings: 'liga' on; /* on = 1 */
+font-feature-settings: "liga"; /* 1 is assumed */
+font-feature-settings: "liga" 1; /* 1 is declared */
+font-feature-settings: "liga" on; /* on = 1 */
 ```
 
 Remember that all `<string>` values `must` be quoted. Thus, the first of the following descriptors will be recognized, but the second will be ignored:
 
 ```css
-font-feature-settings: 'liga', dlig;
+font-feature-settings: "liga", dlig;
 /* common ligatures are enabled; we wanted discretionary ligatures, but forgot
  quotes */
 ```
@@ -1560,14 +1574,14 @@ Just as with the `font-variant` descriptor, the `font-feature-settings` descript
 
 ```css
 @font-face {
-  font-family: 'SwitzeraADF';
+  font-family: "SwitzeraADF";
   font-weight: normal;
-  src: url('SwitzeraADF-Regular.otf') format('opentype');
-  font-feature-settings: 'afrc' off, 'smcp' off;
+  src: url("SwitzeraADF-Regular.otf") format("opentype");
+  font-feature-settings: "afrc" off, "smcp" off;
 }
 p {
   font: 1em SwitzeraADF, sans-serif;
-  font-feature-settings: 'afrc', 'smcp';
+  font-feature-settings: "afrc", "smcp";
 }
 ```
 
@@ -1577,7 +1591,7 @@ As always, the `font-feature-settings` descriptor can take all of the values of 
 
 It is sometimes the case that a given font family will lack alternate faces for things like bold or italic text. In such situations, the user agent may attempt to synthesize a face from the faces it has available, but this can lead to unattractive letterforms. To address this, CSS offers `font-synthesis`, which lets authors say how much synthesis they will or won’t permit in the rendering of a page.
 
-//
+<Cards cards="font-synthesis" />
 
 In many user agents, a font family that has no bold face can have one computed for it. This might be done by adding pixels to either side of each character glyph, for example. While this might seem useful, it can lead to results that are visually unappealing. This is why most font families actually have bold faces included: the font’s designer wanted to make sure that bolded text in that font looked good.
 
@@ -1612,7 +1626,7 @@ h2 {
 
 Some of this problem could be solved by grouping selectors, but wouldn’t it be easier to combine everything into a single property? Enter `font`, which is the shorthand property for all the other font properties (and a little more besides).
 
-//
+<Cards cards="font" />
 
 Generally speaking, a `font` declaration can have any one value from each of the listed font properties, or else a system font value (described in “Using System Fonts” on page 202). Therefore, the preceding example could be shortened as follows (and have exactly the same effect, as illustrated by Figure 5-33):
 

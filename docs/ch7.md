@@ -112,7 +112,8 @@ You can affect the way a user agent displays by setting a value for the property
 
 可以通过设置属性显示的值来影响用户代理的显示方式。现在我们已经仔细研究了可视化格式化，让我们考虑 display 属性，并使用本书前面的概念讨论它的另外两个值。
 
-//
+
+<Cards cards="display" />
 
 We’ll ignore the ruby- and table-related values, since they’re far too complex for this chapter, and we’ll also ignore the value `list-item`, since it’s very similar to block boxes. We’ve spent quite some time discussing block and inline boxes, but let’s spend a moment talking about how altering an element’s display role can alter layout before we look at `inline-block`.
 
@@ -228,7 +229,7 @@ It’s also the case that we can alter how these properties are treated using th
 
 也可以使用属性 `box-sizing` 属性改变这些属性的处理方式。
 
-//
+<Cards cards="box-sizing" />
 
 This property is how you change what the `width` and `height` values actually do. If you declare `width: 400px` and don’t declare a value for `box-sizing`, then the element’s content box will be 400 pixels wide; any padding, borders, and so on will be added to it. If, on the other hand, you declare `box-sizing: border-box`, then the element box will be 400 pixels from the left outer border edge to the right outer border edge; any border or padding will be placed within that distance, thus shrinking the width of the content area. This is illustrated in Figure 7-5.
 
@@ -1623,7 +1624,7 @@ In the previous section, we saw that when an inline nonreplaced element is broke
 
 在前一节中，我们看到当一个内联的不可替换元素跨多行分解时，它被视为一个长单行元素，被分割成更小的框，每个行分解一个块。这实际上只是默认行为，它可以通过属性“box- decorator -break”进行更改。
 
-//
+<Cards cards="box-decoration-break" />
 
 The default value, `slice`, is what we saw in the previous section. The other value, `clone`, causes each fragement of the element to be drawn as if it were a standalone box. What does that mean? Compare the two examples in Figure 7-50, in which exactly the same markup and styles are treated as either sliced or cloned.
 
