@@ -1825,7 +1825,7 @@ This would match any image that meets those criteria. Therefore, if you had a pa
 
 这将匹配任何符合条件的图像。 因此，如果您的段落包含一个图像而没有其他子元素，无论周围的所有文本如何，都将选中该图像。 如果您想要被超链接包含的唯一图像元素，则只需像这样修改选择器（如图2-24所示）：
 
-```css
+```html
 a[href] img:only-child {border: 2px solid black;}
 <a href="http://w3.org/"><img src="w3.png" alt="W3C"></a>
 <a href="http://w3.org/"><img src="w3.png" alt=""> The W3C</a>
@@ -1845,7 +1845,7 @@ To go back to the hyperlinked-image example, a[href] img:only-child matches any 
 
 回到超链接图像示例，a[href] img：only-child匹配所有符合条件的图像，该图像是唯一子元素，但不代表是祖先元素的子元素，可以是后代元素。想要被选中，该图像元素必须是其直接父级的唯一子元素，并且是链接的后代，但是该父级本身可以是该链接的后代。 因此，这里的所有三个图像都将匹配，如图2-25所示：
 
-```css
+```html
 a[href] img:only-child {border: 5px solid black;}
 <a href="http://w3.org/"><img src="w3.png" alt="W3C"></a>
 <a href="http://w3.org/"><span><img src="w3.png" alt="W3C"></span></a>
@@ -1866,7 +1866,7 @@ That’s all great, but what if you want to match images that are the only image
 
 这太好了，但是如果您想匹配超链接中仅有的图像，但是其中还包含其他元素，该怎么办？ 考虑下面这种情况：
 
-```css
+```html
 <a href="http://w3.org/"><b>•</b><img src="w3.png" alt="W3C"></a>
 ```
 
@@ -1874,7 +1874,7 @@ In this case, we have an a element that has two children: b and img. That image,
 
 在这种情况下，我们这一个元素具有两个子元素：b和img。 该图像不再是其父级（超链接）的唯一子级，因此无法使用:only-child进行匹配。 但是，可以使用:only-of-type进行匹配。 如图2-26所示：
 
-```css
+```html
 a[href] img:only-of-type {border: 5px solid black;}
 <a href="http://w3.org/"><b>•</b><img src="w3.png" alt="W3C"></a>
 <a href="http://w3.org/"><span><b>•</b><img src="w3.png" alt="W3C"></span></a>
@@ -1918,8 +1918,8 @@ There’s one more thing to make clear, which is that :only-of-type refers to el
 ```css
 p.unique:only-of-type {color: red;}
 <div>
-<p class="unique">This paragraph has a 'unique' class.</p>
-<p>This paragraph doesn't have a class at all.</p>
+  <p class="unique">This paragraph has a 'unique' class.</p>
+  <p>This paragraph doesn't have a class at all.</p>
 </div>
 ```
 
@@ -1942,7 +1942,7 @@ The pseudo-class :first-child is used to select elements that are the first chil
 
 伪类：first-child用于选择作为其他元素的第一个子元素的元素。 请看以下示例：
 
-```css
+```html
 <div>
   <p>These are the necessary steps:</p>
   <ul>
@@ -2760,9 +2760,9 @@ top right no-repeat;}
    1.如果页面是通过没有片段标识符的URL访问的
    2.如果通过具有片段标识符的URL访问该页面，但是该标识符与文档中的任何元素都不匹配
 
-More interestingly, though, what happens if multiple elements within a document can be matched by the fragment identifier—for example, if the author erroneously included three separate instances of <div id="target-pseudo"> in the same document?
+More interestingly, though, what happens if multiple elements within a document can be matched by the fragment identifier—for example, if the author erroneously included three separate instances of `<div id="target-pseudo">` in the same document?
 
-但是，更有趣的是，如果文档中的多个元素可以由片段标识符进行匹配，例如，如果作者在同一文档中错误地包含了三个单独的<div id =“ target-pseudo”>实例，会发生什么？
+但是，更有趣的是，如果文档中的多个元素可以由片段标识符进行匹配，例如，如果作者在同一文档中错误地包含了三个单独的`<div id =“ target-pseudo”>`实例，会发生什么？
 
 The short answer is that CSS doesn’t have or need rules to cover this case, because all CSS is concerned with is styling targets. Whether the browser picks just one of the three elements to be the target or designates all three as co-equal targets, :target styles should be applied to anything that is a valid target.
 
@@ -2890,11 +2890,11 @@ div.one p {font-weight: bold;}
 </div>
 ```
 
-The paragraph will be boldfaced, not normal-weight. This is because both rules match: the p element is descended from a div whose class does not contain the word one (<div class="two">), but it is also descended from a div whose class contains the word one. Both rules match, and so both apply. Since there is a conflict, the cascade is used to resolve the conflict, and the second rule wins. The structural arrangement of the markup, with the div.two being “closer” to the paragraph than div.one, is irrelevant.
+The paragraph will be boldfaced, not normal-weight. This is because both rules match: the p element is descended from a div whose class does not contain the word one (`<div class="two">`), but it is also descended from a div whose class contains the word one. Both rules match, and so both apply. Since there is a conflict, the cascade is used to resolve the conflict, and the second rule wins. The structural arrangement of the markup, with the div.two being “closer” to the paragraph than div.one, is irrelevant.
 
-该段将以粗体显示，而不是普通字体。 这是因为两个规则都匹配：p元素来自其类不包含单词one（<div class =“two”>）的div，但是它也源自其类包含单词one的div。 两条规则都匹配，因此都适用。 由于存在冲突，因此使用级联来解决冲突，第二条规则获胜。 标记的结构安排是无关紧要的，就算第二部分比第一部分更接近段落。
+该段将以粗体显示，而不是普通字体。 这是因为两个规则都匹配：p元素来自其类不包含单词one（`<div class =“two”>`）的div，但是它也源自其类包含单词one的div。 两条规则都匹配，因此都适用。 由于存在冲突，因此使用级联来解决冲突，第二条规则获胜。 标记的结构安排是无关紧要的，就算第二部分比第一部分更接近段落。
 
-## 伪元素选择器 Pseudo-Element Selectors
+## 2.7 伪元素选择器 Pseudo-Element Selectors
 
 Much as pseudo-classes assign phantom classes to anchors, pseudo-elements insert fictional elements into a document in order to achieve certain effects. Four basic pseudo-elements were defined in CSS 2, and they let you style the first letter of an element, style the first line of an element, and both create and style “before” and “after” content. There are other pseudo-classes that have been defined since CSS 2 (e.g., ::marker), and we’ll explore those in the chapters of the book for which they’re relevant. The four from CSS2 will be covered here because they’re old-school, and because they make a convenient way to talk about pseudo-element behavior.
 
@@ -2948,9 +2948,9 @@ This rule effectively causes the user agent to style a fictional, or “faux” 
 letter</h2>
 ```
 
-The ::first-letter styles are applied only to the contents of the fictional element shown in the example. This <p-first-letter> element does not appear in the document source, nor even in the DOM tree. Instead, its existence is constructed on the fly by the user agent and is used to apply the ::first-letter style(s) to the appropriate bit of text. In other words, <p-first-letter> is a pseudo-element. Remember, you don’t have to add any new tags. The user agent styles the first letter for you as if you had encased it in a styled element.
+The ::first-letter styles are applied only to the contents of the fictional element shown in the example. This `<p-first-letter>` element does not appear in the document source, nor even in the DOM tree. Instead, its existence is constructed on the fly by the user agent and is used to apply the ::first-letter style(s) to the appropriate bit of text. In other words, `<p-first-letter>` is a pseudo-element. Remember, you don’t have to add any new tags. The user agent styles the first letter for you as if you had encased it in a styled element.
 
-::first-letter样式仅应用于示例中所示的虚构元素的内容。 <p-first-letter>元素不会出现在文档源中，甚至不会出现在DOM树中。相反，它的存在由用户代理动态构建，并用于将::first-letter样式应用于适当的文本位。换句话说，<p-first-letter>是一个伪元素。 请记住，您不必添加任何新标签。 用户代理为您设置第一个字母的样式，就好像您已将其封装在样式元素中一样。
+::first-letter样式仅应用于示例中所示的虚构元素的内容。 `<p-first-letter>`元素不会出现在文档源中，甚至不会出现在DOM树中。相反，它的存在由用户代理动态构建，并用于将::first-letter样式应用于适当的文本位。换句话说，`<p-first-letter>`是一个伪元素。 请记住，您不必添加任何新标签。 用户代理为您设置第一个字母的样式，就好像您已将其封装在样式元素中一样。
 
 The first letter is defined as the first typographic letter unit of the originating element, if it is not preceded by other content, like an image. The specifications use “letter unit” because some languages have letters made up of more than character, like “oe” in Norse. Punctuation that precedes or follows the first letter unit, even if there are several such symbols, are included in the ::first-letter pseudo-element.
 
