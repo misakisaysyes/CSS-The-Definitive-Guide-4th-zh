@@ -980,7 +980,7 @@ Odds are that you’ll want to select elements based on portions of their attrib
 
 你可能想基于属性值的一部分而不是整个值来选择元素，这种情况下 CSS 提供了一些选择，匹配属性值中的子串。它们总结在表格 1-1 中。
 
-_表格 1-1：子串匹配属性选择器_
+_表格 2-1：子串匹配属性选择器_
 
 | 类型                | 描述                                                                                             |
 | :------------------ | :----------------------------------------------------------------------------------------------- |
@@ -1026,7 +1026,7 @@ img[src|='figure'] {
 
 Or, if you’re creating a CSS framework or pattern library, instead of creating redundant classes like "btn btn-small btn-arrow btn-active", you can declare "btnsmall-arrow-active", and target the class of elements with:
 
-如果你正在创���一个 CSS 框架或模式库，不必创建许多繁琐的类：`"btn btn-small btn-arrow btn-active"`，你可以声明`"btn-small-arrow-active"`，然后这样匹配元素的类：
+如果你正在创建一个 CSS 框架或模式库，不必创建许多繁琐的类：`"btn btn-small btn-arrow btn-active"`，你可以声明`"btn-small-arrow-active"`，然后这样匹配元素的类：
 
 ```css
 *[class|='btn'] {
@@ -1811,23 +1811,1244 @@ body {
 
 _**到 2017 年底，`:empty`是唯一一个在匹配元素的时候考虑文本节点的 CSS 选择器。所有 Selectors Level 3 的其他选择器都只考虑元素节点，而完全忽略文本节点——例如，前面讨论过的兄弟组合器**_
 
-### UI-State Pseudo-Classes
+### 唯一子元素 Selecting unique children
 
-### The :target Pseudo-Class
+If you’ve ever wanted to select all the images that are wrapped by a hyperlink element, the :only-child pseudo-class is for you. It selects elements when they are the only child element of another element. So let’s say you want to add a border to any image that’s the only child of another element. You’d write:
 
-### The :lang Pseudo-Class
+如果您想选中所有由超链接元素包装的图像，:only-child伪类适合您。 当它们是父元素中的唯一元素时，它将会被选中。 所以如果你想给父元素中唯一图像元素增加外框。 您可以这样写：
 
-### The Negation Pseudo-Class
+```css
+img:only-child {border: 1px solid black;}
+```
 
-## 2.7 Pseudo-Element Selectors
+This would match any image that meets those criteria. Therefore, if you had a paragraph which contained an image and no other child elements, the image would be selected regardless of all the text surrounding it. If what you’re really after is images that are sole children and found inside hyperlinks, then you just modify the selector like so (which is illustrated in Figure 2-24):
 
-### Styling the First Letter
+这将匹配任何符合条件的图像。 因此，如果您的段落包含一个图像而没有其他子元素，无论周围的所有文本如何，都将选中该图像。 如果您想要被超链接包含的唯一图像元素，则只需像这样修改选择器（如图2-24所示）：
 
-### Styling the First Line
+```css
+a[href] img:only-child {border: 2px solid black;}
+<a href="http://w3.org/"><img src="w3.png" alt="W3C"></a>
+<a href="http://w3.org/"><img src="w3.png" alt=""> The W3C</a>
+<a href="http://w3.org/"><img src="w3.png" alt=""> <em>The W3C</em></a>
+```
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-24.png' style=""/>
+</div>
+<p align="center">图 2-24：选中超链接中的唯一图像子元素</p>
 
-### Restrictions on ::first-letter and ::first-line
+There are two things to remember about :only-child. The first is that you always apply it to the element you want to be an only child, not to the parent element, as explained earlier. And that brings up the second thing to remember, which is that
+when you use :only-child in a descendant selector, you aren’t restricting the elements listed to a parent-child relationship.
 
-### Styling (or Creating) Content Before and After Elements
+关于:only-child，有两件事要记住。 首先唯一子元素伪类总是应用于子元素，而不应用于父元素，这在前面已经解释过了。 相对应要记住的第二件事，就是当您在后代选择器中使用:only-child时，不用严格列出元素之间的父子关系。
+
+To go back to the hyperlinked-image example, a[href] img:only-child matches any image that is an only child and is descended from an a element, not is a child of an a element. To match, the element image must be the only child of its direct parent, and a descendant of a link, but that parent can itself be a descendant of that link. Therefore, all three of the images here would be matched, as shown in Figure 2-25:
+
+回到超链接图像示例，a[href] img：only-child匹配所有符合条件的图像，该图像是唯一子元素，但不代表是祖先元素的子元素，可以是后代元素。想要被选中，该图像元素必须是其直接父级的唯一子元素，并且是链接的后代，但是该父级本身可以是该链接的后代。 因此，这里的所有三个图像都将匹配，如图2-25所示：
+
+```css
+a[href] img:only-child {border: 5px solid black;}
+<a href="http://w3.org/"><img src="w3.png" alt="W3C"></a>
+<a href="http://w3.org/"><span><img src="w3.png" alt="W3C"></span></a>
+<a href="http://w3.org/">A link to <span>the <img src="w3.png" alt="">
+web</span> site</a>
+```
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-25.png' style=""/>
+</div>
+<p align="center">图 2-25：选中超链接中的唯一图像子元素</p>
+
+In each case, the image is the only child element of its parent, and it is also descended from an a element. Thus, all three images are matched by the rule shown. If you wanted to restrict the rule so that it matched images that were the only children of a elements, then you’d just add the child combinator to yield a[href] > img:onlychild. With that change, only the first of the three images shown in Figure 2-25 would be matched.
+
+在每种情况下，图像都是其父元素的唯一子元素，并且它也是a元素的后代。 因此，所有三个图像均通过所示规则匹配。 如果您想限制规则，使其与元素中唯一的子图像匹配，则只需添加子组合器a[href]>img：onlychild即可。 进行此更改后，将仅匹配图2-25中显示的三个图像中的第一个。
+
+That’s all great, but what if you want to match images that are the only images inside hyperlinks, but there are other elements in there with them? Consider the following:
+
+这太好了，但是如果您想匹配超链接中仅有的图像，但是其中还包含其他元素，该怎么办？ 考虑下面这种情况：
+
+```css
+<a href="http://w3.org/"><b>•</b><img src="w3.png" alt="W3C"></a>
+```
+
+In this case, we have an a element that has two children: b and img. That image, no longer being the only child of its parent (the hyperlink), can never be matched using :only-child. However, it can be matched using :only-of-type. This is illustrated in Figure 2-26:
+
+在这种情况下，我们这一个元素具有两个子元素：b和img。 该图像不再是其父级（超链接）的唯一子级，因此无法使用:only-child进行匹配。 但是，可以使用:only-of-type进行匹配。 如图2-26所示：
+
+```css
+a[href] img:only-of-type {border: 5px solid black;}
+<a href="http://w3.org/"><b>•</b><img src="w3.png" alt="W3C"></a>
+<a href="http://w3.org/"><span><b>•</b><img src="w3.png" alt="W3C"></span></a>
+```
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-26.png' style=""/>
+</div>
+<p align="center">图 2-26：选中该种类中的唯一图像</p>
+
+The difference is that :only-of-type will match any element that is the only of its type among all its siblings, whereas :only-child will only match if an element has no siblings at all.
+
+两者的不同在于，:only-of-type将会在所有同级元素中匹配指定类型的元素，而:only-child只匹配没有其它同级元素的元素。
+
+This can be very useful in cases such as selecting images within paragraphs without having to worry about the presence of hyperlinks or other inline elements:
+
+这在某些情况下非常有用，例如在段落中选中图像，用这种做法不必担心超链接或其他内联元素的影响。
+
+```css
+p > img:only-of-type {float: right; margin: 20px;}
+```
+
+As long as there aren’t multiple images that are children of the same paragraph, then the image will be floated. You could also use this pseudo-class to apply extra styles to an h2 when it’s the only one in a section of a document, like this:
+
+只要一个段落中不存在多个图像，那么这个图像就会应用样式并向右浮动。当h2元素是文档section里的唯一h2时，你还可以使用此伪类给它加上额外的样式。方法如下：
+
+```css
+section > h2 {margin: 1em 0 0.33em; font-size: 1.8rem; border-bottom: 1px solid
+gray;}
+section > h2:only-of-type {font-size: 2.4rem;}
+```
+
+Given those rules, any section that has only one child h2 will have it appear larger than usual. If there are two or more h2 children to a section, neither of them will be larger than the other. The presence of other children—whether they are other heading levels, paragraphs, tables, paragraphs, lists, and so on—will not interfere with matching.
+
+根据这些规则，任何只有一个子h2的部分将显得比平时更大。 如果一个节中有两个或更多h2子级，则两个子级都不会比另一个大。 其他孩子的存在（无论它们是否是其他标题级别，段落，表格，段落，列表等）都不会干扰匹配。
+
+There’s one more thing to make clear, which is that :only-of-type refers to elements and nothing else. Consider the following:
+
+还有一件事情要弄清楚，那就是：“仅类型”是指元素，而没有别的。考虑以下情形：
+
+```css
+p.unique:only-of-type {color: red;}
+<div>
+<p class="unique">This paragraph has a 'unique' class.</p>
+<p>This paragraph doesn't have a class at all.</p>
+</div>
+```
+
+In this case, neither of the paragraphs will be selected. Why not? Because there are two paragraphs that are descendants of the div, so neither of them can be the only one of their type.
+
+在这种情况下，将不会选择任何段落。 为什么不匹配呢？因为div有两个段落后代，所以它们都不是唯一的类型。
+
+The class name is irrelevant here. We’re fooled into thinking that “type” is a generic description, because of how we parse language. Type, in the way :only-of-type means it, refers only to the element type. Thus, p.unique:only-of-type means
+“select any p element whose class attribute contains the word unique when the p element is the only p element among its siblings.” It does not mean “select any p element whose class attribute contains the word unique when it’s the only sibling paragraph to meet that criterion.”
+
+此处与类名无关。由于我们解析语言的方式，我们愚蠢地认为“类型”是一种通用描述。 类型：:only-of-type表示类型，它仅指元素类型。因此，p.unique：only-of-type表示“当p元素是同级中唯一的p元素时，选择其class属性包含单词unique的任何p元素。”并不意味着“当满足唯一的同级段落时，选择class属性包含单词unique的任何p元素。”
+
+### 选择首子元素和末子元素 Selecting first and last children
+
+It’s pretty common to want to apply special styling to the first or last child of an element. A common example is styling a bunch of navigation links in a tab bar, and wanting to put some special visual touches on the first or last tab (or both). In the past, this was done by applying special classes to those elements. Now we have pseudo-classes to carry the load for us.
+
+希望对元素的第一个或最后一个子元素应用特殊样式，这很常见。 一个常见的做法是在标签栏中设置一堆导航链接的样式，并希望在第一个或最后一个标签（或两者）上进行一些特殊的视觉修饰。 过去，这是通过将特殊类应用于这些元素来完成的。 现在我们有了伪类来为我们完成这个任务。
+
+The pseudo-class :first-child is used to select elements that are the first children of other elements. Consider the following markup:
+
+伪类：first-child用于选择作为其他元素的第一个子元素的元素。 请看以下示例：
+
+```css
+<div>
+  <p>These are the necessary steps:</p>
+  <ul>
+    <li>Insert key</li>
+    <li>Turn key <strong>clockwise</strong></li>
+    <li>Push accelerator</li>
+  </ul>
+  <p>
+    Do <em>not</em> push the brake at the same time as the accelerator.
+  </p>
+</div>
+```
+
+In this example, the elements that are first children are the first p, the first li, and the strong and em elements, which are all the first children of their respective parents. Given the following two rules:
+
+在此示例中，作为第一个孩子的元素是第一个p，第一个li以及strong和em，都是各自父母的第一个孩子。给出以下两个规则：
+
+```css
+p:first-child {font-weight: bold;}
+li:first-child {text-transform: uppercase;}
+```
+
+we get the result shown in Figure 2-27.
+
+效果如图2-27所示
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-27.png' style=""/>
+</div>
+<p align="center">图 2-27：首个子元素添加样式</p>
+
+The first rule boldfaces any p element that is the first child of another element. The second rule uppercases any li element that is the first child of another element (which, in HTML, must be either an ol or ul element).
+
+第一个规则用粗体标出所有是另一个元素的第一个子元素的p元素。 第二条规则将作为另一个元素（在HTML中必须是ol或ul元素）的第一个子元素的li元素设置为大写。
+
+As has been mentioned, the most common error is assuming that a selector like p:first-child will select the first child of a p element. Remember the nature of pseudo-classes, which is to attach a sort of phantom class to the element associated
+with the pseudo-class. If you were to add actual classes to the markup, it would look like this:
+
+如前所述，最常见的错误是以为像p：first-child这样的选择器将选择p元素的第一个子元素。 记住伪类的性质，伪类是将一种幽灵类附加到关联的元素上。如果要向标签中添加实际的类，它将看起来像这样：
+
+```html
+<div>
+  <p class="first-child">These are the necessary steps:</p>
+  <ul>
+    <li class="first-child">Insert key</li>
+    <li>Turn key <strong class="first-child">clockwise</strong></li>
+    <li>Push accelerator</li>
+  </ul>
+  <p>
+    Do <em class="first-child">not</em> push the brake at the same time as the
+    accelerator.
+  </p>
+</div>
+```
+
+Therefore, if you want to select those em elements that are the first child of another element, you write em:first-child.
+
+因此，如果您要选择作为另一个元素的第一个子元素的em元素，您可以这样编写em:first-child。
+
+The mirror image of :first-child is :last-child. If we take the previous example and just change the pseudo-classes, we get the result shown in Figure 2-28.
+
+与:first-child相对应的是:last-child。 如果我们采用前面的示例，仅更改伪类，则结果如图2-28所示。
+
+```css
+p:last-child {font-weight: bold;}
+li:last-child {text-transform: uppercase;}
+<div>
+  <p>These are the necessary steps:</p>
+  <ul>
+    <li>Insert key</li>
+    <li>Turn key <strong>clockwise</strong></li>
+    <li>Push accelerator</li>
+  </ul>
+  <p>
+    Do <em>not</em> push the brake at the same time as the accelerator.
+  </p>
+</div>
+```
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-28.png' style=""/>
+</div>
+<p align="center">图 2-28：最后一个子元素添加样式</p>
+
+The first rule boldfaces any p element that is the last child of another element. The second rule uppercases any li element that is the last child of another element. If you wanted to select the em element inside that last paragraph, you could use the selector p:last-child em, which selects any em element that descends from a p element that is itself the last child of another element.
+
+第一个规则将所有作为另一个元素的最后一个子元素的p元素标记为粗体。 第二条规则将所有另一个元素的最后一个子元素li都大写。 如果要在最后一段中选择em元素，则可以使用选择器p:last-child em，它选择所有p元素的em后代元素，而p元素本身就是另一个元素的最后一个子元素。
+
+Interestingly, you can combine these two pseudo-classes to create a version of :onlychild. The following two rules will select the same elements:
+
+有趣的是，您可以结合使用这两个伪类来创建：onlychild版本。 以下两个规则将选择相同的元素：
+
+```css
+p:only-child {color: red;}
+p:first-child:last-child {background-color: red;}
+```
+
+Either way, we get paragraphs with red foreground and background colors (not a good idea, clearly).
+
+无论哪种方式，我们都会获得带有红色字体色和背景色的段落（显然不是一个好主意）。
+
+### 选择首类型和末类型 Selecting first and last of a type
+
+In a manner similar to selecting the first and last children of an element, you can select the first or last of a type of element within another element. This permits things like selecting the first table inside a given element, regardless of whatever elements come before it.
+
+与选择元素的第一个和最后一个子元素类似，您可以在另一个元素中选择一个元素类型的第一个或最后一个。 这允许在给定元素内选择第一个表之类的操作，不管它前面的元素是什么。
+
+```css
+  table:first-of-type {border-top: 2px solid gray;}
+```
+
+Note that this does not apply to the entire document; that is, the rule shown will not select the first table in the document and skip all the others. It will instead select the first table element within each element that contains one, and skip any sibling table elements that come after the first. Thus, given the document structure shown in Figure 2-29, the circled nodes are the ones that are selected.
+
+请注意，这不适用于整个文档。 也就是说，上面的规则不会只选择文档中的第一个表然后跳过所有其他表。相反，它将选择被另一元素包含的第一个表元素，并跳过第一个表元素之后的所有同级表元素。 因此，给定图2-29中所示的文档结构，带圆圈的节点就是所选的节点。
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-29.png' style=""/>
+</div>
+<p align="center">图 2-29：选择首类型元素</p>
+
+Within the context of tables, a useful way to select the first data cell within a row regardless of whether a header cell comes before it in the row is as follows:
+
+在表的内容中，一种选择每行中第一个数据单元的有用方法如下，这不需要考虑标题单元格是否在该行中位于它之前：
+
+```css
+td:first-of-type {border-left: 1px solid red;}
+```
+
+That would select the first data cell in each of the following table rows:
+
+这将选择以下每个表行中的第一个数据单元：
+
+```css
+<tr>
+  <th scope="row">Count</th><td>7</td><td>6</td><td>11</td>
+</tr>
+<tr>
+  <td>Q</td><td>X</td><td>-</td>
+</tr>
+```
+
+Compare that to the effects of td:first-child, which would select the first td element in the second row, but not in the first row.
+
+将其与td:first-child的效果进行比较，后者将在第二行而不是第一行中选择第一个td元素。
+
+The flip side is :last-of-type, which selects the last instance of a given type from amongst its sibling elements. In a way, it’s just like :first-of-type except you start with the last element in a group of siblings and walk backward toward the first element until you reach an instance of the type. Given the document structure shown in Figure 2-30, the circled nodes are the ones selected by table:last-of-type.
+
+另一个是:last-of-type，它从同级元素中选择给定类型的最后一个元素。 在某种程度上，它类似于:first-of-type，不同之处在于从一组兄弟姐妹中的最后一个元素开始，然后向后移向最后一个元素，直到到达该类型的元素。 给定图2-30中所示的文档结构，带圆圈的节点是由table:last-of-type选择的节点。
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-30.png' style=""/>
+</div>
+<p align="center">图 2-30：选择末类型元素</p>
+
+As was noted with :only-of-type, remember that you are selecting elements of a type from among their sibling elements; thus, every set of siblings is considered separately. In other words, you are not selecting the first (or last) of all the elements of a type within the entire document as a single group. Each set of elements that share a parent is its own group, and you can select the first (or last) of a type within each group.
+
+如:only-of-type所示，请记住，您正在从其同级元素中选择一种类型的元素； 因此，每组兄弟姐妹都被单独考虑。 换句话说，您不应该将整个文档中某个类型的所有元素的第一个（或最后一个）归为一个组。 共享父对象的每组元素都为一个组，您可以在每个组中选择一种类型的第一个（或最后一个）。
+
+Similar to what was noted in the previous section, you can combine these two pseudo-classes to create a version of :only-of-type. The following two rules will select the same elements:
+
+与上一节中提到的类似，可以将这两个伪类组合在一起以创建：only-of-type版本。 以下两个规则将选择相同的元素：
+
+```css
+  table:only-of-type{color: red;}
+  table:first-of-type:last-of-type {background: red;}
+```
+
+### 按序号选择元素 Selecting every nth child
+
+If you can select elements that are the first, last, or only children of other elements, how about every third child? All even children? Only the ninth child? Rather than define a literally infinite number of named pseudo-classes, CSS has the :nth-child() pseudo-class. By filling integers or even simple algebraic expressions into the parentheses, you can select any arbitrarily numbered child element you like.
+
+既然可以选择其他元素的第一个，最后一个或唯一子元素，那么怎么选择第三个子元素呢？或是所有偶数序号子元素，或是第九个子元素。 除了定义了字面上无准确编号的命名伪类，CSS具有:nth-child()伪类。 通过在整数中填充整数甚至简单的代数表达式，您可以选择任何想要编号的子元素。
+
+Let’s start with the :nth-child() equivalent of :first-child, which is :nthchild(1). In the following example, the selected elements will be the first paragraph and the first list item.
+
+让我们从与:first-child等效的:nth-child（1）入手讲述:nth-child（）。 在以下示例中，所选元素将是第一段和第一列表项。
+
+```css
+p:nth-child(1) {font-weight: bold;}
+li:nth-child(1) {text-transform: uppercase;}
+<div>
+  <p>These are the necessary steps:</p>
+  <ul>
+    <li>Insert key</li>
+    <li>Turn key <strong>clockwise</strong></li>
+    <li>Push accelerator</li>
+  </ul>
+  <p>
+    Do <em>not</em> push the brake at the same time as the accelerator.
+  </p>
+</div>
+```
+
+If we change the numbers from 1 to 2, however, then no paragraphs will be selected, and the middle (or second) list item will be selected, as illustrated in Figure 2-31:
+
+但是，如果我们将数字从1更改为2，则不会选择任何段落，但是会选择中间（或第二个）列表项，如图2-31所示：
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-31.png' style=""/>
+</div>
+<p align="center">图 2-31：选择第二个类型子元素</p>
+
+You can insert any integer you choose; if you have a use case for selecting any ordered list that is the 93rd child element of its parent, then ol:nth-child(93) is ready to serve. This will match the 93rd child of any parent as long as that child is an ordered list. (This does not mean the 93rd ordered list among its siblings; see the next section for that.)
+
+您可以插入任何整数;如果您有一个场景是选择作为其父级的第93个子元素的任何有序列表，则可以使用ol:nth-child（93）。只要该有序列表是其父元素的第93个子元素，它就会被匹配（这并不意味着它是其同级元素中的第93个有序列表；有关该信息，请参阅下一节。）
+
+More powerfully, you can use simple algebraic expressions in the form a n + b or a n − b to define recurring instances, where a and b are integers and n is present as itself. Furthermore, the + b or − b part is optional and thus can be dropped if it isn’t needed.
+
+更强大的是，您可以使用n + b或n - b形式的简单代数表达式来定义重复出现的实例，其中a和b是整数，n用于倍数。 此外，+ b或-b是可选的，因此在不需要时可以将其删除。
+
+Let’s suppose we want to select every third list item in an unordered list, starting with the first. The following makes that possible, selecting the first and fourth items, as shown in Figure 2-32.
+
+假设我们要从无序列表中选择第三个列表项，首先。通过以下操作，可以选择第一和第四项：如图2-32所示。
+
+```css
+ul > li:nth-child(3n + 1) {text-transform: uppercase;}
+```
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-32.png' style=""/>
+</div>
+<p align="center">图 2-32：设置每三个列表项的样式</p>
+
+The way this works is that n represents the series 0, 1, 2, 3, 4, and on into infinity. The browser then solves for 3 n + 1, yielding 1, 4, 7, 10, 13, and so on. Were we to drop the +1, thus leaving us with simply 3n, the results would be 0, 3, 6, 9, 12, and so on.
+
+它的工作方式是n代表级数0、1、2、3、4，然后无限大。 然后，浏览器求解3n +1，得出1、4、7、10、13，依此类推。 如果我们放弃+1，因此只剩下3n，结果将是0、3、6、9、12，依此类推。
+
+Since there is no zeroth list item—all element counting starts with one, to the likely chagrin of array-slingers everywhere—the first list item selected by this expression would be the third list item in the list.
+
+由于没有第零个列表项（所有元素计数都从一个开始），因此该表达式选择的第一个列表项将是列表中的第三个列表项。
+
+Given that element counting starts with one, it’s a minor trick to deduce that :nthchild(2n) will select even-numbered children, and either :nth-child(2n+1) or :nth-child(2n-1) will select odd-numbered children. You can commit that to memory, or you can use the two special keywords that :nth-child() accepts: even and odd. Want to highlight every other row of a table, starting with the first? Here’s how you do it, with the results shown in Figure 2-33:
+
+给定元素计数以1开始，得出：nth-child（2n）将选择偶数个孩子，而：nth-child（2n 1）或：nth-child（2n-1）是选择奇数的一个小技巧。您可以将它记着，或者使用nth-child（）接受的两个特殊关键字：偶数和奇数。 如果想要突出表中的奇数行（从第一行开始）？ 方法如下，结果如图2-33所示：
+
+```css
+tr:nth-child(odd) {background: silver;}
+```
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-33.png' style=""/>
+</div>
+<p align="center">图 2-33：设置表格奇数行样式</p>
+
+Anything more complex than every-other-element requires an an + b expression. Note that when you want to use a negative number for b, you have to remove the + sign or else the selector will fail entirely. Of the following two rules, only the first will do anything. The second will be dropped by the parser and ignored:
+
+比隔个选择更复杂一点的选择器则需要一个+b表达式。请注意，当您要为b使用负数时，必须删除+符号，否则选择器将完全失效。在以下两个规则中，只有第一个会生效。 第二个将被解析器删除并忽略：
+
+```css
+tr:nth-child(4n - 2) {background: silver;}
+tr:nth-child(3n + −2) {background: red;}
+```
+
+If you want to select every row starting with the ninth, you can use either of the following. They are similar in that they will select all rows starting with the ninth, but the latter one has greater specificity, which we discuss in Chapter 3:
+
+如果要选择从第九个开始的每一行，则可以使用以下任一方法。 它们的相似之处在于，它们将选择从第九个开始的所有行，但是后一个具有更高的特异性，我们将在第3章中进行讨论：
+
+```css
+tr:nth-child(n + 9) {background: silver;}
+tr:nth-child(8) ~ tr {background: silver;}
+```
+
+As you might expect, there is a corresponding pseudo-class in :nth-last-child(). This lets you do the same thing as :nth-child(), except with :nth-last-child() you start from the last element in a list of siblings and count backward toward the beginning. If you’re intent on highlighting every other table row and making sure the very last row is one of the rows in the highlighting pattern, either one of these will work for you:
+
+如您所料，:nth-last-child（）中有一个对应的伪类。 这使您可以执行与：nth-child（）相同的操作，但使用：nth-last-child（）时，您从同级列表中的最后一个元素开始并向后计数。 如果您打算突出显示其他所有表行，并确保最后一行是突出显示模式中的行之一，那么以下做法将对您有用：
+
+```css
+tr:nth-last-child(odd) {background: silver;}
+tr:nth-last-child(2n+1) {background: silver;} /* equivalent */
+```
+
+If the DOM is updated to add or remove table rows, there is no need to add or remove classes. By using structural selectors, these selectors will always match the odd rows of the updated DOM.
+
+如果DOM已更新为添加或删除表行，则无需添加或删除类。 通过使用结构选择器，这些选择器将始终匹配更新的DOM的奇数行。
+
+Any element can be matched using both :nth-child() and :nth-last-child() if it fits the criteria. Consider these rules, the results of which are shown in Figure 2-34:
+
+如果符合条件，则可以使用：nth-child（）和：nth-last-child（）来匹配任何元素。 考虑以下规则，其结果如图2-34所示：
+
+```css
+li:nth-child(3n + 3) {border-left: 5px solid black;}
+li:nth-last-child(4n - 1) {border-right: 5px solid black; background: silver;}
+```
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-34.png' style=""/>
+</div>
+<p align="center">图 2-34 :nth-child()和:nth-last-child()组合</p>
+
+It’s also the case that you can string these two pseudo-classes together as :nthchild(1):nth-last-child(1), thus creating a more verbose restatement of :onlychild. There’s no real reason to do so other than to create a selector with a higher specificity, but the option is there.
+
+您也可以将这两个伪类串在一起：：nthchild（1）：nth-last-child（1），从而对：onlychild进行更详细的重述。除了创建具有更高特度的选择器外，没有其他使用这种方法的理由，但是这种方法确实可行。
+
+You can use CSS to determine how many list items are in a list, and style them accordingly:
+
+您可以使用CSS确定列表中有多少个列表项，并相应地设置其样式：
+
+```css
+li:only-child {width: 100%;}
+li:nth-child(1):nth-last-child(2),
+li:nth-child(2):nth-last-child(1) {width: 50%;}
+li:nth-child(1):nth-last-child(3),
+li:nth-child(1):nth-last-child(3) ~ li {width: 33.33%;}
+li:nth-child(1):nth-last-child(4),
+li:nth-child(1):nth-last-child(4) ~ li {width: 25%;}
+```
+
+In these examples, if a list item is the only list item, then the width is 100%. If a list item is the first item and also the second-from-the-last item, that means there are two items, and the width is 50%. If an item is the first item and also the third from the last item, then we make it, and the two sibling list items following it, 33% wide. Similarly, if a list item is the first item and also the fourth from the last item, it means that there are exactly four items, so we make it, and its three siblings, 25% of the width.
+
+在这些示例中，如果列表项是唯一的列表项，则宽度为100％。 如果列表项是第一项，也是从倒数第二项，则意味着有两个项，并且宽度为50％。 如果一个项目是第一个项目，也是最后一个项目的第三个项目，则我们将其制成，其后的两个同级列表项目的宽度为33％。 类似地，如果列表项是第一项，也是最后一项的第四项，则意味着恰好有四个项目，因此我们将其及其三个同级产品制成25％宽度。
+
+### 编号选择类型元素 Selecting every nth of a type
+
+In what’s probably become a familiar pattern, the :nth-child() and :nth-lastchild() pseudo-classes have analogues in :nth-of-type() and :nth-last-oftype(). You can, for example, select every other hyperlink that’s a child of any given paragraph, starting with the second, using p > a:nth-of-type(even). This will ignore all other elements (spans, strongs, etc.) and consider only the links, as demonstrated in Figure 2-35:
+
+你可能已经猜出，:nth-child()和:nth-lastchild()伪类在:nth-of-type()和:nth-last-oftype()中具有类似物。 例如，您可以使用p> a：nth-of-type（even），从第二个开始选择所有给定段落的子链接。 这将忽略所有其他元素（span，strongs等），仅考虑链接，如图2-35所示：
+
+```css
+p > a:nth-of-type(even) {background: blue; color: white;}
+```
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-35.png' style=""/>
+</div>
+<p align="center">图 2-35 选择偶数编号链接</p>
+
+If you want to work from the last hyperlink backward, then you’d use p > a:nthlast-of-type(even).
+
+如果您想从最后一个超链接向前选择，则可以使用p>a:nth-last-of-type(even)。
+
+As before, these select elements of a type from among their sibling elements, not from among all the elements of a type within the entire document as a single group. Each element has its own list of siblings, and selections happen within each group.
+
+如前所述，这些类型的选择元素是从其同级元素中选择的，而不是从整个文档中作为一个组的类型的所有元素之中选择的。 每个元素都有其自己的兄弟姐妹列表，并且在每个组中进行选择。
+
+As you might expect, you can string these two together as :nth-of-type(1):nthlast-of-type(1) to restate :only-of-type, only with higher specificity. (We will explain specificity in Chapter 3, I promise.)
+
+如您所料，您可以将这两个字符串串在一起：:nth-of-type(1) :nth-last-of-type(1)，以更高的特异性重新声明：only-of-type。（特异性我们会在第三章作详细介绍，我保证！）
+
+### 动态伪类 Dynamic Pseudo-Classes
+
+Beyond the structural pseudo-classes, there are a set of pseudo-classes that relate to structure but can change based on changes made to the page after it’s been rendered. In other words, the styles are applied to pieces of a document based on something in addition to the structure of the document, and in a way that cannot be precisely deduced simply by studying the document’s markup.
+
+除了结构化伪类之外，还有一组与结构有关的伪类，但是可以根据页面渲染后的更改进行更改。 换句话说，样式是根据文档结构以外的其他方式应用于文档的某些部分，并且这种方式无法通过简单地研究文档的标记来精确推导出。
+
+It may sound like we’re applying styles at random, but not so. Instead, we’re applying styles based on somewhat ephemeral conditions that can’t be predicted in advance. Nevertheless, the circumstances under which the styles will appear are, in fact, welldefined. Think of it this way: during a sporting event, whenever the home team scores, the crowd will cheer. You don’t know exactly when during a game the team will score, but when it does, the crowd will cheer, just as predicted. The fact that you can’t predict the exact moment of the cheer doesn’t make it any less expected.
+
+听起来好像我们在随机应用样式，但事实并非如此。 其实，我们是基于暂时无法预测的短暂情况来应用样式。然而实际上，样式出现的情况是明确定义的。不妨这样想：在体育赛事中，每当主队得分时，观众都会欢呼雀跃。您不知道球队在比赛中什么时候得分，但是当比赛得分时，观众会如预期的那样欢呼。您无法预测欢呼的确切时间这一事实并不能改变接下来被期望发生的事。
+
+Consider the anchor element (a), which (in HTML and related languages) establishes a link from one document to another. Anchors are always anchors, but some anchors refer to pages that have already been visited, while others refer to pages that have yet to be visited. You can’t tell the difference by simply looking at the HTML markup, because in the markup, all anchors look the same. The only way to tell which links have been visited is by comparing the links in a document to the user’s browser history. So there are actually two basic types of links: visited and unvisited.
+
+考虑锚元素（a），该元素（使用HTML和相关语言）建立了从一个文档到另一个文档的链接。 锚点始终是锚点，但是有些锚点是指已经访问过的页面，而其他锚点是指尚未访问的页面。 您不能仅通过查看HTML标记就可以分辨出差异，因为在标记中，所有锚点都相同。 判断访问过哪些链接的唯一方法是将文档中的链接与用户的浏览器历史记录进行比较。 因此，实际上有两种基本类型的链接：已访问和未访问。
+
+### 超链接伪类 Hyperlink pseudo-classes
+
+CSS2.1 defines two pseudo-classes that apply only to hyperlinks. In HTML, these are any a elements with an href attribute; in XML languages, they’re any elements that act as links to another resource. Table 2-2 describes the pseudo-classes you can apply to them.
+
+CSS2.1定义了两个仅适用于超链接的伪类。 在HTML中，这些是具有href属性的任何元素； 在XML语言中，它们是充当另一个资源的链接。表2-2说明了您可以将伪类应用于他们。
+
+_表格 2-2：超链接伪类_
+
+| 类型                | 描述                                                                                             |
+| :------------------ | :----------------------------------------------------------------------------------------------- |
+| :link               | 指向任何没有被访问过的具有超链接的锚（即具有href属性）                                            |
+| :visited            | 指向任何已访问地址的超链接的锚点。出于安全考虑，访问链接可以受到严格限制；有关详细信息，请参见第79页的侧栏“访问的链接和隐私”|
+
+The first of the pseudo-classes in Table 2-2 may seem a bit redundant. After all, if an anchor hasn’t been visited, then it must be unvisited, right? If that’s the case, all we should need is the following:
+
+表2-2中的第一个伪类似乎有点多余。毕竟，如果没有访问过某个锚点，那它肯定不是:visited的，对吗？在这种情况下，我们所需要做的只是以下几点：
+
+```css
+a {color: blue;}
+a:visited {color: red;}
+```
+
+Although this format seems reasonable, it’s actually not quite enough. The first of the rules shown here applies not only to unvisited links, but also to placeholder links such as this one:
+
+尽管这种格式看起来合理，但实际上还不够。 此处显示的第一个规则不仅适用于未访问的链接，还适用于诸如此类的占位符链接：
+
+```css
+<a>4. The Lives of Meerkats</a>
+```
+
+The resulting text would be blue because the a element will match the rule a {color: blue;}. Therefore, to avoid applying your link styles to placeholders, use the :link and :visited pseudo-classes:
+
+结果文本将为蓝色，因为a元素将与规则{{color：blue;}相匹配。因此，为避免将链接样式应用于占位符，请使用:link和:visited伪类：
+
+```css
+a:link {color: blue;} /* unvisited links are blue */
+a:visited {color: red;} /* visited links are red */
+```
+
+This is a good place to revisit attribute and class selectors and show how they can be combined with pseudo-classes. For example, let’s say you want to change the color of links that point outside your own site. In most circumstances we can use the startswith attribute selector. However, some CMS’s set all links to be absolute URLS, in which case you could assign a class to each of these anchors. It’s easy:
+
+在这里可以回顾属性和类选择器，并展示如何将它们与伪类结合使用。 例如，假设您要更改指向自己网站外部的链接的颜色。 在大多数情况下，我们可以使用startswith属性选择器。 但是，某些CMS会将所有链接设置为绝对URL，在这种情况下，您可以为每个锚点分配一个类。 这很容易：
+
+```css
+<a href="/about.html">My About page</a>
+<a href="https://www.site.net/" class="external">An external site</a>
+```
+
+To apply different styles to the external link, all you need is a rule like this:
+
+要将不同的样式应用于外部链接，您需要做的就是这样的一条规则：
+
+```css
+a.external:link, a[href^="http"]:link { color: slateblue;}
+a.external:visited, a[href^="http"]:visited {color: maroon;}
+```
+
+This rule will make the second anchor in the preceding markup slateblue by default, and maroon once visited, while the first anchor will remain the default color for hyperlinks (usually blue when not visited and purple once visited). For improved usability and accessibility, visited links should be easily differentiable from non-visited links.
+
+此规则将默认使上一个标记中的第二个锚为slateblue，并且一经访问后变栗色，而第一个锚将保持超链接的默认颜色（通常为不访问时为蓝色，访问后为紫色）。为了提高可用性和可访问性，已访问链接应易于与未访问链接区分开。
+
+_**样式化的访问链接使访问者可以知道他们去过的地方以及他们尚未访问的地方。这在大型可能难以记住的网站下尤其重要，特别是对于那些认知障碍者访问过哪些页面。 不仅仅突出显示了W3C Web Content Accessi其中的访问链接能力之一，它还可以使搜索内容更快，更多高效，使用体验更好。**_
+
+The same general syntax is used for ID selectors as well:
+
+ID选择器也使用相同的语法：
+
+```css
+a#footer-copyright:link{background: yellow;}
+a#footer-copyright:visited {background: gray;}
+```
+
+You can chain the two link-state pseudo-classes together, but there’s no reason why you ever would: a link cannot be both visited and unvisited at the same time!
+
+您可以将两个链接状态伪类链接在一起，但是没有理由这么做：不能同时访问和不访问链接！
+
+Visited Links and Privacy
+访问链接和隐私
+
+For well over a decade, it was possible to style visited links with any CSS properties available, just as you could unvisited links. However, in the mid-2000s several people demonstrated that one could use visual styling and simple DOM scripting to determine if a user had visited a given page. For example, given the rule :visited {fontweight: bold;}, a script could find all of the boldfaced links and tell the user which of those sites they’d visited—or, worse still, report those sites back to a server. A similar, non-scripted tactic uses background images to achieve the same result.
+
+十多年来，可以使用任何可用的CSS属性设置访问链接的样式，就像您可以访问未访问的链接一样。但是，在2000年代中期，一些人证明人们可以使用视觉样式和简单的DOM脚本来确定用户是否访问了给定的页面。例如，给定规则：visited {fontweight：bold;}，脚本可以找到所有加粗字体的链接，并告诉用户他们访问了哪些站点，或者更糟的是，将这些站点报告给服务器。一种类似的非脚本做法使用背景图像也实现相同的效果。
+
+While this might not seem terribly serious to you, it can be utterly devastating for a web user in a country where one can be jailed for visiting certain sites—opposition parties, unsanctioned religious organizations, “immoral” or “corrupting” sites, and so on. It can also be used by phishing sites to determine which online banks a user has visited. Thus, two steps were taken.
+
+尽管这对您来说似乎并不十分严重，但对于可能因访问某些政党，未经批准的宗教组织，“不道德”或“腐败”网站而被判入狱的国家或地区的网络用户就有很大问题。网络钓鱼网站也可以使用它来确定用户浏览了哪些在线银行。 因此，采取了两个步骤。
+
+The first step is that only color-related properties can be applied to visited links: color, background-color, column-rule-color, outline-color, border-color, and the individual-side border color properties (e.g., border-top-color). Attempts to apply any other property to a visited link will be ignored. Furthermore, any styles defined for :link will be applied to visited links as well as unvisited links, which effectively makes :link “style any hyperlink,” instead of “style any unvisited hyperlink.
+
+第一步是仅将与颜色相关的属性应用于已访问的链接：颜色，背景颜色，列颜色，外框颜色，边框颜色以及单边框颜色属性（例如border-top-color）。尝试将任何其他属性应用于访问的链接将被忽略。 此外，为:link定义的任何样式都将应用于访问的链接以及未访问的链接，这将有效地使：link“为任何超链接设置样式”，而不是“为任何未访问的超链接设置样式”。
+
+The second step is that if a visited link has its styles queried via the DOM, the resulting value will be as if the link were not visited. Thus, if you’ve defined visited links to be purple rather than unvisited links’ blue, even though the link will appear purple onscreen, a DOM query of its color will return the blue value, not the purple one.
+
+第二步是，如果访问的链接通过DOM查询其样式，则结果值将好像未访问该链接一样。 因此，如果您将访问的链接定义为紫色而不是未访问的链接的蓝色，即使该链接在屏幕上显示为紫色，则其颜色的DOM查询将返回蓝色值，而不是紫色。
+
+As of late 2017, this behavior is present throughout all browsing modes, not just “private browsing” modes. Even though we’re limited in how we can use CSS to differentiate visited links from non-visited links, it is important for usability and accessibility to use the limited styles supported by visited links to differentiate them from unvisited links.
+
+截至2017年底，此行为在所有浏览模式中均存在，而不仅仅是“私人浏览”模式。 尽管我们在使用CSS区分访问过的链接和未访问过的链接方面受到限制，但是对于可用性和可访问性而言，使用访问过的链接支持的限制样式将它们与未访问的链接区分开来也很重要。
+
+### 用户行为伪类 User action pseudo-classes
+
+CSS defines a few pseudo-classes that can change a document’s appearance based on actions taken by the user. These dynamic pseudo-classes have traditionally been used to style hyperlinks, but the possibilities are much wider. Table 2-3 describes these pseudo-classes.
+
+CSS定义了一些伪类，它们可以根据以下内容更改文档的外观：用户采取的行动。 传统上一直使用这些超链接的动态伪类样式。 表2-3介绍了这些伪类。
+
+_表格 2-3：行为伪类_
+
+| 类型                | 描述                                                                                             |
+| :------------------ | :----------------------------------------------------------------------------------------------- |
+| :focus            | 指向被聚焦的输入元素，无论是键盘输入或是其他方式输入                                                    |
+| :hover            | 指向被鼠标悬停的元素，例如指向被鼠标悬停上方的超链接                                                    |
+| :active           | 指向被用户激活的元素，例如用户点击按钮不松开时指向被点击按钮                                            |
+
+Elements that can become :active include links, buttons, menu items, and any element with a tabindex value. These elements and all other interactive elements, including form controls and elements that are content-editable, can also receive focus.
+
+可以应用:active的元素包括链接，按钮，菜单项以及任何具有tabindex值的元素。 这些元素和所有其他交互式元素（包括表单控件和可内容编辑的元素）也可以被作用到。
+
+As with :link and :visited, these pseudo-classes are most familiar in the context of hyperlinks. Many web pages have styles that look like this:
+
+就像:link和:visited，这两个伪类经常被用于超链接文本。许多网页像下面用法一样使用它们：
+
+```css
+a:link {color: navy;}
+a:visited {color: gray;}
+a:focus {color: orange;}
+a:hover {color: red;}
+a:active {color: yellow;}
+```
+
+_**伪类的顺序比想象中重要。 通常的建议是“ link-visited-hoveractive”，尽管现在已经修改为“ link-visited-focushover-active”。下一章解释为什么要如此注重顺序，并讨论您可能更改甚至忽略推荐顺序的场景**_
+
+Notice that the dynamic pseudo-classes can be applied to any element, which is good since it’s often useful to apply dynamic styles to elements that aren’t links. For example, using this markup:
+
+请注意，动态伪类可以应用于任何元素，这很好，因为将动态样式应用于不是链接的元素通常很有用。 例如，使用以下标签：
+
+```css
+input:focus {background: silver; font-weight: bold;}
+```
+
+you could highlight a form element that is ready to accept keyboard input, as shown in Figure 2-36.
+
+你可以将表格中准备好接受键盘输入的控件高亮显示。效果如图2-36所示。
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-36.png' style=""/>
+</div>
+<p align="center">图 2-36 高亮表单聚焦控件</p>
+
+You can also perform some rather odd feats by applying dynamic pseudo-classes to arbitrary elements. You might decide to give users a “highlight” effect by way of the following:
+
+您还可以通过将动态伪类应用于任意元素来执行一些相当奇怪的行为。 您可能决定通过以下方式为用户提供“突出”效果：
+
+```css
+body *:hover {background: yellow;}
+```
+
+This rule will cause any element that’s descended from the body element to display a yellow background when it’s in a hover state. Headings, paragraphs, lists, tables, images, and anything else found inside the body will be changed to have a yellow background. You could also change the font, put a border around the element being hovered, or alter anything else the browser will allow.
+
+此规则将导致body元素的任何后代元素处于悬停状态时显示黄色背景。 标题，段落，列表，表格，图像以及在body标签内发现的其他任何东西都会变成黄色背景。 您也可以更改字体，在悬停时元素周围加上边框，或者在浏览器允许的范围内进行各种其它更改。
+
+_**虽然可以使用:focus随意设置元素样式，但不要从焦点元素中删除元素本身所有样式。 区分哪个当前具有焦点的元素对于可访问性至关重要，尤其是对于使用键盘浏览您的网站或应用程序的用户。**_
+
+### 动态样式的问题 Real-world issues with dynamic styling
+
+Dynamic pseudo-classes present some interesting issues and peculiarities. For example, it’s possible to set visited and unvisited links to one font size and make hovered links a larger size, as shown in Figure 2-37:
+
+动态伪类提出了一些有趣的问题和特性。例如，可以将访问和未访问的链接设置为一种字体大小，并将其悬停链接设置较大的字体，如图2-37所示：
+
+```css
+a:link, a:visited {font-size: 13px;}
+a:hover, a:active {font-size: 20px;}
+```
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-37.png' style=""/>
+</div>
+<p align="center">图 2-37 通过动态样式改变布局</p>
+
+As you can see, the user agent increases the size of the anchor while the mouse pointer hovers over it; or, thanks to the :active setting, when a user touches it on a touch screen. A user agent that supports this behavior must redraw the document while an anchor is in hover state, which could force a reflow of all the content that follows the link.
+
+如您所见，当鼠标指针悬停在锚上时，用户代理会增加锚的大小。 或者，由于:active设置，当用户在触摸屏上触摸它时。支持此行为的用户代理必须在锚点处于悬停状态时重绘文档，这可能会迫使对链接后面的所有内容进行重排。
+
+### UI状态伪类 UI-State Pseudo-Classes
+
+Closely related to the dynamic pseudo-classes are the user-interface (UI) state pseudoclasses, which are summarized in Table 2-4. These pseudo-classes allow for styling based on the current state of user-interface elements like checkboxes.
+
+与动态伪类密切相关的是用户界面（UI）状态伪类，表2-4中对此进行了汇总。这些伪类允许根据用户界面元素（如复选框）的当前状态进行样式设置。
+
+_表格 2-3：行为伪类_
+
+| 类型                | 描述                                                                                             |
+| :------------------ | :----------------------------------------------------------------------------------------------- |
+| :enabled            | 指向那些允许输入的UI元素（例如表单中的input）                                                    |
+| :disabled            | 指向那些不允许输入的UI元素（例如表单中被禁止输入的input）                                          |
+| :checked           | 指向已经被选中的单选或复选框，无论是文档自身选中的还是用户点击选中的                                     |
+| :indeterminate     | 指向没有被选中的单选或复选框，这个状态仅能通过js来设置，不用由用户来触发                                  |
+| :default           | 指向被默认选中的单选、复选框或下拉框                                                                 |
+| :valid             | 指向用户输入合法数据的元素                                                                           |
+| :invalid           | 指向用户输入不合法数据的元素                                                                          |
+| :in-range           | 指向用户输入的数据在指定大小范围内的元素                                                              |
+| :out-ofrange       | 指向用户输入的数据不在指定大小范围内的元素                                                             |
+| :required           | 指向要求用户必须输入数据的元素                                                                        |
+| :optional           | 指向不强制要求用户必须输入数据的元素                                                                    |
+| :read-write           | 指向可编辑元素                                                                                      |
+| :read-only           | 指向只读元素                                                                                         |
+
+Although the state of a UI element can certainly be changed by user action—for example, a user checking or unchecking a checkbox—UI-state pseudo-classes are not classified as purely dynamic because they can also be affected by the document structure or DOM scripting.
+
+尽管UI元素的状态可以通过用户操作（例如，用户选中或取消选中复选框）进行更改，但是UI状态伪类并未归类为纯动态的，因为它们也可能受到文档结构或DOM脚本的影响。
+
+_**您可能会认为:focus属于本节，而不是之前的内容。 但是，css3规定:focus与:hover和:active放一起。 这很可能因为它们都没有归在css2的UI状态伪类。 不过，更重要的focus是可以应用在非UI元素（例如标题或段落），一个例子是通过语音浏览器阅读。 仅此一点就不能将其视为UI状态伪类**_
+
+### 可用和不可用交互元素 Enabled and disabled UI elements
+
+Thanks to both DOM scripting and HTML5, it is possible to mark a user-interface element (or group of user interface elements) as being disabled. A disabled element is displayed, but cannot be selected, activated, or otherwise interacted with by the user. Authors can set an element to be disabled either through DOM scripting, or (in HTML5) by adding a disabled attribute to the element’s markup.
+
+由于DOM脚本和HTML5，可以将交互元素（或一组交互元素）标记为已禁用。 禁用的元素会显示，但用户无法选择，激活或与之交互。 作者可以通过DOM脚本或（在HTML5中）通过将禁用的属性添加到元素的标记中来设置要禁用的元素。
+
+Any element that hasn’t been disabled is by definition enabled. You can style these two states using the :enabled and :disabled pseudo-classes. It’s much more common to style disabled elements and leave enabled elements alone, but both have their uses, as illustrated in Figure 2-38:
+
+根据定义，所有未禁用的元素均，默认为启用。您可以使用:enabled和:disabled伪类为这两种状态设置样式。设置禁用元素的样式并保留启用元素的样式更为常见，但两者都有其用途，如图2-38所示:
+
+```css
+:enabled {font-weight: bold;}
+:disabled {opacity: 0.5;}
+```
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-38.png' style=""/>
+</div>
+<p align="center">图 2-38 可用元素和不可用元素添加样式</p>
+
+### 选中状态 Check states
+
+In addition to being enabled or disabled, certain UI elements can be checked or unchecked—in HTML, the input types “checkbox” and “radio” fit this definition. Selectors level 3 offers a :checked pseudo-class to handle elements in that state, though curiously it omits an :unchecked. There is also the :indeterminate pseudoclass, which matches any checkable UI element that is neither checked nor unchecked. These states are illustrated in Figure 2-39:
+
+除了启用或禁用之外，还可以选中或取消选中某些UI元素-在HTML中，输入类型“复选框”和“单选框”符合此定义。 CSS3提供了:checked伪类来处理该状态下的元素，奇怪的是，它省略了:unchecked。除此之外还有:indeterminate伪类，它与任何未选中或未选中的可选中UI元素匹配。 这些状态如图2-39所示:
+
+```css
+:checked {background: silver;}
+:indeterminate {border: red;}
+```
+
+In addition, you can use the negation pseudo-class, which is covered later, to select checkboxes which are not checked with input[type="checkbox]:not(:checked). Only radio buttons and checkboxes can be checked. All other elements, and these two when not checked, are :not(:checked).
+
+另外，您可以使用稍后将涉及的否定伪类input [type =“checkbox”]:not（:checked）来选择未选中的复选框，只有单选按钮和复选框能被选中。所有其他元素，以及前两个在位被选中的情况下，都被:not（:checked）匹配。
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-39.png' style=""/>
+</div>
+<p align="center">图 2-39 选中和未选中元素添加样式</p>
+
+Although checkable elements are unchecked by default, it’s possible for a HTML author to toggle them on by adding the checked attribute to an element’s markup. An author can also use DOM scripting to flip an element’s checked state to checked or unchecked, whichever they prefer.
+
+尽管默认情况下可选元素为未选状态，但HTML作者可以通过将选中的属性添加到元素的标签中来启用它们。 作者还可以使用DOM脚本将元素的选中状态翻转为选中或未选中，就看他们愿意使用哪种方法了。
+
+There is a third state, “indeterminate.” As of late 2017, this state can only be set through DOM scripting or by the user agent itself; there is no markup-level method to set elements to an indeterminate state. The purpose of allowing an indeterminate state is to visually indicate that the element needs to be checked (or unchecked) by the user. However, note that this is purely a visual effect: it does not affect the underlying state of the UI element, which is either checked or unchecked, depending on document markup and the effects of any DOM scripting.
+
+第三个状态是“不确定”。截至2017年底，只能通过DOM脚本或用户代理本身来设置此状态。 没有标记的方法可以将元素设置为不确定状态。允许不确定状态的目的是在视觉上指示用户需要选中（或取消选中）元素。但是，请注意，这纯粹是视觉效果：它不会影响UI元素的基础状态，该基础状态是选中还是未选中，取决于文档标记和任何DOM脚本的效果。
+
+Although the previous examples show styled radio buttons, remember that direct styling of radio buttons and checkboxes with CSS is actually very limited. However, that shouldn’t limit your use of the selected-option pseudo-classes. As an example, you can style the labels associated with your checkboxes and radio buttons using a combination of :checked and the adjacent sibling combinator:
+
+尽管前面的示例显示了样式化的单选按钮，但是请记住，使用CSS直接设置单选按钮和复选框的样式实际上非常有限。但是，这不应限制您对selected-option伪类的使用。例如，您可以使用:checked和相邻的兄弟组合器的组合来设置与复选框和单选按钮关联的标签的样式：
+
+```css
+input[type="checkbox"]:checked + label {
+color: red;
+font-style: italic;
+}
+<input id="chbx" type="checkbox"> <label for="chbx">I am a label</label>
+```
+
+### 默认选项伪类 Default option pseudo-class
+
+The :default pseudo-class matches the UI elements that are the default among a set of similar elements. This typically applies to context menu items, buttons, and select lists/menus. If there are several same-named radio buttons, the one that was originally checked matches :default, even if the UI has been updated by the user so that it no longer matches :checked. If a checkbox was checked on page load, :default matches it. Any initially-selected option(s) in a select element will match. The :default pseudo-class can also match buttons and menu items:
+
+:default伪类与UI元素匹配，UI元素是一组相似元素中的默认元素。这通常适用于上下文菜单项，按钮和选择列表/菜单。如果有多个同名的单选按钮，则最初选中的按钮将匹配:default，即使用户已更新UI使其不再匹配:checked也是如此。如果在页面加载时选中了复选框，则:default与之匹配。select元素中所有最初选择的选项都将匹配。:default伪类也可以匹配按钮和菜单项：
+
+```css
+[type="checkbox"]:default + label { font-style: italic; }
+<input type="checkbox" id="chbx" checked name="foo" value="bar">
+<label for="chbx">This was checked on page load</label>
+```
+
+### 可选伪类 Optionality pseudo-classes
+
+The pseudo-class :required matches any form control that is required, as denoted by the presence of the required attribute (in HTML5). The :optional pseudo-class matches form controls that do not have the required attribute, or whose required attribute has a value of false.
+
+当required属性（在HTML5标签中）存在，伪类:required与任何必填的表单控件匹配。 :optional伪类与没有必需属性或者其必需属性的值为false的表单控件匹配。
+
+A form element is :required or :optional if a value for it is, respectively, required or optional before the form to which it belongs can be validly submitted. For example:
+
+一个表单元素分别是:required或:optional，则可以在表单提交之前确保元素里面的值是符合要求的。例如：
+
+```css
+input:required { border: 1px solid #f00;}
+input:optional { border: 1px solid #ccc;}
+<input type="email" placeholder="enter an email address" required>
+<input type="email" placeholder="optional email address">
+<input type="email" placeholder="optional email address" required="false">
+```
+
+The first email input will match the :required pseudo-class because of the presence of the required attribute. The second input is optional, and therefore will match the :optional pseudo-class. The same is true for the third input, which has a required attribute, but the value is false.
+
+由于存在必填属性，因此第一个电子邮件输入将匹配:required伪类。 第二个输入是可选的，因此将匹配:optional伪类。对于具有必需属性的第三个输入也是如此，但是该值为false。
+
+We could also use attribute selectors instead. The following selectors are equivalent to the preceding ones:
+
+我们还可以使用属性选择器来实现这种效果，下面做法的效果与上面相同：
+
+```css
+input[required] { border: 1px solid #f00;}
+input:not([required]) { border: 1px solid #ccc;}
+```
+
+Elements that are not form-input elements can be neither required nor optional.
+
+非表单元素不能设置成必填或非必填。
+
+### 有效性伪类 Validity pseudo-classes
+
+The :valid pseudo-class refers to a user input that meets all of its data validity requirements. The :invalid pseudo-class, on the other hand, refers to a user input that does not meet all of its data validity requirements.
+
+:valid伪类匹配满足其所有数据有效性要求的用户输入。 另一方面，:invalid伪类匹配未满足其所有数据有效性要求的用户输入。
+
+The validity pseudo-classes :valid and :invalid only apply to elements having the capacity for data validity requirements: a div will never match either selector, but an input could match either, depending on the current state of the interface.
+
+有效性伪类：valid和：invalid仅适用于具有数据有效性要求的元素：div永远不会匹配其中任何一个选择器，但是input可以匹配任何一个，具体取决于输入框的当前状态。
+
+Here’s an example where an image is dropped into the background of any email input which has focus, with one image being used when the input is invalid and another used when the input is valid, as illustrated in Figure 2-40:
+
+举个例子，其中将一个图像放置到所有具有焦点的电子邮件input的背景中，其中一个图像在输入无效时使用，另一幅在输入有效时使用，如图2-40所示：
+
+```css
+input[type="email"]:focus {
+background-position: 100% 50%;
+background-repeat: no-repeat;
+}
+input[type="email"]:focus:invalid {
+background-image: url(warning.jpg);
+}
+input[type="email"]:focus:valid {
+background-image: url(checkmark.jpg);
+}
+<input type="email">
+```
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-40.png' style=""/>
+</div>
+<p align="center">图 2-40 合法输入元素和非法输入元素添加样式</p>
+
+_**这些伪类状态取决于用户代理返回的样式结果，因此可能无法如您期望的结果。 例如，在2017年末，电子邮件输入为空，多个用户代理判定为输入合法，尽管事实为空输入的电子邮件地址无效。在这些验证程序得到改进之前，最好谨慎对待有效性伪类。**_
+
+### 范围伪类 Range pseudo-classes
+
+The range pseudo-classes include :in-range, which refers to a user input whose value is between the minimum and maximum values set by HTML5’s min and max attributes, and :out-of-range, which refers to a user input whose value is below the minimum or above the maximum values allowed by the control.
+
+范围伪类包括：:in-range，它匹配用户输入的值在HTML5的min和max属性所设置的最小值和最大值之间的元素；以及:out-of-range，它匹配用户输入的其值，低于控件允许的最小值或最大值的元素。
+
+For example, consider a number input that accepts numbers in the range 0 to 1,000:
+
+举个例子，一个数字输入被规定输入范围在0到1000之间：
+
+```css
+input[type="number"]:focus {
+background-position: 100% 50%;
+background-repeat: no-repeat;
+}
+input[type="number"]:focus:out-of-range {
+background-image: url(warning.jpg);
+}
+input[type="number"]:focus:in-range {
+background-image: url(checkmark.jpg);
+}
+<input id="nickels" type="number" min="0" max="1000" />
+```
+
+The :in-range and :out-of-range pseudo-classes apply only to elements with range limitations. Elements that don’t have range limitations, like links for inputs of type tel, will not be matched by either pseudo-class.
+
+:in-range和:out-of-range伪类仅适用于具有范围限制的元素。没有范围限制的元素（例如tel类型的输入链接）将不会与任何一个伪类匹配。
+
+There is also a step attribute in HTML5. If a value is invalid because it does not match the step value, but is still between or equal to the min and max values, it will match :invalid while also still matching :in-range. That is to say, a value can be inrange while also being invalid.
+
+HTML5中还有一个step属性。如果一个值因为它与步长值不匹配，但仍在最小值和最大值之间，则将匹配：invalid，同时仍匹配：in-range。 也就是说，值可以在范围内，同时也无效。
+
+Thus, in the following scenario, the input’s value will be both red and boldfaced, because 23 is in range but is not evenly divisible by 10：
+
+因此，下面的例子中，输入框的值同时是红色和黑体，因为23在规定范围内，但是不是10的倍数。
+
+```css
+input[type="number"]:invalid {color: red;}
+input[type="number"]:in-range {font-weight: bold;}
+<input id="by-tens" type="number" min="0" max="1000" step="10" value="23" />
+```
+
+### 可变伪类 Mutability pseudo-classes
+
+The mutability pseudo-classes include :read-write, which refers to a user input that is editable by the user; and :read-only, which matches user inputs that are not editable. Only elements that have the capacity to be altered by user input can match :read-write.
+
+可变伪类包括：:read-write，它是指用户可编辑的用户输入；和:read-only，与不可编辑的用户输入匹配。只有能够通过用户输入更改的元素才能被:read-write匹配。
+
+For example, in HTML, a non-disabled, non-read-only input element is :read-write, as is any element with the contenteditable attribute. Everything else matches :read-only:
+
+例如，在HTML中，非禁用的非只读input元素是:read-write，任何具有contenteditable属性的元素也是如此。 其他所有元素都被:read-only匹配：
+
+By default, neither of the following rules would ever match: textarea elements are read-write, and pre elements are read-only.
+
+默认情况下，下面的规则不会生效，因为textarea元素是可编辑的，而pre元素是只读的。
+
+```css
+textarea:read-only { opacity: 0.75;}
+pre:read-write:hover {border: 1px dashed green;}
+```
+
+However, each can be made to match as follows:
+
+不过，下面这种情况可以匹配到：
+
+```html
+<textarea disabled></textarea>
+<pre contenteditable>Type your own code!</pre>
+```
+
+Because the textarea is given a disabled attribute, it becomes read-only, and so will have the first rule apply. Similarly, the pre here has been given the attribute contente ditable, so now it is a read-write element. This will be matched by the second rule.
+
+因为textarea元素被赋予一个禁用属性，它变成了只读的，所以它会被第一条规则匹配上。类似地，这里的pre元素拥有一个contenteditable属性，所以现在它变成可编辑元素，它会被第二条规则匹配上。
+
+### 锚点伪类 The :target Pseudo-Class
+
+When a URL includes a fragment identifier, the piece of the document at which itpoints is called (in CSS) the target. Thus, you can uniquely style any element that isthe target of a URL fragment identifier with the :target pseudo-class.
+
+当URL包含片段标识符时，它所指向的文档被称为目标（在CSS中）。因此，您可以使用:target伪类唯一地设置作为URL片段标识符目标的所有元素的样式。
+
+Even if you’re unfamiliar with the term “fragment identifier,” you’ve probably seen them in action. Consider this URL:
+
+即使你对片段标识符不熟悉，你会在实践中遇到它们，看看这个URL：
+
+    http://www.w3.org/TR/css3-selectors/#target-pseudo
+
+The target-pseudo portion of the URL is the fragment identifier, which is marked bythe # symbol. If the referenced page (http://www.w3.org/TR/css3-selectors/) has an element with an ID of target-pseudo, then that element becomes the target of the fragment identifier.
+
+这个URL的用井号分割的伪部分就是片段标识符。如果引用的页面（http://www.w3.org/TR/css3-selectors/）具有ID为target-pseudo的元素，则该元素将成为片段标识符的目标。
+
+Thanks to :target, you can highlight any targeted element within a document, or you can devise different styles for various types of elements that might be targetedsay, one style for targeted headings, another for targeted tables, and so on. Figure 2-41 shows an example of :target in action:
+
+多亏了:target，您可以突出显示文档中的任何目标元素，也可以为可能成为目标的各种类型的元素设计不同的样式，一种针对目标标题的样式，另一种针对目标表的样式，等等。图2-41显示了：target实际使用的示例：
+
+```css
+*:target {border-left: 5px solid gray; background: yellow url(target.png)
+top right no-repeat;}
+```
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-41.png' style=""/>
+</div>
+<p align="center">图 2-41 Styling a fragment identifer target</p>
+
+:target styles will not be applied in two circumstances:
+  1. If the page is accessed via a URL that does not have a fragment identifier
+  2. If the page is accessed via a URL that has a fragment identifier, but the identifier does not match any elements within the document
+
+：target样式不会在这两种情况下应用：
+   1.如果页面是通过没有片段标识符的URL访问的
+   2.如果通过具有片段标识符的URL访问该页面，但是该标识符与文档中的任何元素都不匹配
+
+More interestingly, though, what happens if multiple elements within a document can be matched by the fragment identifier—for example, if the author erroneously included three separate instances of <div id="target-pseudo"> in the same document?
+
+但是，更有趣的是，如果文档中的多个元素可以由片段标识符进行匹配，例如，如果作者在同一文档中错误地包含了三个单独的<div id =“ target-pseudo”>实例，会发生什么？
+
+The short answer is that CSS doesn’t have or need rules to cover this case, because all CSS is concerned with is styling targets. Whether the browser picks just one of the three elements to be the target or designates all three as co-equal targets, :target styles should be applied to anything that is a valid target.
+
+答案是CSS没有或不需要规则来解决这种情况，因为所有CSS都关注的是样式目标。 无论浏览器仅选择三个元素之一作为目标还是将所有三个元素指定为同等目标，：target样式都应用于有效目标。
+
+### 语言伪类 The :lang Pseudo-Class
+
+For situations where you want to select an element based on its language, you can use the :lang() pseudo-class. In terms of its matching patterns, the :lang() pseudo-class is similar to the |= attribute selector. For example, to italicize elements whose content is written in French, you could write either of the following:
+
+对于要根据其语言选择元素的情况，可以使用：lang（）伪类。 就其匹配模式而言，：lang（）伪类类似于| =属性选择器。 例如，要斜体化其内容是用法语编写的元素，可以使用以下任意一种：
+
+```css
+*:lang(fr) {font-style: italic;}
+*[lang|="fr"] {font-style: italic;}
+```
+
+The primary difference between the pseudo-class selector and the attribute selector is that language information can be derived from a number of sources, some of which are outside the element itself. For the attribute selector, the element must have the attribute present to match. The :lang pseudo-class, on the other hand, matches descendants of an element with the language declaration. As Selectors Level 3 states:
+
+伪类选择器和属性选择器之间的主要区别在于，语言信息可以从许多源中获取，其中某些源在元素本身之外。 对于属性选择器，元素必须具有存在的属性才能匹配。 另一方面，:lang伪类将元素的后代与语言声明进行匹配。如CSS3所述：
+
+In HTML, the language is determined by a combination of the lang attribute, and possibly information from the meta elements and the protocol (such as HTTP headers). XML uses an attribute called xml:lang, and there may be other document languagespecific methods for determining the language.
+
+在HTML中，语言是由lang属性以及可能来自meta元素和协议的信息（例如HTTP标头）的组合确定的。 XML使用称为xml：lang的属性，并且可能还有其他特定于文档语言的方法来确定语言。
+
+The pseudo-class will operate on all of that information, whereas the attribute selector can only work if there is a lang attribute present in the element’s markup. Therefore, the pseudo-class is more robust than the attribute selector and is probably a better choice in most cases where language-specific styling is needed.
+
+伪类将对所有这些信息进行操作，而属性选择器仅在元素的标记中存在lang属性时才起作用。 因此，伪类比属性选择器更健壮，在大多数需要特定于语言的样式的情况下，伪类可能是更好的选择。
+
+### 否定伪类 The Negation Pseudo-Class
+
+Every selector we’ve covered thus far has had one thing in common: they’re all positive selectors. In other words, they are used to identify the things that should be selected, thus excluding by implication all the things that don’t match and are thus not selected.
+
+到目前为止，我们介绍的每个选择器都有一个共同点：它们都是肯定的选择器。 换句话说，它们被用来识别应该选择的事物，从而暗示地排除了所有不匹配因而未被选择的元素。
+
+For those times when you want to invert this formulation and select elements based on what they are not, Selectors Level 3 introduced the negation pseudo-class, :not(). It’s not quite like any other selector, fittingly enough, and it does have some restrictions on its use, but let’s start with an example.
+
+在那些时候您想要反转此方法，根据不是它们匹配的元素来选择元素的时候，CSS3引入了否定伪类：not（）。 它与其他选择器不太一样，非常合适某些场景,但在使用上有一些限制，让我们从一个示例开始。
+
+Let’s suppose you want to apply a style to every list item that doesn’t have a class of moreinfo, as illustrated in Figure 2-42. That used to be very difficult, and in certain cases impossible, to make happen. If we wanted all the list items to be italic except those with the class .moreinfo, we used to declare all the links as italic, generally having to target the ul with a class, then normalize back based on the class, making sure the override came last in the source order, and had equal or higher specificity. Now we can declare:
+
+假设您想对每个没有moreinfo类的列表项应用一种样式，如图2-42所示。这在以前很难实现，在某些情况下甚至是不可能的。如果我们希望除.moreinfo类之外的所有列表项都为斜体，我们通常将所有链接声明为斜体，通常是将ul定位为一个类，然后基于该类进行归一化，为确保覆盖，必须在顺序中排在最后，并且具有相同或更高的特异性。现在我们可以声明：
+
+```css
+li:not(.moreinfo) {font-style: italic;}
+```
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-42.png' style=""/>
+</div>
+<p align="center">图 2-42 Styling list items that don’t have a certain class</p>
+
+The way :not() works is that you attach it to an element, and then in the parentheses you fill in a simple selector. A simple selector, according to the W3C, is:
+
+：not（）的工作方式是将其附加到元素上，然后在括号中填充一个简单的选择器。 根据W3C，这简单的选择器是：
+
+either a type selector, universal selector, attribute selector, class selector, ID selector, or pseudo-class.
+
+类型选择器，通用选择器，属性选择器，类选择器，ID选择器或伪类。
+
+Basically, a simple selector is a selector with no ancestral-descendant relationship.
+
+基本上，简单的选择器是没有祖先后代关系的选择器。
+
+Note the “either” there: you can only use one of those inside :not(). You can’t group them and you can’t combine them using combinators, which means you can’t use a descendant selector, because the space separating elements in a descendant selector is a combinator. Those restrictions may (indeed most likely will) be lifted in the future, but we can still do quite a lot even within the given constraints.
+
+注意那里的“两个”：您只能在：not（）中使用其中一个。 您无法对它们进行分组，也无法使用组合器对其进行组合，这意味着您无法使用后代选择器，因为后代选择器中的空格分隔元素是组合器。 这些限制可能（实际上很可能会在将来）取消，但是即使在给定的限制下，我们仍然可以做很多事情。
+
+For example, let’s flip around the previous example and select all elements with a class of moreinfo that are not list items. This is illustrated in Figure 2-43:
+
+例如，让我们回到上一个示例，并选择所有moreinfo类的不是列表项的元素。 如图2-43所示：
+
+```css
+.moreinfo:not(li) {font-style: italic;}
+```
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-43.png' style=""/>
+</div>
+<p align="center">图 2-43 Styling elements with a certain class that aren’t list items</p>
+
+Translated into English, the selector would say, “Select all elements with a class whose value contains the word moreinfo as long as they are not li elements.” Similarly, the translation of li:not(.moreinfo) would be “Select all li elements as long as they do not have a class whose value contains the word moreinfo.”
+
+选择器翻译后会是：“选择所有类中的值都包含单词moreinfo的所有元素，只要它们不是li元素即可。”类似地，li：not（.moreinfo）的翻译为“ 选择所有li 元素，只要它们不具有其值包含单词moreinfo的类。”
+
+Technically, you can put a universal selector into the parentheses, but there’s very little point. After all, p:not(*) would mean “Select any p element as long as it isn’t any element,” and there’s no such thing as an element that is not an element. Very similar to that would be p:not(p), which would also select nothing. It’s also possible to write things like p:not(div), which will select any p element that is not a div element—in other words, all of them. Again, there is very little reason to do so.
+
+从技术上讲，您可以将通用选择器放在括号中，但没有什么意义。 毕竟，p：not（*）的意思是“选择所有p元素，只要它不是元素”，并且不存在诸如非元素之类的东西。 与此非常相似的是p：not（p），它也不会选择任何内容。 也可以编写诸如p：not（div）之类的东西，它将选择不是div元素的任何p元素，换句话说，全部选择。同样，没有什么理由这样做。
+
+You can also use the negation pseudo-class at any point in a more complex selector. Thus, to select all tables that are not children of a section element, you would write *:not(section) > table. Similarly, to select table header cells that are not part of the table header, you’d write something like table *:not(thead) > tr > th, with a result like that shown in Figure 2-44.
+
+您还可以在更复杂的选择器中的任意位置使用否定伪类。 因此，要选择不是section元素的子代的所有表，应编写*：not（section）> table。 同样，要选择不属于表头的表头单元格，则应编写诸如表*：not（thead）> tr> th的内容，其结果如图2-44所示。
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-44.png' style=""/>
+</div>
+<p align="center">图 2-44 Styling header cells outside the table’s head area</p>
+
+What you cannot do is nest negation pseudo-classes; thus, p:not(:not(p)) is invalid and will be ignored. It’s also, logically, the equivalent of just writing p, so there’s no point anyway. Furthermore, you cannot reference pseudo-elements (which we’ll cover shortly) inside the parentheses, since they are not simple selectors.
+
+您不能做的是嵌套否定伪类。 因此，p：not（：not（p））无效，将被忽略。 从逻辑上讲，它也等效于写p，所以毫无意义。 此外，您不能在括号内引用伪元素（稍后将介绍），因为它们不是简单选择器。
+
+On the other hand, it’s possible to chain negations together to create a sort of “and also not this” effect. For example, you might want to select all elements with a class of link that are neither list items nor paragraphs:
+
+另一方面，可以将否定链接在一起以创建某种“而且还不是”效果。例如，您可能希望选择所有具有链接类的元素，这些元素既不是列表项也不是段落：
+
+```css
+*.link:not(li):not(p) {font-style: italic;}
+```
+
+That translates to “Select all elements with a class whose value contains the word link as long as they are neither li nor p elements.”
+
+转换为“选择一个类，其值包含单词link的所有元素，只要它们既不是li也不是p元素。”
+
+One thing to watch out for is that you can have situations where rules combine in unexpected ways, mostly because we’re not used to thinking of selection in the negative. Consider this test case:
+
+需要注意的一件事是，您可能会遇到规则以意想不到的方式合并的情况，这主要是因为我们不习惯否定的选择。 考虑以下测试案例：
+
+```css
+div:not(.one) p {font-weight: normal;}
+div.one p {font-weight: bold;}
+<div class="one">
+  <div class="two">
+    <p>I'm a paragraph!</p>
+  </div>
+</div>
+```
+
+The paragraph will be boldfaced, not normal-weight. This is because both rules match: the p element is descended from a div whose class does not contain the word one (<div class="two">), but it is also descended from a div whose class contains the word one. Both rules match, and so both apply. Since there is a conflict, the cascade is used to resolve the conflict, and the second rule wins. The structural arrangement of the markup, with the div.two being “closer” to the paragraph than div.one, is irrelevant.
+
+该段将以粗体显示，而不是普通字体。 这是因为两个规则都匹配：p元素来自其类不包含单词one（<div class =“two”>）的div，但是它也源自其类包含单词one的div。 两条规则都匹配，因此都适用。 由于存在冲突，因此使用级联来解决冲突，第二条规则获胜。 标记的结构安排是无关紧要的，就算第二部分比第一部分更接近段落。
+
+## 伪元素选择器 Pseudo-Element Selectors
+
+Much as pseudo-classes assign phantom classes to anchors, pseudo-elements insert fictional elements into a document in order to achieve certain effects. Four basic pseudo-elements were defined in CSS 2, and they let you style the first letter of an element, style the first line of an element, and both create and style “before” and “after” content. There are other pseudo-classes that have been defined since CSS 2 (e.g., ::marker), and we’ll explore those in the chapters of the book for which they’re relevant. The four from CSS2 will be covered here because they’re old-school, and because they make a convenient way to talk about pseudo-element behavior.
+
+与伪类将幽灵类分配给锚点一样，伪元素将虚构元素插入文档中以实现某些效果。CSS2中定义了四个基本的伪元素，它们使您可以设置元素的第一个字母的样式，设置元素的第一行的样式以及创建“before”和“after”内容并为其设置样式。自CSS2以来，还定义了其他伪类（例如:: marker），我们将在本书的章节中探讨与它们相关的伪类。CSS2中的这四个内容也将在这里进行介绍，因为它们很基础，并且它们为讨论伪元素行为提供了便捷的方法。
+
+Unlike the single colon of pseudo-classes, pseudo-elements employ a double-colon syntax, like ::first-line. This is meant to distinguish pseudo-elements from pseudo-classes. This was not always the case—in CSS2, both selector types used a sin‐ gle colon—so for backward compatibility, browsers will accept single-colon pseudoelement selectors. Don’t take this as an excuse to be sloppy, though! Use the proper number of colons at all times in order to future-proof your CSS; after all, there is no way to predict when browsers will stop accepting single-colon pseudo-element selectors.
+
+与伪类的单冒号不同，伪元素采用双冒号语法，例如:: first-line。 这是为了区分伪元素和伪类。 情况并非总是如此（在CSS2中，两种选择器类型都使用单个冒号），因此为了向后兼容，浏览器将接受单冒号伪元素选择器。 不过，不要以此为借口草率！ 始终使用适当数量的冒号，以便将来对CSS进行验证； 毕竟，无法预测浏览器何时将停止接受单冒号伪元素选择器。
+
+Note that all pseudo-elements must be placed at the very end of the selector in which they appear. It would not be legal to write p::first-line em since the pseudoelement comes before the subject of the selector (the subject is the last element listed).
+
+请注意，所有伪元素必须放置在它们出现的选择器的最末端。 写p::first-line em是不合法的，因为伪元素位于选择器的主体之前（主体是列出的最后一个元素）。
+
+This also means that only one pseudo-element is permitted in a given selector, though that restriction may be eased in future versions of CSS.
+
+这也意味着在给定的选择器中仅允许使用一个伪元素，尽管在将来的CSS版本中或许会放宽该限制。
+
+### 首字母样式 Styling the First Letter
+
+The ::first-letter pseudo-element styles the first letter, or a leading punctuation character and the first letter (if the text starts with punctuation), of any non-inline element. This rule causes the first letter of every paragraph to be colored red:
+
+::first-letter伪元素设置所有非内联元素的第一个字母，或前导标点字符和第一个字母（如果文本以标点符号开头）。 此规则使每个段落的第一个字母变为红色：
+
+```css
+p::first-letter {color: red;}
+```
+
+The ::first-letter pseudo-element is most commonly used to create an “initial cap” or “drop cap” typographic effect. You could make the first letter of each p twice as big as the rest of the heading, though you may want to only apply this styling to the first letter of the first paragraph:
+
+::first-letter伪元素最常用于创建“初始上升”或“首字下沉”印刷效果。您可以使每个p的第一个字母的大小是标题其余部分的两倍，尽管您可能只想将此样式应用于第一段的第一个字母：
+
+```css
+p:first-of-type::first-letter {font-size: 200%;}
+```
+
+The result of this rule is illustrated in Figure 2-45.
+
+这段规则的效果如图2-45所示。
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-45.png' style=""/>
+</div>
+<p align="center">图 2-45 The ::frst-letter pseudo-element in action</p>
+
+This rule effectively causes the user agent to style a fictional, or “faux” element, that encloses the first letter of each p. It would look something like this:
+
+该规则有效地使用户代理设置一个虚构的或“虚假”元素的样式，该元素包含这每个段落的首字母。它看起来像这样：
+
+```css
+<p><p-first-letter>T</p-first-letter>his is a p element, with a styled first
+letter</h2>
+```
+
+The ::first-letter styles are applied only to the contents of the fictional element shown in the example. This <p-first-letter> element does not appear in the document source, nor even in the DOM tree. Instead, its existence is constructed on the fly by the user agent and is used to apply the ::first-letter style(s) to the appropriate bit of text. In other words, <p-first-letter> is a pseudo-element. Remember, you don’t have to add any new tags. The user agent styles the first letter for you as if you had encased it in a styled element.
+
+::first-letter样式仅应用于示例中所示的虚构元素的内容。 <p-first-letter>元素不会出现在文档源中，甚至不会出现在DOM树中。相反，它的存在由用户代理动态构建，并用于将::first-letter样式应用于适当的文本位。换句话说，<p-first-letter>是一个伪元素。 请记住，您不必添加任何新标签。 用户代理为您设置第一个字母的样式，就好像您已将其封装在样式元素中一样。
+
+The first letter is defined as the first typographic letter unit of the originating element, if it is not preceded by other content, like an image. The specifications use “letter unit” because some languages have letters made up of more than character, like “oe” in Norse. Punctuation that precedes or follows the first letter unit, even if there are several such symbols, are included in the ::first-letter pseudo-element.
+
+如果第一个字母之前没有其他内容（例如图像），则将被定义为原始元素的第一个印刷字母单元。 应该规范使用“字母单位”，因为某些语言的字母由多个字符组成，例如挪威语中的“oe”。 ::first-letter伪元素中包括在第一个字母单元之前或之后的标点符号，即使存在多个这样的符号。
+
+### 设置首行的样式 Styling the First Line
+
+Similarly, ::first-line can be used to affect the first line of text in an element. For example, you could make the first line of each paragraph in a document large and purple:
+
+类似地，::first-line可用于影响元素中文本的第一行。 例如，您可以将文档中每个段落的第一行设置为紫色：
+
+```css
+p::first-line {
+font-size: 150%;
+color: purple;
+}
+```
+
+In Figure 2-46, the style is applied to the first displayed line of text in each paragraph. This is true no matter how wide or narrow the display region is. If the first line contains only the first five words of the paragraph, then only those five words will be big and purple. If the first line contains the first 30 words of the element, then all 30 will be big and purple.
+
+在图2-46中，样式应用于每个段落中第一行显示的文本。 无论显示区域有多宽，这都是正确的。 如果第一行仅包含该段落的前五个单词，则只有这五个单词字体变大且颜色变成紫色。 如果第一行包含元素的前30个字，则所有30个字都将是紫色的。
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-46.png' style=""/>
+</div>
+<p align="center">图 2-46 The ::frst-line pseudo-element in action</p>
+
+Because the text from “This” to “only” should be big and purple, the user agent employs a fictional markup that looks something like this:
+
+因为从“This”到“only”的文本应该是变大且紫色的，所以用户代理使用虚构的标记，看起来像这样：
+
+```html
+<p>
+<p-first-line>This is a paragraph of text that has only</p-first-line>
+one stylesheet applied to it. That style causes the first line to
+be big and purple. No other line will have those styles applied.
+</p>
+```
+
+If the first line of text were edited to include only the first seven words of the paragraph, then the fictional </p-first-line> would move back and occur just after the word “that.” If the user were to increase or decrease the font-size rendering, or expand or contract the browser window causing the width of the text to change, thereby causing the number of words on the first line to increase or decrease, the browser automatically sets only the words in the currently displayed first line to be both big and purple.
+
+如果将文本的第一行编辑为仅包含该段落的前七个词，则虚构的</ p-first-line>将会向后移动并出现在“that”一词之后。如果用户要增加或减小字体大小的呈现方式，或扩大或缩小浏览器窗口，从而导致文本的宽度改变，从而导致第一行上的单词数增加或减少，浏览器会自动仅将当前显示的单词设置为第一行变大且变紫色。
+
+The length of the first line depends on a number of factors, including the font-size, letter spacing, width of the parent container, etc. Depending on the markup, and the length of that first line, it is possible that the end of the first line comes in the middle of a nested element. If the ::first-line breaks up a nested element, such as an em or a hyperlink, the properties attached to the ::first-line will only apply to the por‐ tion of that nested element that is displayed on the first line.
+
+第一行的长度取决于许多因素，包括字体大小，字母间距，父容器的宽度等。取决于标签和第一行的长度，很有可能第一行位于嵌套元素的中间。如果::first-line分割了嵌套元素（例如em或超链接），则::first-line附带的属性将仅适用于第一行上显示的嵌套元素的一部分。
+
+### ::first-letter和::first-line使用限制 Restrictions on ::first-letter and ::first-line
+
+The ::first-letter and ::first-line pseudo-elements currently can be applied only to block-display elements such as headings or paragraphs, and not to inlinedisplay elements such as hyperlinks. There are also limits on the CSS properties that may be applied to ::first-line and ::first-letter. Table 2-5 gives an idea of these limitations.
+
+::first-letter和::first-line伪元素当前只能应用于块显示元素（例如标题或段落），而不能应用于行内元素（例如超链接）。CSS属性也有一些限制，这些属性可能适用于::first-line和::first-letter。 表2-5给出了这些限制。
+
+_表格 2-5：伪元素的属性限制_
+
+| ::first-letter      | ::first-line      |
+| :------------------ | :----------------------------------------------------------------------------------------------- |
+| All font properties            | All font properties                    |
+| All background properties      | All background properties              |
+| All text decoration properties | All margin properties                  |
+| All inline typesetting properties | All padding properties              |
+| All inline layout properties   | All border properties                  |
+| All border properties          | All text decoration properties         |
+| box-shadow                     | All inline typesetting properties      |
+| color                          | color                                  |
+| opacity                        | opacity                                |
+
+### 在元素前后添加内容 Styling (or Creating) Content Before and After Elements
+
+Let’s say you want to preface every h2 element with a pair of silver square brackets as a typographical effect:
+
+假设您要为每个h2元素加上一对银色方括号作为印刷效果：
+
+```css
+h2::before {content: "]]"; color: silver;}
+```
+
+CSS lets you insert generated content, and then style it directly using the pseudoelements ::before and ::after. Figure 2-47 illustrates an example.
+
+CSS允许您插入生成的内容，然后直接使用伪元素:: before和:: after设置样式。 图2-47给出了一个示例。
+
+<div style="margin: 0 auto; width: 50%;">
+    <img src='./figures/ch2/fg2-47.png' style=""/>
+</div>
+<p align="center">图 2-47 Inserting content before an element</p>
+
+The pseudo-element is used to insert the generated content and to style it. To place content after an element, use the pseudo-element ::after. You could end your documents with an appropriate finish:
+
+伪元素用于插入生成的内容并设置其样式。 要将内容放在元素之后，请使用伪元素:: after。 下面这样做可以用适当的符号来结束文档：
+
+```css
+body::after {content: "The End.";}
+```
+
+Generated content is a separate subject, and the entire topic (including more detail on ::before and ::after) is covered more thoroughly in Chapter 15.
+
+生成的内容是一个单独的主题，第15章将更详细地介绍整个主题（包括:: before和:: after的更多详细信息）。
+
 
 ## 2.8 小结 Summary
 

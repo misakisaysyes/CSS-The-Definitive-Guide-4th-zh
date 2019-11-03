@@ -46,6 +46,7 @@ export default {
         }
     },
     created() {
+        const location = '../../comConfig/chapter2'
         let card = ()=>{}
         if (this.chapter === 'chapter2') {
             card = () => Promise.resolve(require('../../comConfig/chapter2'))
