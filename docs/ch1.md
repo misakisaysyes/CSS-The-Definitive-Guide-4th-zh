@@ -236,9 +236,11 @@ That structure is an inherent part of the relationship between HTML and CSS; wit
   <body>
     <h1>Waffles!</h1>
     <p style="color: gray;">
-      The most wonderful of all breakfast foods is the waffle—a ridged and cratered slab of home-cooked, fluffy goodness
-      that makes every child's heart soar with joy. And they're so easy to make! Just a simple waffle-maker and some
-      batter, and you're ready for a morning of aromatic ecstasy!
+      The most wonderful of all breakfast foods is the waffle—a ridged and
+      cratered slab of home-cooked, fluffy goodness that makes every child's
+      heart soar with joy. And they're so easy to make! Just a simple
+      waffle-maker and some batter, and you're ready for a morning of aromatic
+      ecstasy!
     </p>
   </body>
 </html>
@@ -301,75 +303,85 @@ That’s all there is to it—no HTML markup or comments at all, just plain-and-
 
 <Tips tips="orange">An external stylesheet cannot contain any document markup at all, only CSS rules and CSS comments, both of which are explained later in the chapter. The presence of markup in an external stylesheet can cause some or all of it to be ignored.</Tips>
 
-The filename extension is not required, but some older browsers won’t recognize the
-file as containing a stylesheet unless it actually ends with .css, even if you do include
-the correct type of text/css in the link element. In fact, some web servers won’t
-hand over a file as text/css unless its filename ends with .css, though that can usually
-be fixed by changing the server’s configuration files.
+The filename extension is not required, but some older browsers won’t recognize the file as containing a stylesheet unless it actually ends with .css, even if you do include the correct type of text/css in the link element. In fact, some web servers won’t hand over a file as text/css unless its filename ends with .css, though that can usually be fixed by changing the server’s configuration files.
 
 #### Attributes
 
-For the rest of the link tag, the attributes and values are fairly straightforward. rel
-stands for “relation,” and in this case, the relation is stylesheet. The attribute type is
-always set to text/css. This value describes the type of data that will be loaded using
-the link tag. That way, the web browser knows that the stylesheet is a CSS stylesheet,
-a fact that will determine how the browser deals with the data it imports. After all,
-there may be other style languages used in the future, so it’s important to declare
-which language you’re using.
+For the rest of the link tag, the attributes and values are fairly straightforward. rel stands for “relation,” and in this case, the relation is stylesheet. The attribute type is always set to text/css. This value describes the type of data that will be loaded using the link tag. That way, the web browser knows that the stylesheet is a CSS stylesheet, a fact that will determine how the browser deals with the data it imports. After all, there may be other style languages used in the future, so it’s important to declare hich language you’re using.
 
-Next, we find the href attribute. The value of this attribute is the URL of your style‐
-sheet. This URL can be either absolute or relative, depending on what works for you.
-In our example, the URL is relative. It just as easily could have been something like
-http://meyerweb.com/sheet1.css.
+> 对于 link 标记的其余部分，属性和值非常简单。rel 代表“关系”，在本例中，关系是样式表。属性类型总是设置为 text/css。此值描述将使用链接标记加载的数据类型。这样，web 浏览器就知道样式表是一个 CSS 样式表，这将决定浏览器如何处理它导入的数据。毕竟，将来可能还会使用其他样式语言，所以声明您正在使用的 hich 语言是很重要的。
 
-Finally, we have a media attribute. The value of this attribute is one or more media
-descriptors, which are rules regarding media types and the features of those media,
-with each rule separated by a comma. Thus, for example, you can use a linked style‐
-sheet in both screen and projection media:
+Next, we find the href attribute. The value of this attribute is the URL of your style‐sheet. This URL can be either absolute or relative, depending on what works for you. In our example, the URL is relative. It just as easily could have been something like http://meyerweb.com/sheet1.css.
+
+> 接下来，我们找到 href 属性。这个属性的值是你的样式表的 URL。这个 URL 可以是绝对的，也可以是相对的，这取决于什么适合您。在我们的示例中，URL 是相对的。它也可以是类似于http://meyerweb.com/sheet1.css这样的东西。
+
+Finally, we have a media attribute. The value of this attribute is one or more media descriptors, which are rules regarding media types and the features of those media, with each rule separated by a comma. Thus, for example, you can use a linked style‐sheet in both screen and projection media:
+
+> 最后，我们有一个媒体属性。此属性的值是一个或多个媒体描述符，它们是关于媒体类型和这些媒体特性的规则，每个规则由逗号分隔。因此，例如，你可以在屏幕和投影媒体中使用链接样式表:
 
 ```html
-<link rel="stylesheet" type="text/css" href="visual-sheet.css" media="screen, projection" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="visual-sheet.css"
+  media="screen, projection"
+/>
 ```
 
-Media descriptors can get quite complicated, and are explained in detail later in the
-chapter. For now, we’ll stick with the basic media types shown.
+Media descriptors can get quite complicated, and are explained in detail later in the chapter. For now, we’ll stick with the basic media types shown.
+
 Note that there can be more than one linked stylesheet associated with a document.
-In these cases, only those link tags with a rel of stylesheet will be used in the ini‐
-tial display of the document. Thus, if you wanted to link two stylesheets named
-basic.css and splash.css, it would look like this:
 
-```html
-<link rel="stylesheet" type="text/css" href="basic.css" /> <link rel="stylesheet" type="text/css" href="splash.css" />
-```
-
-This will cause the browser to load both stylesheets, combine the rules from each, and
-apply them all to the document. For example:
+In these cases, only those link tags with a rel of stylesheet will be used in the initial display of the document. Thus, if you wanted to link two stylesheets named basic.css and splash.css, it would look like this:
 
 ```html
 <link rel="stylesheet" type="text/css" href="basic.css" />
 <link rel="stylesheet" type="text/css" href="splash.css" />
-<p class="a1">This paragraph will be gray only if styles from the stylesheet 'basic.css' are applied.</p>
-<p class="b1">This paragraph will be gray only if styles from the stylesheet 'splash.css' are applied.</p>
 ```
 
-The one attribute that is not in this example markup, but could be, is the title
-attribute. This attribute is not often used, but it could become important in the future
-and, if used improperly, can have unexpected effects. Why? We will explore that in
-the next section.
+This will cause the browser to load both stylesheets, combine the rules from each, and apply them all to the document. For example:
+
+```html
+<link rel="stylesheet" type="text/css" href="basic.css" />
+<link rel="stylesheet" type="text/css" href="splash.css" />
+<p class="a1">
+  This paragraph will be gray only if styles from the stylesheet 'basic.css' are
+  applied.
+</p>
+<p class="b1">
+  This paragraph will be gray only if styles from the stylesheet 'splash.css'
+  are applied.
+</p>
+```
+
+The one attribute that is not in this example markup, but could be, is the title attribute. This attribute is not often used, but it could become important in the future and, if used improperly, can have unexpected effects. Why? We will explore that in the next section.
+
+> The one attribute that is not in this example markup, but could be, is the title attribute. This attribute is not often used, but it could become important in the future and, if used improperly, can have unexpected effects. Why? We will explore that in the next section.
 
 #### Alternate stylesheets
 
-It’s also possible to define alternate stylesheets. These are defined by making the value
-of the rel attribute alternate stylesheet, and they are used in document presenta‐
-tion only if selected by the user.
-Should a browser be able to use alternate stylesheets, it will use the values of the link
-element’s title attributes to generate a list of style alternatives. So you could write
-the following:
+It’s also possible to define alternate stylesheets. These are defined by making the value of the rel attribute alternate stylesheet, and they are used in document presentation only if selected by the user.
+
+> 还可以定义其他样式表。通过使 rel 属性的值成为备选样式表来定义它们，并且只有在用户选择时才在文档表示中使用它们。
+
+Should a browser be able to use alternate stylesheets, it will use the values of the link element’s title attributes to generate a list of style alternatives. So you could write the following:
+
+> 如果浏览器能够使用替代样式表，它将使用 link 元素的 title 属性的值来生成样式替代列表。你可以这样写:
 
 ```html
 <link rel="stylesheet" type="text/css" href="sheet1.css" title="Default" />
-<link rel="alternate stylesheet" type="text/css" href="bigtext.css" title="Big Text" />
-<link rel="alternate stylesheet" type="text/css" href="zany.css" title="Crazy colors!" />
+<link
+  rel="alternate stylesheet"
+  type="text/css"
+  href="bigtext.css"
+  title="Big Text"
+/>
+<link
+  rel="alternate stylesheet"
+  type="text/css"
+  href="zany.css"
+  title="Crazy colors!"
+/>
 ```
 
 Users could then pick the style they want to use, and the browser would switch from the first one, labeled “Default” in this case, to whichever the user picked. Figure 1-6 shows one way in which this selection mechanism might be accomplished (and in fact was, early in the resurgence of CSS).
@@ -378,49 +390,71 @@ Users could then pick the style they want to use, and the browser would switch f
 
 <Tips tips="blue">As of late 2016, alternate stylesheets were supported in most Gecko-based browsers like Firefox, and in Opera. They could be supported in the Internet Explorer family through the use of JavaScript but are not natively supported by those browsers. The WebKit family did not support selecting alternate stylesheets. Compare this to the age of the browser shown in Figure 1-6--it’s almost shocking.</Tips>
 
-It is also possible to group alternate stylesheets together by giving them the same
-title value. Thus, you make it possible for the user to pick a different presentation
-for your site in both screen and print media:
+It is also possible to group alternate stylesheets together by giving them the same title value. Thus, you make it possible for the user to pick a different presentation for your site in both screen and print media:
 
 ```html
-<link rel="stylesheet" type="text/css" href="sheet1.css" title="Default" media="screen" />
-<link rel="stylesheet" type="text/css" href="print-sheet1.css" title="Default" media="print" />
-<link rel="alternate stylesheet" type="text/css" href="bigtext.css" title="Big Text" media="screen" />
-<link rel="alternate stylesheet" type="text/css" href="print-bigtext.css" title="Big Text" media="print" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="sheet1.css"
+  title="Default"
+  media="screen"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="print-sheet1.css"
+  title="Default"
+  media="print"
+/>
+<link
+  rel="alternate stylesheet"
+  type="text/css"
+  href="bigtext.css"
+  title="Big Text"
+  media="screen"
+/>
+<link
+  rel="alternate stylesheet"
+  type="text/css"
+  href="print-bigtext.css"
+  title="Big Text"
+  media="print"
+/>
 ```
 
-If a user selects “Big Text” from the alternate stylesheet selection mechanism in a con‐
-forming user agent, then bigtext.css will be used to style the document in the screen
-medium, and print-bigtext.css will be used in the print medium. Neither sheet1.css nor
-print-sheet1.css will be used in any medium.
+If a user selects “Big Text” from the alternate stylesheet selection mechanism in a conforming user agent, then bigtext.css will be used to style the document in the screen medium, and print-bigtext.css will be used in the print medium. Neither sheet1.css nor print-sheet1.css will be used in any medium.
 
-Why is that? Because if you give a link with a rel of stylesheet a title, then you are
-designating that stylesheet as a preferred stylesheet. This means that its use is preferred
-to alternate stylesheets, and it will be used when the document is first displayed. Once
-you select an alternate stylesheet, however, the preferred stylesheet will not be used.
-Furthermore, if you designate a number of stylesheets as preferred, then all but one of
-them will be ignored. Consider the following code example:
+Why is that? Because if you give a link with a rel of stylesheet a title, then you are designating that stylesheet as a preferred stylesheet. This means that its use is preferred to alternate stylesheets, and it will be used when the document is first displayed. Once you select an alternate stylesheet, however, the preferred stylesheet will not be used. Furthermore, if you designate a number of stylesheets as preferred, then all but one of them will be ignored. Consider the following code example:
 
 ```html
-<link rel="stylesheet" type="text/css" href="sheet1.css" title="Default Layout" />
-<link rel="stylesheet" type="text/css" href="sheet2.css" title="Default Text Sizes" />
-<link rel="stylesheet" type="text/css" href="sheet3.css" title="Default Colors" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="sheet1.css"
+  title="Default Layout"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="sheet2.css"
+  title="Default Text Sizes"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="sheet3.css"
+  title="Default Colors"
+/>
 ```
 
-All three link elements now refer to preferred stylesheets, thanks to the presence of a
-title attribute on all three, but only one of them will actually be used in that manner.
-The other two will be ignored completely. Which two? There’s no way to be certain, as
-HTML doesn’t provide a method of determining which preferred stylesheets should
-be ignored and which should be used.
+All three link elements now refer to preferred stylesheets, thanks to the presence of a title attribute on all three, but only one of them will actually be used in that manner. The other two will be ignored completely. Which two? There’s no way to be certain, as HTML doesn’t provide a method of determining which preferred stylesheets should be ignored and which should be used.
 
-If you don’t give a stylesheet a title, then it becomes a persistent stylesheet and is
-always used in the display of the document. Often, this is exactly what an author
-wants.
+If you don’t give a stylesheet a title, then it becomes a persistent stylesheet and is always used in the display of the document. Often, this is exactly what an author wants.
 
 ### 1.3.2 The style Element
 
-The style element is one way to include a stylesheet, and it appears in the document
-itself:
+The style element is one way to include a stylesheet, and it appears in the document itself:
 
 ```html
 <style type="text/css">
@@ -428,33 +462,19 @@ itself:
 </style>
 ```
 
-style should always use the attribute type; in the case of a CSS document, the correct
-value is "text/css", just as it was with the link element.
+style should always use the attribute type; in the case of a CSS document, the correct value is "text/css", just as it was with the link element.
 
-The style element should always start with `<style type="text/css">`, as shown in
-the preceding example. This is followed by one or more styles and is finished with a
-closing `</style>` tag. It is also possible to give the style element a media attribute,
-which functions in the same manner as previously discussed for linked stylesheets.
-The styles between the opening and closing style tags are referred to as the docu‐
-ment stylesheet or the embedded stylesheet (because this kind of stylesheet is embed‐
-ded within the document). It will contain many of the styles that will apply to the
-document, but it can also contain multiple links to external stylesheets using the
-@import directive.
+The style element should always start with `<style type="text/css">`, as shown in the preceding example. This is followed by one or more styles and is finished with a closing `</style>` tag. It is also possible to give the style element a media attribute, which functions in the same manner as previously discussed for linked stylesheets. The styles between the opening and closing style tags are referred to as the document stylesheet or the embedded stylesheet (because this kind of stylesheet is embedded within the document). It will contain many of the styles that will apply to the document, but it can also contain multiple links to external stylesheets using the @import directive.
 
 ### 1.3.3 The @import Directive
 
-Now we’ll discuss the stuff that is found inside the style tag. First, we have some‐
-thing very similar to link: the @import directive:
+Now we’ll discuss the stuff that is found inside the style tag. First, we have something very similar to link: the @import directive:
 
 ```css
 @import url(sheet2.css);
 ```
 
-Just like link, @import can be used to direct the web browser to load an external
-stylesheet and use its styles in the rendering of the HTML document. The only major
-difference is in the syntax and placement of the command. As you can see, @import is
-found inside the style container. It must be placed before the other CSS rules or it
-won’t work at all. Consider this example:
+Just like link, @import can be used to direct the web browser to load an external stylesheet and use its styles in the rendering of the HTML document. The only major difference is in the syntax and placement of the command. As you can see, @import is found inside the style container. It must be placed before the other CSS rules or it won’t work at all. Consider this example:
 
 ```html
 <style type="text/css">
@@ -465,10 +485,7 @@ won’t work at all. Consider this example:
 </style>
 ```
 
-Like link, there can be more than one @import statement in a document. Unlike
-link, however, the stylesheets of every @import directive will be loaded and used;
-there is no way to designate alternate stylesheets with @import. So, given the follow‐
-ing markup:
+Like link, there can be more than one @import statement in a document. Unlike link, however, the stylesheets of every @import directive will be loaded and used; there is no way to designate alternate stylesheets with @import. So, given the following markup:
 
 ```css
 @import url(sheet2.css);
@@ -476,11 +493,9 @@ ing markup:
 @import url(zany.css);
 ```
 
-all three external stylesheets will be loaded, and all of their style rules will be used in
-the display of the document.
+all three external stylesheets will be loaded, and all of their style rules will be used in the display of the document.
 
-As with link, you can restrict imported stylesheets to one or more media by provid‐
-ing media descriptors after the stylesheet’s URL:
+As with link, you can restrict imported stylesheets to one or more media by providing media descriptors after the stylesheet’s URL:
 
 ```css
 @import url(sheet2.css) all;
@@ -488,13 +503,9 @@ ing media descriptors after the stylesheet’s URL:
 @import url(zany.css) projection, print;
 ```
 
-As noted in “The link Tag” on page 8, media descriptors can get quite complicated,
-and are explained in detail in Chapter 20, Media-Dependent Styles.
+As noted in “The link Tag” on page 8, media descriptors can get quite complicated, and are explained in detail in Chapter 20, Media-Dependent Styles.
 
-@import can be highly useful if you have an external stylesheet that needs to use the
-styles found in other external stylesheets. Since external stylesheets cannot contain
-any document markup, the link element can’t be used—but @import can. Therefore,
-you might have an external stylesheet that contains the following:
+@import can be highly useful if you have an external stylesheet that needs to use the styles found in other external stylesheets. Since external stylesheets cannot contain any document markup, the link element can’t be used—but @import can. Therefore, you might have an external stylesheet that contains the following:
 
 ```css
 @import url(http://example.org/library/layout.css);
@@ -508,33 +519,23 @@ h1 {
 }
 ```
 
-Well, maybe not those exact styles, but hopefully you get the idea. Note the use of
-both absolute and relative URLs in the previous example. Either URL form can be
-used, just as with link.
+Well, maybe not those exact styles, but hopefully you get the idea. Note the use of both absolute and relative URLs in the previous example. Either URL form can be used, just as with link.
 
-Note also that the @import directives appear at the beginning of the stylesheet, as they
-did in the example document. CSS requires the @import directive to come before any
-other rules in a stylesheet. An @import that comes after other rules (e.g., body
-{color: red;}) will be ignored by conforming user agents.
+Note also that the @import directives appear at the beginning of the stylesheet, as they did in the example document. CSS requires the @import directive to come before any other rules in a stylesheet. An @import that comes after other rules (e.g., body {color: red;}) will be ignored by conforming user agents.
 
 <Tips tips="orange">Older versions of Internet Explorer for Windows do not ignore any @import directive, even those that come after other rules. Since other browsers do ignore improperly placed @import directives, it is easy to mistakenly place the @import directive incorrectly and thus alter the display in other browsers.</Tips>
 
 ### 1.3.4 HTTP Linking
 
-There is another, far more obscure way to associate CSS with a document: you can
-link the two via HTTP headers.
+There is another, far more obscure way to associate CSS with a document: you can link the two via HTTP headers.
 
-Under Apache, this can be accomplished by adding a reference to the CSS file in
-a .htaccess file. For example:
+Under Apache, this can be accomplished by adding a reference to the CSS file in a .htaccess file. For example:
 
 ```css
 Header add Link "</ui/testing.css>;rel=stylesheet;type=text/css"
 ```
 
-This will cause supporting browsers to associate the referenced stylesheet with any
-documents served from under that .htaccess file. The browser will then treat it as if it
-were a linked stylesheet. Alternatively, and probably more efficiently, you can add an
-equivalent rule to the server’s httpd.conf file:
+This will cause supporting browsers to associate the referenced stylesheet with any documents served from under that .htaccess file. The browser will then treat it as if it were a linked stylesheet. Alternatively, and probably more efficiently, you can add an equivalent rule to the server’s httpd.conf file:
 
 ```css
 <Directory /path/to/ /public/html/directory>
@@ -542,52 +543,30 @@ Header add Link "</ui/testing.css>;rel=stylesheet;type=text/css"
 </Directory>
 ```
 
-The effect is exactly the same in supporting browsers. The only difference is in where
-you declare the linking.
+The effect is exactly the same in supporting browsers. The only difference is in where you declare the linking.
 
-You probably noticed the use of the term “supporting browsers.” As of late 2017, the
-widely used browsers that support HTTP linking of stylesheets are the Firefox family
-and Opera. That restricts this technique mostly to development environments based
-on one of those browsers. In that situation, you can use HTTP linking on the test
-server to mark when you’re on the development site as opposed to the public site. It’s
-also an interesting way to hide styles from the WebKit and Internet Explorer families,
-assuming you have a reason to do so.
+You probably noticed the use of the term “supporting browsers.” As of late 2017, the widely used browsers that support HTTP linking of stylesheets are the Firefox family and Opera. That restricts this technique mostly to development environments based on one of those browsers. In that situation, you can use HTTP linking on the test server to mark when you’re on the development site as opposed to the public site. It’s also an interesting way to hide styles from the WebKit and Internet Explorer families, assuming you have a reason to do so.
 
 <Tips tips="blue">There are equivalents to this technique in common scripting languages such as PHP and IIS, both of which allow the author to emit HTTP headers. It’s also possible to use such languages to explicitly write a link element into the document based on the server offering up the document. This is a more robust approach in terms of browser support: every browser supports the link element.</Tips>
 
 ### 1.3.5 Inline Styles
 
-For cases where you want to just assign a few styles to one individual element,
-without the need for embedded or external stylesheets, employ the HTML attribute
-style to set an inline style:
+For cases where you want to just assign a few styles to one individual element, without the need for embedded or external stylesheets, employ the HTML attribute style to set an inline style:
 
 ```html
 <p style="color: gray;">
-  The most wonderful of all breakfast foods is the waffle—a ridged and cratered slab of home-cooked, fluffy goodness...
+  The most wonderful of all breakfast foods is the waffle—a ridged and cratered
+  slab of home-cooked, fluffy goodness...
 </p>
 ```
 
-The style attribute can be associated with any HTML tag whatsoever, except for
-those tags that are found outside of body (head or title, for instance).
+The style attribute can be associated with any HTML tag whatsoever, except for those tags that are found outside of body (head or title, for instance).
 
-The syntax of a style attribute is fairly ordinary. In fact, it looks very much like the
-declarations found in the style container, except here the curly braces are replaced
-by double quotation marks. So `<p style="color: maroon; background: yellow;">`
-will set the text color to be maroon and the background to be yellow for that para‐
-graph only. No other part of the document will be affected by this declaration.
+The syntax of a style attribute is fairly ordinary. In fact, it looks very much like the declarations found in the style container, except here the curly braces are replaced by double quotation marks. So `<p style="color: maroon; background: yellow;">` will set the text color to be maroon and the background to be yellow for that paragraph only. No other part of the document will be affected by this declaration.
 
-Note that you can only place a declaration block, not an entire stylesheet, inside an
-inline style attribute. Therefore, you can’t put an @import into a style attribute, nor
-can you include any complete rules. The only thing you can put into the value of a
-style attribute is what might go between the curly braces of a rule.
+Note that you can only place a declaration block, not an entire stylesheet, inside an inline style attribute. Therefore, you can’t put an @import into a style attribute, nor can you include any complete rules. The only thing you can put into the value of a style attribute is what might go between the curly braces of a rule.
 
-Use of the style attribute is not generally recommended. Indeed, it is very unlikely to
-appear in XML languages other than HTML. Many of the primary advantages of CSS
-—the ability to organize centralized styles that control an entire document’s appear‐
-ance or the appearance of all documents on a web server—are negated when you
-place styles into a style attribute. In many ways, inline styles are not much better
-than the font tag, although they do have a good deal more flexibility in terms of what
-visual effects they can apply
+Use of the style attribute is not generally recommended. Indeed, it is very unlikely to appear in XML languages other than HTML. Many of the primary advantages of CSS—the ability to organize centralized styles that control an entire document’s appearance or the appearance of all documents on a web server—are negated when you place styles into a style attribute. In many ways, inline styles are not much better than the font tag, although they do have a good deal more flexibility in terms of what visual effects they can apply
 
 ## 1.4 Stylesheet Contents
 
@@ -793,8 +772,7 @@ However, since this is exactly the same as if you stripped off the first and las
 
 The place where we saw projection and all in those examples is where media queries are set. These queries rely on a combination of terms that describe the type of media to be considered, as well as descriptions of the media’s parameters (e.g., resolution or display height), to determine when blocks of CSS should be applied.
 
-The most basic form of media queries are media types, which first appeared in CSS2.
-These are simple labels for different kinds of media:
+The most basic form of media queries are media types, which first appeared in CSS2. These are simple labels for different kinds of media:
 
 `all`
 Use in all presentational media.
@@ -828,7 +806,12 @@ Things get interesting when you add feature-specific descriptors, such as values
 The placement of media queries will be very familiar to any author who has ever set a media type on a link element or an @import declaration. Here are two essentially equivalent ways of applying an external stylesheet when rendering the document on a color printer:
 
 ```html
-<link href="print-color.css" type="text/css" media="print and (color)" rel="stylesheet" />
+<link
+  href="print-color.css"
+  type="text/css"
+  media="print and (color)"
+  rel="stylesheet"
+/>
 ```
 
 ```css
@@ -838,7 +821,12 @@ The placement of media queries will be very familiar to any author who has ever 
 Anywhere a media type can be used, a media query can be used. This means that, following on the examples of the previous section, it is possible to list more than one query in a comma-separated list:
 
 ```html
-<link href="print-color.css" type="text/css" media="print and (color), screen and (color-depth: 8)" rel="stylesheet" />
+<link
+  href="print-color.css"
+  type="text/css"
+  media="print and (color), screen and (color-depth: 8)"
+  rel="stylesheet"
+/>
 ```
 
 ```css
@@ -847,7 +835,11 @@ Anywhere a media type can be used, a media query can be used. This means that, f
 
 In any situation where even one of the media queries evaluates to “true,” the associated stylesheet is applied. Thus, given the previous @import, print-color.css will be applied if rendering to a color printer or to a sufficiently colorful screen environment. If printing on a black-and-white printer, both queries will evaluate to “false”, and print-color.css will not be applied to the document. The same holds true in any screen medium, and so on.
 
+> 在任何情况下，即使其中一个媒体查询的结果是“true”，也会应用相关联的样式表。因此，给定前面的@import，如果将其呈现到彩色打印机或彩色屏幕环境中，将应用 print-color.css。如果在黑白打印机上打印，两个查询都将计算为“false”，并且 print-color.css 将不应用于文档。这同样适用于任何屏幕媒体，等等。
+
 Each media descriptor is composed of a media type and one or more listed media features, with each media feature descriptor enclosed in parentheses. If no media type is provided, then it is assumed to be all, which makes the following two examples equivalent:
+
+> 每个媒体描述符由一个媒体类型和一个或多个列出的媒体特性组成，每个媒体特性描述符括在括号中。如果没有提供媒体类型，则假设为 all，这使得下面两个例子等价:
 
 ```css
 @media all and (min-resolution: 96dpi) {
@@ -860,21 +852,31 @@ Each media descriptor is composed of a media type and one or more listed media f
 
 Generally speaking, a media feature descriptor is formatted like a property-value pair in CSS. There are a few differences, most notably that some features can be specified without an accompanying value. Thus, for example, any color-based medium will be matched using (color), whereas any color medium using a 16-bit color depth is matched using (color: 16). In effect, the use of a descriptor without a value is a true/false test for that descriptor: (color) means “is this medium in color?”
 
+> 一般来说，媒体特性描述符的格式类似于 CSS 中的属性-值对。有一些不同之处，最明显的是一些特性可以在没有附加值的情况下指定。因此，例如，任何基于颜色的媒体将使用(color)进行匹配，而任何使用 16 位颜色深度的媒体将使用(color: 16)进行匹配。实际上，使用没有值的描述符是对描述符的真/假测试:(颜色)表示“该媒体是彩色的吗?”
+
 Multiple feature descriptors can be linked with the and logical keyword. In fact, there are two logical keywords in media queries:
+
+> 多个特征描述符可以与 and logical 关键字链接。事实上，在媒体查询中有两个逻辑关键字:
 
 `and`
 
 Links together two or more media features in such a way that all of them must be true for the query to be true. For example, (color) and (orientation: land scape) and (min-device-width: 800px) means that all three conditions must be satisfied: if the media environment has color, is in landscape orientation, and the device’s display is at least 800 pixels wide, then the stylesheet is used.
 
+> 将两个或多个媒体特性链接在一起，使所有特性都为真，查询才为真。例如，(color)和(朝向:landscape)和(min-device-width: 800px)意味着必须满足所有三个条件:如果媒体环境有颜色，处于横向方向，并且设备的显示宽度至少为 800 像素，则使用样式表。
+
 `not`
 
 Negates the entire query such that if all of the conditions are true, then the stylesheet is not applied. For example, not (color) and (orientation: landscape) and (min-device-width: 800px) means that if the three conditions are satisfied, the statement is negated. Thus, if the media environment has color, is in landscape orientation, and the device’s display is at least 800 pixels wide, then the stylesheet is not used. In all other cases, it will be used.
 
-Note that the not keyword can only be used at the beginning of a media query. It is not legal to write something like (color) and not (min-device-width: 800px). In such cases, the query will be ignored. Note also that browsers too old to understand media queries will always skip a stylesheet whose media descriptor starts with not. There is no OR keyword for use in media queries. Instead, the commas that separate a list of queries serve the function of an OR—screen, print means “apply if the media is screen or print.” Instead of screen and (max-color: 2) or (monochrome), which is invalid and thus ignored, you should write screen and (max-color: 2),
-screen and (monochrome).
+> 否定整个查询，如果所有条件都为真，则不应用样式表。例如，not (color)和(orientation: landscape)和(min-device-width: 800px)表示如果满足这三个条件，则语句被否定。因此，如果媒体环境有颜色，是横向的，并且设备的显示宽度至少为 800 像素，那么样式表将不被使用。在所有其他情况下，都将使用它。
 
-There is one more keyword, only, which is designed to create deliberate backward
-incompatibility (yes, really):
+Note that the not keyword can only be used at the beginning of a media query. It is not legal to write something like (color) and not (min-device-width: 800px). In such cases, the query will be ignored. Note also that browsers too old to understand media queries will always skip a stylesheet whose media descriptor starts with not. There is no OR keyword for use in media queries. Instead, the commas that separate a list of queries serve the function of an OR—screen, print means “apply if the media is screen or print.” Instead of screen and (max-color: 2) or (monochrome), which is invalid and thus ignored, you should write screen and (max-color: 2), screen and (monochrome).
+
+> 注意，not 关键字只能在媒体查询的开头使用。像(color)和(min-device-width: 800px)这样的代码是不合法的。在这种情况下，查询将被忽略。还要注意的是，那些太老而不能理解媒体查询的浏览器总是会跳过一个以 not 开头的样式表。没有用于媒体查询的 OR 关键字。相反，分隔查询列表的逗号具有 or - screen 的功能，print 表示“如果媒体是 screen 或 print，则应用”。你应该写 screen 和(max-color: 2)或(monochrome)，而不是 screen 和(max-color: 2)或(monochrome)，这是无效的，因此被忽略了。
+
+There is one more keyword, only, which is designed to create deliberate backward incompatibility (yes, really):
+
+> 还有一个关键字 only，它被设计成故意向后不兼容(是的，真的):
 
 `only`
 
@@ -1001,6 +1003,8 @@ As with media queries, feature queries also permit logical operators. Suppose we
 
 This is essentially equivalent to writing the following:
 
+> 这基本上相当于写以下内容:
+
 ```css
 @supports (display: grid) {
   @supports (shape-outside: circle()) {
@@ -1011,6 +1015,8 @@ This is essentially equivalent to writing the following:
 
 However, there’s more than “and” operations available. CSS Shapes (covered in detail in Chapter 10) are a good example of why “or” is useful, because for a long time WebKit only supported CSS shapes via vendor-prefixed properties. So if you want to use shapes, you can use a feature query like this:
 
+> 但是，除了“和”操作之外，还有更多可用的操作。CSS 形状(在第 10 章中详细介绍)是一个很好的例子，说明为什么“或”是有用的，因为长期以来 WebKit 只通过供应商前缀属性支持 CSS 形状。因此，如果你想使用形状，你可以使用这样的功能查询:
+
 ```css
 @supports (shape-outside: circle()) or (-webkit-shape-outside: circle()) {
   /* shape styles go here */
@@ -1019,7 +1025,11 @@ However, there’s more than “and” operations available. CSS Shapes (covered
 
 You’d still have to make sure to use both prefixed and unprefixed versions of the shape properties, but this would let you add support for those properties backward in the WebKit release line while supporting other browsers that also support shapes, but not via prefixed properties.
 
+> 您仍然需要确保同时使用带前缀和不带前缀的形状属性，但是这将允许您在 WebKit 发布行中向后添加对这些属性的支持，同时支持其他也支持形状的浏览器，但不是通过带前缀的属性。
+
 All this is incredibly handy because there are situations where you might want to apply different properties than those you’re testing. So, to go back to grid layout for a second, you might want to change the margins and so forth on your layout elements when grid is in use. Here’s a simplified version of that approach:
+
+> 所有这些都非常方便，因为在某些情况下，您可能希望应用不同于测试的属性。因此，要回到网格布局，您可能需要在使用网格时更改布局元素的页边距等。下面是这种方法的一个简化版本:
 
 ```css
 div#main {
@@ -1046,6 +1056,8 @@ div.column:last-child {
 
 It’s possible to use negation as well. For example, you could apply the following styles in situations where grid layout is not supported:
 
+> 也可以使用否定。例如，你可以在不支持网格布局的情况下应用以下样式:
+
 ```css
 @supports not (display: grid) {
   /* grid-not-supported styles go here */
@@ -1053,6 +1065,8 @@ It’s possible to use negation as well. For example, you could apply the follow
 ```
 
 You can combine your logical operators into a single query, but parentheses are required to keep the logic straight. Suppose we want a set of styles to be applied when color is supported, and when one of either grid or flexible box layout is supported. That’s written like this:
+
+> 您可以将逻辑运算符组合成单个查询，但是需要使用括号来保持逻辑的正确性。假设我们希望在支持颜色时应用一组样式，在支持网格或灵活的框布局时应用一组样式。它是这样写的:
 
 ```css
 @supports (color: black) and ((display: flex) or (display: grid)) {
@@ -1062,11 +1076,15 @@ You can combine your logical operators into a single query, but parentheses are 
 
 Notice how there’s another set of parentheses around the “or” part of the logic, enclosing the grid and flex tests. Those extra parentheses are required. Without them, the entire expression will fail, and the styles inside the block will be skipped. In other words, don’t do this:
 
+> 请注意，在逻辑的“或”部分周围还有一组括号，用于封装网格和 flex 测试。需要那些额外的括号。没有它们，整个表达式将失败，块内的样式将被跳过。换句话说，不要这样做:
+
 ```css
 @supports (color: black) and (display: flex) or (display: grid) {
 ```
 
 Finally, you might wonder why both a property and value are required in feature query tests. After all, if you’re using shapes, all you need to test for is shape-outside, right? It’s because a browser can easily support a property without supporting all its values. Grid layout is a perfect example for this. Suppose you could test for grid support like this:
+
+> 最后，您可能想知道为什么特性查询测试需要属性和值。毕竟，如果你使用的是形状，你需要测试的只是外形，对吧?这是因为浏览器可以很容易地支持一个属性，而不需要支持它的所有值。网格布局就是一个完美的例子。假设你可以像这样测试网格支持:
 
 ```css
 @supports (display) {
@@ -1076,10 +1094,16 @@ Finally, you might wonder why both a property and value are required in feature 
 
 Well, even Internet Explorer 4 supported display. Any browser that understands @supports will certainly understand display and many of its values—but maybe not grid. That’s why property and value are always tested in feature queries.
 
+> 甚至 Internet Explorer 4 也支持显示。任何理解@supports 的浏览器肯定都能理解 display 和它的许多值——但可能不是 grid。这就是为什么属性和值总是在特性查询中测试的原因。
+
 <Tips tips="orange">Remember that these are feature queries, not correctness queries. A browser can understand the feature you’re testing for, but implement it with bugs. So you’re not getting an assurance from the browser that it supports something correctly. All a positive featurequery result means is that the browser understands what you’ve said and makes some sort of attempt to support it.</Tips>
 
 ## 1.7 Summary
 
 With CSS, it is possible to completely change the way elements are presented by a user agent. This can be executed at a basic level with the display property, and in a different way by associating stylesheets with a document. The user will never know whether this is done via an external or embedded stylesheet, or even with an inline style. The real importance of external stylesheets is the way in which they allow authors to put all of a site’s presentation information in one place, and point all of the documents to that place. This not only makes site updates and maintenance a breeze, but it helps to save bandwidth, since all of the presentation is removed from documents. With @supports(), it’s even possible to do some basic progressive enhancement in native CSS.
 
+> 使用 CSS，完全改变用户代理显示元素的方式是可能的。这可以通过 display 属性在基本级别上执行，也可以通过将样式表与文档关联的不同方式执行。用户永远不会知道这是通过外部样式表还是嵌入式样式表，甚至是内联样式表来完成的。外部样式表的真正重要性在于，它允许作者将站点的所有表示信息放在一个地方，并将所有文档指向那个地方。这不仅使站点更新和维护变得轻而易举，而且还有助于节省带宽，因为所有的表示都从文档中删除了。使用@supports()，甚至可以在原生 CSS 中进行一些基本的渐进式增强。
+
 To make the most of the power of CSS, authors need to know how to associate a set of styles with the elements in a document. To fully understand how CSS can do all of this, authors need a firm grasp of the way CSS selects pieces of a document for styling, which is the subject of the next chapter.
+
+> 为了充分利用 CSS 的强大功能，作者需要知道如何将一组样式与文档中的元素关联起来。要完全理解 CSS 是如何做到这一切的，作者需要掌握 CSS 选择文档片段进行样式化的方法，这是下一章的主题。

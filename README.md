@@ -2,6 +2,8 @@
 
 CSS 权威指南第四版 中文翻译
 
+在线阅读：[http://gdut_yy.gitee.io/gitee-page/](http://gdut_yy.gitee.io/gitee-page/)
+
 <img src="./docs/figures/cover.png" width=40%>
 
 ## 前言
@@ -54,7 +56,7 @@ cd CSS-The-Definitive-Guide-4th-zh
 yarn docs:dev
 
 # 本地阅读
-http://localhost:8080/
+http://localhost:8080/gitee-page/
 ```
 
 ## Contributors
