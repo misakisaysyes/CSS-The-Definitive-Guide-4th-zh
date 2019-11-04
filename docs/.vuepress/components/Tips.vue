@@ -3,10 +3,10 @@
     <div class="left"><img :src="imgSrc"></div>
     <div class="right">
       <p>
-        <slot></slot>
+        <slot name="source"></slot>
       </p>
       <p>
-        <slot name="translation"></slot>
+        <slot></slot>
       </p>
     </div>
   </div>
@@ -53,6 +53,7 @@ export default {
   width: 88%;
 }
 p { 
-  overflow-wrap: break-word
+  overflow-wrap: break-word;
+  margin: 0
 }
 </style>
