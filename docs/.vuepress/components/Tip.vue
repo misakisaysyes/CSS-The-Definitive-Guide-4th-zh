@@ -1,14 +1,12 @@
 <template>
   <div class="tip">
-    <div class="left"><img :src="imgSrc"></div>
-    <div class="right">
-      <p>
+    <img :src="imgSrc">
+    <span>
         <slot></slot>
-      </p>
-      <p>
+    </span>
+    <span>
         <slot name="translation"></slot>
-      </p>
-    </div>
+    </span>
   </div>
 </template>
 
@@ -38,19 +36,12 @@ export default {
 </script>
 
 <style scoped>
-.tip {
-  display: flex;
-  padding: 16px;
-  width: 100%;
+tip {
+    width: 100%
 }
-.left {
-  float: left;
-  width: 12%;
-}
-.right {
-  float: right;
-  padding-left: 16px;
-  width: 88%;
+img {
+    width: 12%;
+    float: left;
 }
 p { 
   overflow-wrap: break-word

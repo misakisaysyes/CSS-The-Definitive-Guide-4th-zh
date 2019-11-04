@@ -587,7 +587,7 @@ Notice the format of the general class selector in the previous example: it’s 
 
 请注意上例中的一般类选择器，它只包含一个类名和前面的句点，而没有任何元素名称，也没有通配选择器。如果你想选择具有某个类名的所有元素，省略通配选择器不会有任何影响。
 
-### 多个类 Multiple Classes
+### 2.3.2 多个类 Multiple Classes
 
 In the previous section, we dealt with class values that contained a single word. In HTML, it’s possible to have a space-separated list of words in a single class value. For example, if you want to mark a particular element as being both urgent and a warning, you could write:
 
@@ -1761,13 +1761,11 @@ Be careful not to combine mutually exclusive pseudo-classes. For example, a link
 
 这种混淆是可以理解的，这就是为何我会在这里提到它，后面的章节我们会经常想起它。只要记住，伪类的作用是给它们绑定的元素添加一些“影子类”，就不容易犯（前面的）错误了。
 
-
-
-### 选择根元素 Dynamic Pseudo-Classes
+#### 选中根元素 Selecting the root element
 
 这是结构简单性的精髓：伪类选择器`:root`选择文档的根元素。在 HTML 中，根元素**永远是**`html`元素。在为 XML 语言添加样式时，这个选择器会非常有用，因为在不同的语言中根元素可能不同。例如，在 RSS 2.0 中，根元素是`rss`。即使在一种语言（甚至是一个文档）里，也可能会使用不止一个根元素。
 
-图 1-23 展示了一个给 HTML 中的根元素添加样式的例子：
+图 2-23 展示了一个给 HTML 中的根元素添加样式的例子：
 
 ```css
 :root {
@@ -1785,7 +1783,7 @@ body {
 
 当然，在 HTML 文档中，可以直接选择`html`元素，不需要使用`:root`伪类。这两个选择器在特度方面有差异，我们将在第 3 章讨论。
 
-#### 选择空元素
+选择空元素
 
 使用伪类`:empty`，可以选择任何没有子节点的元素——没有任何类型的子元素：**包含**文本节点，包括文字和空白。这有助于筛除 CMS 生成的没有填进任何实际内容的元素。因此，`p:empty {display: none;}`将会让所有空的段落不再显示。
 
@@ -1811,7 +1809,7 @@ body {
 
 _**到 2017 年底，`:empty`是唯一一个在匹配元素的时候考虑文本节点的 CSS 选择器。所有 Selectors Level 3 的其他选择器都只考虑元素节点，而完全忽略文本节点——例如，前面讨论过的兄弟组合器**_
 
-### 唯一子元素 Selecting unique children
+#### 唯一子元素 Selecting unique children
 
 If you’ve ever wanted to select all the images that are wrapped by a hyperlink element, the :only-child pseudo-class is for you. It selects elements when they are the only child element of another element. So let’s say you want to add a border to any image that’s the only child of another element. You’d write:
 
@@ -1932,7 +1930,7 @@ The class name is irrelevant here. We’re fooled into thinking that “type” 
 
 此处与类名无关。由于我们解析语言的方式，我们愚蠢地认为“类型”是一种通用描述。 类型：:only-of-type表示类型，它仅指元素类型。因此，p.unique：only-of-type表示“当p元素是同级中唯一的p元素时，选择其class属性包含单词unique的任何p元素。”并不意味着“当满足唯一的同级段落时，选择class属性包含单词unique的任何p元素。”
 
-### 选择首子元素和末子元素 Selecting first and last children
+#### 选择首子元素和末子元素 Selecting first and last children
 
 It’s pretty common to want to apply special styling to the first or last child of an element. A common example is styling a bunch of navigation links in a tab bar, and wanting to put some special visual touches on the first or last tab (or both). In the past, this was done by applying special classes to those elements. Now we have pseudo-classes to carry the load for us.
 
@@ -2044,7 +2042,7 @@ Either way, we get paragraphs with red foreground and background colors (not a g
 
 无论哪种方式，我们都会获得带有红色字体色和背景色的段落（显然不是一个好主意）。
 
-### 选择首类型和末类型 Selecting first and last of a type
+#### 选择首类型和末类型 Selecting first and last of a type
 
 In a manner similar to selecting the first and last children of an element, you can select the first or last of a type of element within another element. This permits things like selecting the first table inside a given element, regardless of whatever elements come before it.
 
@@ -2110,7 +2108,7 @@ Similar to what was noted in the previous section, you can combine these two pse
   table:first-of-type:last-of-type {background: red;}
 ```
 
-### 按序号选择元素 Selecting every nth child
+#### 按序号选择元素 Selecting every nth child
 
 If you can select elements that are the first, last, or only children of other elements, how about every third child? All even children? Only the ninth child? Rather than define a literally infinite number of named pseudo-classes, CSS has the :nth-child() pseudo-class. By filling integers or even simple algebraic expressions into the parentheses, you can select any arbitrarily numbered child element you like.
 
@@ -2253,7 +2251,7 @@ In these examples, if a list item is the only list item, then the width is 100%.
 
 在这些示例中，如果列表项是唯一的列表项，则宽度为100％。 如果列表项是第一项，也是从倒数第二项，则意味着有两个项，并且宽度为50％。 如果一个项目是第一个项目，也是最后一个项目的第三个项目，则我们将其制成，其后的两个同级列表项目的宽度为33％。 类似地，如果列表项是第一项，也是最后一项的第四项，则意味着恰好有四个项目，因此我们将其及其三个同级产品制成25％宽度。
 
-### 编号选择类型元素 Selecting every nth of a type
+#### 编号选择类型元素 Selecting every nth of a type
 
 In what’s probably become a familiar pattern, the :nth-child() and :nth-lastchild() pseudo-classes have analogues in :nth-of-type() and :nth-last-oftype(). You can, for example, select every other hyperlink that’s a child of any given paragraph, starting with the second, using p > a:nth-of-type(even). This will ignore all other elements (spans, strongs, etc.) and consider only the links, as demonstrated in Figure 2-35:
 
@@ -2280,7 +2278,7 @@ As you might expect, you can string these two together as :nth-of-type(1):nthlas
 
 如您所料，您可以将这两个字符串串在一起：:nth-of-type(1) :nth-last-of-type(1)，以更高的特异性重新声明：only-of-type。（特异性我们会在第三章作详细介绍，我保证！）
 
-### 动态伪类 Dynamic Pseudo-Classes
+#### 动态伪类 Dynamic Pseudo-Classes
 
 Beyond the structural pseudo-classes, there are a set of pseudo-classes that relate to structure but can change based on changes made to the page after it’s been rendered. In other words, the styles are applied to pieces of a document based on something in addition to the structure of the document, and in a way that cannot be precisely deduced simply by studying the document’s markup.
 
@@ -2294,7 +2292,7 @@ Consider the anchor element (a), which (in HTML and related languages) establish
 
 考虑锚元素（a），该元素（使用HTML和相关语言）建立了从一个文档到另一个文档的链接。 锚点始终是锚点，但是有些锚点是指已经访问过的页面，而其他锚点是指尚未访问的页面。 您不能仅通过查看HTML标记就可以分辨出差异，因为在标记中，所有锚点都相同。 判断访问过哪些链接的唯一方法是将文档中的链接与用户的浏览器历史记录进行比较。 因此，实际上有两种基本类型的链接：已访问和未访问。
 
-### 超链接伪类 Hyperlink pseudo-classes
+#### 超链接伪类 Hyperlink pseudo-classes
 
 CSS2.1 defines two pseudo-classes that apply only to hyperlinks. In HTML, these are any a elements with an href attribute; in XML languages, they’re any elements that act as links to another resource. Table 2-2 describes the pseudo-classes you can apply to them.
 
@@ -2393,7 +2391,7 @@ As of late 2017, this behavior is present throughout all browsing modes, not jus
 
 截至2017年底，此行为在所有浏览模式中均存在，而不仅仅是“私人浏览”模式。 尽管我们在使用CSS区分访问过的链接和未访问过的链接方面受到限制，但是对于可用性和可访问性而言，使用访问过的链接支持的限制样式将它们与未访问的链接区分开来也很重要。
 
-### 用户行为伪类 User action pseudo-classes
+#### 用户行为伪类 User action pseudo-classes
 
 CSS defines a few pseudo-classes that can change a document’s appearance based on actions taken by the user. These dynamic pseudo-classes have traditionally been used to style hyperlinks, but the possibilities are much wider. Table 2-3 describes these pseudo-classes.
 
@@ -2456,7 +2454,7 @@ This rule will cause any element that’s descended from the body element to dis
 
 _**虽然可以使用:focus随意设置元素样式，但不要从焦点元素中删除元素本身所有样式。 区分哪个当前具有焦点的元素对于可访问性至关重要，尤其是对于使用键盘浏览您的网站或应用程序的用户。**_
 
-### 动态样式的问题 Real-world issues with dynamic styling
+#### 动态样式的问题 Real-world issues with dynamic styling
 
 Dynamic pseudo-classes present some interesting issues and peculiarities. For example, it’s possible to set visited and unvisited links to one font size and make hovered links a larger size, as shown in Figure 2-37:
 
@@ -2476,7 +2474,7 @@ As you can see, the user agent increases the size of the anchor while the mouse 
 
 如您所见，当鼠标指针悬停在锚上时，用户代理会增加锚的大小。 或者，由于:active设置，当用户在触摸屏上触摸它时。支持此行为的用户代理必须在锚点处于悬停状态时重绘文档，这可能会迫使对链接后面的所有内容进行重排。
 
-### UI状态伪类 UI-State Pseudo-Classes
+### 2.6.4 UI状态伪类 UI-State Pseudo-Classes
 
 Closely related to the dynamic pseudo-classes are the user-interface (UI) state pseudoclasses, which are summarized in Table 2-4. These pseudo-classes allow for styling based on the current state of user-interface elements like checkboxes.
 
@@ -2506,7 +2504,7 @@ Although the state of a UI element can certainly be changed by user action—for
 
 _**您可能会认为:focus属于本节，而不是之前的内容。 但是，css3规定:focus与:hover和:active放一起。 这很可能因为它们都没有归在css2的UI状态伪类。 不过，更重要的focus是可以应用在非UI元素（例如标题或段落），一个例子是通过语音浏览器阅读。 仅此一点就不能将其视为UI状态伪类**_
 
-### 可用和不可用交互元素 Enabled and disabled UI elements
+#### 可用和不可用交互元素 Enabled and disabled UI elements
 
 Thanks to both DOM scripting and HTML5, it is possible to mark a user-interface element (or group of user interface elements) as being disabled. A disabled element is displayed, but cannot be selected, activated, or otherwise interacted with by the user. Authors can set an element to be disabled either through DOM scripting, or (in HTML5) by adding a disabled attribute to the element’s markup.
 
@@ -2526,7 +2524,7 @@ Any element that hasn’t been disabled is by definition enabled. You can style 
 </div>
 <p align="center">图 2-38 可用元素和不可用元素添加样式</p>
 
-### 选中状态 Check states
+#### 选中状态 Check states
 
 In addition to being enabled or disabled, certain UI elements can be checked or unchecked—in HTML, the input types “checkbox” and “radio” fit this definition. Selectors level 3 offers a :checked pseudo-class to handle elements in that state, though curiously it omits an :unchecked. There is also the :indeterminate pseudoclass, which matches any checkable UI element that is neither checked nor unchecked. These states are illustrated in Figure 2-39:
 
@@ -2566,7 +2564,7 @@ font-style: italic;
 <input id="chbx" type="checkbox"> <label for="chbx">I am a label</label>
 ```
 
-### 默认选项伪类 Default option pseudo-class
+#### 默认选项伪类 Default option pseudo-class
 
 The :default pseudo-class matches the UI elements that are the default among a set of similar elements. This typically applies to context menu items, buttons, and select lists/menus. If there are several same-named radio buttons, the one that was originally checked matches :default, even if the UI has been updated by the user so that it no longer matches :checked. If a checkbox was checked on page load, :default matches it. Any initially-selected option(s) in a select element will match. The :default pseudo-class can also match buttons and menu items:
 
@@ -2578,7 +2576,7 @@ The :default pseudo-class matches the UI elements that are the default among a s
 <label for="chbx">This was checked on page load</label>
 ```
 
-### 可选伪类 Optionality pseudo-classes
+#### 可选伪类 Optionality pseudo-classes
 
 The pseudo-class :required matches any form control that is required, as denoted by the presence of the required attribute (in HTML5). The :optional pseudo-class matches form controls that do not have the required attribute, or whose required attribute has a value of false.
 
@@ -2613,7 +2611,7 @@ Elements that are not form-input elements can be neither required nor optional.
 
 非表单元素不能设置成必填或非必填。
 
-### 有效性伪类 Validity pseudo-classes
+#### 有效性伪类 Validity pseudo-classes
 
 The :valid pseudo-class refers to a user input that meets all of its data validity requirements. The :invalid pseudo-class, on the other hand, refers to a user input that does not meet all of its data validity requirements.
 
@@ -2648,7 +2646,7 @@ background-image: url(checkmark.jpg);
 
 _**这些伪类状态取决于用户代理返回的样式结果，因此可能无法如您期望的结果。 例如，在2017年末，电子邮件输入为空，多个用户代理判定为输入合法，尽管事实为空输入的电子邮件地址无效。在这些验证程序得到改进之前，最好谨慎对待有效性伪类。**_
 
-### 范围伪类 Range pseudo-classes
+#### 范围伪类 Range pseudo-classes
 
 The range pseudo-classes include :in-range, which refers to a user input whose value is between the minimum and maximum values set by HTML5’s min and max attributes, and :out-of-range, which refers to a user input whose value is below the minimum or above the maximum values allowed by the control.
 
@@ -2690,7 +2688,7 @@ input[type="number"]:in-range {font-weight: bold;}
 <input id="by-tens" type="number" min="0" max="1000" step="10" value="23" />
 ```
 
-### 可变伪类 Mutability pseudo-classes
+#### 可变伪类 Mutability pseudo-classes
 
 The mutability pseudo-classes include :read-write, which refers to a user input that is editable by the user; and :read-only, which matches user inputs that are not editable. Only elements that have the capacity to be altered by user input can match :read-write.
 
@@ -2722,7 +2720,7 @@ Because the textarea is given a disabled attribute, it becomes read-only, and so
 
 因为textarea元素被赋予一个禁用属性，它变成了只读的，所以它会被第一条规则匹配上。类似地，这里的pre元素拥有一个contenteditable属性，所以现在它变成可编辑元素，它会被第二条规则匹配上。
 
-### 锚点伪类 The :target Pseudo-Class
+### 2.6.5 锚点伪类 The :target Pseudo-Class
 
 When a URL includes a fragment identifier, the piece of the document at which itpoints is called (in CSS) the target. Thus, you can uniquely style any element that isthe target of a URL fragment identifier with the :target pseudo-class.
 
@@ -2768,7 +2766,7 @@ The short answer is that CSS doesn’t have or need rules to cover this case, be
 
 答案是CSS没有或不需要规则来解决这种情况，因为所有CSS都关注的是样式目标。 无论浏览器仅选择三个元素之一作为目标还是将所有三个元素指定为同等目标，：target样式都应用于有效目标。
 
-### 语言伪类 The :lang Pseudo-Class
+### 2.6.6 语言伪类 The :lang Pseudo-Class
 
 For situations where you want to select an element based on its language, you can use the :lang() pseudo-class. In terms of its matching patterns, the :lang() pseudo-class is similar to the |= attribute selector. For example, to italicize elements whose content is written in French, you could write either of the following:
 
@@ -2791,7 +2789,7 @@ The pseudo-class will operate on all of that information, whereas the attribute 
 
 伪类将对所有这些信息进行操作，而属性选择器仅在元素的标记中存在lang属性时才起作用。 因此，伪类比属性选择器更健壮，在大多数需要特定于语言的样式的情况下，伪类可能是更好的选择。
 
-### 否定伪类 The Negation Pseudo-Class
+### 2.6.7 否定伪类 The Negation Pseudo-Class
 
 Every selector we’ve covered thus far has had one thing in common: they’re all positive selectors. In other words, they are used to identify the things that should be selected, thus excluding by implication all the things that don’t match and are thus not selected.
 
@@ -2912,7 +2910,7 @@ This also means that only one pseudo-element is permitted in a given selector, t
 
 这也意味着在给定的选择器中仅允许使用一个伪元素，尽管在将来的CSS版本中或许会放宽该限制。
 
-### 首字母样式 Styling the First Letter
+### 2.7.1 首字母样式 Styling the First Letter
 
 The ::first-letter pseudo-element styles the first letter, or a leading punctuation character and the first letter (if the text starts with punctuation), of any non-inline element. This rule causes the first letter of every paragraph to be colored red:
 
@@ -2956,7 +2954,7 @@ The first letter is defined as the first typographic letter unit of the originat
 
 如果第一个字母之前没有其他内容（例如图像），则将被定义为原始元素的第一个印刷字母单元。 应该规范使用“字母单位”，因为某些语言的字母由多个字符组成，例如挪威语中的“oe”。 ::first-letter伪元素中包括在第一个字母单元之前或之后的标点符号，即使存在多个这样的符号。
 
-### 设置首行的样式 Styling the First Line
+### 2.7.2 设置首行的样式 Styling the First Line
 
 Similarly, ::first-line can be used to affect the first line of text in an element. For example, you could make the first line of each paragraph in a document large and purple:
 
@@ -2998,7 +2996,7 @@ The length of the first line depends on a number of factors, including the font-
 
 第一行的长度取决于许多因素，包括字体大小，字母间距，父容器的宽度等。取决于标签和第一行的长度，很有可能第一行位于嵌套元素的中间。如果::first-line分割了嵌套元素（例如em或超链接），则::first-line附带的属性将仅适用于第一行上显示的嵌套元素的一部分。
 
-### ::first-letter和::first-line使用限制 Restrictions on ::first-letter and ::first-line
+### 2.7.3 ::first-letter和::first-line使用限制 Restrictions on ::first-letter and ::first-line
 
 The ::first-letter and ::first-line pseudo-elements currently can be applied only to block-display elements such as headings or paragraphs, and not to inlinedisplay elements such as hyperlinks. There are also limits on the CSS properties that may be applied to ::first-line and ::first-letter. Table 2-5 gives an idea of these limitations.
 
@@ -3018,7 +3016,7 @@ _表格 2-5：伪元素的属性限制_
 | color                          | color                                  |
 | opacity                        | opacity                                |
 
-### 在元素前后添加内容 Styling (or Creating) Content Before and After Elements
+### 2.7.4 在元素前后添加内容 Styling (or Creating) Content Before and After Elements
 
 Let’s say you want to preface every h2 element with a pair of silver square brackets as a typographical effect:
 
