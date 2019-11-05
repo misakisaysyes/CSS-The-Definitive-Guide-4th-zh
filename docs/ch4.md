@@ -205,3 +205,4 @@ Integer values that fall outside a defined range are, by default, considered inv
 ### Numbers
 
 A number value is either an `<integer>` or a real number, which is to say an intege followed by a dot and then some number of following integers. Additionally, it can be prefixed by either + or − to indicate positive or negative values. Number values are represented in value syntax as `<number>`. Examples include 2.7183, −3.1416, and 6.2832.
+

@@ -18,6 +18,11 @@
 
 <Cards cards="display" />
 
+<frames url="test">
+  <template v-slot:original>11 offset-props-lower-right</template>
+  <template v-slot:translation>11 偏离至右下</template>
+</frames>
+
 Table 1-1. Some common vendor prefixes
 | Prefix | Vendor |
 | -------- | -------------------------------------------------- |
