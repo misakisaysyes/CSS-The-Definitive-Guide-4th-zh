@@ -2,12 +2,22 @@
   <div class="figure">
     <div class="fg">
       <div class="fgimg">
-        <img :src="imgSrc" />
+        <iframe
+          v-if="isHtml"
+          :src="imgSrc"
+          ref="frame"
+          seamless
+          frameborder="0"
+          scrolling="no"
+          @load="frameAdapt"
+        />
+        <img v-if="!isHtml" :src="imgSrc" />
       </div>
     </div>
     <div class="fgtitle">
       <p>
-        图 {{figure}}：<slot></slot>
+        图 {{figure}}：
+        <slot></slot>
       </p>
     </div>
   </div>
@@ -15,10 +25,11 @@
 
 <script>
 export default {
-  props: ["figure"],
+  props: ["figure", "type"],
   data() {
     return {
-      imgSrc: ""
+      imgSrc: "",
+      isHtml: true
     };
   },
   created() {
@@ -27,8 +38,25 @@ export default {
   methods: {
     chooseTip() {
       let tmp = this.figure.split("-");
-      this.imgSrc =
-        "./figures/ch" + tmp[0] + "/fg" + this.figure + ".png";
+      if (this.type === "png") {
+        this.isHtml = false;
+      } else {
+        this.isHtml = true;
+      }
+
+      if (this.isHtml) {
+        this.imgSrc =
+          "./htmlfigures/ch" + tmp[0] + "/fg" + this.figure + ".html";
+      } else {
+        this.imgSrc = "./figures/ch" + tmp[0] + "/fg" + this.figure + ".png";
+      }
+    },
+    frameAdapt() {
+      const frame = this.$refs.frame;
+      const doc = frame.contentWindow.document.body;
+      frame.width = doc.scrollWidth;
+      frame.height = doc.scrollHeight;
+      doc.style.margin = "0";
     }
   }
 };
