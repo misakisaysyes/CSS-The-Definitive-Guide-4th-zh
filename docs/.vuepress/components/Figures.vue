@@ -4,14 +4,14 @@
       <div class="fgimg">
         <iframe
           v-if="isHtml"
-          :src="imgSrc"
+          :src="htmlSrc"
           ref="frame"
           seamless
           frameborder="0"
           scrolling="no"
           @load="frameAdapt"
         />
-        <img v-if="!isHtml" :src="imgSrc" />
+        <img v-if="!isHtml" :src="pngSrc" @click="jumpToHtml" />
       </div>
     </div>
     <div class="fgtitle">
@@ -24,32 +24,35 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   props: ["figure", "type"],
   data() {
     return {
-      imgSrc: "",
-      isHtml: true
+      pngSrc: "",
+      htmlSrc: "",
+      isHtml: false
     };
   },
   created() {
     this.chooseTip();
   },
   methods: {
-    chooseTip() {
+    locateResources() {
       let tmp = this.figure.split("-");
-      if (this.type === "png") {
-        this.isHtml = false;
-      } else {
-        this.isHtml = true;
-      }
+      // if (this.type === "png") {
+      //   this.isHtml = false;
+      // } else {
+      //   this.isHtml = true;
+      // }
 
-      if (this.isHtml) {
-        this.imgSrc =
-          "./htmlfigures/ch" + tmp[0] + "/fg" + this.figure + ".html";
-      } else {
-        this.imgSrc = "./figures/ch" + tmp[0] + "/fg" + this.figure + ".png";
-      }
+      // if (this.isHtml) {
+      this.htmlSrc =
+        "./htmlfigures/ch" + tmp[0] + "/fg" + this.figure + ".html";
+      // } else {
+      this.pngSrc = "./figures/ch" + tmp[0] + "/fg" + this.figure + ".png";
+      // }
     },
     frameAdapt() {
       const frame = this.$refs.frame;
@@ -57,6 +60,18 @@ export default {
       frame.width = doc.scrollWidth;
       frame.height = doc.scrollHeight;
       doc.style.margin = "0";
+    },
+    jumpToHtml() {
+      axios
+        .get(this.htmlSrc)
+        .then(resp => {
+          if (resp) {
+            window.open(this.htmlSrc);
+          }
+        })
+        .catch(e => {
+          alert("抱歉，没有找到此图片对应的 HTML 页面！");
+        });
     }
   }
 };

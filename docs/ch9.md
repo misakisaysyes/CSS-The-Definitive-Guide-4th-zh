@@ -2669,6 +2669,4 @@ The last thing to note is that you can apply to an element a list of as many com
 
 ## 9.5 Summary
 
-Setting colors and backgrounds on elements gives authors a great deal of power. The
-advantage of CSS over traditional methods is that colors and backgrounds can be
-applied to any element in a document.
+Setting colors and backgrounds on elements gives authors a great deal of power. The advantage of CSS over traditional methods is that colors and backgrounds can be applied to any element in a document.
