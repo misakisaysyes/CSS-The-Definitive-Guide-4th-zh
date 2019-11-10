@@ -36,7 +36,7 @@ export default {
     };
   },
   created() {
-    this.chooseTip();
+    this.locateResources();
   },
   methods: {
     locateResources() {
@@ -62,16 +62,27 @@ export default {
       doc.style.margin = "0";
     },
     jumpToHtml() {
-      axios
-        .get(this.htmlSrc)
-        .then(resp => {
-          if (resp) {
-            window.open(this.htmlSrc);
-          }
-        })
-        .catch(e => {
-          alert("抱歉，没有找到此图片对应的 HTML 页面！");
-        });
+      let tmp = this.figure.split("-");
+      if (tmp[0] === "17") {
+        window.open(
+          "https://meyerweb.github.io/csstdg4figs/17-transitions/index.html"
+        );
+      } else if (tmp[0] === "18") {
+        window.open(
+          "https://meyerweb.github.io/csstdg4figs/18-animations/index.html"
+        );
+      } else {
+        axios
+          .get(this.htmlSrc)
+          .then(resp => {
+            if (resp) {
+              window.open(this.htmlSrc);
+            }
+          })
+          .catch(e => {
+            alert("抱歉，没有找到此图片对应的 HTML 页面！");
+          });
+      }
     }
   }
 };
