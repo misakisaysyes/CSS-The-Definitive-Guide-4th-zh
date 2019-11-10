@@ -65,11 +65,11 @@ export default {
       let tmp = this.figure.split("-");
       if (tmp[0] === "17") {
         window.open(
-          "https://meyerweb.github.io/csstdg4figs/17-transitions/index.html"
+          "./htmlfigures/ch17/index.html"
         );
       } else if (tmp[0] === "18") {
         window.open(
-          "https://meyerweb.github.io/csstdg4figs/18-animations/index.html"
+          "./htmlfigures/ch18/index.html"
         );
       } else {
         axios
