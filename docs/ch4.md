@@ -1,14 +1,20 @@
 # 第 4 章 值和单位 Values and Units
 
-In this chapter, we’ll tackle features that are the basis for almost everything you can do with CSS: the units that affect the colors, distances, and sizes of a whole host of properties, as well as the units that help to define those values. Without units, you couldn’t declare that an image should have 10 pixels of blank space around it, or that a heading’s text should be a certain size. By understanding the concepts put forth here, you’ll be able to learn and use the rest of CSS much more quickly.
+In this chapter, we’ll tackle features that are the basis for almost everything you can do with CSS: the units that affect the colors, distances, and sizes of a whole host of properties, as well as the units that help to define those values. Without units, you couldn’t declare that an image should have 10 pixels of blank space around it, or that a heading’s text should be a certain size. By understanding the concepts  put forth here, you’ll be able to learn and use the rest of CSS much more quickly.
+
+>在本章中，我们将介绍大部分你会用到的CSS中的基础特性，例如：影响属性颜色，距离和大小的单位，以及有助于定义这些属性值的单位。没有单位，您将无法声明图像周围应有10像素的空白，或者标题的文本应具有一定的大小。 通过理解此处提出的概念，您将能够更快地学习和使用其余的CSS。
 
 ## Keywords, Strings, and Other Text Values
 
 Everything in a stylesheet is text, but there are certain value types that directly represent strings of text as opposed to, say, numbers or colors. Included in this category are URLs and, interestingly enough, images.
 
+>样式表中的所有内容都是文本，但是某些值类型可以直接表示文本字符串，而不是数字或颜色。 URL就是其中一种，有趣的是，图像也在其中。
+
 ### Keywords
 
 For those times when a value needs to be described with a word of some kind, there are keywords. A very common example is the keyword none, which is distinct from 0 (zero). Thus, to remove the underline from links in an HTML document, you would write:
+
+>对于需要用某种单词来描述值的时候，会用到一些关键词。 一个非常常见的示例是关键字none，它不同于0（零）。 因此，要从HTML文档的链接中删除下划线，写法如下：
 
 ```css
 a:link, a:visited {text-decoration: none;}
@@ -16,15 +22,25 @@ a:link, a:visited {text-decoration: none;}
 
 Similarly, if you want to force underlines on the links, then you would use the keyword underline.
 
+>相似地，如果你想给链接加上下划线，你可以使用下划线关键字。
+
 If a property accepts keywords, then its keywords will be defined only for the scope of that property. If two properties use the same word as a keyword, the behavior of the keyword for one property will not necessarily be shared with the other. As an example, normal, as defined for letter-spacing, means something very different than the normal defined for font-style.
+
+>如果某个属性接受关键字，那么它接受的关键字要在该属性的定义范围内。如果两个不同的属性都接受一个相同单词的关键词，一个属性的行为与另一个属性的行为不一定表现相同。例如，normal关键字用在letter-spacing与用在font-style上表示不同的定义。
 
 ### Global keywords
 
-CSS3 defines three “global” keywords that are accepted by every property in the spec‐ ification: inherit, initial, and unset.
+CSS3 defines three “global” keywords that are accepted by every property in the specification: inherit, initial, and unset.
+
+>CSS3定义了三个“全局”的关键词：inherit, initial和unset。这三个关键词可以用在任何属性上。
 
 __inherit.__ The keyword inherit makes the value of a property on an element the same as the value of that property on its parent element. In other words, it forces inheritance to occur even in situations where it would not normally operate. In many cases, you don’t need to specify inheritance, since many properties inherit naturally. Nevertheless, inherit can still be very useful.
 
+>__inherit__ 关键词使元素上该属性的值继承其父元素响应属性的值。换句话来说，在继承没有发生的情况下，它会强行进行属性继承。在很多情况下，你不需要特意指明继承，很多继承是自动进行的。但是，inherit关键词还是非常有用的。
+
 For example, consider the following styles and markup:
+
+>例如下面的例子：
 
 ```html
 #toolbar {background: blue; color: white;}
@@ -37,7 +53,11 @@ For example, consider the following styles and markup:
 
 The div itself will have a blue background and a white foreground, but the links will be styled according to the browser’s preference settings. They’ll most likely end up as blue text on a blue background, with white vertical bars between them.
 
+>div元素本身带有蓝色背景和白色前景，而链接的样式会根据浏览器的设置变化。链接最终大部分是以蓝色背景及蓝色文字的效果呈现，而且两边会有一条白色的竖线。
+
 You could write a rule that explicitly sets the links in the “toolbar” to be white, but you can make things a little more robust by using inherit. You just add the following rule to the stylesheet:
+
+>你可以定义一条新的规则使“toolbar”中的链接变成白色。不过通过继承来做的话会使代码更加健壮，你只需要在样式表中添加下面这条规则：
 
 ```css
 #toolbar a {color: inherit;}
@@ -45,13 +65,23 @@ You could write a rule that explicitly sets the links in the “toolbar” to be
 
 This will cause the links to use the inherited value of color in place of the user agent’s default styles. Ordinarily, directly assigned styles override inherited styles, but inherit can undo that behavior. It might not always be a good idea—for example, here links might blend into surrounding text too much, and become an accessibility concern—but it can be done.
 
+>这将导致链接使用集成的color属性值覆盖用户代理默认样式。通常，这样直接分配的样式会覆盖掉继承的样式，但是inherit关键词可以取消这种覆盖。这可能不是一个好做法，因为这样有可能使链接混入到周围的文本中，而且会引起前面说过的可访问性问题。但是这样做确实可以满足上面的要求。
+
 Similarly, you can pull a property value down from a parent even if it wouldn’t happen normally. Take border, for example, which is (rightfully) not inherited. If you want a span to inherit the border of its parent, all you need is span {border: inherit;}. More likely, though, you just want the border on a span to use the same border color as its parent. In that case span {border-color: inherit;} will do the trick.
+
+>相似地，你想让一个属性值继承，而这个属性的继承是不会自动发生。举个例子，border属性不会自动继承父元素。如果你想让某个span的border属性继承父元素，你所需做的仅仅是添加一条```span{border: inherit;}```。大多数情况下，你想要的只是继承父元素的边框颜色，```span{border-color: inherit;}```足以解决问题。
 
 __initial.__ The keyword initial sets the value of a property to the defined initial value, which in a way means it “resets” the value. For example, the default value of fontweight is normal. Thus, declaring font-weight: initial is the same as declaring font-weight: normal.
 
+>__initial__ 关键词可以将属性的值恢复成初始值，某种程度上可以说它“重置”了该值。例如：fontweight属性的默认值为normal。因此，```font-weight: initial```这样声明跟```font-weight: normal```这样声明是一个效果。
+
 This might seem a little bit silly until you consider that not all values have explicitly defined initial values. For example, the initial value for color is “depends on user agent.” That’s not a funky keyword you should type! What it means is that the default value of color depends on things like the preferences settings in a browser. While almost nobody changes the default text color setting from black, someone might set it to a dark gray or even a bright red. By declaring color: initial;, you’re telling the browser to set the color of the element to whatever the user’s default color is set to be.
 
-unset. The keyword unset acts as a universal stand-in for both inherit and initial. If the property is inherited, then unset has the same effect as if inherit was used. If the property is not inherited, then unset has the same effect as if initial was used.
+>如果所有的属性都有明确的初始值，你会觉得这个关键词的设计有点愚蠢，但事实并不是这样的。举个例子，字体颜色的初始值是由用户代理来决定的，而不是你设置的某种时髦字体。这意味着字体颜色的默认值是由浏览器的偏好设置决定的。虽然大部分用户的文本设置是黑色字体，也有一部分用户将字体设置成灰色甚至是亮红色。通过声明```color: initial;```,你可以告诉浏览器将元素内的字体颜色更改成用户设置的默认值。
+
+__unset.__ The keyword unset acts as a universal stand-in for both inherit and initial. If the property is inherited, then unset has the same effect as if inherit was used. If the property is not inherited, then unset has the same effect as if initial was used.
+
+>__unset__ 关键词是inherit和initial的通用替代。如果一个属性是继承的，unset的效果跟inherit关键词的效果相同，如果一个属性不是继承的，unset的效果则跟initial关键词的效果相同。
 
 <tips tips="orange">
 As of late 2017, Opera Mini did not support any of initial, inherit, or unset. Internet Explorer did not support them through IE11.
@@ -59,9 +89,13 @@ As of late 2017, Opera Mini did not support any of initial, inherit, or unset. I
 
 These global values are usable on all properties, but there is a special property that _only_ accepts the global keywords: __all__.
 
+>这些全局关键词可以在任何属性上使用，但有一个特殊的属性: __all__,它只能接受全局关键词。
+
 <cards cards="all"></cards>
 
-all is a stand-in for all properties except direction and unicode-bidi. Thus, if you declare all: inherit on an element, you’re saying that you want all properties except direction and unicode-bidi to inherit their values from the element’s parent. Consider the following:
+__all__ is a stand-in for all properties except direction and unicode-bidi. Thus, if you declare all: inherit on an element, you’re saying that you want all properties except direction and unicode-bidi to inherit their values from the element’s parent. Consider the following:
+
+>__all__ 
 
 ```html
 section {color: white; background: black; font-weight: bold;}
