@@ -70,6 +70,8 @@ As Figure 8-2 illustrates, the background of an element extends into the padding
 
 By default, elements have no padding. The separation between paragraphs, for example, has traditionally been enforced with margins alone (as we’ll see later on). It’s also the case that, without padding, the border of an element will come very close to the content of the element itself. Thus, when putting a border on an element, it’s usually a good idea to add some padding as well, as Figure 8-3 illustrates.
 
+> 默认情况下，元素没有填充。例如，传统上，段落之间的分隔仅靠边距执行（我们将在后面介绍）。在没有填充的情况下，元素的边框也会非常接近元素本身的内容。因此，在元素上加上边框时，通常最好还添加一些填充，如图8-3所示。
+
 ### 8.2.1 Replicating Values
 
 ### 8.2.2 Padding Single-Side Padding
