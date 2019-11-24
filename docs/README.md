@@ -10,28 +10,6 @@
 
 英文正式版已于 2017 年 10 月正式出版。
 
-<Tips tips="green">This element signifies a tip or suggestion.</Tips>
-<Tips tips="blue">This element signifies a general note.</Tips>
-<Tips tips="orange">This element indicates a warning or caution.</Tips>
-
-<Card chapter='chapter2' property="card"/>
-
-<Cards cards="display" />
-
-<frames url="test">
-  <template v-slot:original>11 offset-props-lower-right</template>
-  <template v-slot:translation>11 偏离至右下</template>
-</frames>
-
-Table 1-1. Some common vendor prefixes
-| Prefix | Vendor |
-| -------- | -------------------------------------------------- |
-| -epub- | International Digital Publishing Forum ePub format |
-| -moz- | Mozilla-based browsers (e.g., Firefox) |
-| -ms- | Microsoft Internet Explorer |
-| -o- | Opera-based browsers |
-| -webkit- | WebKit-based browsers (e.g., Safari and Chrome) |
-
 ## 目录
 
 - [第 1 章 CSS 和 Documents](ch1.md)
