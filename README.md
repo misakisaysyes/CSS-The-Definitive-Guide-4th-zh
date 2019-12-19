@@ -65,6 +65,7 @@ http://localhost:8080/gitee-page/
   <tr>
     <td align="center"><a href="https://gdut-yy.github.io/"><img src="https://avatars2.githubusercontent.com/u/33390928?s=460&v=4" width="100px;" /><br /><sub><b>gdut-yy</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/gdut-wj"><img src="https://avatars3.githubusercontent.com/u/38821031?s=460&v=4" width="100px;" /><br /><sub><b>gdut-wj</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/brightzoe"><img src="https://avatars2.githubusercontent.com/u/17716768?s=400&v=4" width="100px;" /><br /><sub><b>brightzoe</b></sub></a><br /></td>
   </tr>
 </table>
 
