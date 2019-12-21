@@ -2,15 +2,22 @@
 
 CSS 权威指南第四版 中文翻译
 
-在线阅读：[http://gdut_yy.gitee.io/gitee-page/](http://gdut_yy.gitee.io/gitee-page/)
+在线阅读：[http://gdut_yy.gitee.io/doc-csstdg4/](http://gdut_yy.gitee.io/doc-csstdg4/)
 
-<img src="./docs/figures/cover.png" width=40%>
+<img src="./docs/cover.png" width=40%>
 
 ## 前言
 
 在不知干了多久的 Android 开发和 Java 后端开发后，由于公司需要，开始转行 Web 前端方向。在系统化学习前端知识时候，无奈发现市面上只有《CSS 权威指南（第三版）》的中文版（2007 年 10 月第一版）。众所周知，CSS 的标准发展日新月异，本书的第一章写于 2012 年，现在来看部分内容已经稍有落后，而等到第四版的中文版引入国内时，又不知何年何月了。遂决定阅读英文版，此 repo 仅为个人参考翻译。
 
 英文正式版已于 2017 年 10 月正式出版。
+
+---
+
+Features：
+
+1. 点击书中的图片即可以跳转到与图片对应的 html 页面，可通过浏览器的 F12 查看相关样式，带来比纸质书或 PDF 更好的阅读体验！~
+2. 第 17 章和第 18 章（“过渡”和“动画”）有一些 CSS 动态样例，这些示例与书中的图片不对应，你可以通过点击图片跳转到对应页面中观看动态示例！~
 
 ## Index
 
@@ -41,22 +48,16 @@ CSS 权威指南第四版 中文翻译
 依赖于 `node.js`、`yarn`、`vuepress` 等环境
 
 ```sh
-# node
-node -v
-> v10.14.1
-# yarn
-yarn -v
-> 1.13.0
 # vuepress
 yarn global add vuepress
 
 # 本地开发
 git clone https://github.com/gdut-yy/CSS-The-Definitive-Guide-4th-zh.git
-cd CSS-The-Definitive-Guide-4th-zh
+cd CSS-The-Definitive-Guide-4th-zh/
 yarn docs:dev
 
 # 本地阅读
-http://localhost:8080/gitee-page/
+http://localhost:8080/doc-csstdg4/
 ```
 
 ## Contributors
