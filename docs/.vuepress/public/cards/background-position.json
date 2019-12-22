@@ -19,7 +19,7 @@
     },
     {
       "name": "Computed value",
-      "content": "The absolute length offsets, if <length> is specied; otherwise, percentage values"
+      "content": "The absolute length offsets, if <length> is specified; otherwise, percentage values"
     },
     {
       "name": "Inherited",

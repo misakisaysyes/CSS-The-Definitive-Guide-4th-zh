@@ -7,7 +7,7 @@
     },
     {
       "name": "Initial value",
-      "content": "In CSS3, start; in CSS 2.1, this was user agent-specic, likely depending on writing direction (e.g., left for Western languages like English)"
+      "content": "In CSS3, start; in CSS 2.1, this was user agent-specific, likely depending on writing direction (e.g., left for Western languages like English)"
     },
     {
       "name": "Applies to",
