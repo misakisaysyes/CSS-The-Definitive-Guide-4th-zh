@@ -10,14 +10,14 @@ yarn docs:build
 cd docs/.vuepress/dist
 
 # if you are deploying to a custom domain
-echo 'http://gdut_yy.gitee.io/gitee-page/' > CNAME
+echo 'http://gdut_yy.gitee.io/doc-csstdg4/' > CNAME
 
 git init
 git add -A
 git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io
-git push -f git@gitee.com:gdut_yy/gitee-page.git master
+git push -f git@gitee.com:gdut_yy/doc-csstdg4.git master
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages

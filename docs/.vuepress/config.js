@@ -3,7 +3,7 @@ module.exports = {
   // 网站的标题
   title: 'CSS 权威指南 4th 中文',
   // 上下文根
-  base: "/gitee-page/",
+  base: "/doc-csstdg4/",
   themeConfig: {
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
     repo: "gdut-yy/CSS-The-Definitive-Guide-4th-zh",
