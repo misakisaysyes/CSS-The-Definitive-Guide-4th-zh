@@ -22,6 +22,10 @@ In order to understand how margins, padding, and borders are handled, you must u
 
 > 为了理解如何处理边距、填充和边框，您必须理解 box 模型，如图 8-1 所示。
 
+<Figures figure="8-1">The CSS box model</Figures>
+
+<Tips tips="blue">The diagram in Figure 8-1 intentionally omits outlines, for reasons that will hopefully be clear once we discuss outlines.</Tips>
+
 ### Width and Height
 
 It’s fairly common to explicitly define the width of an element, and historically much less common to explicitly define the height. By default, the width of an element is defined to be the distance from the left inner edge to the right inner edge, and the height is the distance from the inner top to the inner bottom. The properties that affect these distances are, unsurprisingly, called `height` and `width`.
@@ -45,13 +49,23 @@ You’ll end up with red unvisited links on silver backgrounds whose height and 
 
 > 你会在银色背景上得到一个红色的未访问链接，它的高度和宽度是由链接的内容决定的。他们将“不”有 15 像素高 60 像素宽的内容区域。另一方面，如果您添加了一个“显示”值，例如“内联块”或“块”，那么“高度”和“宽度”将设置链接内容区域的高度和宽度。
 
+<Cards cards="width" />
+
+<Cards cards="height" />
+
+<Tips tips="blue">As of late 2017, there were a few new values being considered for <code>height</code> and <code>width</code>. These are <code>stretch</code>, <code>min-content</code>, <code>max-content</code>, and <code>fit-content</code> (in two forms). Support for these values was limited, and it’s not clear whether these values will be applied to <code>height</code> and <code>width</code> any time soon.</Tips>
+
 In the course of this chapter, we’ll usually keep the discussion simple by assuming that the height of an element is always calculated automatically. If an element is eight lines long, and each line is an eighth of an inch tall, then the height of the element is one inch. If it’s 10 lines tall, then the height is 1.25 inches. In either case, the height is determined by the content of the element, not by the author. It’s rarely the case that elements in the normal flow have a set height.
 
 > 在本章的过程中，我们通常通过假设元素的高度总是自动计算来简化讨论。如果一个元素有 8 行，每一行都是 1/8 英寸高，那么元素的高度就是 1 英寸。如果是 10 行，那么高度是 1.25 英寸。在这两种情况下，高度是由元素的内容决定的，而不是由作者决定的。正常流中的元素很少有固定的高度。
 
+<Tips tips="blue">It’s possible to change the meaning of <code>height</code> and <code>width</code> using the property <code>box-sizing</code>. This is not covered in this chapter, but in short, you can use either the content box or the border box as the area of measure. For the purposes of this chapter, we’ll assume the default situation holds: that <code>height</code> and <code>width</code> refer to the height and width of the content area (<code>box-sizing: content-box</code>).</Tips>
+
 ## 8.2 Padding
 
-Just beyond the content area of an element, we find its padding, nestled between the content and any borders. The simplest way to set padding is by using the property padding.
+Just beyond the content area of an element, we find its `padding`, nestled between the content and any borders. The simplest way to set padding is by using the property `padding`.
+
+<Cards cards="padding" />
 
 As you can see, this property accepts any length value, or a percentage value. So if you want all h2 elements to have 1 em of padding on all sides, it’s this easy (see Figure 8-2):
 
@@ -62,15 +76,45 @@ h2 {
 }
 ```
 
-//
+<Figures figure="8-2">Adding padding to elements</Figures>
 
 As Figure 8-2 illustrates, the background of an element extends into the padding by default. If the background is transparent, this will create some extra transparent space around the element’s content, but any visible background will extend into the padding area (and beyond, as we’ll see in a later section).
 
 > 如图 8-2 所示，默认情况下，元素的背景扩展到填充中。如果背景是透明的，这将在元素的内容周围创建一些额外的透明空间，但是任何可见的背景都将扩展到填充区域(以及其他区域，我们将在后面的小节中看到)。
 
+
+<Tips tips="blue">Visible backgrounds can be prevented from extending into the padding by using the property <code>background-clip</code>.</Tips>
+
+
 By default, elements have no padding. The separation between paragraphs, for example, has traditionally been enforced with margins alone (as we’ll see later on). It’s also the case that, without padding, the border of an element will come very close to the content of the element itself. Thus, when putting a border on an element, it’s usually a good idea to add some padding as well, as Figure 8-3 illustrates.
 
 > 默认情况下，元素没有填充。例如，传统上，段落之间的分隔仅靠边距执行（我们将在后面介绍）。在没有填充的情况下，元素的边框也会非常接近元素本身的内容。因此，在元素上加上边框时，通常最好还添加一些填充，如图8-3所示。
+
+<Figures figure="8-3">The effect of padding on bordered block-level elements</Figures>
+
+Any length value is permitted, from ems to inches. The simplest way to set padding is with a single length value, which is applied equally to all four padding sides. At times, however, you might desire a different amount of padding on each side of an element. If you want all h1 elements to have a top padding of 10 pixels, a right padding of 20 pixels, a bottom padding of 15 pixels, and a left padding of 5 pixels, here’s all you need:
+
+```css
+h1 {padding: 10px 20px 15px 5px;}
+```
+
+The order of the values is important, and follows this pattern:
+```css
+padding: top right bottom left
+```
+A good way to remember this pattern is to keep in mind that the four values go clock‐wise around the element, starting from the top. The padding values are always applied in this order, so to get the effect you want, you have to arrange the values correctly.
+
+An easy way to remember the order in which sides must be declared, other than thinking of it as being clockwise from the top, is to keep in mind that getting the sides in the correct order helps you avoid “TRouBLe”—that is, TRBL, for “Top Right Bottom Left.”
+
+It’s also possible to mix up the types of length value you use. You aren’t restricted to using a single length type in a given rule, but can use whatever makes sense for a given side of the element, as shown here:
+
+```css
+h2 {padding: 14px 5em 0.1in 3ex;} /* value variety! */
+```
+
+Figure 8-4 shows you, with a little extra annotation, the results of this declaration.
+
+<Figures figure="8-4">Mixed-value padding</Figures>
 
 ### 8.2.1 Replicating Values
 
@@ -90,7 +134,8 @@ These two values are enough to take the place of four. But how? CSS defines a fe
 
 If you prefer a more visual approach, take a look at the diagram shown in Figure 8-5.
 
-Figure 8-5. Value-replication pattern
+
+<Figures figure="8-5">Value-replication pattern</Figures>
 
 In other words, if three values are given for padding, the fourth (left) is copied from the second (right). If two values are given, the fourth is copied from the second, and the third (bottom) from the first (top). Finally, if only one value is given, all the other sides copy that value.
 
@@ -118,16 +163,17 @@ The half-em top and bottom padding of each paragraph butt up against each other 
 p {margin: 0; padding: 0.5em 0; border-bottom: 1px solid gray;
     border-left: 3px double black;}
 ```
-Figure 8-6. Using padding instead of margins
 
-### Single-Side Padding
+<Figures figure="8-6">Using padding instead of margins</Figures>
+
+### 8.2.2 Single-Side Padding
 Fortunately, there’s a way to assign a value to the padding on a single side of an element. Four ways, actually. Let’s say you only want to set the left padding of h2 elements to be 3em. Rather than writing out padding: 0 0 0 3em, you can take this approach:
 ```css
 h2 {padding-left: 3em;}
 ```
 padding-left is one of four properties devoted to setting the padding on each of the four sides of an element box. Their names will come as little surprise.
 
-//
+<Cards cards="padding-top_padding-right_padding-bottom_padding-left" />
 
 
 These properties operate in a manner consistent with their names. For example, the following two rules will yield the same amount of padding:
@@ -155,11 +201,11 @@ As you can see in Figure 8-7, the padding is set as we wanted. In this case, it 
 ```css
 h2 {padding: 0 0 2em 3em;}
 ```
-css4 0807
-Figure 8-7. More than one single-side padding
+
+<Figures figure="8-7">More than one single-side padding</Figures>
+
 In general, once you’re trying to set padding for more than one side, it’s easier to use the shorthand padding. From the standpoint of your document’s display, however, it doesn’t really matter which approach you use, so choose whichever is easiest for you.
 
-### 8.2.2 Padding Single-Side Padding
 
 ### 8.2.3 Percentage Values and Padding
 
@@ -185,8 +231,9 @@ p {padding: 10%; background-color: silver;}
     </p>
 </div>
 ```
-css4 0808
-Figure 8-8. Padding, percentages, and the widths of parent elements
+
+<Figures figure="8-8">Padding, percentages, and the widths of parent elements</Figures>
+
 You may have noticed something odd about the paragraphs in Figure 8-8. Not only did their side padding change according to the width of their parent elements, but so did their top and bottom padding. That’s the desired behavior in CSS. Refer back to the property definition, and you’ll see that percentage values are defined to be relative to the width of the parent element. This applies to the top and bottom padding as well as to the left and right. Thus, given the following styles and markup, the top padding of the paragraph will be 50 px:
 ```css
 div p {padding-top: 10%;}
@@ -203,15 +250,16 @@ If all this seems strange, consider that most elements in the normal flow are (a
 
 By contrast, consider the case of elements without a declared width. In such cases, the overall width of the element box (including padding) is dependent on the width of the parent element. This leads to the possibility of fluid pages, where the padding on elements enlarges or reduces to match the actual size of the parent element. If you style a document so that its elements use percentage padding, then as the user changes the width of a browser window, the padding will expand or shrink to fit. The design choice is up to you.
 
-NOTE
-The treatment of percentage values for top and bottom padding is different for most positioned elements, flex items, and grid items, where they are calculated with respect to the height of their formatting context.
+<Tips tips="blue">The treatment of percentage values for top and bottom padding is different for most positioned elements, flex items, and grid items, where they are calculated with respect to the height of their formatting context.</Tips>
+
 
 It’s also possible to mix percentages with length values. Thus, to set h2 elements to have top and bottom padding of one-half em, and side padding of 10% the width of their parent elements, you can declare the following, illustrated in Figure 8-9:
 ```css
 h2 {padding: 0.5em 10%;}
 ```
-css4 0809
-Figure 8-9. Mixed padding
+
+<Figures figure="8-9">Mixed padding</Figures>
+
 Here, although the top and bottom padding will stay constant in any situation, the side padding will change based on the width of the parent element.
 
 ### 8.2.4 Padding and Inline Elements
@@ -228,36 +276,41 @@ Be careful: an inline nonreplaced element with a background color and padding ca
 ```css
 strong {padding-top: 0.5em; background-color: silver;}
 ```
+
 Figure 8-10 gives you an idea of what this might look like.
 
-css4 0810
-Figure 8-10. Top padding on an inline nonreplaced element
+
+<Figures figure="8-10">Top padding on an inline nonreplaced element</Figures>
+
 The line height isn’t changed, but since the background color does extend into the padding, each line’s background ends up overlapping the lines that come before it. That’s the expected result.
 
 The preceding behaviors are true only for the top and bottom sides of inline nonreplaced elements; the left and right sides are a different story. We’ll start by considering the case of a small, inline nonreplaced element within a single line. Here, if you set values for the left or right padding, they will be visible, as Figure 8-11 makes clear (so to speak):
+
 ```css
 strong {padding-left: 25px; background: silver;}
 ```
-css4 0811
-Figure 8-11. An inline nonreplaced element with left padding
+
+<Figures figure="8-11">An inline nonreplaced element with left padding</Figures>
+
 Note the extra space between the end of the word just before the inline nonreplaced element and the edge of the inline element’s background. You can add that extra space to both ends of the inline if you want:
 ```css
 strong {padding-left: 25px; padding-right: 25px; background: silver;}
 ```
 As expected, Figure 8-12 shows a little extra space on the right and left sides of the inline element, and no extra space above or below it.
 
-css4 0812
-Figure 8-12. An inline nonreplaced element with 25-pixel side padding
+
+<Figures figure="8-12">An inline nonreplaced element with 25-pixel side padding</Figures>
+
 Now, when an inline nonreplaced element stretches across multiple lines, the situation changes a bit. Figure 8-13 shows what happens when an inline nonreplaced element with a padding is displayed across multiple lines:
 ```css
 strong {padding: 0 25px; background: silver;}
 ```
 The left padding is applied to the beginning of the element and the right padding to the end of it. By default, padding is not applied to the right and left side of each line. Also, you can see that, if not for the padding, the line may have broken after “background.” instead of where it did. padding only affects line breaking by changing the point at which the element’s content begins within a line.
 
-css4 0813
-Figure 8-13. An inline nonreplaced element with 25-pixel side padding displayed across two lines of text
-NOTE
-The way padding is (or isn’t) applied to the ends of each line box can be altered with the property box-decoration-break. See Chapter 7 for more details.
+<Figures figure="8-13">An inline nonreplaced element with 25-pixel side padding displayed across two lines of text</Figures>
+
+<Tips tips="blue">The way padding is (or isn’t) applied to the ends of each line box can be altered with the property box-decoration-break. See Chapter 7 for more details.</Tips>
+
 
 ### 8.2.5 Padding and Replaced Elements
 
@@ -267,16 +320,16 @@ img {background: silver; padding: 1em;}
 ```
 Regardless of whether the replaced element is block-level or inline, the padding will surround its content, and the background color will fill into that padding, as shown in Figure 8-14. You can also see in Figure 8-14 that padding will push a replaced element’s border (dashed, in this case) away from its content.
 
-css4 0814
-Figure 8-14. Padding replaced elements
+<Figures figure="8-14">Padding replaced elements</Figures>
+
 Now, remember all that stuff about how padding on inline nonreplaced elements doesn’t affect the height of the lines of text? You can throw it all out for replaced elements, because they have a different set of rules. As you can see in Figure 8-15, the padding of an inline replaced element very much affects the height of the line.
 
-css4 0815
-Figure 8-15. Padding replaced elements
+<Figures figure="8-15">Padding replaced elements</Figures>
+
 The same goes for borders and margins, as we’ll soon see.
 
-WARNING
-As of late 2017, there was still uncertainty over what to do about styling form elements such as input, which are replaced elements. It is not entirely clear where the padding of a checkbox resides, for example. Therefore, as of this writing, some browsers ignore padding (and other forms of styling) for form elements, while others apply the styles as best they can.
+<Tips tips="orange">As of late 2017, there was still uncertainty over what to do about styling form elements such as <code>input</code>, which are replaced elements. It is not entirely clear where the padding of a checkbox resides, for example. Therefore, as of this writing, some browsers ignore padding (and other forms of styling) for form elements, while others apply the styles as best they can.</Tips>
+
 
 ## 8.3 Borders
 
@@ -292,36 +345,36 @@ then, by default, the border around the table will be purple (assuming the user 
 
 The CSS specification defines the background area of an element to extend to the outside edge of the border, at least by default. This is important because some borders are intermittent—for example, dotted and dashed borders—so the element’s background should appear in the spaces between the visible portions of the border.
 
-NOTE
+<Tips tips="blue">Visible backgrounds can be prevented from extending into the border area by using the property background-clip. See Chapter 9 for details.</Tips>
 
-Visible backgrounds can be prevented from extending into the border area by using the property background-clip. See Chapter 9 for details.
 
 ### 8.3.1 Borders with Style
 
 We’ll start with border styles, which are the most important aspect of a border—not because they control the appearance of the border (although they certainly do that) but because without a style, there wouldn’t be any border at all.
 
-// 
+<Cards cards="border-style" />
 
 CSS defines 10 distinct non-inherit styles for the property border-style, including the default value of none. The styles are demonstrated in Figure 8-16.
 
 The style value hidden is equivalent to none, except when applied to tables, where it has a slightly different effect on border-conflict resolution.
 
-css4 0816
-Figure 8-16. Border styles
+<Figures figure="8-16">Border styles</Figures>
+
 The most unpredictable border style is double. It’s defined such that the width of the two lines it creates, plus the width of the space between them, is equal to the value of border-width (discussed in the next section). However, the CSS specification doesn’t say whether one of the lines should be thicker than the other, or if they should always be the same width, or if the space should be thicker or thinner than the lines. All of these things are left up to the user agent to decide, and the author has no reliable way to influence the final result.
 
 All the borders shown in Figure 8-16 are based on a color value of gray, which makes all of the visual effects easier to see. The look of a border style is always based in some way on the color of the border, although the exact method may vary between user agents. The way browsers treat colors in the border styles inset, outset, groove, and ridge can and does vary. For example, Figure 8-17 illustrates two different ways of rendering an inset border.
 
-css4 0817
-Figure 8-17. Two valid ways of rendering inset
+<Figures figure="8-17">Two valid ways of rendering inset</Figures>
+
 Note how one browser takes the gray value for the bottom and right sides, and a darker gray for the top and left; the other makes the bottom and right lighter than gray and the top and left darker, but not as dark as the first browser.
 
 Now let’s define a border style for images that are inside any unvisited hyperlink. We might make them outset, so they have a “raised button” look, as depicted in Figure 8-18:
 ```css
 a:link img {border-style: outset;}
 ```
-css4 0818
-Figure 8-18. Applying an outset border to a hyperlinked image
+
+<Figures figure="8-18">Applying an outset border to a hyperlinked image</Figures>
+
 By default, the color of the border is based on the element’s value for color, which in this circumstance is likely to be blue. This is because the image is contained with a hyperlink, and the foreground color of hyperlinks is usually blue. If you so desired, you could change that color to silver, like this:
 ```css
 a:link img {border-style: outset; color: silver;}
@@ -332,10 +385,9 @@ Remember, though, that the color-shifting in borders is up to the user agent. Le
 
 Again, notice how one browser shifts the colors to the lighter and darker, while another just shifts the “shadowed” sides to be darker than blue. This is why, if a specific set of colors is desired, authors usually set the exact colors they want instead of using a border style like outset and leaving the result up to the browser. We’ll soon see just how to do that.
 
-css4 0819
-Figure 8-19. Two outset borders
+<Figures figure="8-19">Two outset borders</Figures>
 
-MULTIPLE STYLES
+#### MULTIPLE STYLES
 It’s possible to define more than one style for a given border. For example:
 ```css
 p.aside {border-style: solid dashed dotted solid;}
@@ -347,19 +399,21 @@ Again we see the top-right-bottom-left order of values, just as we saw in our di
 p.new1 {border-style: solid none dashed;}
 p.new2 {border-style: solid none dashed none;}
 ```
-css4 0820
-Figure 8-20. Equivalent style rules
-SINGLE-SIDE STYLES
+
+<Figures figure="8-20">Equivalent style rules</Figures>
+
+#### SINGLE-SIDE STYLES
 There may be times when you want to set border styles for just one side of an element box, rather than all four. That’s where the single-side border style properties come in.
 
-//
+<Cards cards="border-top-style_border-right-style_border-bottom-style_border-left-style" />
 
 Single-side border style properties are fairly self-explanatory. If you want to change the style for the bottom border, for example, you use border-bottom-style.
 
 It’s not uncommon to see border used in conjunction with a single-side property. Suppose you want to set a solid border on three sides of a heading, but not have a left border, as shown in Figure 8-21.
 
-css4 0821
-Figure 8-21. Removing the left border
+
+<Figures figure="8-21">Removing the left border</Figures>
+
 There are two ways to accomplish this, each one equivalent to the other:
 ```css
 h1 {border-style: solid solid solid none;}
@@ -373,19 +427,20 @@ What’s important to remember is that if you’re going to use the second appro
 
 Once you’ve assigned a border a style, the next step is to give it some width, most easily by using the property border-width or one of its cousin properties.
 
-//
+<Cards cards="border-width" />
 
 Each of these properties is used to set the width on a specific border side, just as with the margin properties.
 
-NOTE
-As of late 2017, border widths still cannot be given percentage values, which is rather a shame.
+<Tips tips="blue">As of late 2017, border widths still cannot be given percentage values, which is rather a shame.</Tips>
+
 
 There are four ways to assign width to a border: you can give it a length value such as 4px or 0.1em, or use one of three keywords. These keywords are thin, medium (the default value), and thick. These keywords don’t necessarily correspond to any particular width, but are defined in relation to one another. According to the specification, thick is always wider than medium, which is in turn always wider than thin. Which makes sense.
 
 However, the exact widths are not defined, so one user agent could set them to be equivalent to 5px, 3px, and 2px, while another sets them to be 3px, 2px, and 1px. No matter what width the user agent uses for each keyword, it will be the same throughout the document, regardless of where the border occurs. So if medium is the same as 2px, then a medium-width border will always be two pixels wide, whether the border surrounds an h1 or a p element. Figure 8-22 illustrates one way to handle these three keywords, as well as how they relate to each other and to the content they surround.
 
-css4 0822
-Figure 8-22. The relation of border-width keywords to each other
+
+<Figures figure="8-22">The relation of border-width keywords to each other</Figures>
+
 Let’s suppose a paragraph has a background color and a border style set:
 ```css
 p {background-color: silver;
@@ -401,16 +456,18 @@ Of course, border widths can be taken to fairly ridiculous extremes, such as set
 p {background-color: silver; padding: 0.5em;
     border-style: solid; border-width: 50px;}
 ```
-css4 0823
-Figure 8-23. Really wide borders
+
+<Figures figure="8-23">Really wide borders</Figures>
+
 It’s also possible to set widths for individual sides, using two familiar methods. The first is to use any of the specific properties mentioned at the beginning of the section, such as border-bottom-width. The other way is to use value replication in border-width, which is illustrated in Figure 8-24:
 ```css
 h1 {border-style: dotted; border-width: thin 0;}
 p {border-style: solid; border-width: 15px 2px 8px 5px;}
 ```
-css4 0824
-Figure 8-24. Value replication and uneven border widths
-NO BORDER AT ALL
+
+<Figures figure="8-24">Value replication and uneven border widths</Figures>
+
+#### NO BORDER AT ALL
 So far, we’ve talked only about using a visible border style such as solid or outset. Let’s consider what happens when you set border-style to none:
 ```css
 p {border-style: none; border-width: 20px;}
@@ -429,15 +486,16 @@ Since the default value of border-style is none, failure to declare a style is e
 
 Compared to the other aspects of borders, setting the color is pretty easy. CSS uses the single property border-color, which can accept up to four color values at one time.
 
-//
+<Cards cards="border-color" />
 
 If there are fewer than four values, value replication takes effect as usual. So if you want h1 elements to have thin gray top and bottom borders with thick green side borders, and medium gray borders around p elements, the following styles will suffice, with the result shown in Figure 8-25:
 ```css
 h1 {border-style: solid; border-width: thin thick; border-color: gray green;}
 p {border-style: solid; border-color: gray;}
 ```
-css4 0825
-Figure 8-25. Borders have many aspects
+
+<Figures figure="8-25">Borders have many aspects</Figures>
+
 A single color value will be applied to all four sides, as with the paragraph in the previous example. On the other hand, if you supply four color values, you can get a different color on each side. Any type of color value can be used, from named colors to hexadecimal and RGBA values:
 ```css
 p {border-style: solid; border-width: thick;
@@ -449,17 +507,19 @@ p.shade1 {border-style: solid; border-width: thick; color: gray;}
 p.shade2 {border-style: solid; border-width: thick; color: gray;
     border-color: black;}
 ```
-css4 0826
-Figure 8-26. Border colors based on the element’s foreground and the value of the border-color property
+
+<Figures figure="8-26">Border colors based on the element’s foreground and the value of the border-color property</Figures>
+
 The result is that the first paragraph has a gray border, having taken the value gray from the foreground color of the paragraph. The second paragraph, however, has a black border because that color was explicitly assigned using border-color.
 
 There are single-side border color properties as well. They work in much the same way as the single-side properties for style and width. One way to give headings a solid black border with a solid gray right border is as follows:
 ```css
 h1 {border-style: solid; border-color: black; border-right-color: gray;}
 ```
-//
 
-TRANSPARENT BORDERS
+<Cards cards="border-top-color_border-right-color_border-bottom-color_border-left-color" />
+
+#### TRANSPARENT BORDERS
 As you may recall, if a border has no style, then it has no width. There are, however, situations where you’ll want to create an invisible border that still has width. This is where the border color value transparent (introduced in CSS2) comes in.
 
 Let’s say we want a set of three links to have borders that are invisible by default, but look inset when the link is hovered. We can accomplish this by making the borders transparent in the nonhovered case:
@@ -472,8 +532,7 @@ This will have the effect shown in Figure 8-27.
 
 In a sense, transparent lets you use borders as if they were extra padding, with the additional benefit of being able to make them visible should you so choose. They act as padding because the background of the element extends into the border area by default, assuming there is a visible background.
 
-css4 0827
-Figure 8-27. Using transparent borders
+<Figures figure="8-27">Using transparent borders</Figures>
 
 ### 8.3.4 Shorthand Border Properties
 
@@ -492,11 +551,11 @@ h1 {border-bottom: thick solid rgb(50%,40%,75%);}
 ```
 This will apply the values to the bottom border alone, as shown in Figure 8-28, leaving the others to their defaults. Since the default border style is none, no borders appear on the other three sides of the element.
 
-css4 0828
-Figure 8-28. Setting a bottom border with a shorthand property
+<Figures figure="8-28">Setting a bottom border with a shorthand property</Figures>
+
 As you may have already guessed, there are a total of four such shorthand properties.
 
-//
+<Cards cards="border-top_border-right_border-bottom_border-left" />
 
 It’s possible to use these properties to create some complex borders, such as those shown in Figure 8-29:
 ```css
@@ -505,8 +564,9 @@ h1 {border-left: 3px solid gray;
     border-top: thick goldenrod inset;
     border-bottom: double rgb(13%,33%,53%) 10px;}
 ```
-css4 0829
-Figure 8-29. Very complex borders
+
+<Figures figure="8-29">Very complex borders</Figures>
+
 As you can see, the order of the actual values doesn’t really matter. The following three rules will yield exactly the same border effect:
 ```css
 h1 {border-bottom: 3px solid gray;}
@@ -523,8 +583,9 @@ By contrast, if you set only a style, you will still get a border. Let’s say y
 ```css
 p.roof {border-top: dashed;}
 ```
-css4 0830
-Figure 8-30. Dashing across the top of an element
+
+<Figures figure="8-30">Dashing across the top of an element</Figures>
+
 Also note that since each of these border-side properties applies only to a specific side, there isn’t any possibility of value replication—it wouldn’t make any sense. There can be only one of each type of value: that is, only one width value, only one color value, and only one border style. So don’t try to declare more than one value type:
 ```css
 h3 {border-top: thin thick solid purple;} /* two width values--WRONG */
@@ -535,7 +596,7 @@ In such a case, the entire statement will be invalid and a user agent would igno
 
 Now, we come to the shortest shorthand border property of all: border.
 
-//
+<Cards cards="border" />
 
 This property has the advantage of being very compact, although that brevity introduces a few limitations. Before we worry about that, let’s see how border works. If you want all h1 elements to have a thick silver border, the following declaration would be displayed as shown in Figure 8-31:
 ```css
@@ -548,8 +609,9 @@ h1 {border-top: thick silver solid;
     border-right: thick silver solid;
     border-left: thick silver solid;} /* same result as previous example */
 ```
-css4 0831
-Figure 8-31. A really short border declaration
+
+<Figures figure="8-31">A really short border declaration</Figures>
+
 The drawback with border is that you can define only global styles, widths, and colors. In other words, the values you supply for border will apply to all four sides equally. If you want the borders to be different for a single element, you’ll need to use some of the other border properties. Then again, it’s possible to turn the cascade to your advantage:
 ```css
 h1 {border: thick goldenrod solid;
@@ -557,8 +619,8 @@ h1 {border: thick goldenrod solid;
 ```
 The second rule overrides the width value for the left border assigned by the first rule, thus replacing thick with 20px, as you can see in Figure 8-32.
 
-css4 0832
-Figure 8-32. Using the cascade to one’s advantage
+<Figures figure="8-32">Using the cascade to one’s advantage</Figures>
+
 You still need to take the usual precautions with shorthand properties: if you omit a value, the default will be filled in automatically. This can have unintended effects. Consider the following:
 ```css
 h4 {border-style: dashed solid double;}
@@ -577,8 +639,8 @@ strong {border-top: 10px solid hsl(216,50%,50%);
 ```
 Once more, this syntax is allowed in the specification, but it will have absolutely no effect on the line height. However, since borders are visible, they’ll be drawn—as you can see for yourself in Figure 8-33.
 
-css4 0833
-Figure 8-33. Borders on inline nonreplaced elements
+<Figures figure="8-33">Borders on inline nonreplaced elements</Figures>
+
 The borders have to go somewhere. That’s where they went.
 
 Again, all of this is true only for the top and bottom sides of inline elements; the left and right sides are a different story. If you apply a left or right border, not only will they be visible, but they’ll displace the text around them, as you can see in Figure 8-34:
@@ -587,23 +649,23 @@ strong {border-left: 25px double hsl(216,50%,50%); background: silver;}
 ```
 With borders, just as with padding, the browser’s calculations for line breaking are not directly affected by any box properties set for inline nonreplaced elements. The only effect is that the space taken up by the borders may shift portions of the line over a bit, which may in turn change which word is at the end of the line.
 
-css4 0834
-Figure 8-34. Inline nonreplaced elements with left borders
-NOTE
-The way borders are (or aren’t) drawn at the ends of each line box can be altered with the property box-decoration-break. See Chapter 7 for more details.
+<Figures figure="8-34">Inline nonreplaced elements with left borders</Figures>
+
+<Tips tips="blue">The way borders are (or aren’t) drawn at the ends of each line box can be altered with the property <code>box-decoration-break</code>. See Chapter 7 for more details.</Tips>
+
 
 With replaced elements such as images, on the other hand, the effects are very much like those we saw with padding: a border will affect the height of the lines of text, in addition to shifting text around to the sides. Thus, assuming the following styles, we get a result like that seen in Figure 8-35.
 ```css
 img {border: 1em solid rgb(216,108,54);}
 ```
-css4 0835
-Figure 8-35. Borders on inline replaced elements
+
+<Figures figure="8-35">Borders on inline replaced elements</Figures>
 
 ### 8.3.7 Rounding Border Corners
 
 It’s possible to soften the harsh corners of element borders by using the property border-radius to define a rounding distance (or two). In this particular case, we’re actually going to start with the shorthand property and then mention the individual properties at the end of the section.
 
-//
+<Cards cards="border-radius" />
 
 The radius of a border is the radius of a circle or ellipse, one quarter of which is used to define the path of the border’s rounding. We’ll start with circles, because they’re a little easier to understand.
 
@@ -613,8 +675,8 @@ Suppose we want to round the corner of an element so that each corner has pretty
 ```
 That will have the result shown in Figure 8-36, where circle diagrams have been added to two of the corners. (The same rounding is done in all four corners.)
 
-css4 08 border radius simple
-Figure 8-36. How border radii are calculated
+<Figures figure="8-36">How border radii are calculated</Figures>
+
 Focus on the top left corner. There, the border begins to curve 2 em below the top of the border, and 2 em to the right of the left side of the border. The curve follows along the outside of the 2-em-radius circle.
 
 If we were to draw a box that just contained the part of the top left corner that was curved, that box would be 2em wide and 2em tall. The same thing would happen in the bottom right corner.
@@ -623,8 +685,9 @@ With single length values, we get circular corner rounding shapes. If a single p
 ```css
 #example {border-radius: 33%;}
 ```
-css4 08 border radius simple percentage
-Figure 8-37. How percentage border radii are calculated
+
+<Figures figure="8-37">How percentage border radii are calculated</Figures>
+
 Again, let’s focus on the top left corner. On the left edge, the border curve begins at the point 33% of the element box’s height down from the top. In other words, if the element box is 100 pixels tall from top border edge to bottom border edge, the curve begins 33 pixels from the top of the element box.
 
 Similarly, on the top edge, the curve begins at the point 33% of the element box’s width from the left edge. So if the box is (say) 600 pixels wide, the curve begins 198 pixels from the left edge, because 600 * 0.33 = 198.
@@ -649,14 +712,15 @@ If a value is left off, then the missing values are filled in using a pattern li
 #example {border-radius: 1em 2em 3em 2em;}
 #example {border-radius: 1em 2em 3em; /* BL copied from TR */}
 ```
-css4 08 border radius various
-Figure 8-38. A variety of rounded corners
+
+<Figures figure="8-38">A variety of rounded corners</Figures>
+
 There’s an important aspect to Figure 8-38: the rounding of the content area’s background along with the rest of the background. See how the silver curves, and the period sits outside it? That’s the expected behavior in a situation where the content area’s background is different than the padding background (we’ll see how to do that in the next chapter) and the curving of a corner is large enough to affect the boundary between content and padding.
 
 This is because while border-radius changes how the border and background(s) of an element are drawn, it does not change the shape of the element box. Consider the situation depicted in Figure 8-39.
 
-css4 08 border radius still boxes
-Figure 8-39. Elements with rounded corners are still boxes
+<Figures figure="8-39">Elements with rounded corners are still boxes</Figures>
+
 There, we can see an element that’s been floated to the left, and other text flowing past it. The border corners have been completely rounded off using border-radius: 50%, and some of its text is sticking out past the rounded corners. Beyond the rounded corners, we can also see the page background visible where the corners would have been, were they not rounded.
 
 So at a glance, you might assume that the element has been reshaped from box to circle (technically ellipse), and the text just happens to stick out of it. But look at the text flowing past the float. It doesn’t flow into the area the rounded corners “left behind.” That’s because the corners of the floated element are still there. They’re just not visibly filled by border and background, thanks to border-radius.
@@ -669,7 +733,7 @@ In any such case, the rounding is “clamped” to the maximum it can be for a g
 ```
 That will just cap off the shortest ends of the element (usually the left and right sides, but no guarantees) to be smooth semicircular caps.
 
-MORE COMPLEX CORNER SHAPING
+#### MORE COMPLEX CORNER SHAPING
 Now that we’ve seen how assigning a single radius value to a corner shapes it, let’s talk about what happens when corners get two values—and, more importantly, how they get those values.
 
 For example, suppose we want corners to be rounded by 3 character units horizontally, and 1 character unit vertically. We can’t just say border-radius: 3ch 1ch because that will round the top left and bottom right corners by 3ch, and the other two corners by 1ch each. Inserting a forward slash will get us what we’re after:
@@ -686,16 +750,18 @@ Here’s a simpler example, illustrated in Figure 8-40:
 ```css
 #example {border-radius: 1em / 2em;}
 ```
-css4 08 border radius slash simple
-Figure 8-40. Elliptical corner rounding
+
+<Figures figure="8-40">Elliptical corner rounding</Figures>
+
 Each corner is rounded by 1em along the horizontal axis, and 2em along the vertical axis, in the manner we saw in detail in the previous section.
 
 Here’s a slightly more complex version, providing two lengths to either side of the slash, as depicted in Figure 8-41:
 ```css
 #example {border-radius: 1em 2em / 2em 3em;}
 ```
-css4 08 border radius slash various
-Figure 8-41. Different elliptical rounding calculations
+
+<Figures figure="8-41">Different elliptical rounding calculations</Figures>
+
 In this case, the top left and bottom right corners are curved 1em along the horizontal axis, and 2em along the vertical axis. The top right and bottom left corners, on the other hand, are curved 2em along the horizontal and 3 along the vertical.
 
 However! Don’t think the 1em 2em to the left of the slash defines the first corner set, and the 2em 3em to the right of the slash defines the second. Remember, it’s horizontal values before the slash, and vertical after. If we’d wanted to make the top left and bottom right corners be rounded 1em horizontally and 1em vertically (a circular rounding), the values would have been written like so:
@@ -706,15 +772,15 @@ Percentages are also fair game here. If we want to round the corners of an eleme
 ```css
 #example {border-radius: 2ch / 50%;}
 ```
-CORNER BLENDING
+#### CORNER BLENDING
 So far, the corners we’ve rounded have been pretty simple—always the same width, style and color. That won’t always be the case, though. What happens if a tick red solid border is rounded into a thin dashed green border?
 
 The specification directs that the rounding cause as smooth a blend as possible when it comes to the width. In other words, when rounding from a thicker border to a thinner border, the width of the border should gradually shrink throughout the curve of the rounded corner.
 
 When it comes to differing styles and colors, the specification is less clear about how this should be accomplished. Consider the various samples shown in Figure 8-42.
 
-css4 08 border radius blend details
-Figure 8-42. Rounded corners up close
+<Figures figure="8-42">Rounded corners up close</Figures>
+
 The first is a simple rounded corner, with no variation in color, width, or style. The second shows rounding from one thickness to another. You can visualize this second case as a shape defined by a circular shape on the outer edge and en elliptical shape on the inner edge.
 
 In the third case, the color and thickness stay the same, but the corner curves from a solid style on the left to a double-line style on top. The transition between styles is abrupt, and occurs at the halfway point in the curve.
@@ -730,10 +796,10 @@ The seventh example in Figure 8-42 shows a case we haven’t really discussed wh
      border-width: 20px;
      border-radius: 20px;}
 ```
-INDIVIDUAL ROUNDING PROPERTIES
+#### INDIVIDUAL ROUNDING PROPERTIES
 After that tour of border-radius, you might be wondering if maybe you could just round one corner at a time. Yes, you can!
 
-//
+<Cards cards="border-top-left-radius_border-top-right-radius_border-bottomright-radius_border-bottom-left-radius" />
 
 Each property sets the curve shape for its corner, and doesn’t affect the others. The fun part is that if you supply two values, one for the horizontal radius and one for the vertical radius, there is not a slash separating them. Really. This means that the following two rules are functionally equivalent:
 ```css
@@ -761,33 +827,36 @@ The various border styles are nice enough, but are still fairly limited. What if
 LOADING AND SLICING A BORDER IMAGE
 If you’re going to use an image to create the borders of an image, you’ll need to fetch it from somewhere. border-image-source is how you tell the browser where to look for it.
 
-//
+<Cards cards="border-image-source" />
 
 Let’s load an image of a single circle to be used as the border image, using the following styles, whose result is shown in Figure 8-43:
 ```css
 border: 25px solid;
 border-image-source: url(i/circle.png);
 ```
-css4 0836
-Figure 8-43. Defining a border image’s source
+
+<Figures figure="8-43">Defining a border image’s source</Figures>
+
 There are a number of things to note here. First, without the border: 25px solid declaration, there would have been no border at all. Remember, if the value of border-style is none, then the width of the border is zero. So in order to make a border image appear, you need to declare a border-style value other than none. It doesn’t have to be solid. Second, the value of border-width determines the actual width of the border images. Without a declared value, it will default to medium, which is in the vicinity of 3 pixels. (Actual value may vary.)
 
 OK, so we set up a border area 25 pixels wide, and then applied an image to it. That gave us the same circle in each of the four corners. But why did it only appear there, and not along the sides? The answer to that is found in the way border-image-slice is defined.
 
-//
+<Cards cards="border-image-slice" />
 
 What border-image-slice does is set up a set of four slice-lines that are laid over the image, and where they fall determines how the image will be sliced up for use in an image border. It takes up to four values, defining (in order) offsets from the top, right, bottom, and left edges. Yep, there’s that TRBL pattern again! And value replication is also in effect here, so one value is used for all four offsets. Figure 8-44 shows a small sampling of offset patterns, all based on percentages.
 
-css4 0837
-Figure 8-44. Various slicing patterns
+<Figures figure="8-44">Various slicing patterns</Figures>
+
 Now let’s take an image that has a 3 × 3 grid of circles, each a different color, and slice it up for use in an image border. Figure 8-45 shows a single copy of this image and the resulting image border:
+
 ```css
 border: 25px solid;
 border-image-source: url(i/circles.png);
 border-image-slice: 33.33%;
 ```
-css4 0838
-Figure 8-45. An all-around image border
+
+<Figures figure="8-45">An all-around image border</Figures>
+
 Yikes! That’s…interesting. The stretchiness of the sides is actually the default behavior, and it makes a fair amount of sense, as we’ll see (and find out how to change) in the upcoming section, “Altering the repeat pattern”. Beyond that effect, you can see in Figure 8-45 that the slice-lines fall right between the circles, because the circles are all the same size and so one-third offsets place the slice-lines right between them. The corner circles go into the corners of the border, and each side’s circle is stretched out to fill its side.
 
 (Wait, what happened to the gray circle in the middle? you may wonder. It’s an interesting question! For now, just accept it as one of life’s little mysteries, albeit a mystery that will be explained later in this section.)
@@ -798,8 +867,8 @@ if the sum of the right and left [border-image-slice] widths is equal to or grea
 
 In other words, any time the slice-lines meet or go past each other, the corner images are created but the side images are made empty. This is easiest to visualize with border-image-slice: 50%. In that case, the image is sliced into four quadrants, one for each corner, with nothing remaining for the sides. However, any value above 50% has the same basic result, even though the image isn’t sliced into neat quadrants anymore. Thus, for border-image-slice: 100%—which is the default value—each corner gets the entire image, and the sides are left empty. A few examples of this effect are shown in Figure 8-46.
 
-css4 0839
-Figure 8-46. Various patterns that prevent side slices
+<Figures figure="8-46">Various patterns that prevent side slices</Figures>
+
 That’s why we had to have a 3 × 3 grid of circles when we wanted to go all the way around the border area, corners, and sides.
 
 In addition to percentage offsets, it’s also possible to define the offsets using a number. Not a length, as you might assume, but a bare number. In raster images like PNGs or JPEGs, the number corresponds to pixels in the image on a 1:1 basis. If you have a raster image where you want to define 25-pixel offsets for the slice-lines, this is how to do that, as illustrated in Figure 8-47:
@@ -814,18 +883,19 @@ This begins to give an idea of why the default behavior for the side images is t
 
 Number offsets don’t scale when changes are made to an image and its size, whereas percentages do. The interesting thing about number offsets is that they work just as well on non-raster images, like SVGs, as they do on rasters. So do percentages. In general, it’s probably best to use percentages for your slicing offsets whenever possible, even if means doing a little math to get exactly the right percentages.
 
-css4 0840
-Figure 8-47. Number slicing
-css4 0841
-Figure 8-48. Slice-lines at 25 pixels
+<Figures figure="8-47">Number slicing</Figures>
+
+<Figures figure="8-48">Slice-lines at 25 pixels</Figures>
+
 Now let’s address the curious case of the image’s center. In the previous examples, there’s a circle at the center of the 3 × 3 grid of circles, but it disappears when the image is applied to the border. In the last example, in fact, it wasn’t just the middle circle that was missing, but the entire center slice. This dropping of the center slice is the default behavior for image-slicing, but you can override it by adding a fill keyword to the end of your border-image-slice value. If we add fill to the previous example, as shown here, we’ll get the result shown in Figure 8-49:
 ```css
 border: 25px solid;
 border-image-source: url(i/circles.png);
 border-image-slice: 25 fill;
 ```
-css4 0842
-Figure 8-49. Using the fill slice
+
+<Figures figure="8-49">Using the fill slice</Figures>
+
 There’s the center slice, filling up the element’s background area. In fact, it’s drawn over top of whatever background the element might have, so you can use it as a substitute for the background, or as an addition to it.
 
 You may have noticed that all our border areas have been a consistent width (usually 25px). This doesn’t have to be the case, regardless of how the border image is actually sliced up. Suppose we take the circles border image we’ve been using, slice it by thirds as we have, but make the border widths different. That would have a result like that shown in Figure 8-50:
@@ -837,12 +907,12 @@ border-image-slice: 50;
 ```
 Even though the slice-lines are intrinsically set to 50 pixels (via 50), the resulting slices are resized to fit into the border areas they occupy.
 
-css4 0843
-Figure 8-50. Uneven border image widths
+<Figures figure="8-50">Uneven border image widths</Figures>
+
 ALTERING THE IMAGE WIDTHS
 Thus far, all our image borders have depended on a border-width value to set the sizes of the border areas, which the border images have filled out precisely. That is, if the top border side is 25 pixels tall, the border image that fills it will be 25 pixels tall. In cases where you want to make the images a different size than the area defined by border-width, there’s border-image-width.
 
-//
+<Cards cards="border-image-width" />
 
 
 The basic thing to understand about border-image-width is that it’s very similar to border-image-slice, except what border-image-width slices up is the border box itself.
@@ -853,8 +923,8 @@ border-image-width: 1em;
 ```
 What that does is push slice-lines 1 em inward from each of the border area’s sides, as shown in Figure 8-51.
 
-css4 0844
-Figure 8-51. Placing slice-lines for the border image’s width
+<Figures figure="8-51">Placing slice-lines for the border image’s width</Figures>
+
 So the top and bottom border areas are 1 em tall, the right and left border areas are 1 em wide, and the corners are each 1 em tall and wide. Given that, the border images created with border-image-slice are filled into those border areas in the manner prescribed by border-image-repeat (which we’ll get to shortly). Thus, the following styles give the result shown in Figure 8-52:
 ```css
 border-image-width: 1em;
@@ -867,16 +937,18 @@ border-image-source: url(stars.gif);
 border-image-width: 12px;
 border-image-slice: 33.3333%;
 ```
-css4 0845
-Figure 8-52. Filling in the border areas
+
+<Figures figure="8-52">Filling in the border areas</Figures>
+
 This allows for a 12-pixel star border to be replaced with a 2-pixel solid border if border images aren’t available. Remember that if the image border does load, you’ll need to leave enough space for it to show up without overlapping the content! (By default, that is. We’ll see how to mitigate this problem in the next section.)
 
 Now that we’ve established how the width slice-lines are placed, the way percentage values are handled should make sense, as long as you keep in mind that the offsets are with respect to the overall border box, not each border side. For example, consider the following declaration, illustrated in Figure 8-53:
 ```css
 border-image-width: 33%;
 ```
-css4 0846
-Figure 8-53. Placement of percentage slice-lines
+
+<Figures figure="8-53">Placement of percentage slice-lines</Figures>
+
 As with length units, the lines are offset from their respective sides of the border box. The distance they travel is with respect to the border box. A common mistake is to assume that a percentage value is with respect to the border area defined by border-width; that is, given a border-width value of 30px, the result of border-image-width: 33.333%; will be 10 pixels. But no! It’s one-third the overall border box along that axis.
 
 One way in which the behavior of border-image-width differs from border-image-slice is in how it handles situations where the slices pass each other, such as in this situation:
@@ -899,8 +971,8 @@ You can increase or reduce the number values in order to get some multiple of th
 
 In each case, the number has been multipled by the border area’s width or height, and the resulting value is how far in the offset is placed from the relevant side. Thus, for an element where border-top-width is 3 pixels, border-image-width: 10 will create a 30-pixel offset from the top of the element. Change border-image-width to 0.333, and the top offset will be a lone pixel.
 
-css4 0847
-Figure 8-54. Various numeric border image widths
+<Figures figure="8-54">Various numeric border image widths</Figures>
+
 The last value, auto, is interesting in that its resulting values depend on the state of two other properties. If border-image-slice is defined, then border-image-width: auto uses the values that result from border-image-slice. Otherwise, it uses the values that result from border-width. These two declarations will have the same result:
 ```css
 border-width: 1em 2em; border-image-width: auto;
@@ -914,10 +986,10 @@ border-image-width: auto 10px;
 border-image-width: 5 15% auto;
 border-image-width: 0.42em 13% 3.14 auto;
 ```
-CREATING A BORDER OVERHANG
+#### CREATING A BORDER OVERHANG
 Well, now that we can define these great big image slices and widths, what do we do to keep them from overlapping the content? We could add lots of padding, but that would leave huge amounts of space if the image fails to load, or if the browser doesn’t support border images. Handling such scenarios is what border-image-outset is built to manage.
 
-//
+<Cards cards="border-image-outset" />
 
 Regardless of whether you use a length or a number, border-image-outset pushes the border image area outward, beyond the border box, in a manner similar to how slice-lines are offset. The difference is that here, the offsets are outward, not inward. Just as with border-image-width, number values for border-image-outset are a multiple of the width defined by border-width—not border-image-width.
 
@@ -931,6 +1003,7 @@ border-image-width: 1;
 In this case, there’s half an em of padding; at default browser settings, that will be about eight pixels. That plus the 2-pixel solid border make a distance of 10 pixels from the content edge to the outer border edge. So if the border image is available and rendered, it will fill not only the border area, but also the padding, bringing it right up against the content.
 
 We could increase the padding to account for this, but then if the image doesn’t appear, we’ll have a lot of excess padding between the content and the thin solid border. Instead, let’s push the border image outward, like so:
+
 ```css
 border: 2px solid;
 padding: 0.5em;
@@ -940,8 +1013,8 @@ border-image-outset: 8px;
 ```
 This is illustrated in Figure 8-55, and compared to situation where there’s no outset and no border image.
 
-css4 0848
-Figure 8-55. Creating an image border overhang
+<Figures figure="8-55">Creating an image border overhang</Figures>
+
 In the first case, the image border has been pushed out far enough that rather than overlapping the padding area, the images actually overlap the margin area! We can also split the difference so that the image border is roughly centered on the border area, like this:
 ```css
 border: 2px solid;
@@ -955,7 +1028,7 @@ What you have to watch out for is pulling the image border too far outward, to t
 ALTERING THE REPEAT PATTERN
 So far, we’ve seen a lot of stretched-out images along the sides of our examples. The stretching can be very handy in some situations, but a real eyesore in others. With border-image-repeat, you can change how those sides are handled.
 
-//
+<Cards cards="border-image-repeat" />
 
 Let’s see these values in action and then discuss each in turn.
 
@@ -963,8 +1036,8 @@ We’ve already seen stretch, so the effect is familiar. Each side gets a single
 
 repeat has the image tile until it fills up all the space in its border side area. The exact arrangement is to center the image in its side box, and then tile copies of the image outward from that point, until the border side area is filled. This can lead to some of the repeated images being clipped at the sides of the border area, as seen in Figure 8-56.
 
-css4 0849
-Figure 8-56. Various image-repeat patterns
+<Figures figure="8-56">Various image-repeat patterns</Figures>
+
 round is a little different. With this value, the browser divides the length of the border side area by the size of the image being repeated inside it. It then rounds to the nearest whole number and repeats that number of images. In addition, it stretches or squashes the images so that they just touch each other as they repeat.
 
 As an example, suppose the top border side area is 420 pixels wide, and the image being tiled is 50 pixels wide. 420 divided by 50 is 8.4, so that’s rounded to 8. Thus, 8 images are tiled. However, each is stretched to be 52.5 pixels wide (420 ÷ 8 = 52.5). Similarly, if the right border side area is 280 pixels tall, a 50-pixel-tall image will be tiled 6 times (280 ÷ 50 = 5.6, rounded to 6) and each image will be squashed to be 46.6667 pixels tall (280 ÷ 6 = 46.6667). If you look closely at Figure 8-56, you can see the top and bottom circles are a stretched a bit, whereas the right and left circles show some squashing.
@@ -973,15 +1046,15 @@ The last value, space, starts out similar to round, in that the border side area
 
 Thus, given a top border side area 420 pixels wide and a 50-pixel-wide image to be tiled, there will still be 8 images to repeat (8.4 rounded down is 8). The images will take up 400 pixels of space, leaving 20 pixels. That 20 pixels is divided by 8, which is 2.5 pixels. Half of that is put to each side of each image, meaning each image gets 1.25 pixels of space to either side. That puts 2.5 pixels of space between each image, and 1.25 pixels of space before the first and after the last image. Figure 8-57 shows a few examples of space repeating.
 
-css4 0850
-Figure 8-57. A variety of space repetitions
-WARNING
-As of late 2017, Chrome and Opera did not support space on border images.
+<Figures figure="8-57">A variety of space repetitions</Figures>
 
-SHORTHAND BORDER IMAGE
+<Tips tips="orange">As of late 2017, Chrome and Opera did not support space on border images.</Tips>
+
+
+#### SHORTHAND BORDER IMAGE
 There is a single shorthand property for border images, which is (unsurprisingly enough) border-image. It’s a little unusual in how it’s written, but it offers a lot of power without a lot of typing.
 
-//
+<Cards cards="border-image" />
 
 This property has, it must be admitted, a somewhat unusual value syntax. In order to get all the various properties for slices and widths and offsets, and be able to tell which was which, the decision was made to separate them by solidus symbols (/) and require them to be listed in a specific order: slice, then width, then offset. The image source and repeat values can go anywhere outside of that three-value chain. Therefore, the following rules are equivalent:
 ```css
@@ -1019,8 +1092,9 @@ First, let’s look at how to set up a border with scooped-out corners and a rai
     border-image-outset: 9px;
 }
 ```
-css4 0851
-Figure 8-58. A simple plaque effect and its older-browser fallback
+
+<Figures figure="8-58">A simple plaque effect and its older-browser fallback</Figures>
+
 Notice how the side slices are perfectly set up to be stretched—everything about them is just repeated strips of color along the axis of stretching. They could also be repeated or rounded, of course, if not rounded, but stretching works just fine. And since that’s the default value, we could have omitted the border-image-repeat declaration altogether.
 
 Next, let’s try to create something oceanic: an image border that has waves marching all the way around the border. Since we don’t know how wide or tall the element will be ahead of time, and we want the waves to flow from one to another, we’ll use round to take advantage of its scaling behavior while getting in as many waves as will reasonably fit. You can see the result in Figure 8-59, along with the image that’s used to create the effect:
@@ -1031,8 +1105,9 @@ Next, let’s try to create something oceanic: an image border that has waves ma
         url(waves.png) 50 fill / 20px / 10px round;
 }
 ```
-css4 0852
-Figure 8-59. A wavy border
+
+<Figures figure="8-59">A wavy border</Figures>
+
 There is one thing to be wary of here, which is what happens if you add in an element background. Just to make the situation clear, we’ll add a red background to this element, with the result shown in Figure 8-60:
 ```css
 #oceanic {
@@ -1046,8 +1121,7 @@ See how the red is visible between the waves? That’s because the wave image is
 
 As you can see, there is a lot of power in border images. Be sure to use them wisely.
 
-css4 0853
-Figure 8-60. The background area, visible through the image border
+<Figures figure="8-60">The background area, visible through the image border</Figures>
 
 ## 8.4 Outlines
 
@@ -1066,14 +1140,11 @@ Outlines are an all-or-nothing proposition: you can’t style one side of a bord
 Let’s start finding out exactly what all that means. First, we’ll run through the various properties, comparing them to their border-related counterparts.
 
 
-
-
-
 ### 8.4.1 Outline Styles
 
 Much as with border-style, you can set a style for your outlines. In fact, the values will seem very familiar to anyone who’s styled a border before.
 
-//
+<Cards cards="outline-style" />
 
 The two major differences are that outlines cannot have a hidden style, as borders can; and outlines can have auto style. This style allows the user agent to get extra-fancy with the appearance of the outline, as explained in the CSS specification:
 
@@ -1081,27 +1152,27 @@ The auto value permits the user agent to render a custom outline style, typicall
 
 Beyond those two differences, outlines have all the same styles that borders have, as illustrated in Figure 8-61.
 
-css4 0854
-Figure 8-61. Various outline styles
+<Figures figure="8-61">Various outline styles</Figures>
+
 The less obvious difference is that unlike border-style, outline-style is not a shorthand property. You can’t use it to set a different outline style for each side of the outline, because outlines can’t be styled that way. There is no outline-top-style. This is true for all the rest of the outline properties, with the exception of outline, which we’ll get to in a bit.
 
 ### 8.4.2 Outline Width
 
 Once you’ve decided on a style for the outline, assuming the style isn’t none, you can define a width for the outline.
 
-//
+<Cards cards="outline-width" />
 
 There’s very little to say about outline width that we didn’t already say about border width. If the outline style is none, then the outline’s width is set to 0. thick is wider than medium, which is wider than thin, but the specification doesn’t define exact widths for these keywords. Figure 8-62 shows a few different outline widths.
 
-css4 0855
-Figure 8-62. Various outline widths
+<Figures figure="8-62">Various outline widths</Figures>
+
 As before, the real difference here is that outline-width is not a shorthand property. You can only set one width for the whole outline, and cannot set different widths for different sides. (The reasons for this will soon become clear.)
 
 ### 8.4.3 Outline Color
 
 Does your outline have a style and a width? Great! Let’s give it some color!
 
-//
+<Cards cards="outline-color" />
 
 This is pretty much the same as border-color, with the caveat that it’s an all-or-nothing proposition—for example, there’s no outline-left-color.
 
@@ -1109,22 +1180,23 @@ The one major difference is the default value, invert. What invert does is perfo
 ```css
 h1 {outline-style: dashed; outline-width: 10px; outline-color: invert;}
 ```
-css4 0856
-Figure 8-63. Color inversion
+
+<Figures figure="8-63">Color inversion</Figures>
+
 The advantage to color inversion is that it can make the outline stand out in a wide variety of situations, regardless of what’s behind it. There is an exception: if you invert the color gray (or rgb(50%,50%,50%) or hsl(0,0%,50%) or any of their equivalents), you get exactly the same color back. Thus, outline-color: invert will make the outline invisible on a gray background. The same will be true for background colors that are very close to gray.
 
-WARNING
-As of late 2017, invert was only supported by Microsoft Edge and IE11. Most other browsers treated it as an error and thus used the default color (the value of color for the element).
+<Tips tips="orange">As of late 2017, <code>invert</code> was only supported by Microsoft Edge and IE11. Most other browsers treated it as an error and thus used the default color (the value of <code>color</code> for the element).</Tips>
 
-THE ONLY OUTLINE SHORTHAND
+
+#### THE ONLY OUTLINE SHORTHAND
 So far, we’ve seen three outline properties that look like shorthand properties, but aren’t. Time for the one outline property that is a shorthand: outline.
 
-//
+<Cards cards="outline" />
 
 It probably comes as little surprise that, like border, this is a convenient way to set the overall style, width, and color of an outline. Figure 8-64 illustrates a variety of outlines.
 
-css4 0857
-Figure 8-64. Various outlines
+<Figures figure="8-64">Various outlines</Figures>
+
 Thus far, outlines seem very much like borders. So how are they different?
 
 ### 8.4.4 How They Are Different
@@ -1136,8 +1208,9 @@ To understand what this means, consider the following styles, illustrated in Fig
 h1 {padding: 10px; border: 10px solid green;
     outline: 10px dashed #9AB; margin: 10px;}
 ```
-css4 0858
-Figure 8-65. Outline over margin
+
+<Figures figure="8-65">Outline over margin</Figures>
+
 Looks normal, right? What you can’t see is that the outline is completely covering up the margin. If we put in a dotted line to show the margin edges, they’d run right along the outside edge of the outline. (We’ll deal with margins in the next section.)
 
 This is what’s meant by outlines not affecting layout. Let’s consider another example, this time with two span elements that are given outlines. You can see the results in Figure 8-66:
@@ -1145,32 +1218,34 @@ This is what’s meant by outlines not affecting layout. Let’s consider anothe
 span {outline: 1em solid rgba(0,128,0,0.5);}
 span + span {outline: 0.5em double purple;}
 ```
-css4 0859
-Figure 8-66. Overlapping outlines
+
+<Figures figure="8-66">Overlapping outlines</Figures>
+
 The outlines don’t affect the height of the lines, but they also don’t shove the spans to one side or another. The text is laid out as if the outlines aren’t even there.
 
 This raises an even more interesting feature of outlines: they are not always rectangular, nor are they always contiguous. Consider this outline applied to a strong element that breaks across two lines, as illustrated in two different scenarios in Figure 8-67:
 ```css
 strong {outline: 2px dotted gray;}
 ```
-css4 0860
-Figure 8-67. Discontinuous and nonrectangular outlines
+
+<Figures figure="8-67">Discontinuous and nonrectangular outlines</Figures>
+
 In the first case, there are two complete outline boxes, one for each fragment of the strong element. In the second case, with the longer strong element causing the two fragments to be stacked together, the outline is “fused” into a single polygon that encloses the fragments. You won’t find a border doing that.
 
 This is why there are no side-specific outline properties like outline-right-style: if an outline becomes nonrectangular, which sides are the right sides?
 
-WARNING
-As of late 2017, not every browser combined the inline fragments into a single contiguous polygon. In those which did not support this behavior, each fragment was still a self-contained rectangle, as in the first example in Figure 8-67.
+<Tips tips="orange">As of late 2017, not every browser combined the inline fragments into a single contiguous polygon. In those which did not support this behavior, each fragment was still a self-contained rectangle, as in the first example in Figure 8-67.</Tips>
+
 
 ## 8.5 Margins
 
 a margin creates extra blank space around an element. Blank space generally refers to an area in which other elements cannot also exist and in which the parent element’s background is visible. Figure 8-68 shows the difference between two paragraphs without any margins and the same two paragraphs with some margins.
 
-css4 0861
-Figure 8-68. Paragraphs with, and without, margins
+<Figures figure="8-68">Paragraphs with, and without, margins</Figures>
+
 The simplest way to set a margin is by using the property margin.
 
-//
+<Cards cards="margin" />
 
 Suppose you want to set a quarter-inch margin on h1 elements, as illustrated in Figure 8-69 (a background color has been added so you can clearly see the edges of the content area):
 ```css
@@ -1178,8 +1253,8 @@ h1 {margin: 0.25in; background-color: silver;}
 ```
 This sets a quarter-inch of blank space on each side of an h1 element. In Figure 8-69, dashed lines represent the blank space, but the lines are purely illustrative and would not actually appear in a web browser.
 
-css4 0862
-Figure 8-69. Setting a margin for h1 elements
+<Figures figure="8-69">Setting a margin for h1 elements</Figures>
+
 margin can accept any length of measure, whether in pixels, inches, millimeters, or ems. However, the default value for margin is effectively 0 (zero), so if you don’t declare a value, by default, no margin should appear.
 
 In practice, however, browsers come with preassigned styles for many elements, and margins are no exception. For example, in CSS-enabled browsers, margins generate the “blank line” above and below each paragraph element. Therefore, if you don’t declare margins for the p element, the browser may apply some margins on its own. Whatever you declare will override the default styles.
@@ -1208,8 +1283,7 @@ h2 {margin: 14px 5em 0.1in 3ex;} /* value variety! */
 ```
 Figure 8-70 shows you, with a little extra annotation, the results of this declaration.
 
-css4 0863
-Figure 8-70. Mixed-value margins
+<Figures figure="8-70">Mixed-value margins</Figures>
 
 ### 8.5.2 Percentages and Margins
 
@@ -1238,16 +1312,16 @@ p {margin: 10%;}
 ```
 Note that the top and bottom margins are consistent with the right and left margins; in other words, the percentage of top and bottom margins is calculated with respect to the element’s width, not its height. We’ve seen this before—in “Padding”, in case you don’t remember—but it’s worth reviewing again, just to see how it operates.
 
-css4 0864
-Figure 8-71. Parent widths and percentages
-NOTE
-As with padding, the treatment of percentage values for top and bottom margins is different for most positioned elements, flex items, and grid items, where they are calculated with respect to the height of their formatting context.
+<Figures figure="8-71">Parent widths and percentages</Figures>
+
+<Tips tips="blue">As with padding, the treatment of percentage values for top and bottom margins is different for most positioned elements, flex items, and grid items, where they are calculated with respect to the height of their formatting context.</Tips>
+
 
 ### 8.5.3 Single-Side Margin Properties
 
 You guessed it: there are properties that let you set the margin on a single side of the box, without affecting the others.
 
-//
+<Cards cards="margin-top_margin-right_margin-bottom_margin-left" />
 
 These properties operate as you’d expect. For example, the following two rules will give the same amount of margin:
 ```css
@@ -1266,8 +1340,8 @@ So that sets every paragraph to have top and bottom margins of 1em. If margins d
 
 To illustrate this a little more clearly, let’s return to the percentage-margin example, only this time, we’ll add dashed lines to indicate where the margins fall. This is seen in Figure 8-72.
 
-css4 0865
-Figure 8-72. Collapsing margins
+<Figures figure="8-72">Collapsing margins</Figures>
+
 The example shows the separation distance between the contents of the two paragraphs. It’s 60 pixels, because that’s the larger of the two margins that are interacting. The 30-pixel top margin of the second paragraph is collapsed, leaving the first paragraph’s top margin in charge.
 
 So in a sense, Figure 8-72 is lying: if you take the CSS specification strictly at its word, the top margin of the second paragraph is actually reset to zero. It doesn’t stick into the bottom margin of the first paragraph because when it collapses, it isn’t there anymore. The end result is the same, though.
@@ -1288,14 +1362,14 @@ What happened? The side margins took effect—we can see that from the way the t
 
 Only they aren’t gone. They’re just sticking out of the header element, having interacted with the (zero-width) top margin of the header element. The magic of dashed lines in Figure 8-74 show us what’s happening.
 
-css4 0866
-Figure 8-73. Margins collapsing with parents
-css4 0867
-Figure 8-74. Margins collapsing with parents, revealed
+<Figures figure="8-73">Margins collapsing with parents</Figures>
+
+<Figures figure="8-74">Margins collapsing with parents, revealed</Figures>
+
 There they are—pushing away any content that might come before or after the header element, but not pushing away the edges of the header itself. This is the intended result, even if it’s often not the desired result. As for why it’s intended, imagine happens if you put a paragraph in a list item. Without the specified margin-collapsing behavior, the paragraph’s top margin would shove it downward, where it would be far out of alignment with the list item’s bullet (or number).
 
-NOTE
-Margin collapsing can be interrupted by factors such as padding and borders on parent elements. For more details, see the discussion in the section “Collapsing Vertical Margins” in Chapter 7 of Basic Visual Formatting (O’Reilly).
+<Tips tips="blue">Margin collapsing can be interrupted by factors such as padding and borders on parent elements. For more details, see the discussion in the section “Collapsing Vertical Margins” in Chapter 7 of Basic Visual Formatting (O’Reilly).</Tips>
+
 
 ### 8.5.5 Negative Margins
 
@@ -1306,8 +1380,9 @@ p {margin: 1em; border: 1px dashed silver;}
 p.one {margin: 0 -1em;}
 p.two {margin: -1em 0;}
 ```
-css4 0868
-Figure 8-75. Negative margins in action
+
+<Figures figure="8-75">Negative margins in action</Figures>
+
 In the first case, the math works out such that the paragraph’s computed width plus its right and left margins are exactly equal to the width of the parent div. So the paragraph ends up two ems wider than the parent element without actually being “wider” (from a mathematical point of view). In the second case, the negative top and bottom margins effectively reduce the computed height of the element and move its top and bottom outer edges inward, which is how it ends up overlapping the paragraphs before and after it.
 
 Combining negative and positive margins is actually very useful. For example, you can make a paragraph “punch out” of a parent element by being creative with positive and negative margins, or you can create a Mondrian effect with several overlapping or randomly placed boxes, as shown in Figure 8-76:
@@ -1320,8 +1395,7 @@ p.mond {background: rgba(5,5,5,0.5); color: white; margin: 1em 3em -3em -3em;}
 ```
 Thanks to the negative bottom margin for the “mond” paragraph, the bottom of its parent element is pulled upward, allowing the paragraph to stick out of the bottom of its parent.
 
-css4 0869
-Figure 8-76. Punching out of a parent
+<Figures figure="8-76">Punching out of a parent</Figures>
 
 ### 8.5.6 Margins and Inline Elements
 
@@ -1335,37 +1409,39 @@ As with padding, things change a bit when you apply margins to the left and righ
 ```css
 strong {margin-left: 25px; background: silver;}
 ```
-css4 0870
-Figure 8-77. An inline nonreplaced element with a left margin
+
+<Figures figure="8-77">An inline nonreplaced element with a left margin</Figures>
+
 Note the extra space between the end of the word just before the inline nonreplaced element and the edge of the inline element’s background. You can add that extra space to both ends of the inline element if you want:
 ```css
 strong {margin: 25px; background: silver;}
 ```
 As expected, Figure 8-78 shows a little extra space on the right and left sides of the inline element, and no extra space above or below it.
 
-css4 0871
-Figure 8-78. An inline nonreplaced element with 25-pixel side margins
+<Figures figure="8-78">An inline nonreplaced element with 25-pixel side margins</Figures>
+
 Now, when an inline nonreplaced element stretches across multiple lines, the situation changes. Figure 8-79 shows what happens when an inline nonreplaced element with a margin is displayed across multiple lines:
 ```css
 strong {margin: 25px; background: silver;}
 ```
-css4 0872
-Figure 8-79. An inline nonreplaced element with 25-pixel side margin displayed across two lines of text
+
+<Figures figure="8-79">An inline nonreplaced element with 25-pixel side margin displayed across two lines of text</Figures>
+
 The left margin is applied to the beginning of the element and the right margin to the end of it. Margins are not applied to the right and left side of each line fragment. Also, you can see that, if not for the margins, the line may have broken after “text” instead of after “strongly emphasized.” Margins only affect line breaking by changing the point at which the element’s content begins within a line.
 
-NOTE
-The way margins are (or aren’t) applied to the ends of each line box can be altered with the property box-decoration-break. See Chapter 7 for more details.
+<Tips tips="blue">The way margins are (or aren’t) applied to the ends of each line box can be altered with the property box-decoration-break. See Chapter 7 for more details.</Tips>
+
 
 The situation gets even more interesting when we apply negative margins to inline nonreplaced elements. The top and bottom of the element aren’t affected, and neither are the heights of lines, but the left and right ends of the element can overlap other content, as depicted in Figure 8-80:
 ```css
 strong {margin: -25px; background: silver;}
 ```
-css4 0873
-Figure 8-80. An inline nonreplaced element with a negative margin
+
+<Figures figure="8-80">An inline nonreplaced element with a negative margin</Figures>
+
 Replaced inline elements represent yet another story: margins set for them do affect the height of a line, either increasing or reducing it, depending on the value for the top and bottom margin. The left and right margins of an inline replaced element act the same as for a nonreplaced element. Figure 8-81 shows a series of different effects on layout from margins set on inline replaced elements.
 
-css4 0874
-Figure 8-81. Inline replaced elements with differing margin values
+<Figures figure="8-81">Inline replaced elements with differing margin values</Figures>
 
 ## 8.6 Summary
 
