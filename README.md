@@ -37,7 +37,7 @@ Features：
 - [第 14 章 CSS 中的表格布局](docs/ch14.md)
 - [第 15 章 列表和生成的内容](docs/ch15.md)
 - [第 16 章 转换 ](docs/ch16.md)
-- [第 17 章 跃迁](docs/ch17.md)
+- [第 17 章 过渡](docs/ch17.md)
 - [第 18 章 动画](docs/ch18.md)
 - [第 19 章 过滤器，混合，剪切和掩蔽](docs/ch19.md)
 - [第 20 章 Media-Dependent 风格](docs/ch20.md)
@@ -46,6 +46,23 @@ Features：
 
 本项目基于 vuepress 进行开发，以提供比 github mardown 更佳的阅读体验
 依赖于 `node.js`、`yarn`、`vuepress` 等环境
+
+### 使用npm
+
+```
+# vuepress
+npm install -g vuepress
+
+# 本地开发
+git clone https://github.com/gdut-yy/CSS-The-Definitive-Guide-4th-zh.git
+cd CSS-The-Definitive-Guide-4th-zh/
+npm run docs:dev
+
+# 本地阅读
+http://localhost:8080/doc-csstdg4/
+```
+
+### 使用yarn
 
 ```sh
 # vuepress
