@@ -45,7 +45,7 @@ Features：
 ## 本地开发 & 阅读
 
 本项目基于 vuepress 进行开发，以提供比 github mardown 更佳的阅读体验
-依赖于 `node.js`、`yarn`、`vuepress` 等环境
+依赖于 `node.js`、`yarn`（或者`npm`）、`vuepress` 等环境
 
 ### 使用npm
 
