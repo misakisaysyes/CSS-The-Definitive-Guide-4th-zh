@@ -45,33 +45,25 @@ Features：
 ## 本地开发 & 阅读
 
 本项目基于 vuepress 进行开发，以提供比 github mardown 更佳的阅读体验
+
 依赖于 `node.js`、`yarn`（或者`npm`）、`vuepress` 等环境
 
-### 使用npm
+### 本地开发 & 阅读
 
-```
-# vuepress
+```sh
+# 安装 vuepress 依赖，使用 yarn：
+yarn global add vuepress
+# 或使用 npm：
 npm install -g vuepress
 
 # 本地开发
 git clone https://github.com/gdut-yy/CSS-The-Definitive-Guide-4th-zh.git
 cd CSS-The-Definitive-Guide-4th-zh/
-npm run docs:dev
 
-# 本地阅读
-http://localhost:8080/doc-csstdg4/
-```
-
-### 使用yarn
-
-```sh
-# vuepress
-yarn global add vuepress
-
-# 本地开发
-git clone https://github.com/gdut-yy/CSS-The-Definitive-Guide-4th-zh.git
-cd CSS-The-Definitive-Guide-4th-zh/
+# 使用 yarn：
 yarn docs:dev
+# 或使用 npm：
+npm run docs:dev
 
 # 本地阅读
 http://localhost:8080/doc-csstdg4/
@@ -84,6 +76,7 @@ http://localhost:8080/doc-csstdg4/
     <td align="center"><a href="https://gdut-yy.github.io/"><img src="https://avatars2.githubusercontent.com/u/33390928?s=460&v=4" width="100px;" /><br /><sub><b>gdut-yy</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/gdut-wj"><img src="https://avatars3.githubusercontent.com/u/38821031?s=460&v=4" width="100px;" /><br /><sub><b>gdut-wj</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/brightzoe"><img src="https://avatars2.githubusercontent.com/u/17716768?s=400&v=4" width="100px;" /><br /><sub><b>brightzoe</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/PID000"><img src="https://avatars1.githubusercontent.com/u/32430186?s=400&v=4" width="100px;" /><br /><sub><b>LuoTingZhong</b></sub></a><br /></td>
   </tr>
 </table>
 
