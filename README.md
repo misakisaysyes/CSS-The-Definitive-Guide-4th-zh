@@ -64,9 +64,6 @@ cd CSS-The-Definitive-Guide-4th-zh/
 yarn docs:dev
 # 或使用 npm：
 npm run docs:dev
-
-# 本地阅读
-http://localhost:8080/doc-csstdg4/
 ```
 
 ## Contributors
