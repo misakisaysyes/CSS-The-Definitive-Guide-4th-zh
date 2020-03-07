@@ -75,6 +75,7 @@ npm run docs:dev
     <td align="center"><a href="https://github.com/brightzoe"><img src="https://avatars2.githubusercontent.com/u/17716768?s=400&v=4" width="100px;" /><br /><sub><b>brightzoe</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/PID000"><img src="https://avatars1.githubusercontent.com/u/32430186?s=400&v=4" width="100px;" /><br /><sub><b>LuoTingZhong</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/RxGirlz"><img src="https://avatars3.githubusercontent.com/u/51844789?s=460&v=4" width="100px;" /><br /><sub><b>RxGirlz</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/chenshaw1995"><img src="https://avatars0.githubusercontent.com/u/22993199?s=460&v=4" width="100px;" /><br /><sub><b>chenshaw1995</b></sub></a><br /></td>
   </tr>
 </table>
 

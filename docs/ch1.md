@@ -614,13 +614,13 @@ The right side of the rule contains the declaration block, which is made up of o
 
 Sometimes you’ll see pieces of CSS with dashes and labels in front of them, like this: `-o-border-image`. These are called vendor prefixes, and are a way for browser vendors to mark properties, values, or other bits of CSS as being experimental or proprietary (or both). As of late 2016, there were a few vendor prefixes in the wild, with the most common being shown in Table 1-1.
 
-|Prefix   |Vendor   |
-|---|---|
-|-epub-   |International Digital Publishing Forum ePub format   |
-|-moz-   |Mozilla-based browsers (e.g., Firefox)   |
-|-ms-   |Microsoft Internet Explorer   |
-|-o-   |Opera-based browsers   |
-|-webkit-   |Webkit-based browsers (e.g., safari and Chrome)   |
+| Prefix   | Vendor                                             |
+| -------- | -------------------------------------------------- |
+| -epub-   | International Digital Publishing Forum ePub format |
+| -moz-    | Mozilla-based browsers (e.g., Firefox)             |
+| -ms-     | Microsoft Internet Explorer                        |
+| -o-      | Opera-based browsers                               |
+| -webkit- | Webkit-based browsers (e.g., safari and Chrome)    |
 
 As Table 1-1 implies, the generally accepted format of a vendor prefix is a dash, a label, and a dash, although a few prefixes erroneously omit the first dash.
 
