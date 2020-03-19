@@ -1495,7 +1495,7 @@ As a descriptor, `font-style` lets an author link specific faces to specific fon
 ```css
 @font-face {
   font-family: "SwitzeraADF";
-  fontstyle|187font-style: normal;
+  font-style: normal;
   src: url("SwitzeraADF-Regular.otf") format("opentype");
 }
 @font-face {
