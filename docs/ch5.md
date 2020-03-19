@@ -369,7 +369,7 @@ In addition to the combination of `url()` and `format()`, you can also supply a 
 
 In this example, the user agent looks to see if it already has a font family named “Switzera-Regular” or “SwitzeraADF-Regular” available. If so, it will use the name `SwitzeraADF` to refer to that locally installed font. If not, it will use the `url()` value to try downloading the remote font.
 
-> 在本例中，用户代理查看是否已经有名为“- regular”或“aadf - regular”的字体家族可用。如果是这样，它将使用名称“aadf”来指代本地安装的字体。如果没有，它将使用' url() '值尝试下载远程字体。
+> 在本例中，用户代理查看是否已经有名为“Switzera-Regular”或“SwitzeraADF-Regular”的字体族可用。如果有，它将使用名称“SwitzeraADF”来指代本地安装的字体。如果没有，它将使用' url() '值尝试下载远程字体。
 
 Note that this capability allows an author to create custom names for locally installed fonts. For example, you could set up a shorter name for Helvetica (or, failing that, Helvetica Neue) like so:
 
